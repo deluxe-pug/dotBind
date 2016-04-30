@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "description": "api",
+  "author": "michelle",
+  "main": "server.js",
+  "engines": {
+    "node": "4.2.4"
+  },
+  "dependencies": {
+    "nodal": "0.9.0"
+  },
+  "devDependencies": {
+    "chai": "~3.5.0",
+    "mocha": "~2.4.5"
+  },
+  "scripts": {
+    "test": "mocha ./test/runner.js",
+    "start": "node cluster.js",
+    "worker": "node worker.js"
+  },
+  "private": true
+}
