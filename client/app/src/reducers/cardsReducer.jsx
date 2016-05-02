@@ -1,4 +1,22 @@
-const cardsReducer = (state = {user:'connie', cards:[]}, action) => {
+// import dummyData from '../index';
+// console.log('dummyData: ', dummyData);
+
+const dummyData = {
+  user: 'connie',
+  cards:
+    [
+      {
+        id: 0,
+        link: 'www.google.com'
+      },
+      {
+        id: 1,
+        link: 'www.facebook.com'
+      }
+    ]
+}
+
+const cardsReducer = (state = dummyData, action) => {
   switch(action.type) {
     case 'ADD_CARD':
       return {
@@ -6,12 +24,11 @@ const cardsReducer = (state = {user:'connie', cards:[]}, action) => {
         cards: [...state.cards,
           {
             id: 'nextid',
-            link: 'whatever they typed',
-            tags: 'whatever they selected'
+            link: 'whatever they typed'
           }
         ]
       }
-    case 'DETELE_CARD':
+    case 'REMOVE_CARD':
       return {
         user: state.user,
         cards: [...cards.slice(0, index),

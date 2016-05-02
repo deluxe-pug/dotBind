@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addCardAction } from '../actions/addCardAction';
+import { addCardAction } from '../actions/actionTypes';
 
-let AddCardContainer = ({ dispatch }) => {
+let AddCard = ({ dispatch }) => {
   let input;
   return (
     <div>
@@ -26,6 +26,6 @@ let AddCardContainer = ({ dispatch }) => {
   )
 };
 
-AddCardContainer = connect()(AddCardContainer);
+// AddCardContainer = connect()(AddCardContainer);
 
-export default AddCardContainer;
+export default AddCard;

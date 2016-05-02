@@ -3,3 +3,4 @@ server/api/node_modules
 server/static/node_modules
 client/app/dist/bundle.js
 client/app/node_modules
+
