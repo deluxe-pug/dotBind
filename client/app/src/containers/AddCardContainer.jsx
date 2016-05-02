@@ -2,9 +2,40 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addCardAction } from '../actions/actionTypes';
 
+// class AddCardContainer extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       inputValue: ''
+//     }
+//   }
 
-const AddCardContainer = (store) => {
-  console.log('pass store here?', store);
+//   onInputChange(event) {
+//     this.setState({
+//       inputValue: event.target.value
+//     });
+//   } 
+
+//   render() {
+//     return (
+//       <div>
+//         <form onSubmit={e => {
+//           e.preventDefault();
+//           dispatch(addCardAction(this.state.inputValue));
+//         }}>
+//           <input 
+//             placeholder='Type url here'
+//             type='url'
+//             value={this.state.inputValue} 
+//             onChange={this.onInputChange.bind(this)} />
+//           <button type='submit'>Add Card</button>
+//         </form>
+//       </div>
+//     );
+//   }
+// };
+
+let AddCardContainer = ({dispatch}) => {
   let input;
   return (
     <div>
@@ -14,7 +45,7 @@ const AddCardContainer = (store) => {
         if (!input.value.trim()) {
           return;
         }
-        store.dispatch(addCardAction(input.value));
+        dispatch(addCardAction(input.value));
         input.value = '';
       }}>
         <input type='url' ref={node => {
@@ -28,6 +59,6 @@ const AddCardContainer = (store) => {
   )
 };
 
-// AddCardContainer = connect()(AddCardContainer);
+AddCardContainer = connect()(AddCardContainer);
 
 export default AddCardContainer;

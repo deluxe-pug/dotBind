@@ -25,7 +25,6 @@ let store = createStore(appReducer);
 
 console.log('store: ', store);
 console.log('initial state: ', store.getState());
-
 // ReactDOM.render(
 //   <App />,
 //   document.getElementById('app')
