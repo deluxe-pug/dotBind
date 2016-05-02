@@ -1,5 +1,22 @@
 {
 
-  "migration_id": null
+  "migration_id": 2016050203230180,
+
+  "models": {
+
+    "Card": {
+
+      "table": "cards",
+
+      "columns": [
+        {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
+        {"name": "user_id", "type": "int", "properties": {}},
+        {"name": "created_at", "type": "datetime", "properties": {}},
+        {"name": "updated_at", "type": "datetime", "properties": {}}
+      ]
+
+    }
+
+  }
 
 }
