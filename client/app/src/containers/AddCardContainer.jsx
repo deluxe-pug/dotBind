@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addCardAction } from '../actions/actionTypes';
 
-let AddCard = ({ dispatch }) => {
+
+const AddCardContainer = (store) => {
+  console.log('pass store here?', store);
   let input;
   return (
     <div>
@@ -12,7 +14,7 @@ let AddCard = ({ dispatch }) => {
         if (!input.value.trim()) {
           return;
         }
-        dispatch(addCardAction(input.value));
+        store.dispatch(addCardAction(input.value));
         input.value = '';
       }}>
         <input type='url' ref={node => {
@@ -28,4 +30,4 @@ let AddCard = ({ dispatch }) => {
 
 // AddCardContainer = connect()(AddCardContainer);
 
-export default AddCard;
+export default AddCardContainer;

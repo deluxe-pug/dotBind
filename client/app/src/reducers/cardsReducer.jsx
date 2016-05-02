@@ -1,39 +1,19 @@
-// import dummyData from '../index';
-// console.log('dummyData: ', dummyData);
-
-const dummyData = {
-  user: 'connie',
-  cards:
-    [
-      {
-        id: 0,
-        link: 'www.google.com'
-      },
-      {
-        id: 1,
-        link: 'www.facebook.com'
-      }
-    ]
-}
-
-const cardsReducer = (state = dummyData, action) => {
+// state is not application state,
+// only the state that this reducer is responsible for (cards)
+const cardsReducer = (state = [], action) => {
+  console.log('reducer triggered');
   switch(action.type) {
     case 'ADD_CARD':
-      return {
-        user: state.user,
-        cards: [...state.cards,
-          {
-            id: 'nextid',
-            link: 'whatever they typed'
-          }
-        ]
-      }
-    case 'REMOVE_CARD':
-      return {
-        user: state.user,
-        cards: [...cards.slice(0, index),
-                ...cards.slice(index+1)]
-      }
+      console.log('inside ADD_CARD type in cardsReducer');
+      return 
+        [...state.cards, {
+          id: action.id,
+          link: action.link
+        }];
+    // case 'REMOVE_CARD':
+    //   return 
+    //     [...cards.slice(0, index),
+    //      ...cards.slice(index+1)];
     default:
       return state;
   }

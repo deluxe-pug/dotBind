@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Card = ({ link }) => (
+const Card = () => (
   <li>
-    {link}
+    hi
   </li>
 );

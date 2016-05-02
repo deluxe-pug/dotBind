@@ -1,23 +1,12 @@
 import React from 'react';
-import AddCard from '../components/AddCard';
-import AllCards from '../components/AllCards';
-import UserProfile from '../components/UserProfile';
+import AddCardContainer from '../containers/AddCardContainer';
+import AllCardsContainer from '../containers/AllCardsContainer';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    console.log('cards: ', this.props.state.cards);
-    return(
-      <div>
-        <AddCard />
-      </div>
-    );   
-  }
-}
-
-
+const App = () => (
+  <div>
+    <AllCardsContainer />
+    <AddCardContainer />
+  </div>
+); 
 
 export default App;
