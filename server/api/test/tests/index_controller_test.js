@@ -8,10 +8,10 @@ module.exports = (() => {
 
     test(expect) {
 
-      it('Should return an HTTP 200', done => {
+      it('Should return an HTTP 200 at /', done => {
 
         this.endpoint('/').get((status, headers, body, json) => {
-
+          // console.log('body', body.toString())
           expect(status).to.equal(200);
           done();
 
