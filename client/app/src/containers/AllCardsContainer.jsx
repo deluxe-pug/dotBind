@@ -23,12 +23,12 @@ const mapStateToProps = (state) => {
   };
 }
 
-// // anything returned will end up as props on AllCards container
-// const mapDispatchToProps = (dispatch) => {
-//   // whenever an action is called, result should be passed to all reducers
-//   return bindActionCreators({displayCard: displayCardAction}, dispatch);
-//   // inside container: can call this.props.thisplayCard
-// }
+// anything returned will end up as props on AllCards container
+const mapDispatchToProps = (dispatch) => {
+  // whenever an action is called, result should be passed to all reducers
+  return bindActionCreators({displayCard: displayCardAction}, dispatch);
+  // inside container: can call this.props.thisplayCard
+}
 
 export default connect(mapStateToProps)(AllCardsContainer);
 // export default connect(mapStateToProps, mapDispatchToProps)(AllCards);

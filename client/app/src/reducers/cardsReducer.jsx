@@ -17,6 +17,8 @@ const cardsReducer = (state = [], action) => {
     //   return 
     //     [...state.slice(0, index),
     //      ...state.slice(index+1)];
+    case 'FETCH_CARDS':
+      return [...state, allCards]; //???
     default:
       return state;
   };
