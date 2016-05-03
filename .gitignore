@@ -1,6 +1,7 @@
 .DS_Store
 server/api/node_modules
 server/static/node_modules
+server/static/dist
 client/app/dist/bundle.js
 client/app/node_modules
 
