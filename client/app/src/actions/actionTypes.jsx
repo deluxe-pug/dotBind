@@ -32,16 +32,22 @@ export const removeCardAction = (id) => {
 // export const FECTH_CARDS = 'FECTH_CARDS';
 
 export const fetchCardsAction = () => {
+  console.log('fetchCardsAction is called');
   const url = 'http://localhost:3000/v1/cards';
-  // const request = axios.get(url);
-  axios.get(url)
-    .then(function(response) {
-      // console.log('axios: ', response.data.data);
-      return {
-        type: 'FECTH_CARDS',
-        allCards: response.data.data // an array of card-objects
-      };
-    });
+  const request = axios.get(url); // axios returns promise
+  console.log('request: ', request);
+  // axios.get(url)
+  //   .then(function(response) {
+  //     // console.log('axios: ', response.data.data);
+  //     return {
+  //       type: 'FECTH_CARDS',
+  //       allCards: response.data.data // an array of card-objects
+  //     };
+  //   });
+  return {
+    type: 'FETCH_CARDS',
+    allCards: request
+  };
 };
 
 
