@@ -12,7 +12,6 @@ var envParams = {
 
 
 function getCurrentTabUrl(callback) {
-
   let queryInfo = {
     active: true,
     currentWindow: true
@@ -31,34 +30,58 @@ function getCurrentTabUrl(callback) {
 
 function renderStatus(statusText) {
   document.getElementById('status').textContent = statusText;
-}
+};
 
 function renderIcon(icon) {
   document.getElementById('image-result').src = icon;
-}
+};
 
+// when extention window is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+  // inject js/myScript into current tab
+
   getCurrentTabUrl(function(url, icon) {
-    // Put the image URL in Google search.
-    // renderStatus('Performing Google Image search for ' + url);
-
-    // getImageUrl(url, function(imageUrl, width, height) {
-    renderStatus(url);
+    // render icon and url to the popup 
     renderIcon(icon);
-    //   renderStatus('Search term: ' + url + '\n' +
-    //       'Google image search result: ' + imageUrl);
-    //   var imageResult = document.getElementById('image-result');
-    //   // Explicitly set the width/height to minimize the number of reflows. For
-    //   // a single image, this does not matter, but if you're going to embed
-    //   // multiple external images in your page, then the absence of width/height
-    //   // attributes causes the popup to resize multiple times.
-    //   imageResult.width = width;
-    //   imageResult.height = height;
-    //   imageResult.src = imageUrl;
-    //   imageResult.hidden = false;
+    renderStatus(url);
 
-    // }, function(errorMessage) {
-    //   renderStatus('Cannot display image. ' + errorMessage);
-    // });
+    $( "body" ).on("click", "#save", function() {
+      console.log('save button clicked!');
+
+      chrome.tabs.query({active: true, currentWindow: true}, function(activeTabs) {
+        
+        chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+          console.log('message recieved!', request.selection);
+          var highlight = request.selection;
+          sendResponse({from: "popup", msg: "card saved!"});
+          
+          var data = {
+            user_id: 1,
+            icon: icon,
+            url: url,
+            highlight: highlight
+          };
+          
+          console.log(envParams[enviornment])
+          $.ajax({
+            type: "POST",
+            url: envParams[enviornment].url + ':3000/v1/cards',
+            data: data,
+            success: function(result) {
+              console.log(result);
+            },
+            dataType: 'json'
+          });
+
+        });
+
+        chrome.tabs.executeScript(
+          activeTabs[0].id, {file: 'js/myScript.js', allFrames: true}
+        );
+
+      });
+
+    });
+
   });
 });
