@@ -11,16 +11,21 @@
     "default_title": "Click here!"
   },
 
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  },
+
   "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/"
+    "activeTab"
   ],
 
   "content_scripts": [
     {
-      "matches": ["http://*/*"],
+      "matches": ["<all_urls>"],
       "js": [
-        "lib/jquery-1.12.3.min.js"
+        "lib/jquery-1.12.3.min.js",
+        "js/myScript.js"
       ]
     }
   ]
