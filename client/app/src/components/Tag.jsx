@@ -1,11 +1,13 @@
 import React from 'react';
 
-const Tag = () => {
+const Tag = (props) => {
   return (
     <div>
       <li>
-        TEST!
+        {props.name}
       </li>
     </div>
   );
 };
+
+export default Tag;

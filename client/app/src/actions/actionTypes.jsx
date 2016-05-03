@@ -6,8 +6,6 @@
 let nextCardId = 0;
 
 export const addCardAction = (url) => {
-  console.log('addCardAction is dispatched!');
-  console.log('new state: id=', nextCardId++, 'link=', url);
   return {
     type: 'ADD_CARD',
     id: nextCardId++,
