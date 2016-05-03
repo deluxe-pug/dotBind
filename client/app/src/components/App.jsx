@@ -17,8 +17,8 @@ const App = () => (
     </header>
 
     <main>
-      <AllCardsContainer />
       <AddCardContainer />
+      <AllCardsContainer />
 
     </main>
 

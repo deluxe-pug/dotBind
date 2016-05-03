@@ -4,7 +4,7 @@ import Tag from '../components/Tag';
 
 const TagsContainer = () => (
   <div>
-    yo2
+    TagsContainer
   </div>
 );
 
