@@ -57,14 +57,15 @@ document.addEventListener('DOMContentLoaded', function() {
           
           var data = {
             user_id: 1,
-            icon: url,
+            icon: icon,
+            url: url,
             highlight: highlight
           };
           
           console.log(envParams[enviornment])
           $.ajax({
             type: "POST",
-            url: envParams[enviornment] + ':3000/v1/cards',
+            url: envParams[enviornment].url + ':3000/v1/cards',
             data: data,
             success: function(result) {
               console.log(result);
