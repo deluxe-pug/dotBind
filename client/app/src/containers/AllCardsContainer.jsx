@@ -1,17 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import Card from '../components/Card';
+import { fetchCardsAction } from '../actions/actionTypes';
 
-const AllCardsContainer = ({cards}) => (
-  <div>
-      {cards.map((card) => 
-        <Card
-          key={card.id}
-          {...card} />
-      )}
-  </div>
-);
+class AllCardsContainer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    console.log('fetchCards? ', this.props);
+    this.props.fetchCards();
+  }
+
+  render() {
+    return (
+      <div>
+          {this.props.cards.map((card) => 
+            <Card
+              key={card.id}
+              {...card} />
+          )}
+      </div>
+    )
+  };
+};
 
 // state passed in is application state
 const mapStateToProps = (state) => {
@@ -25,10 +39,10 @@ const mapStateToProps = (state) => {
 
 // anything returned will end up as props on AllCards container
 const mapDispatchToProps = (dispatch) => {
+  console.log('is mapDispatchToProps working?', fetchCardsAction);
   // whenever an action is called, result should be passed to all reducers
-  return bindActionCreators({displayCard: displayCardAction}, dispatch);
-  // inside container: can call this.props.thisplayCard
+  return bindActionCreators({fetchCards: fetchCardsAction}, dispatch);
+  // inside container: can call this.props.fetchCards
 }
 
-export default connect(mapStateToProps)(AllCardsContainer);
-// export default connect(mapStateToProps, mapDispatchToProps)(AllCards);
+export default connect(mapStateToProps, mapDispatchToProps)(AllCardsContainer);
