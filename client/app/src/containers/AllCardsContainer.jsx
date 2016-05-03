@@ -3,15 +3,20 @@ import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import Card from '../components/Card';
 
-const AllCardsContainer = ({cards}) => (
-  <ul>
-    {cards.map((card) => 
-      <Card
-        key={card.id}
-        {...card} />
-    )}
-  </ul>
-);
+const AllCardsContainer = ({cards}) => {
+  return (
+  <div>
+    <ul>
+      {console.log('cards: ', cards)}
+      {cards.map((card) => 
+        <Card
+          key={card.id}
+          {...card} />
+      )}
+    </ul>
+  </div>
+  );
+};
 
 // state passed in is application state
 const mapStateToProps = (state) => {

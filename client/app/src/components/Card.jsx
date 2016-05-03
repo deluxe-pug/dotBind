@@ -1,7 +1,14 @@
 import React from 'react';
 
-const Card = () => (
-  <li>
-    hi
-  </li>
-);
+const Card = (props) => {
+  return(
+    <div>
+      <li>
+        {props.id}
+        {props.link}
+      </li>
+    </div>
+  )
+};
+
+export default Card;

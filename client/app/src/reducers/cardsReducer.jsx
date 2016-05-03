@@ -9,8 +9,7 @@ const cardsReducer = (state = [], action) => {
           id: action.id,
           link: action.link
         }]);
-      return 
-        [...state, {
+      return [...state, {
           id: action.id,
           link: action.link
         }];
