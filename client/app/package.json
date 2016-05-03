@@ -33,6 +33,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "axios": "^0.11.0",
     "immutable": "^3.8.1",
     "jquery": "^2.2.3",
     "react": "^15.0.2",
