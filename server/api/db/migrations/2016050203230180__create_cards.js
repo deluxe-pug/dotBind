@@ -14,7 +14,12 @@ module.exports = (function() {
     up() {
 
       return [
-        this.createTable("cards", [{"name":"user_id","type":"int"}])
+        this.createTable("cards", [
+          {"name":"user_id","type":"int"},
+          {"name":"icon", "type":"string"},
+          {"name":"url", "type":"string"},
+          {"name":"highlight", "type":"string"},
+        ])
       ];
 
     }
