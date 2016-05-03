@@ -1,3 +1,16 @@
+var enviornment = 'dev';
+
+var envParams = {
+  dev: {
+    url: 'http://localhost'
+  },
+
+  production: {
+    url: 'http://ec2-54-86-26-97.compute-1.amazonaws.com'
+  }
+}
+
+
 function getCurrentTabUrl(callback) {
   let queryInfo = {
     active: true,
@@ -41,16 +54,23 @@ document.addEventListener('DOMContentLoaded', function() {
           console.log('message recieved!', request.selection);
           var highlight = request.selection;
           sendResponse({from: "popup", msg: "card saved!"});
-
-          // $.ajax({
-          //   type: "POST",
-          //   url: 'http://ec2-54-86-26-97.compute-1.amazonaws.com:3000/v1/cards',
-          //   data: {user_id: 22},
-          //   success: function(result) {
-          //     console.log(result);
-          //   },
-          //   dataType: 'json'
-          // });
+          
+          var data = {
+            user_id: 1,
+            icon: url,
+            highlight: highlight
+          };
+          
+          console.log(envParams[enviornment])
+          $.ajax({
+            type: "POST",
+            url: envParams[enviornment] + ':3000/v1/cards',
+            data: data,
+            success: function(result) {
+              console.log(result);
+            },
+            dataType: 'json'
+          });
 
         });
 
