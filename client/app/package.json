@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch",
-    "compile": "./node_modules/.bin/babel app.js --watch --out-dir build"
+    "compile": "./node_modules/.bin/babel app.js --watch --out-dir build",
+    "lint": "eslint ./src/*.jsx ./src/**/*.jsx; exit 0"
   },
   "repository": {
     "type": "git",
