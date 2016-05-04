@@ -1,6 +1,6 @@
 {
 
-  "migration_id": 2016050319174777,
+  "migration_id": 2016050322493108,
 
   "models": {
 
@@ -10,10 +10,24 @@
 
       "columns": [
         {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
-        {"name": "user_id", "type": "int", "properties": {}},
         {"name": "icon", "type": "string", "properties": {}},
         {"name": "url", "type": "string", "properties": {}},
         {"name": "highlight", "type": "string", "properties": {}},
+        {"name": "user_id", "type": "int", "properties": {"unique":true}},
+        {"name": "created_at", "type": "datetime", "properties": {}},
+        {"name": "updated_at", "type": "datetime", "properties": {}}
+      ]
+
+    },
+
+    "CardTag": {
+
+      "table": "card_tags",
+
+      "columns": [
+        {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
+        {"name": "card_id", "type": "int", "properties": {}},
+        {"name": "tag_id", "type": "int", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
@@ -26,7 +40,7 @@
 
       "columns": [
         {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
-        {"name": "name", "type": "string", "properties": {}},
+        {"name": "name", "type": "string", "properties": {"unique":true}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
