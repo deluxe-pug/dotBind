@@ -9,19 +9,12 @@ module.exports = (function() {
 
     index() {
 
-      // CardTag.query()
-      //   .join('card')
-      //   .where(this.params.query)
-      //   .end((err, models) => {
-
-      //     this.respond(err || models);
-
-      //   });
       CardTag.query()
         .join('card')
+        .where(this.params.query)
         .end((err, models) => {
-
-          this.respond(err || models, ['id', 'card_id', {card: ['id', 'url']}]);
+          console.log('this is cardtag query --------> :', this.params);
+          this.respond(err || models, ['id', 'card_id', {card: ['id', 'url']}, {tag: ['id']} ]);
 
         });
 
