@@ -3,13 +3,15 @@
 // reducers will choose to return a different piece of state, depending on action
 // newly returned state piped into application state
 
+import axios from 'axios';
+
 let nextCardId = 0;
 
 export const addCardAction = (url) => {
   return {
     type: 'ADD_CARD',
     id: nextCardId++,
-    link: url
+    url: url
   };
 };
 
@@ -20,9 +22,20 @@ export const removeCardAction = (id) => {
   };
 };
 
-export const displayCardAction = (card) => {
+// export const displayCardAction = (card) => {
+//   return {
+//     type: 'DISPLAY_CARD',
+//     payload: card
+//   };
+// };
+
+export const fetchCardsAction = () => {
+  const url = 'http://localhost:3000/v1/cards';
+  const request = axios.get(url);
   return {
-    type: 'DISPLAY_CARD',
-    payload: card
+    type: 'FETCH_CARDS',
+    payload: request
   };
 };
+
+

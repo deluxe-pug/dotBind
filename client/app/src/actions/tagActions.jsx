@@ -1,4 +1,3 @@
-
 let tagId = 0;
 export const addTag = (tag) => {
   return {
