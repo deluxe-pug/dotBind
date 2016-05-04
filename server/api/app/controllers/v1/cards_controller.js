@@ -8,12 +8,17 @@ module.exports = (function() {
   class V1CardsController extends Nodal.Controller {
 
     index() {
-
+      
+      var tag = 'agular';
+      console.log('--> this is the query', this.params.query);
       Card.query()
-        .where(this.params.query)
-        .end((err, models) => {
+        .join('cardTags__tag')
+        .where({ cardTags__tag__name: 'react', __url: 'facebook' })
+        // .where(this.params.query)
+        .end((err, cards) => {
 
-          this.respond(err || models);
+          // this.respond( err || cards, ['url', {cardTags: ['tag']}] );
+          this.respond( err || cards, ['id', 'url', {cardTags: [{ tag: ['id','name']}]}] );
 
         });
 
