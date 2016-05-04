@@ -1,21 +1,53 @@
-import React from 'react';
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
-import sinon from 'sinon';
+import expect from 'expect';
+import * as actions from '../src/actions/actionTypes';
+import cardsReducer from '../src/reducers/cardsReducer';
 
-import NavBar from '../src/components/NavBar';
-import App from '../src/components/App';
 
-describe('<App />', () => {
-  it('should render a <AddCardContainer /> component', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find(header)).to.have.length(1);
+// TESTING ACTIONS
+const types = {
+  ADD_CARD: 'ADD_CARD'
+};
+
+describe('actions', () => {
+  it('should create an action to add a card', () => {
+    const url = 'http://www.google.com';
+    const expectedAction = {
+      type: types.ADD_CARD,
+      id: 1,
+      url
+    };
+    expect(actions.addCardAction(url)).toEqual(expectedAction);
   });
 });
 
-describe('<NavBar />', () => {
-  it('should render a <Navbar /> component', () => {
-    const wrapper = shallow(<NavBar />);
-    expect(wrapper.find('.nav-bar-fixed')).to.have.length(1);
+
+// TESTING REDUCERS
+const initialState = {
+  id: 1,
+  url: 'http://www.airbnb.com'
+}
+
+describe('cardsReducer', () => {
+  it('should return the initial state', () => {
+    expect(
+      cardsReducer(undefined, {})
+    ).toEqual([])
+  });
+
+  it('should handle ADD_CARD', () => {
+    expect(
+      cardsReducer(initialState, {
+        type: types.ADD_CARD,
+        url: 'http://www.facebook.com'
+      })).toEqual([
+        {
+          id: 1,
+          url: 'http://www.airbnb.com'
+        },
+        {
+          id: 2,
+          url: 'http://www.facebook.com'
+        }
+      ]);
   });
 });
