@@ -3,16 +3,14 @@
     "plugins": [
         "react"
     ],
-    "parserOptions": {
-        "ecmaVersion": 6,    //specify version of JavaScript
-        "sourceType": "module",  // vs. "script" - how code is arranged
-        "ecmaFeatures": {
-          "jsx": true
-        },
-      },
     "env": {  //environment defines global variables
       "browser": true,
       "node": true,
     },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    }
 
 }
