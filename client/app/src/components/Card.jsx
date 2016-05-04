@@ -1,8 +1,4 @@
 import React from 'react';
-// import * from './../../node_modules/materialize/css';
-// import * from './../../node_modules/materialize-css/dist';
-// require("./../../node_modules/materialize-css/dist/css/materialize.css");
-// require("./../../node_modules/materialize-css/dist/");
 
 const Card = (props) => (
   <div className="row">

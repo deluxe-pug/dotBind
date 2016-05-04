@@ -26,8 +26,6 @@ let AddCardContainer = ({dispatch}) => {
   )
 };
 
-
-
 AddCardContainer = connect()(AddCardContainer);
 
 export default AddCardContainer;

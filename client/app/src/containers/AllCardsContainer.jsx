@@ -12,7 +12,6 @@ class AllCardsContainer extends React.Component {
   componentWillMount() {
     console.log('fetchCards? ', this.props);
     this.props.fetchCards(); // async!!!
-    // this.render();
   }
 
   render() {
