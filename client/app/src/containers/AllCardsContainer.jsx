@@ -9,19 +9,21 @@ class AllCardsContainer extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     console.log('fetchCards? ', this.props);
-    this.props.fetchCards();
+    this.props.fetchCards(); // async!!!
+    // this.render();
   }
 
   render() {
+    console.log('cards: ', this.props.cards);
     return (
       <div>
-          {this.props.cards.map((card) => 
-            <Card
-              key={card.id}
-              {...card} />
-          )}
+        {this.props.cards.map((card) => 
+          <Card
+            key={card.id}
+            {...card} />
+        )}
       </div>
     )
   };

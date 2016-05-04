@@ -11,15 +11,17 @@ const cardsReducer = (state = [], action) => {
           id: action.id,
           link: action.link
         }]);
-      return [...state, {
+      return [{
           id: action.id,
           link: action.link
-        }];
+        }, ...state];
     case 'FETCH_CARDS':
-      console.log('inside FETCH_CARDS reducer');
-      console.log('action HERE: ', action);
-      return;
-      // return [...state, ...action.allCards]; 
+      // console.log('inside FETCH_CARDS reducer');
+      console.log('action received: ', action);
+      action.allCards.then((response) => {
+        console.log('response: ', response.data.data);
+        return [...response.data.data, ...state]; 
+      });
     default:
       return state;
   };

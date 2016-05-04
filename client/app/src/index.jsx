@@ -8,35 +8,9 @@ import ReduxPromise from 'redux-promise';
 import appReducer from './reducers/appReducer';
 import App from './components/App';
 
-// const dummyData = {
-//   user: 'connie',
-//   cards:
-//     [
-//       {
-//         id: 0,
-//         link: 'www.google.com'
-//       },
-//       {
-//         id: 1,
-//         link: 'www.facebook.com'
-//       }
-//     ],
-//   tags: 
-//     [
-//       {
-//         id: 0,
-//         name: 'tag1'
-//       },
-//       {
-//         id: 1,
-//         name: 'tag2'
-//       }
-//     ]
-// }
-
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 let store = createStoreWithMiddleware(appReducer);
-// let store = createStore(appReducer);
+// let store = createStore(appReducer, applyMiddleware(ReduxPromise));
 
 // console.log('store: ', store);
 // console.log('initial state: ', store.getState());
