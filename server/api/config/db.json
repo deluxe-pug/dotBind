@@ -16,7 +16,7 @@
       "port": "5432",
       "user": "postgres",
       "password": "",
-      "database": "api_test"
+      "database": "api_development"
     }
   },
   "production": {
