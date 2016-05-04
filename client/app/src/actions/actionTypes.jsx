@@ -41,6 +41,7 @@ export const removeCardAction = (id) => {
 export const fetchCardsAction = () => {
   const url = 'http://localhost:3000/v1/cards';
   const request = axios.get(url);
+  console.log('fetchCardsAction request: ', request);
   return {
     type: 'FETCH_CARDS',
     payload: request
