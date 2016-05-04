@@ -14,7 +14,9 @@ module.exports = (function() {
     up() {
 
       return [
-        this.createTable("tags", [{"name":"name","type":"string"}])
+        this.createTable("tags", [
+          {"name": "name", "type": "string","properties":{"unique":true}}
+        ])
       ];
 
     }
