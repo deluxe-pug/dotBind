@@ -1,24 +1,14 @@
 // state is not application state,
 // only the state that this reducer is responsible for (cards)
 const cardsReducer = (state = [], action) => {
-  console.log('reducer triggered, initial state: ', state);
   switch(action.type) {
     case 'ADD_CARD':
-      console.log('inside ADD_CARD type in cardsReducer');
-      console.log([...state, {
-          id: action.id,
-          link: action.link
-        }]);
       return [{
           id: action.id,
-          link: action.link
+          url: action.url
         }, ...state];
     case 'FETCH_CARDS':
-      // console.log('action received: ', action);
-      action.allCards.then((response) => {
-        // console.log('response: ', response.data.data);
-        return [...response.data.data, ...state]; 
-      });
+      return [...state, ...action.payload.data.data];
     default:
       return state;
   };
