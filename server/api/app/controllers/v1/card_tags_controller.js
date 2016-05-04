@@ -15,7 +15,6 @@ module.exports = (function() {
         .end((err, models) => {
           console.log('this is cardtag query --------> :', this.params);
           this.respond(err || models, ['id', 'card_id', {card: ['id', 'url']}, {tag: ['id']} ]);
-
         });
 
     }
