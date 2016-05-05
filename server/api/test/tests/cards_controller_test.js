@@ -15,6 +15,8 @@ module.exports = (() => {
           const CardTag = Nodal.require('app/models/card_tag.js');
           const Card = Nodal.require('app/models/card.js');
           const Tag = Nodal.require('app/models/tag.js');
+
+          Card.
           
           expect(status).to.equal(200);
           done();
