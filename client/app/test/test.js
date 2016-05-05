@@ -1,7 +1,59 @@
-import expect from 'expect';
+import { expect } from 'chai';
 import * as actions from '../src/actions/actionTypes';
 import cardsReducer from '../src/reducers/cardsReducer';
 import nock from 'nock';
+import TestUtils from 'react-addons-test-utils';
+import React from 'react';
+import { shallow } from 'enzyme';
+import sinon from 'sinon';
+
+import AllCardsContainer from '../src/containers/AllCardsContainer';
+import AddCardContainer from '../src/containers/AddCardContainer';
+import Card from '../src/components/Card';
+import SearchContainer from '../src/containers/SearchContainer';
+import NavBar from '../src/components/NavBar';
+import Tag from '../src/components/Tag';
+
+// TEST COMPONENTS
+describe('<NavBar />', () => {
+  it('renders the a <SearchContainer /> element', () => {
+    const wrapper = shallow(<NavBar />);
+    expect(wrapper.find(SearchContainer)).to.have.length(1);
+  });
+});
+
+
+// describe('<MyComponent />', () => {
+
+//   it('renders three <Foo /> components', () => {
+//     const wrapper = shallow(<MyComponent />);
+//     expect(wrapper.find(Foo)).to.have.length(3);
+//   });
+
+//   it('renders an `.icon-star`', () => {
+//     const wrapper = shallow(<MyComponent />);
+//     expect(wrapper.find('.icon-star')).to.have.length(1);
+//   });
+
+//   it('renders children when passed in', () => {
+//     const wrapper = shallow(
+//       <MyComponent>
+//         <div className="unique" />
+//       </MyComponent>
+//     );
+//     expect(wrapper.contains(<div className="unique" />)).to.equal(true);
+//   });
+
+//   it('simulates click events', () => {
+//     const onButtonClick = sinon.spy();
+//     const wrapper = shallow(
+//       <Foo onButtonClick={onButtonClick} />
+//     );
+//     wrapper.find('button').simulate('click');
+//     expect(onButtonClick.calledOnce).to.equal(true);
+//   });
+
+// });
 
 
 // TESTING MIDDLEWARE
@@ -14,24 +66,28 @@ describe('middlewares', () => {
   it('should return a promise', () => {
     const url = 'http://localhost:3000';
     const endpoint = '/v1/cards';
-    console.log('anything!!!!');
 
     nock(url)
       .get(endpoint)
       .reply(testResponse);
 
     actions.fetchCardsAction((response) => {
-      expect(response).toEqual(testResponse);
+      expect(response).to.equal(testResponse);
       done();     
     });
-  });
+  }); 
+
   it('should handle FETCH_CARDS action', () => {
-    console.log('EVERYTHING!!!');
-    expect(
-      cardsReducer(undefined, {
-        type: actionTypes.FETCH_CARDS,
-        payload: {data: {data: 'something here?'}}
-      })).toEqual([testResponse]);
+    // console.log('expect: ', cardsReducer(undefined, {
+    //   type: actionTypes.FETCH_CARDS,
+    //   payload: {data: {data: testResponse}}
+    // }));
+    // console.log('to equal: ', [testResponse]);
+
+    expect(cardsReducer(undefined, {
+      type: actionTypes.FETCH_CARDS,
+      payload: {data: {data: testResponse}}
+    })).to.equal([testResponse]);
   });
 });
 
@@ -46,10 +102,11 @@ describe('actions', () => {
     const url = 'http://www.google.com';
     const expectedAction = {
       type: actionTypes.ADD_CARD,
-      id: 1,
+      id: 2,
       url
     };
-    expect(actions.addCardAction(url)).toEqual(expectedAction);
+    // console.log('addCardAction: ', actions.addCardAction(url));
+    expect(actions.addCardAction(url)).to.equal(expectedAction);
   });
 });
 
@@ -64,21 +121,35 @@ describe('cardsReducer', () => {
   it('should return empty state', () => {
     expect(
       cardsReducer(undefined, {})
-    ).toEqual([])
+    ).to.equal([])
   });
 
   it('should return the initial state', () => {
     expect(
       cardsReducer(initialState, {})
-    ).toEqual(initialState)
+    ).to.equal(initialState)
   });
 
   it('should handle ADD_CARD action', () => {
+    console.log('cardsReducer: ', cardsReducer(initialState, {
+        type: actionTypes.ADD_CARD,
+        url: 'http://www.facebook.com'
+      }));
+    console.log('expected: ', [
+        {
+          id: 1,
+          url: 'http://www.airbnb.com'
+        },
+        {
+          id: undefined,
+          url: 'http://www.facebook.com'
+        }
+      ]);
     expect(
       cardsReducer(initialState, {
         type: actionTypes.ADD_CARD,
         url: 'http://www.facebook.com'
-      })).toEqual([
+      })).to.equal([
         {
           id: 1,
           url: 'http://www.airbnb.com'
