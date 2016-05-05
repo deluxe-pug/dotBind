@@ -1,3 +1,6 @@
+
+const dummyData = ['abc','123','test'];
+
 const tagsReducer = (state = [], action) => {
   switch(action.type) {
     case 'ADD_TAG':
