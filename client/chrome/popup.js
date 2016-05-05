@@ -1,28 +1,27 @@
-var enviornment = 'dev';
+const enviornment = 'dev';
 
-var envParams = {
+const envParams = {
   dev: {
-    url: 'http://localhost'
+    url: 'http://localhost',
   },
 
   production: {
-    url: 'http://ec2-54-86-26-97.compute-1.amazonaws.com'
-  }
-}
+    url: 'http://ec2-54-86-26-97.compute-1.amazonaws.com',
+  },
+};
 
 
 function getCurrentTabUrl(callback) {
-  let queryInfo = {
+  const queryInfo = {
     active: true,
-    currentWindow: true
+    currentWindow: true,
   };
 
-  chrome.tabs.query(queryInfo, function(tabs) {
+  chrome.tabs.query(queryInfo, tabs => {
+    const tab = tabs[0];
 
-    let tab = tabs[0];
-
-    let icon = tab.favIconUrl;
-    let url = tab.url;
+    const icon = tab.favIconUrl;
+    const url = tab.url;
 
     callback(url, icon);
   });
@@ -30,58 +29,46 @@ function getCurrentTabUrl(callback) {
 
 function renderStatus(statusText) {
   document.getElementById('status').textContent = statusText;
-};
+}
 
 function renderIcon(icon) {
   document.getElementById('image-result').src = icon;
-};
+}
 
 // when extention window is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   // inject js/myScript into current tab
-
-  getCurrentTabUrl(function(url, icon) {
-    // render icon and url to the popup 
+  getCurrentTabUrl((url, icon) => {
+    // render icon and url to the popup
     renderIcon(icon);
     renderStatus(url);
 
-    $( "body" ).on("click", "#save", function() {
+    $('body').on('click', '#save', () => {
       console.log('save button clicked!');
 
-      chrome.tabs.query({active: true, currentWindow: true}, function(activeTabs) {
-        
-        chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+      chrome.tabs.query({ active: true, currentWindow: true }, activeTabs => {
+        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           console.log('message recieved!', request.selection);
-          var highlight = request.selection;
-          sendResponse({from: "popup", msg: "card saved!"});
-          
-          var data = {
-            user_id: 1,
-            icon: icon,
-            url: url,
-            highlight: highlight
-          };
-          
-          console.log(envParams[enviornment])
-          $.ajax({
-            type: "POST",
-            url: envParams[enviornment].url + ':3000/v1/cards',
-            data: data,
-            success: function(result) {
-              console.log(result);
-            },
-            dataType: 'json'
-          });
+          const highlight = request.selection;
+          sendResponse({ from: 'popup', msg: 'card saved!' });
 
+          const userId = 1;
+          const data = { user_id: userId, icon, url, highlight };
+
+          console.log(envParams[enviornment]);
+          $.ajax({
+            type: 'POST',
+            url: `${envParams[enviornment].url}:3000/v1/cards`,
+            data,
+            success: result => { console.log(result); },
+            dataType: 'json',
+          });
         });
 
         chrome.tabs.executeScript(
-          activeTabs[0].id, {file: 'js/myScript.js', allFrames: true}
+          activeTabs[0].id, { file: 'js/myScript.js', allFrames: true }
         );
-
       });
-
     });
-
   });
 });
