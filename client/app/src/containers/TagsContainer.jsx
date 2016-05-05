@@ -20,7 +20,7 @@ class TagsContainer extends React.Component {
       <div>
         {this.props.tags.map( (tag) =>
           <Tag key={tag.id}{...tag} />
-        )};
+        )}
       </div>
     );
   }
