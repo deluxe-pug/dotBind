@@ -14,7 +14,11 @@ module.exports = (function() {
     up() {
 
       return [
-        this.createTable("user_tags", [{"name":"user_id","type":"int"},{"name":"tag_id","type":"int"}])
+        this.createTable("user_tags", [
+          {"name":"user_id","type":"int"},
+          {"name":"tag_id","type":"int"},
+          {"name":"card_count", "type":"int"} // Cache column for denormalization
+        ])
       ];
 
     }
