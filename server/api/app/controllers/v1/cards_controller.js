@@ -45,13 +45,28 @@ module.exports = (function() {
     create() {
       
       Card.create(this.params.body.card, (err, card) => {
-        let card_id = card._data.id;
-        let snippetBody = {card_id: card_id, content: this.params.body.snippet.content};
-        Snippet.create(snippetBody, (err, snippet) => {
-          this.respond(err || [ card, snippet ]);
-        });
-      });
+        
+        if (err) this.respond(err);
 
+        let card_id = card._data.id;
+        let reqBody = this.params.body;
+        let snippets = reqBody.snippets;
+        let snippetRecords = [];
+
+
+        snippets.forEach((snippet) => {
+
+          let snippetBody = {card_id: card_id, content: snippet.content};
+          Snippet.create(snippetBody, (err, snippet) => {
+            if (err) this.respond(err);
+            snippetRecords.push(snippet);
+          });
+          
+        });
+
+        this.respond([ card, snippetRecords ]);
+
+      });
     }
 
     update() {
