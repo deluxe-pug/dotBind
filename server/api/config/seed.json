@@ -17,16 +17,20 @@
     ],
     "Snippet": [
       {
-        "content": "cat"
+        "content": "cat",
+        "card_id": 1
       },
       {
-        "content": "dog"
+        "content": "dog",
+        "card_id": 2
       },
       {
-        "content": "frog"
+        "content": "frog",
+        "card_id": 3
       },
       {
-        "content": "jog"
+        "content": "jog",
+        "card_id": 4
       }
     ],
     "Tag": [
