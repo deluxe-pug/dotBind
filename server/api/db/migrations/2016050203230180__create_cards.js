@@ -18,7 +18,7 @@ module.exports = (function() {
           {"name":"icon", "type":"string"},
           {"name":"url", "type":"string"},
           {"name":"highlight", "type":"string"},
-          {"name":"user_id","type":"int","properties":{"unique":true}},
+          {"name":"user_id","type":"int"},
         ])
       ];
 
