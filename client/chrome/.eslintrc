@@ -1,6 +1,12 @@
 {
-    "extends": "airbnb",
-    "plugins": [
-        "react"
-    ]
+  "extends": "airbnb",
+  "plugins": [
+      "react"
+  ],
+  "globals": {
+    "chrome"
+  },
+  "rules":{
+    "no-console": 0
+  }
 }
