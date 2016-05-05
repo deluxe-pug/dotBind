@@ -14,7 +14,7 @@ module.exports = (function() {
       Card.query()
         .join('snippets')
         .join('cardTags__tag')
-        .where({ cardTags__tag__name: 'react', cardTags__tag__name: 'angular' })
+        // .where({ cardTags__tag__name: 'react', cardTags__tag__name: 'angular' })
         // .where(this.params.query)
         .end((err, cards) => {
           
