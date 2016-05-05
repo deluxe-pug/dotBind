@@ -13,6 +13,8 @@ addons:
 before_script:
   - psql -c 'create database api_development;' -U postgres
   - psql -c 'CREATE TABLE cards ( icon varchar (50), url varchar (50) );' -U postgres
+  - psql -c 'INSERT INTO cards (url) values ( cnn );'  -U postgres
+  - psql -c 'SELECT * FROM cards;'  -U postgres
 env:
   - TEST_DIR=server/api
   - TEST_DIR=server/static
