@@ -34,7 +34,6 @@
 
     },
 
-<<<<<<< HEAD
     "Snippet": {
 
       "table": "snippets",
@@ -49,8 +48,6 @@
 
     },
 
-=======
->>>>>>> 19e495cb431d1ab5bade75bbf24feb6efdfecb50
     "Tag": {
 
       "table": "tags",

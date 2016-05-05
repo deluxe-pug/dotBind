@@ -8,7 +8,7 @@ module.exports = (() => {
 
     test(expect) {
 
-      it('Should connect v1/tags/ endpoint', done => {
+      xit('Should connect v1/tags/ endpoint', done => {
 
         this.endpoint('/v1/tags/').get((status, headers, body, json) => {
 
