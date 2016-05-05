@@ -13,7 +13,7 @@
         {"name": "icon", "type": "string", "properties": {}},
         {"name": "url", "type": "string", "properties": {}},
         {"name": "highlight", "type": "string", "properties": {}},
-        {"name": "user_id", "type": "int", "properties": {"unique":true}},
+        {"name": "user_id", "type": "int", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
