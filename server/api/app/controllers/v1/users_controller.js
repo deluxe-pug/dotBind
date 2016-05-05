@@ -10,10 +10,11 @@ module.exports = (function() {
     index() {
 
       User.query()
+        .join('userTags__tag')
         .where(this.params.query)
-        .end((err, models) => {
+        .end((err, users) => {
 
-          this.respond(err || models);
+          this.respond(err || users, ['username', {userTags: [{tag: ['name']}]}] );
 
         });
 
