@@ -1,6 +1,92 @@
 {
 
-  "development": {},
+  "development": {
+    "Card": [
+      {
+        "url": "http://google.com"
+      },
+      {
+        "url": "http://facebook.com"
+      },
+      {
+        "url": "http://airbnb.com"
+      },
+      {
+        "url": "http://amazon.com"
+      }
+    ],
+    "Snippet": [
+      {
+        "content": "cat"
+      },
+      {
+        "content": "dog"
+      },
+      {
+        "content": "frog"
+      },
+      {
+        "content": "jog"
+      }
+    ],
+    "Tag": [
+      {
+        "name": "React"
+      },
+      {
+        "name": "Angular"
+      },
+      {
+        "name": "Backbone"
+      },
+      {
+        "name": "Redux"
+      }
+    ],
+    "CardTag": [
+      {
+        "card_id": 1,
+        "tag_id": 1
+      },
+      {
+        "card_id": 1,
+        "tag_id": 2
+      },
+      {
+        "card_id": 2,
+        "tag_id": 3
+      },
+      {
+        "card_id": 2,
+        "tag_id": 4
+      },
+      {
+        "card_id": 3,
+        "tag_id": 1
+      },
+      {
+        "card_id": 3,
+        "tag_id": 3
+      },
+      {
+        "card_id": 4,
+        "tag_id": 4
+      },
+      {
+        "card_id": 4,
+        "tag_id": 3
+      },
+      {
+        "card_id": 4,
+        "tag_id": 2
+      },
+      {
+        "card_id": 4,
+        "tag_id": 1
+      }
+    ]
+
+  },
 
   "test": {},
 
