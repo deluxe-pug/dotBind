@@ -82,6 +82,7 @@
         {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
         {"name": "user_id", "type": "int", "properties": {}},
         {"name": "tag_id", "type": "int", "properties": {}},
+        {"name": "card_count", "type": "int", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
