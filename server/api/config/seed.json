@@ -12,17 +12,22 @@
     "Card": [
       {
         "url": "http://google.com",
-        "icon": "https://cdn2.iconfinder.com/data/icons/social-media-8/512/Chrome.png",
         "user_id": 1
       },
       {
         "url": "http://facebook.com",
-        "icon": "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-512.png",
         "user_id": 1
       },
       {
         "url": "http://airbnb.com",
-        "icon": "http://pixel.nymag.com/imgs/daily/intelligencer/2014/10/17/17-airbnb-logo.w190.h190.2x.jpg",
+        "user_id": 2
+      },
+      {
+        "url": "http://airbnb.com",
+        "user_id": 1
+      },
+      {
+        "url": "http://amazon.com",
         "user_id": 1
       }
     ],
@@ -88,6 +93,10 @@
       {
         "user_id": 2,
         "tag_id": 3
+      },
+      {
+        "user_id": 2,
+        "tag_id": 4
       }
     ],
     "CardTag": [
