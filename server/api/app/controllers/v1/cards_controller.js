@@ -4,6 +4,7 @@ module.exports = (function() {
 
   const Nodal = require('nodal');
   const Card = Nodal.require('app/models/card.js');
+  const Snippet = Nodal.require('app/models/snippet.js');
 
   class V1CardsController extends Nodal.Controller {
 
@@ -42,11 +43,13 @@ module.exports = (function() {
     }
 
     create() {
-
-      Card.create(this.params.body, (err, model) => {
-
-        this.respond(err || model);
-
+      
+      Card.create(this.params.body.card, (err, card) => {
+        let card_id = card._data.id;
+        let snippetBody = {card_id: card_id, content: this.params.body.snippet.content};
+        Snippet.create(snippetBody, (err, snippet) => {
+          this.respond(err || [ card, snippet ]);
+        });
       });
 
     }

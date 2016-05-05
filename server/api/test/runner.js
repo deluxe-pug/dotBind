@@ -14,20 +14,20 @@ module.exports = (() => {
   return describe('My Application', () => {
 
     /* Uncomment for database support */
-    // before((done) => {
+    before((done) => {
     
-    //   Nodal.my.bootstrapper.bootstrap((err) => {
+      Nodal.my.bootstrapper.bootstrap((err) => {
     
-    //     if (err) {
-    //       console.error(err);
-    //       throw err;
-    //     }
+        if (err) {
+          console.error(err);
+          throw err;
+        }
     
-    //     done();
+        done();
     
-    //   })
+      })
     
-    // });
+    });
 
     tests.start(require('chai').expect);
 
