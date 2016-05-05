@@ -4,6 +4,7 @@ module.exports = (function() {
 
   const Nodal = require('nodal');
   const CardTag = Nodal.require('app/models/card_tag.js');
+  const Snippet = Nodal.require('app/models/snippet.js')
 
   class Card extends Nodal.Model {}
 
@@ -11,6 +12,7 @@ module.exports = (function() {
   Card.setSchema(Nodal.my.Schema.models.Card);
   
   Card.joinedBy(CardTag, {multiple: true});
+  Card.joinedBy(Snippet, {multiple: true});
 
   return Card;
 

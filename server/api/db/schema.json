@@ -1,6 +1,6 @@
 {
 
-  "migration_id": 2016050322493108,
+  "migration_id": 2016050500054422,
 
   "models": {
 
@@ -34,13 +34,14 @@
 
     },
 
-    "Tag": {
+    "Snippet": {
 
-      "table": "tags",
+      "table": "snippets",
 
       "columns": [
         {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
-        {"name": "name", "type": "string", "properties": {"unique":true}},
+        {"name": "content", "type": "string", "properties": {}},
+        {"name": "card_id", "type": "int", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
