@@ -1,10 +1,8 @@
-console.log('myScript fired!')
+console.log('myScript loaded!');
 
-var message = {
+const message = {
   from: 'myScript',
-  selection: window.getSelection().toString()
-}
+  selection: window.getSelection().toString(),
+};
 
-chrome.runtime.sendMessage(message, function(response) {
-  console.log(response.msg);
-});
+chrome.runtime.sendMessage(message, response => console.log(response.msg));
