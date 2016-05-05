@@ -32,6 +32,9 @@ module.exports = (function() {
   /* generator: begin imports */
 
   const V1CardsController = Nodal.require('app/controllers/v1/cards_controller.js');
+  const V1TagsController = Nodal.require('app/controllers/v1/tags_controller.js');
+  const V1CardTagsController = Nodal.require('app/controllers/v1/card_tags_controller.js');
+  const V1SnippetsController = Nodal.require('app/controllers/v1/snippets_controller.js');
 
   /* generator: end imports */
 
@@ -40,6 +43,9 @@ module.exports = (function() {
   /* generator: begin routes */
 
   router.route('/v1/cards/{id}').use(V1CardsController);
+  router.route('/v1/tags/{id}').use(V1TagsController);
+  router.route('/v1/card_tags/{id}').use(V1CardTagsController);
+  router.route('/v1/snippets/{id}').use(V1SnippetsController);
 
   /* generator: end routes */
 

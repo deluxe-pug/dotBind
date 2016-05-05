@@ -1,6 +1,6 @@
 {
 
-  "migration_id": 2016050203230180,
+  "migration_id": 2016050500054422,
 
   "models": {
 
@@ -10,10 +10,51 @@
 
       "columns": [
         {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
-        {"name": "user_id", "type": "int", "properties": {}},
         {"name": "icon", "type": "string", "properties": {}},
         {"name": "url", "type": "string", "properties": {}},
         {"name": "highlight", "type": "string", "properties": {}},
+        {"name": "user_id", "type": "int", "properties": {}},
+        {"name": "created_at", "type": "datetime", "properties": {}},
+        {"name": "updated_at", "type": "datetime", "properties": {}}
+      ]
+
+    },
+
+    "CardTag": {
+
+      "table": "card_tags",
+
+      "columns": [
+        {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
+        {"name": "card_id", "type": "int", "properties": {}},
+        {"name": "tag_id", "type": "int", "properties": {}},
+        {"name": "created_at", "type": "datetime", "properties": {}},
+        {"name": "updated_at", "type": "datetime", "properties": {}}
+      ]
+
+    },
+
+    "Snippet": {
+
+      "table": "snippets",
+
+      "columns": [
+        {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
+        {"name": "content", "type": "string", "properties": {}},
+        {"name": "card_id", "type": "int", "properties": {}},
+        {"name": "created_at", "type": "datetime", "properties": {}},
+        {"name": "updated_at", "type": "datetime", "properties": {}}
+      ]
+
+    },
+
+    "Tag": {
+
+      "table": "tags",
+
+      "columns": [
+        {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
+        {"name": "name", "type": "string", "properties": {"unique":true}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
