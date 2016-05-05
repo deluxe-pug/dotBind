@@ -10,7 +10,6 @@ class AllCardsContainer extends React.Component {
   }
 
   componentWillMount() {
-    console.log('fetchCards? ', this.props);
     this.props.fetchCards(); // async!!!
   }
 
@@ -18,7 +17,7 @@ class AllCardsContainer extends React.Component {
     console.log('cards: ', this.props.cards);
     return (
       <div>
-        {this.props.cards.map((card) => 
+        {this.props.cards.map((card) =>
           <Card
             key={card.id}
             {...card} />
@@ -30,7 +29,6 @@ class AllCardsContainer extends React.Component {
 
 // state passed in is application state
 const mapStateToProps = (state) => {
-  console.log('state inside mapStateToProps: ', state);
   // whatever is returned will show up as props inside AllCardsContainer
   // will re-render whenever application state changes
   return {
@@ -40,7 +38,6 @@ const mapStateToProps = (state) => {
 
 // anything returned will end up as props on AllCards container
 const mapDispatchToProps = (dispatch) => {
-  console.log('is mapDispatchToProps working?', fetchCardsAction);
   // whenever an action is called, result should be passed to all reducers
   return bindActionCreators({fetchCards: fetchCardsAction}, dispatch);
   // inside container: can call this.props.fetchCards

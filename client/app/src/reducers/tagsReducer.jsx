@@ -10,11 +10,8 @@ const tagsReducer = (state = [], action) => {
         name: action.name
       }];
 
-    case: 'FETCH_TAGS':
-      return [...state, {
-        id: action.id,
-        name: action.name
-      }];
+    case 'FETCH_TAGS':
+      return [...state, ...action.payload.data.data];
 
     default:
       return state;

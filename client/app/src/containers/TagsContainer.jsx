@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchTagsAction } from '../actions/tagActions';
 import Tag from '../components/Tag';
 
 
@@ -9,10 +11,11 @@ class TagsContainer extends React.Component {
   }
 
   componentWillMount() {
-
+    this.props.fetchTags();
   }
 
   render() {
+    console.log('TAGS => ', this.props.tags);
     return (
       <div>
         {this.props.tags.map( (tag) =>
@@ -22,6 +25,21 @@ class TagsContainer extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    tags: state.tags
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({fetchTags: fetchTagsAction}, dispatch);
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TagsContainer);
+
+
 
 
 
@@ -34,12 +52,3 @@ class TagsContainer extends React.Component {
 //     )}
 //   </div>
 // );
-
-const mapStateToProps = (state) => {
-  return {
-    tags: state.tags
-  };
-};
-
-
-export default connect(mapStateToProps)(TagsContainer);
