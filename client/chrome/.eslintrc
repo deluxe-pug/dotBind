@@ -4,7 +4,8 @@
       "react"
   ],
   "globals": {
-    "chrome"
+    "chrome",
+    "$"
   },
   "rules":{
     "no-console": 0
