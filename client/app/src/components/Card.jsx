@@ -1,7 +1,7 @@
 import React from 'react';
 
+let test = 1000;
 const Card = (props) => (
-
   <div className="col s12 m4">
     <div className="card custom-card">
       <div className="card-image waves-effect waves-block waves-light">
@@ -9,6 +9,11 @@ const Card = (props) => (
       </div>
       <div className="card-content">
         <span className="card-title activator grey-text text-darken-4">Card Title</span>
+        <p>
+          {props.snippets.map( (snippet) =>
+            <span key={test++}>{snippet.content.substring(0,125)}...</span>
+          )}...
+        </p>
         <p><a href={props.url}>{props.url}</a></p>
       </div>
       <div className="card-action">
@@ -19,6 +24,7 @@ const Card = (props) => (
       </div>
     </div>
   </div>
+
 
 );
 
