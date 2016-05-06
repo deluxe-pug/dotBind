@@ -9,10 +9,10 @@ const Card = (props) => (
       </div>
       <div className="card-content">
         <span className="card-title activator grey-text text-darken-4">Card Title</span>
-        <p>
+        <p className="card-snippet">
           {props.snippets.map( (snippet) =>
-            <span key={test++}>{snippet.content.substring(0,125)}...</span>
-          )}...
+            <span className="block-span" key={test++}>{snippet.content.substring(0,125)}...</span>
+          )}
         </p>
         <p><a href={props.url}>{props.url}</a></p>
       </div>

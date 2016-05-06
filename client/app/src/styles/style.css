@@ -73,11 +73,21 @@ header, main, footer {
   -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
   -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
   box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  height: 380px;
 }
 
 .card-action {
-    color: black;
-    background-color: black;
+  color: black;
+  background-color: black;
+}
+
+.card-snippet{
+  border-top: 1px black solid;
+}
+
+.block-span {
+  display: block;
+  padding: 5px;
 }
 
 .add-tag:first-child {
