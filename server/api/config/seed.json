@@ -3,34 +3,45 @@
   "development": {
     "Card": [
       {
-        "url": "http://google.com"
+        "url": "http://google.com",
+        "icon": "https://cdn2.iconfinder.com/data/icons/social-media-8/512/Chrome.png",
+        "user_id": 1
       },
       {
-        "url": "http://facebook.com"
+        "url": "http://facebook.com",
+        "icon": "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-512.png",
+        "user_id": 1
       },
       {
-        "url": "http://airbnb.com"
-      },
-      {
-        "url": "http://amazon.com"
+        "url": "http://airbnb.com",
+        "icon": "http://pixel.nymag.com/imgs/daily/intelligencer/2014/10/17/17-airbnb-logo.w190.h190.2x.jpg",
+        "user_id": 1
       }
     ],
     "Snippet": [
       {
-        "content": "cat",
+        "content": "Google is an American multinational technology company specializing in Internet-related services and products. These include online advertising technologies, search, cloud computing, and software.[6] Most of its profits are derived from AdWords,[7][8] an online advertising service that places advertising near the list of search results.",
         "card_id": 1
       },
       {
-        "content": "dog",
+        "content": "The corporation has been estimated to run more than one million servers in data centers around the world (as of 2007).[23] It processes over one billion search requests[24] and about 24 petabytes of user-generated data each day (as of 2009).[25][26][27][28] In December 2013, Alexa listed google.com as the most visited website in the world. Numerous Google sites in other languages figure in the top one hundred, as do several other Google-owned sites such as YouTube and Blogger.[29] Its market dominance has led to prominent media coverage, including criticism of the company over issues such as aggressive tax avoidance,[30] search neutrality, copyright, censorship, and privacy.[31][32]",
+        "card_id": 1
+      },
+      {
+        "content": "Facebook is a corporation and an online social networking service headquartered in Menlo Park, California, in the United States. Its website was launched on February 4, 2004, by Mark Zuckerberg with his Harvard College roommates and fellow students Eduardo Saverin, Andrew McCollum, Dustin Moskovitz and Chris Hughes.[7][8][9] The founders had initially limited the website's membership to Harvard students, but later expanded it to colleges in the Boston area, the Ivy League, and Stanford University.",
         "card_id": 2
       },
       {
-        "content": "frog",
+        "content": "It gradually added support for students at various other universities and later to high-school students. Since 2006, anyone in general who has attained an age of 13 years or more has been allowed to become a registered user of the website, though variations in the minimum age requirement exist depending on applicable local laws.[10] Its name comes from the face book directories often given to American university students.[11]",
+        "card_id": 2
+      },
+      {
+        "content": "Airbnb is a website for people to list, find, and rent lodging.[2] It has over 1,500,000 listings in 34,000 cities and 190 countries.[3][4][5] Founded in August 2008 and headquartered in San Francisco, California, the company is privately owned and operated.[6]",
         "card_id": 3
       },
       {
-        "content": "jog",
-        "card_id": 4
+        "content": "Shortly after moving to San Francisco in October 2007, Brian Chesky and Joe Gebbia created the initial concept for AirBed & Breakfast during the Industrial Design Conference held by Industrial Designers Society of America.[7] The original site offered short-term living quarters, breakfast, and a unique business networking opportunity for attendees who were unable to book a hotel in the saturated market.[8]",
+        "card_id": 3
       }
     ],
     "Tag": [
@@ -71,22 +82,6 @@
       {
         "card_id": 3,
         "tag_id": 3
-      },
-      {
-        "card_id": 4,
-        "tag_id": 4
-      },
-      {
-        "card_id": 4,
-        "tag_id": 3
-      },
-      {
-        "card_id": 4,
-        "tag_id": 2
-      },
-      {
-        "card_id": 4,
-        "tag_id": 1
       }
     ]
 
