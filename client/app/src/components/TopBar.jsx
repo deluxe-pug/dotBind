@@ -18,9 +18,9 @@ class TopBar extends React.Component {
 
   render() {
     return (
-      <nav>
+      <nav className="transparent">
         <div className="nav-wrapper">
-          <a href="#!" className="brand-logo">Logo</a>
+          <a href="#!" className="brand-logo">dotBind</a>
 
           <ul className="right hide-on-med-and-down">
 
