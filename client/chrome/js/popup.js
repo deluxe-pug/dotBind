@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         chrome.tabs.executeScript(
-          activeTabs[0].id, { file: 'js/myScript.js', allFrames: true }
+          activeTabs[0].id, { file: 'dist/myScript.js', allFrames: true }
         );
       });
     });
