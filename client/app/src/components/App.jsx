@@ -4,7 +4,6 @@ import AddTagContainer from '../containers/AddTagContainer';
 import AllCardsContainer from '../containers/AllCardsContainer';
 import TagsContainer from '../containers/TagsContainer';
 import Sidebar from './Sidebar';
-import NavBar from './NavBar';
 import TopBar from './TopBar';
 
 require("./../styles/style.css");
@@ -21,7 +20,7 @@ const App = () => (
     </div>
 
     <div className="col s10">
-      <NavBar />
+
       <AddCardContainer />
       <AllCardsContainer />
     </div>
