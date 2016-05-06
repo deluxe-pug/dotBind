@@ -10,11 +10,11 @@ require("./../styles/style.css");
 
 const App = () => (
   <div className="row">
-    <div className="col s3 sidebar">
+    <div className="col s2 sidebar">
       <Sidebar />
     </div>
 
-    <div className="col s9">
+    <div className="col s10">
       <NavBar />
       <AddCardContainer />
       <AllCardsContainer />

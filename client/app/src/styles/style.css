@@ -22,21 +22,26 @@ header, main, footer {
 }
 
 .tag {
-  margin: 5px;
-  /*border: 1px black solid;*/
+  margin: 3px;
+  border: 2px white solid;
   border-radius: 50px;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
-  background-color: #b0bec5;
+  /*background-color: #b0bec5;*/
+  -webkit-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+  -moz-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+  box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
 }
 
 .tag > span {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
+  color: white;
   font-size: 14pt;
 }
 
 .tag > span:hover {
-  color: blue;
+  color: grey;
+  font-style: italic;
 }
 
 .sidebar {
@@ -44,8 +49,21 @@ header, main, footer {
 }
 
 .custom-card {
-  background-color: #ffe082;
+  background-color: #fff59d;
   -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
   -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
   box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+}
+
+.card-action {
+    color: black;
+    background-color: black;
+}
+
+.add-tag:first-child {
+  color: black !important;
+}
+
+.add-tag:first-child:hover {
+  font-style: italic !important;
 }

@@ -10,7 +10,7 @@ const cardsReducer = (state = [], action) => {
         }, ...state];
 
     case 'FETCH_CARDS':
-      console.log(action.payload);
+      console.log('-=--=--==> ',action.payload);
       return [...state, ...action.payload.data.data];
 
     default:

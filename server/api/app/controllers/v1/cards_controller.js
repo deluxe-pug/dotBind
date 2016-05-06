@@ -9,7 +9,7 @@ module.exports = (function() {
   class V1CardsController extends Nodal.Controller {
 
     index() {
-      
+
       var tag = 'agular';
       console.log('--> this is the query', this.params.query);
       Card.query()
@@ -18,11 +18,11 @@ module.exports = (function() {
         // .where({ cardTags__tag__name: 'react', cardTags__tag__name: 'angular' })
         // .where(this.params.query)
         .end((err, cards) => {
-          
+
           // cards[0].joined('snippets')
 
           // cards[0].joined('cardTags')
-          this.respond( err || cards, ['url', {snippets: ['content']}, {cardTags: [{tag: ['name']}]}]);
+          this.respond( err || cards, ['id', 'url', {snippets: ['content']}, {cardTags: [{tag: ['name']}]}]);
           // this.respond( err || cards, ['id', 'url', {snippets: ['id', 'content']}, {cardTags: ['id', {tag: 'name'}]} ]);
 
           // this.respond( err || cards, ['url', {cardTags: ['tag']}] );
@@ -43,9 +43,9 @@ module.exports = (function() {
     }
 
     create() {
-      
+
       Card.create(this.params.body.card, (err, card) => {
-        
+
         if (err) this.respond(err);
 
         let card_id = card._data.id;
@@ -61,7 +61,7 @@ module.exports = (function() {
             if (err) this.respond(err);
             snippetRecords.push(snippet);
           });
-          
+
         });
 
         this.respond([ card, snippetRecords ]);
