@@ -1,4 +1,4 @@
-{
+(() => {
   console.log('myScript loaded!');
 
   const message = {
@@ -7,4 +7,4 @@
   };
 
   chrome.runtime.sendMessage(message, response => console.log(response.msg));
-}
+})();

@@ -28,7 +28,7 @@ function getCurrentTabUrl(callback) {
 }
 
 function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
+  document.getElementById('url').textContent = statusText;
 }
 
 function renderIcon(icon) {
@@ -39,9 +39,43 @@ function renderIcon(icon) {
 document.addEventListener('DOMContentLoaded', () => {
   // inject js/myScript into current tab
   getCurrentTabUrl((url, icon) => {
+    const snippets = [];
+    const notes = [];
+    const tags = [];
     // render icon and url to the popup
     renderIcon(icon);
     renderStatus(url);
+    // add snippet
+    $('body').on('click', 'button.snippet', () => {
+      console.log('save snippet fired!');
+      if ($('input.snippet').val()) {
+        $('ul.snippets').append($('<li>').text($('input.snippet').val()));
+        snippets.push(($('input.snippet').val()));
+        $('input.snippet').val('');
+      }
+    });
+    // add tag
+    $('body').on('click', 'button.tag', () => {
+      console.log('save tag fired!');
+      if ($('input.tag').val()) {
+        $('ul.tags').append($('<li>').text($('input.tag').val()));
+        tags.push(($('input.tag').val()));
+        $('input.tag').val('');
+      }
+    });
+    // add note
+    $('body').on('click', 'button.note', () => {
+      console.log('save note fired!');
+      if ($('input.note').val()) {
+        $('ul.notes').append($('<li>').text($('input.note').val()));
+        notes.push(($('input.note').val()));
+        $('input.note').val('');
+      }
+    });
+
+    $('body').on('click', 'button.tag', () => {
+      console.log('save tag fired');
+    });
 
     $('body').on('click', '#save', () => {
       console.log('save button clicked!');
@@ -49,11 +83,33 @@ document.addEventListener('DOMContentLoaded', () => {
       chrome.tabs.query({ active: true, currentWindow: true }, activeTabs => {
         chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           console.log('message recieved!', request.selection);
-          const highlight = request.selection;
+          const snippet = request.selection;
           sendResponse({ from: 'popup', msg: 'card saved!' });
+          // assemble request body
+          // const userId = 1;
+          // const data = {
+          //   user_id: userId,
+          //   icon,
+          //   url,
+          //   snippet,
+          // };
 
-          const userId = 1;
-          const data = { user_id: userId, icon, url, highlight };
+          const data = {
+            username: "public",
+            card: { url: url },
+            snippets: [
+               { content: "american" },
+               { content: "pie" },
+            ],
+            tags: [
+               {
+                 name: "React"
+               },
+               {
+                 name: "Backbone"
+               }
+            ]
+         }
 
           console.log(envParams[enviornment]);
           $.ajax({

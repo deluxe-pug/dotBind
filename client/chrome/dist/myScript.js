@@ -1,6 +1,6 @@
 'use strict';
 
-{
+(function () {
   console.log('myScript loaded!');
 
   var message = {
@@ -11,4 +11,4 @@
   chrome.runtime.sendMessage(message, function (response) {
     return console.log(response.msg);
   });
-}
+})();

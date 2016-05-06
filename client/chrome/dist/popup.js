@@ -29,7 +29,7 @@ function getCurrentTabUrl(callback) {
 }
 
 function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
+  document.getElementById('url').textContent = statusText;
 }
 
 function renderIcon(icon) {
@@ -43,6 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // render icon and url to the popup
     renderIcon(icon);
     renderStatus(url);
+    // add snippet
+    $('body').on('click', 'button .snippet', function () {
+      console.log('save snippet fired');
+    });
+    // add tag
 
     $('body').on('click', '#save', function () {
       console.log('save button clicked!');
@@ -50,11 +55,16 @@ document.addEventListener('DOMContentLoaded', function () {
       chrome.tabs.query({ active: true, currentWindow: true }, function (activeTabs) {
         chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
           console.log('message recieved!', request.selection);
-          var highlight = request.selection;
+          var snippet = request.selection;
           sendResponse({ from: 'popup', msg: 'card saved!' });
-
+          // assemble request body
           var userId = 1;
-          var data = { user_id: userId, icon: icon, url: url, highlight: highlight };
+          var data = {
+            user_id: userId,
+            icon: icon,
+            url: url,
+            snippet: snippet
+          };
 
           console.log(envParams[enviornment]);
           $.ajax({
@@ -68,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         });
 
-        chrome.tabs.executeScript(activeTabs[0].id, { file: 'js/myScript.js', allFrames: true });
+        chrome.tabs.executeScript(activeTabs[0].id, { file: 'dist/myScript.js', allFrames: true });
       });
     });
   });
