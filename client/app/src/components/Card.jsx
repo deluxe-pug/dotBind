@@ -3,7 +3,7 @@ import React from 'react';
 const Card = (props) => (
   <div className="row">
     <div className="col s12 m4">
-      <div className="card">
+      <div className="card custom-card">
         <div className="card-image waves-effect waves-block waves-light">
           <img className="activator" src={props.icon}></img>
         </div>

@@ -10,7 +10,7 @@ require("./../styles/style.css");
 
 const App = () => (
   <div className="row">
-    <div className="col s3">
+    <div className="col s3 sidebar">
       <Sidebar />
     </div>
 

@@ -1,3 +1,11 @@
+body {
+  background-color: #eceff1;
+  background-image: url('http://content.wallpapers-room.com/resolutions/1920x1200/D/Wallpapers-room_com___Dark_Wooden_Wall_by_kano89_1920x1200.jpg');
+  /*background-image: url('http://bgfons.com/upload/notebook_texture2464.jpg');*/
+  /*background-image: url('http://www.pageresource.com/wallpapers/wallpaper/crumpled-brown-paper-texture-high-resolution-pixels_3511836.jpg');*/
+  background-size: cover;
+}
+
 header, main, footer {
   padding-left: 240px;
 }
@@ -15,10 +23,11 @@ header, main, footer {
 
 .tag {
   margin: 5px;
-  border: 1px black solid;
+  /*border: 1px black solid;*/
   border-radius: 50px;
   padding: 15px;
   text-align: center;
+  background-color: #b0bec5;
 }
 
 .tag > span {
@@ -28,4 +37,15 @@ header, main, footer {
 
 .tag > span:hover {
   color: blue;
+}
+
+.sidebar {
+  border-right: 2px grey solid;
+}
+
+.custom-card {
+  background-color: #ffe082;
+  -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
 }
