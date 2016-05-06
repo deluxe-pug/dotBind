@@ -22,7 +22,6 @@ describe('<NavBar />', () => {
   });
 });
 
-
 // describe('<MyComponent />', () => {
 
 //   it('renders three <Foo /> components', () => {
