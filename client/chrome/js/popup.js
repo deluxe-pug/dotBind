@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       chrome.tabs.query({ active: true, currentWindow: true }, activeTabs => {
         chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           console.log('message recieved!', request.selection);
-          const snippet = request.selection;
+          // const snippet = request.selection;
           sendResponse({ from: 'popup', msg: 'card saved!' });
           // assemble request body
           // const userId = 1;
@@ -95,21 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
           // };
 
           const data = {
-            username: "public",
-            card: { url: url },
+            username: 'public',
+            card: { url },
             snippets: [
-               { content: "american" },
-               { content: "pie" },
+               { content: 'american' },
+               { content: 'pie' },
             ],
-            tags: [
-               {
-                 name: "React"
-               },
-               {
-                 name: "Backbone"
-               }
-            ]
-         }
+            tags,
+          };
 
           console.log(envParams[enviornment]);
           $.ajax({
