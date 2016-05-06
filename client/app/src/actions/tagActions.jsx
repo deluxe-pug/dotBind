@@ -1,10 +1,10 @@
 import axios from 'axios';
+import endpoints from './endpoints';
 
 let tagId = 0;
 
 export const addTag = (tag) => {
-  const url = 'http://localhost:3000/v1/tags';
-  const request = axios.post(url, {name: tag});
+  const request = axios.post(endpoints.tags, {name: tag});
   console.log(request);
   return {
     type: 'ADD_TAG',
@@ -13,8 +13,7 @@ export const addTag = (tag) => {
 };
 
 export const fetchTagsAction = () => {
-  const url = 'http://localhost:3000/v1/tags';
-  const request = axios.get(url);
+  const request = axios.get(endpoints.tags);
   return {
     type: 'FETCH_TAGS',
     payload: request,

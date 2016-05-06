@@ -5,11 +5,17 @@ import AllCardsContainer from '../containers/AllCardsContainer';
 import TagsContainer from '../containers/TagsContainer';
 import Sidebar from './Sidebar';
 import NavBar from './NavBar';
+import TopBar from './TopBar';
 
 require("./../styles/style.css");
 
 const App = () => (
   <div className="row">
+
+    <div>
+      <TopBar />
+    </div>
+
     <div className="col s2 sidebar">
       <Sidebar />
     </div>
