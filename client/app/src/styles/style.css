@@ -22,21 +22,26 @@ header, main, footer {
 }
 
 .tag {
-  margin: 5px;
-  /*border: 1px black solid;*/
+  margin: 3px;
+  border: 2px white solid;
   border-radius: 50px;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
-  background-color: #b0bec5;
+  /*background-color: #b0bec5;*/
+  -webkit-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+  -moz-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+  box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
 }
 
 .tag > span {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
+  color: white;
   font-size: 14pt;
 }
 
 .tag > span:hover {
-  color: blue;
+  color: grey;
+  font-style: italic;
 }
 
 .sidebar {
