@@ -4,9 +4,7 @@ server/static/node_modules
 server/static/dist
 client/app/dist
 client/app/node_modules
-<<<<<<< 72bf45c2f67adfaff18a70db715164c5297d2dbf
 client/chrome/node_modules
 ../../npm-debug.log
 server/api/npm-debug.log
 server/api/search.js
-npm-debug.log
