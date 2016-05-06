@@ -11,8 +11,6 @@ import App from './components/App';
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 let store = createStoreWithMiddleware(appReducer);
 
-// setInterval( () => console.log(store.getState()), 2000);
-
 // let store = createStore(appReducer, applyMiddleware(ReduxPromise));
 
 // console.log('store: ', store);

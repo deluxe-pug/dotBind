@@ -3,12 +3,16 @@
 const cardsReducer = (state = [], action) => {
   switch(action.type) {
     case 'ADD_CARD':
+      console.log('----------=> ', action.payload);
       return [{
           id: action.id,
           url: action.url
         }, ...state];
+
     case 'FETCH_CARDS':
+      console.log(action.payload);
       return [...state, ...action.payload.data.data];
+
     default:
       return state;
   };
@@ -18,7 +22,7 @@ export default cardsReducer;
 
 
     // case 'REMOVE_CARD':
-    //   return 
+    //   return
     //     [...state.slice(0, index),
     //      ...state.slice(index+1)];
 

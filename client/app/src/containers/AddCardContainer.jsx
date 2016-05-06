@@ -8,7 +8,6 @@ let AddCardContainer = ({dispatch}) => {
     <div>
       <form onSubmit={e => {
         e.preventDefault();
-        console.log('input: ', input.value);
         if (!input.value.trim()) {
           return;
         }
@@ -29,37 +28,3 @@ let AddCardContainer = ({dispatch}) => {
 AddCardContainer = connect()(AddCardContainer);
 
 export default AddCardContainer;
-
-
-// class AddCardContainer extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       inputValue: ''
-//     }
-//   }
-
-//   onInputChange(event) {
-//     this.setState({
-//       inputValue: event.target.value
-//     });
-//   } 
-
-//   render() {
-//     return (
-//       <div>
-//         <form onSubmit={e => {
-//           e.preventDefault();
-//           dispatch(addCardAction(this.state.inputValue));
-//         }}>
-//           <input 
-//             placeholder='Type url here'
-//             type='url'
-//             value={this.state.inputValue} 
-//             onChange={this.onInputChange.bind(this)} />
-//           <button type='submit'>Add Card</button>
-//         </form>
-//       </div>
-//     );
-//   }
-// };
