@@ -4,12 +4,12 @@
 // newly returned state piped into application state
 
 import axios from 'axios';
+import endpoints from './endpoints';
 
 let nextCardId = 1;
 
 export const addCardAction = (url) => {
-  const endPoint = 'http://localhost:3000/v1/cards';
-  const request = axios.post(endPoint, {});
+  const request = axios.post(endpoints.cards, {});
   return {
     type: 'ADD_CARD',
     payload: request,
@@ -39,8 +39,7 @@ export const removeCardAction = (id) => {
 // };
 
 export const fetchCardsAction = () => {
-  const url = 'http://localhost:3000/v1/cards';
-  const request = axios.get(url);
+  const request = axios.get(endpoints.cards);
   return {
     type: 'FETCH_CARDS',
     payload: request

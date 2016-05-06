@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as actions from '../src/actions/actionTypes';
+import * as actions from '../src/actions/cardActions';
 import cardsReducer from '../src/reducers/cardsReducer';
 import nock from 'nock';
 import TestUtils from 'react-addons-test-utils';
