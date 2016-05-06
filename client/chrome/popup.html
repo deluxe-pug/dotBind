@@ -9,7 +9,7 @@
     <title>Getting Started Extension's Popup</title>
     <style>
       body {
-        width:400px;
+        width:300px;
         Height:800px;
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
@@ -30,12 +30,24 @@
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
     <script src="lib/jquery-1.12.3.min.js"></script>
-    <script src="popup.js"></script>
+    <script src="js/popup.js"></script>
   </head>
   <body>
     <img id="image-result">
-    <div id="status"></div>
-    <input id="note"></input>
+    <div id="url"></div>
+
+    <ul class="snippets"></ul>
+    <input class="snippet"></input>
+    <button class="snippet">Add Snippet</button>
+
+    <ul class="notes"></ul>
+    <input class="note"></input>
+    <button class="note">Add note</button>
+
+    <ul class="tags"></ul>
+    <input class="tag"></input>
+    <button class="tag">Add tag</button>
+
     <button id="save">Save</button>
   </body>
 </html>
