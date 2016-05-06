@@ -9,30 +9,37 @@ import NavBar from './NavBar';
 require("./../styles/style.css");
 
 const App = () => (
-  <div>
-  
-    <header>
-      <div id="slide-out" className="side-nav fixed">
-        <Sidebar />
-      </div>
-    </header>
+  <div className="row">
+    <div className="col s3">
+      <Sidebar />
+    </div>
 
-    <main>
+    <div className="col s9">
       <NavBar />
       <AddCardContainer />
       <AllCardsContainer />
-
-    </main>
-
+    </div>
   </div>
-); 
+);
 
 export default App;
 
       // <div className="container">
-      //   <a href="#" 
-      //      data-activates="slide-out" 
+      //   <a href="#"
+      //      data-activates="slide-out"
       //      className="button-collapse top-nav full hide-on-large-only">
       //     <i className="material-icons">menu</i>
       //   </a>
       // </div>
+      //
+      // <header>
+      //   <div id="slide-out" className="side-nav fixed">
+      //     <Sidebar />
+      //   </div>
+      // </header>
+      // <main>
+      //   <NavBar />
+      //   <AddCardContainer />
+      //   <AllCardsContainer />
+      //
+      // </main>

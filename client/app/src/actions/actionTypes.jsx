@@ -8,12 +8,21 @@ import axios from 'axios';
 let nextCardId = 0;
 
 export const addCardAction = (url) => {
+  const endPoint = 'http://localhost:3000/v1/cards';
+  const request = axios.post(endPoint, {});
   return {
     type: 'ADD_CARD',
-    id: nextCardId++,
-    url: url
+    payload: request,
   };
 };
+
+// export const addCardAction = (url) => {
+//   return {
+//     type: 'ADD_CARD',
+//     id: nextCardId++,
+//     url: url
+//   };
+// };
 
 export const removeCardAction = (id) => {
   return {
@@ -37,5 +46,3 @@ export const fetchCardsAction = () => {
     payload: request
   };
 };
-
-

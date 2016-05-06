@@ -12,3 +12,20 @@ header, main, footer {
     padding-left: 0;
   }
 }
+
+.tag {
+  margin: 5px;
+  border: 1px black solid;
+  border-radius: 50px;
+  padding: 15px;
+  text-align: center;
+}
+
+.tag > span {
+  text-decoration: underline;
+  font-size: 14pt;
+}
+
+.tag > span:hover {
+  color: blue;
+}

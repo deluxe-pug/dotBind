@@ -2,10 +2,8 @@ import React from 'react';
 
 const Tag = (props) => {
   return (
-    <div>
-      <li>
-        {props.name}
-      </li>
+    <div className="tag">
+        <span>#{props.name}</span>
     </div>
   );
 };

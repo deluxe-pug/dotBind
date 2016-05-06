@@ -10,6 +10,7 @@ import App from './components/App';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 let store = createStoreWithMiddleware(appReducer);
+
 // let store = createStore(appReducer, applyMiddleware(ReduxPromise));
 
 // console.log('store: ', store);
