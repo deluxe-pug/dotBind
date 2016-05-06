@@ -9,21 +9,16 @@ import NavBar from './NavBar';
 require("./../styles/style.css");
 
 const App = () => (
-  <div>
+  <div className="row">
+    <div className="col s3">
+      <Sidebar />
+    </div>
 
-    <header>
-      <div id="slide-out" className="side-nav fixed">
-        <Sidebar />
-      </div>
-    </header>
-
-    <main>
+    <div className="col s9">
       <NavBar />
       <AddCardContainer />
       <AllCardsContainer />
-
-    </main>
-
+    </div>
   </div>
 );
 
@@ -36,3 +31,15 @@ export default App;
       //     <i className="material-icons">menu</i>
       //   </a>
       // </div>
+      //
+      // <header>
+      //   <div id="slide-out" className="side-nav fixed">
+      //     <Sidebar />
+      //   </div>
+      // </header>
+      // <main>
+      //   <NavBar />
+      //   <AddCardContainer />
+      //   <AllCardsContainer />
+      //
+      // </main>
