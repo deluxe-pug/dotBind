@@ -8,12 +8,14 @@ const Card = (props) => (
           <img className="activator" src={props.icon}></img>
         </div>
         <div className="card-content">
-          <span className="card-title activator grey-text text-darken-4">Card Title<i className="material-icons right">more_vert</i></span>
+          <span className="card-title activator grey-text text-darken-4">Card Title</span>
           <p><a href={props.url}>{props.url}</a></p>
         </div>
-        <div className="card-reveal">
-          <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
-          <p>{props.snippet}</p>
+        <div className="card-action">
+          <a className="add-tag" href="#">
+            <i className=" material-icons left">label_outline</i>
+            add tag
+          </a>
         </div>
       </div>
     </div>

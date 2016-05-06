@@ -44,8 +44,21 @@ header, main, footer {
 }
 
 .custom-card {
-  background-color: #ffe082;
+  background-color: #ffee58;
   -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
   -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
   box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+}
+
+.card-action {
+    color: black;
+    background-color: black;
+}
+
+.add-tag:first-child {
+  color: black !important;
+}
+
+.add-tag:first-child:hover {
+  font-style: italic !important;
 }
