@@ -15,5 +15,8 @@ before_script:
 env:
   - TEST_DIR=server/api
   - TEST_DIR=server/static
-script: cd $TEST_DIR && npm install && npm test
+script: 
+  - cd $TEST_DIR
+  - npm install
+  - npm test
 
