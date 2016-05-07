@@ -4,6 +4,7 @@ body {
   /*background-image: url('http://bgfons.com/upload/notebook_texture2464.jpg');*/
   /*background-image: url('http://www.pageresource.com/wallpapers/wallpaper/crumpled-brown-paper-texture-high-resolution-pixels_3511836.jpg');*/
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .translucent {
