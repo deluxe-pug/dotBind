@@ -3,12 +3,20 @@ module.exports = (function() {
   'use strict';
 
   const Nodal = require('nodal');
+  const PromiseMaker = require('bluebird').promisify;
   const Card = Nodal.require('app/models/card.js');
   const Snippet = Nodal.require('app/models/snippet.js');
   const User = Nodal.require('app/models/user.js');
   const Tag = Nodal.require('app/models/tag.js');
   const UserTag = Nodal.require('app/models/user_tag.js');
   const CardTag = Nodal.require('app/models/card_tag.js');
+
+  const findOrCreateTag = PromiseMaker(Tag.findOrCreate, {context: Tag});
+  const findOrCreateUser = PromiseMaker(User.findOrCreate, {context: User});
+  const findOrCreateUserTag = PromiseMaker(UserTag.findOrCreate, {context: UserTag});
+  const findOrCreateCardTag = PromiseMaker(CardTag.findOrCreate, {context: CardTag});
+  const createCard = PromiseMaker(Card.create, {context: Card});
+
 
   class V1CardsController extends Nodal.Controller {
 
@@ -48,47 +56,20 @@ module.exports = (function() {
 
     /* Sample POST Request
        {
-           "card": {
-              "url": "http://american.com",
-              "content": "This is my content",
-              "note": "This is a note about my content"
-            },
-            "username": "public"
-           "snippets": [
-              {
-                 "content": "american"
-               },
-               {
-                 "content": "pie"
-               }
-           ],
-           "tags": [
-              {
-                "name": "React"
-              },
-              {
-                "name": "Backbone"
-              }
-           ]
+        "card": {
+          "url": "http://american.com",
+          "content": "This is my content",
+          "note": "This is a note about my content",
+          "domain": "american.com"
+        },
+        "username": "public",
+         "tags": [
+          "React",
+          "Backbone"
+         ]
         }
       */ 
     create() {
-
-
-      //     let snippetBody = {card_id: card_id, content: snippet.content};
-
-      //     Snippet.create(snippetBody, (err, snippet) => {
-      //       if (err) this.respond(err);
-      //       snippetRecords.push(snippet);
-      //     });
-          
-      //   });
-
-        // iterate through tags
-          // query where name === db tag name
-            // if existing, grab corresponding tag id
-
-          // create entry for CardTag - {card_id: card_id, tag_id: ?}
 
           let username = this.params.body.username || '';
           let tags = this.params.body.tags || [];
@@ -97,52 +78,59 @@ module.exports = (function() {
           let card_id;
           let tag_id;
 
-          console.log(Promise.all);
+          const userAndTagPromises = [];
+          const userTagPromises = [];
+          const cardTagPromises = [];
+          const cardTagAndUserTagPromises = []
+          const tagIds = [];
 
-          // User.query()
-          //   .where({username})
-          //   .end((err, users) => {
-          //     // if any users with username
-          //     if (users.length) { 
-          //       user_id = users[0].get('id'); 
-          //       // do something with user
-          //     } else {
-          //       // otherwise, create a user
-          //       User.create({username}, (err, user) => {
-          //         console.log('new user id: ', user.get('id'));
-          //       })
-          //     }
-          //     // response
-          //   })
-          User.findOrCreate({username}, (err, user) => {
-            user_id = user.get('id');
-            card.user_id = user_id;
-            // assume 1 tag , promises
-            let name = tags[0].name;
-            Tag.findOrCreate({name}, (err, tag) => {
-              tag_id = tag.get('id');
-              UserTag.findOrCreate({tag_id, user_id}, (err, user_tag) => {
-                // if card count is null
-                if (user_tag.get('card_count') === null) {
-                  user_tag.set('card_count', 1); // initialize to 1
-                  user_tag.save();
-                } else if (user_tag.get('card_count')) {
-                  user_tag.set('card_count', user_tag.get('card_count') + 1)
-                  user_tag.save();
-                }
-                Card.create(card, (err, card) => {
-                  card_id = card.get('id');
-                  CardTag.findOrCreate({tag_id, card_id}, (err, card_tag) => {
-                    this.respond(err || card);
-                  });
-                })
-              })
+
+          // Create card
+          createCard(card).then((aCard) => {
+            card_id = aCard.get('id');
+
+            // Add findOrCreateUser promise
+            userAndTagPromises.push(findOrCreateUser({username}));
+
+            // For each tag in tags, add a promise with name bound as first arg
+            tags.forEach((tag) => {
+              let name = tag;
+              userAndTagPromises.push(findOrCreateTag({name}));
             });
-          })
-          // this.respond('Response!')
-        // this.respond([ card, snippetRecords ]);
 
-      // });
+            // Resolve User and Tag promises
+            Promise.all(userAndTagPromises).then((values) => {
+              user_id = values[0].get('id'); // get user id
+              card.user_id = user_id;
+
+              let tagModels = values.slice(1);
+
+              tagModels.forEach((tagModel) => {
+                tag_id = tagModel.get('id');
+                userTagPromises.push(findOrCreateUserTag({tag_id, user_id}));
+                cardTagPromises.push(findOrCreateCardTag({tag_id, card_id}));
+              });
+
+              // Resolve UserTag Promises
+              Promise.all(userTagPromises).then((userTags) => {
+                userTags.forEach((user_tag) => {
+                  if (user_tag.get('card_count') === null) {
+                    user_tag.set('card_count', 1); // initialize to 1
+                    user_tag.save();
+                  } else if (user_tag.get('card_count')) {
+                    user_tag.set('card_count', user_tag.get('card_count') + 1)
+                    user_tag.save();
+                  }
+                });
+
+                // Resolve CardTag Promises
+                Promise.all(cardTagPromises).then((cardTags) => {
+                  this.respond(card);
+                });
+              });
+            });            
+          });
+
     }
 
     update() {
