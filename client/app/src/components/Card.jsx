@@ -52,47 +52,38 @@ class Card extends React.Component {
   render() {
     return (
       <div className="col s12 m4">
-        <div className="card custom-card" onClick={this.openModal.bind(this)}>
 
+        <div className="card custom-card" >
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
 
-            <h3 ref="subtitle">Hello</h3>
+            <h4 ref="subtitle">Notes:</h4>
+            <p>{this.props.note}</p>
             <button className="waves-effect waves-light btn close-modal" onClick={this.closeModal.bind(this)}>Close</button>
 
           </Modal>
 
-          <div className="card-image waves-effect waves-block waves-light">
-          </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">Card Title</span>
-
-            <img className="activator card-image" src={this.props.icon} />
-
+            <img className="activator card-img" src={this.props.icon} />
             <p className="card-snippet">
               {this.props.content}
             </p>
-
             <p><a href={this.props.url}>{this.props.url}</a></p>
           </div>
 
           <div className="card-action">
+            <button className="waves-effect waves-light btn open-modal" onClick={this.openModal.bind(this)}>View Details   -></button>
             <ul>
               <li>
                 {this.props.cardTags.map((cardTag) => {
                   <CardTag key={cardTag.tag.id} {...cardTag.tag}/>
                 })}
               </li>
-
               <li>
-                <a className="add-tag modal-trigger" href="#modal1">
-                  <i className=" material-icons left">label_outline</i>
-                  add tag
-                </a>
+                <button className="waves-effect waves-light btn add-tag"><i className=" material-icons left">label_outline</i>Add Tag</button>          
               </li>
-
             </ul>
-
           </div>
 
         </div>

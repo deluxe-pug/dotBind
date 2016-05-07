@@ -79,8 +79,10 @@ header, main, footer {
   background-color: #ffa726;
 }
 
-.card-image {
+.card-img {
   float: right;
+  width: 32px;
+  height: 32px;
 }
 
 .card-action {
@@ -99,12 +101,12 @@ header, main, footer {
   padding: 5px;
 }
 
-.add-tag:first-child {
-  color: black !important;
+.add-tag {
+  width: 180px;
 }
 
-.add-tag:first-child:hover {
-  font-style: italic !important;
+.open-modal {
+  z-index: 0;
 }
 
 .close-modal {
