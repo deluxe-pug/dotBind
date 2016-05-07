@@ -26,7 +26,7 @@ module.exports = (function() {
           // cards[0].joined('snippets')
 
           // cards[0].joined('cardTags')
-          this.respond( err || cards, ['url', 'icon', 'domain', 'content', 'note', {cardTags: [{tag: ['name']}]}]);
+          this.respond( err || cards, ['id', 'url', 'icon', 'domain', 'content', 'note', {cardTags: [{tag: ['id', 'name']}]}]);
           // this.respond( err || cards, ['id', 'url', {snippets: ['id', 'content']}, {cardTags: ['id', {tag: 'name'}]} ]);
 
           // this.respond( err || cards, ['url', {cardTags: ['tag']}] );

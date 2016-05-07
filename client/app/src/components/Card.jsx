@@ -66,9 +66,8 @@ class Card extends React.Component {
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">Card Title</span>
               <p className="card-snippet">
-                {this.props.snippets.map( (snippet) =>
-                  <span className="block-span" key={snippedId++}>{snippet.content.substring(0,125)}...</span>
-                )}
+                {this.props.content}
+
               </p>
             <p><a href={this.props.url}>{this.props.url}</a></p>
           </div>
@@ -78,7 +77,7 @@ class Card extends React.Component {
               <li>
                 {this.props.cardTags.map((cardTag) => {
                   console.log('here it is');
-                  <CardTag key={cardTag.id} {...cardTag}/>
+                  <CardTag key={cardTag.tag.id} {...cardTag.tag}/>
                 })}
               </li>
 
@@ -101,3 +100,7 @@ class Card extends React.Component {
 };
 
 export default Card;
+
+// {this.props.snippets.map( (snippet) =>
+//   <span className="block-span" key={snippedId++}>{snippet.content.substring(0,125)}...</span>
+// )}
