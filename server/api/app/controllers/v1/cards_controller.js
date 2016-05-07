@@ -3,7 +3,7 @@ module.exports = (function() {
   'use strict';
 
   const Nodal = require('nodal');
-  const Promise = require('bluebird').promisify;
+  const PromiseMaker = require('bluebird').promisify;
   const Card = Nodal.require('app/models/card.js');
   const Snippet = Nodal.require('app/models/snippet.js');
   const User = Nodal.require('app/models/user.js');
@@ -11,11 +11,11 @@ module.exports = (function() {
   const UserTag = Nodal.require('app/models/user_tag.js');
   const CardTag = Nodal.require('app/models/card_tag.js');
 
-  const findOrCreateUser = Promise(User.findOrCreate, {context: User});
-  const findOrCreateTag = Promise(Tag.findOrCreate, {context: Tag});
-  const findOrCreateUserTag = Promise(UserTag.findOrCreate, {context: UserTag});
-  const findOrCreateCardTag = Promise(CardTag.findOrCreate, {context: CardTag});
-  const createCard = Promise(Card.create, {context: Card});
+  const findOrCreateUser = PromiseMaker(User.findOrCreate, {context: User});
+  const findOrCreateTag = PromiseMaker(Tag.findOrCreate, {context: Tag});
+  const findOrCreateUserTag = PromiseMaker(UserTag.findOrCreate, {context: UserTag});
+  const findOrCreateCardTag = PromiseMaker(CardTag.findOrCreate, {context: CardTag});
+  const createCard = PromiseMaker(Card.create, {context: Card});
 
 
   class V1CardsController extends Nodal.Controller {
