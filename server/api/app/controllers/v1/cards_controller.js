@@ -5,6 +5,8 @@ module.exports = (function() {
   const Nodal = require('nodal');
   const Card = Nodal.require('app/models/card.js');
   const Snippet = Nodal.require('app/models/snippet.js');
+  const User = Nodal.require('app/models/user.js');
+  const Tag = Nodal.require('app/models/tag.js');
 
   class V1CardsController extends Nodal.Controller {
 
@@ -42,31 +44,70 @@ module.exports = (function() {
 
     }
 
+    /* Sample POST Request
+       {
+           "card": {
+              "url": "http://american.com"
+            },
+            "username": "public"
+           "snippets": [
+              {
+                 "content": "american"
+               },
+               {
+                 "content": "pie"
+               }
+           ],
+           "tags": [
+              {
+                "name": "React"
+              },
+              {
+                "name": "Backbone"
+              }
+           ]
+        }
+      */ 
     create() {
 
-      Card.create(this.params.body.card, (err, card) => {
 
-        if (err) this.respond(err);
+      //     let snippetBody = {card_id: card_id, content: snippet.content};
 
-        let card_id = card._data.id;
-        let reqBody = this.params.body;
-        let snippets = reqBody.snippets;
-        let snippetRecords = [];
+      //     Snippet.create(snippetBody, (err, snippet) => {
+      //       if (err) this.respond(err);
+      //       snippetRecords.push(snippet);
+      //     });
+          
+      //   });
 
+        // iterate through tags
+          // query where name === db tag name
+            // if existing, grab corresponding tag id
 
-        snippets.forEach((snippet) => {
+          // create entry for CardTag - {card_id: card_id, tag_id: ?}
 
-          let snippetBody = {card_id: card_id, content: snippet.content};
-          Snippet.create(snippetBody, (err, snippet) => {
-            if (err) this.respond(err);
-            snippetRecords.push(snippet);
-          });
+          let username = this.params.body.username;
+          let user_id;
 
-        });
+          User.query()
+            .where({username})
+            .end((err, users) => {
+              // if any users with username
+              if (users.length) { 
+                user_id = users[0].get('id'); 
+                // do something with user
+              } else {
+                // otherwise, create a user
+                User.create({username}, (err, user) => {
+                  console.log('new user id: ', user.get('id'));
+                })
+              }
+              // response
+            })
+          this.respond('Response!')
+        // this.respond([ card, snippetRecords ]);
 
-        this.respond([ card, snippetRecords ]);
-
-      });
+      // });
     }
 
     update() {

@@ -12,23 +12,35 @@
     "Card": [
       {
         "url": "http://google.com",
-        "user_id": 1
+        "user_id": 1,
+        "icon": "https://www.google.com/images/branding/product/ico/googleg_lodp.ico",
+        "domain": "google.com",
+        "content": "This is google",
+        "note": "a googler left this note"
       },
       {
         "url": "http://facebook.com",
-        "user_id": 1
+        "user_id": 2,
+        "icon": "https://www.facebook.com/rsrc.php/yl/r/H3nktOa7ZMg.ico",
+        "domain": "facebook.com",
+        "content": "This is facebook",
+        "note": "a facebooker left this note"
       },
       {
         "url": "http://airbnb.com",
-        "user_id": 2
-      },
-      {
-        "url": "http://airbnb.com",
-        "user_id": 1
+        "user_id": 1,
+        "icon": "https://a1.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico",
+        "domain": "airbnb.com",
+        "content": "This is airbnb",
+        "note": "An airbnber left this note"
       },
       {
         "url": "http://amazon.com",
-        "user_id": 1
+        "user_id": 1,
+        "icon": "http://www.amazon.com/favicon.ico",
+        "domain": "amazon.com",
+        "content": "This is amazon",
+        "note": "An amazoner left this note"
       }
     ],
     "Snippet": [
