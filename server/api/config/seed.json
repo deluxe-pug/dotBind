@@ -1,21 +1,46 @@
 {
 
   "development": {
+    "User": [
+      {
+        "username": "public"
+      },
+      {
+        "username": "adam"
+      }
+    ],
     "Card": [
       {
         "url": "http://google.com",
-        "icon": "https://cdn2.iconfinder.com/data/icons/social-media-8/512/Chrome.png",
-        "user_id": 1
+        "user_id": 1,
+        "icon": "https://www.google.com/images/branding/product/ico/googleg_lodp.ico",
+        "domain": "google.com",
+        "content": "This is google",
+        "note": "a googler left this note"
       },
       {
         "url": "http://facebook.com",
-        "icon": "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-512.png",
-        "user_id": 1
+        "user_id": 2,
+        "icon": "https://www.facebook.com/rsrc.php/yl/r/H3nktOa7ZMg.ico",
+        "domain": "facebook.com",
+        "content": "This is facebook",
+        "note": "a facebooker left this note"
       },
       {
         "url": "http://airbnb.com",
-        "icon": "http://pixel.nymag.com/imgs/daily/intelligencer/2014/10/17/17-airbnb-logo.w190.h190.2x.jpg",
-        "user_id": 1
+        "user_id": 1,
+        "icon": "https://a1.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico",
+        "domain": "airbnb.com",
+        "content": "This is airbnb",
+        "note": "An airbnber left this note"
+      },
+      {
+        "url": "http://amazon.com",
+        "user_id": 1,
+        "icon": "http://www.amazon.com/favicon.ico",
+        "domain": "amazon.com",
+        "content": "This is amazon",
+        "note": "An amazoner left this note"
       }
     ],
     "Snippet": [
@@ -64,6 +89,38 @@
         "name": "Redux"
       }
     ],
+    "UserTag": [
+      {
+        "user_id": 1,
+        "tag_id": 1,
+        "card_count": 2
+      },
+      {
+        "user_id": 1,
+        "tag_id": 2,
+        "card_count": 2
+      },
+      {
+        "user_id": 1,
+        "tag_id": 3,
+        "card_count": 1
+      },
+      {
+        "user_id": 1,
+        "tag_id": 4,
+        "card_count": 2
+      },
+      {
+        "user_id": 2,
+        "tag_id": 1,
+        "card_count": 1
+      },
+      {
+        "user_id": 2,
+        "tag_id": 4,
+        "card_count": 1
+      }
+    ],
     "CardTag": [
       {
         "card_id": 1,
@@ -71,11 +128,15 @@
       },
       {
         "card_id": 1,
+        "tag_id": 4
+      },
+      {
+        "card_id": 1,
         "tag_id": 2
       },
       {
         "card_id": 2,
-        "tag_id": 3
+        "tag_id": 1
       },
       {
         "card_id": 2,
@@ -83,11 +144,19 @@
       },
       {
         "card_id": 3,
-        "tag_id": 1
+        "tag_id": 3
       },
       {
         "card_id": 3,
-        "tag_id": 3
+        "tag_id": 4
+      },
+      {
+        "card_id": 4,
+        "tag_id": 1
+      },
+      {
+        "card_id": 4,
+        "tag_id": 2
       }
     ]
 
