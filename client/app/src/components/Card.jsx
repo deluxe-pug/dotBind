@@ -10,7 +10,7 @@ const customStyles = {
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
-    marginRight           : '-50%',
+    marginRight           : '-25%',
     transform             : 'translate(-50%, -50%)'
   }
 };
@@ -44,22 +44,22 @@ class Card extends React.Component {
       <div className="col s12 m4">
         <div className="card custom-card" onClick={this.openModal.bind(this)}>
         <Modal
-        isOpen={this.state.modalIsOpen}
-        onAfterOpen={this.afterOpenModal}
-        onRequestClose={this.closeModal}
-        style={customStyles} >
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal.bind(this)}
+          onRequestClose={this.closeModal.bind(this)}
+          style={customStyles} >
 
-        <h2 ref="subtitle">Hello</h2>
-        <button onClick={this.closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
-      </Modal>
+          <h2 ref="subtitle">Hello</h2>
+          <button onClick={this.closeModal.bind(this)}>close</button>
+          <div>I am a modal</div>
+          <form>
+            <input />
+            <button>tab navigation</button>
+            <button>stays</button>
+            <button>inside</button>
+            <button>the modal</button>
+          </form>
+        </Modal>
           <div className="card-image waves-effect waves-block waves-light">
             <img className="activator" src={this.props.icon}></img>
           </div>
