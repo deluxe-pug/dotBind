@@ -3,6 +3,12 @@ import Modal from 'react-modal';
 // import TagsContainer from '../containers/TagsContainer';
 import CardTag from './CardTag';
 
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/javascript';
+import 'brace/theme/monokai';
+
 let snippetId = 0;
 const customStyles = {
   overlay : {
@@ -14,7 +20,7 @@ const customStyles = {
     backgroundColor   : 'rgba(38, 50, 56, 0.90)',
   },
   content : {
-    border: '2px #ffa726 solid',
+    // border: '2px #ffa726 solid',
     borderRadius: '50px',
     marginLeft: '150',
     marginRight: '150',
@@ -57,10 +63,14 @@ class Card extends React.Component {
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
 
-            <h4 ref="subtitle">Notes:</h4>
-            <p>{this.props.note}</p>
             <button className="waves-effect waves-light btn close-modal" onClick={this.closeModal.bind(this)}>Close</button>
-
+            <div className="modal-notes">
+              <h4 ref="subtitle">Notes:</h4>
+              <p>{this.props.note}</p>
+            </div>
+            <div id="editor" className="modal-editor">
+              <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"  name="UNIQUE_ID_OF_DIV" editorProps={{$blockScrolling: true}} />
+            </div>
           </Modal>
 
           <div className="card-content">
