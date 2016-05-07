@@ -21,7 +21,6 @@ const App = () => (
 
     <div className="col s10">
 
-      <AddCardContainer />
       <AllCardsContainer />
     </div>
   </div>

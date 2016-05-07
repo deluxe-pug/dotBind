@@ -1,11 +1,13 @@
 import React from 'react';
 import SearchContainer from '../containers/SearchContainer';
+import AddCardContainer from '../containers/AddCardContainer';
 
 class TopBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      displaySearchBar: false
+      displaySearchBar: false,
+      displayAddBar: false
     }
   }
 
@@ -13,7 +15,12 @@ class TopBar extends React.Component {
     this.setState({
       displaySearchBar: !this.state.displaySearchBar
     });
-    console.log(this.state.displaySearchBar);
+  }
+
+  toggleAddBar() {
+    this.setState({
+      displayAddBar: !this.state.displayAddBar
+    });
   }
 
   render() {
@@ -30,10 +37,18 @@ class TopBar extends React.Component {
             </li>
 
             <li>
+
               <a onClick={() => this.toggleSearchBar()}>
                 <i className="material-icons black-icon">
                  search
                 </i>
+
+            <li>
+              <a className="waves-effect waves-light modal-trigger" 
+                 onClick={() => this.toggleAddBar()} 
+                 href="#modal1">
+                <i className="material-icons">library_add</i>
+
               </a>
             </li>
 
@@ -42,6 +57,8 @@ class TopBar extends React.Component {
             <li><a href="mobile.html"><i className="material-icons black-icon">more_vert</i></a></li>
           </ul>
         </div>
+        { this.state.displayAddBar ? 
+          <AddCardContainer /> : <span></span> }
       </nav>
     )
   }
