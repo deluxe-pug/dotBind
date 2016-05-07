@@ -5,13 +5,22 @@ import CardTag from './CardTag';
 
 let snippedId = 0;
 const customStyles = {
+  overlay : {
+    position          : 'fixed',
+    top               : 0,
+    left              : 0,
+    right             : 0,
+    bottom            : 0,
+    backgroundColor   : 'rgba(38, 50, 56, 0.90)',
+  },
   content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-25%',
-    transform             : 'translate(-50%, -50%)'
+    border: '2px #ffa726 solid',
+    borderRadius: '50px',
+    marginLeft: '150',
+    marginRight: '150',
+    marginTop: '60',
+    marginBottom: '60',
+    backgroundColor: '#fff59d',
   }
 };
 
@@ -43,11 +52,8 @@ class Card extends React.Component {
     return (
       <div className="col s12 m4">
         <div className="card custom-card" onClick={this.openModal.bind(this)}>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal.bind(this)}
-          onRequestClose={this.closeModal.bind(this)}
-          style={customStyles} >
+        <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
+          onRequestClose={this.closeModal.bind(this)} style={customStyles} >
 
           <h2 ref="subtitle">Hello</h2>
           <button onClick={this.closeModal.bind(this)}>close</button>
