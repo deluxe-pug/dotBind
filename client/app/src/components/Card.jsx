@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 // import TagsContainer from '../containers/TagsContainer';
 import CardTag from './CardTag';
 
-let snippedId = 0;
+let snippetId = 0;
 const customStyles = {
   overlay : {
     position          : 'fixed',
@@ -21,6 +21,7 @@ const customStyles = {
     marginTop: '60',
     marginBottom: '60',
     backgroundColor: '#fff59d',
+    backgroundImage: "url('http://www.peerphinder.com/Pictures/notepadpaper.png')"
   }
 };
 
@@ -40,7 +41,7 @@ class Card extends React.Component {
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    this.refs.subtitle.style.color = '#f00';
+    this.refs.subtitle.style.color = 'black';
   }
 
   closeModal() {
@@ -52,20 +53,15 @@ class Card extends React.Component {
     return (
       <div className="col s12 m4">
         <div className="card custom-card" onClick={this.openModal.bind(this)}>
+
         <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
           onRequestClose={this.closeModal.bind(this)} style={customStyles} >
 
-          <h2 ref="subtitle">Hello</h2>
-          <button onClick={this.closeModal.bind(this)}>close</button>
-          <div>I am a modal</div>
-          <form>
-            <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
-          </form>
+          <h3 ref="subtitle">Hello</h3>
+          <button className="waves-effect waves-light btn close-modal" onClick={this.closeModal.bind(this)}>Close</button>
+
         </Modal>
+
           <div className="card-image waves-effect waves-block waves-light">
             <img className="activator" src={this.props.icon}></img>
           </div>
@@ -73,7 +69,6 @@ class Card extends React.Component {
             <span className="card-title activator grey-text text-darken-4">Card Title</span>
               <p className="card-snippet">
                 {this.props.content}
-
               </p>
             <p><a href={this.props.url}>{this.props.url}</a></p>
           </div>
