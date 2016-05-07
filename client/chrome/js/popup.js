@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // render icon and url to the popup
     renderIcon(icon);
     renderStatus(url);
-  
+
     let domain = url.replace(/https?:\/\//, '');
     domain = domain.replace(/\/(.)+/, '');
-    
+
     const data = {
       card: {
         icon,
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         content: null,
         note: null,
       },
-      username: "public",
+      username: 'public',
       tags: [],
     };
 
@@ -62,15 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const tag = $('input.tag').val();
       if (tag) {
         $('ul.tags').append($('<li>').text(tag));
-        data.tags.push({name: tag});
+        data.tags.push({ name: tag });
         $('input.tag').val('');
       }
     });
     // add note
     $('body').on('click', 'button.note', () => {
       data.note = $('input.note').val();
-      if (note) {
-        $('ul.notes').append($('<li>').text(note));
+      if (data.note) {
+        $('ul.notes').append($('<li>').text(data.note));
         $('input.note').val('');
       }
     });
@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
         chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           console.log('message recieved!', request.selection);
           sendResponse({ from: 'popup', msg: 'card saved!' });
-          
+
           data.card.content = request.selection;
-          
+
           if (request.selection) {
             console.log(data);
 
@@ -103,6 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
           activeTabs[0].id, { file: 'dist/myScript.js', allFrames: true }
         );
       });
-    }); 
+    });
   });
 });
