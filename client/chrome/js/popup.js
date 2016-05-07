@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let domain = url.replace(/https?:\/\//, '');
     domain = domain.replace(/\/(.)+/, '');
 
-    const data = {
+    let data = {
       card: {
         icon,
         url,
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tag = $('input.tag').val();
       if (tag) {
         $('ul.tags').append($('<li>').text(tag));
-        data.tags.push({ name: tag });
+        data.tags.push(tag);
         $('input.tag').val('');
       }
     });
@@ -74,35 +74,49 @@ document.addEventListener('DOMContentLoaded', () => {
         $('input.note').val('');
       }
     });
+
     // save card
     $('body').on('click', '#save', () => {
-      console.log('save button clicked!');
 
-      chrome.tabs.query({ active: true, currentWindow: true }, activeTabs => {
-        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-          console.log('message recieved!', request.selection);
-          sendResponse({ from: 'popup', msg: 'card saved!' });
+      console.log('--> save button clicked!');
+      console.log(JSON.stringify(data));
 
-          data.card.content = request.selection;
-
-          if (request.selection) {
-            console.log(data);
-
-            $.ajax({
-              type: 'POST',
-              url: `${envParams[enviornment].url}:3000/v1/cards`,
-              data,
-              success: result => { console.log(result); },
-              dataType: 'json',
-            });
-          }
-        });
-
-        // inject js/myScript into current tab
-        chrome.tabs.executeScript(
-          activeTabs[0].id, { file: 'dist/myScript.js', allFrames: true }
-        );
+      $.ajax({
+        type: 'POST',
+        url: `${envParams[enviornment].url}:3000/v1/cards`,
+        data: data,
+        success: result => { console.log(result); },
+        dataType: 'json',
       });
+
+
+      // chrome.tabs.query({ active: true, currentWindow: true }, activeTabs => {
+      //   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      //     console.log('message recieved!', request.selection);
+      //     sendResponse({ from: 'popup', msg: 'card saved!' });
+
+      //     data.card.content = request.selection;
+      //     console.log(data);
+
+      //     if (request.selection) {
+      //       console.log(data);
+
+      //       $.ajax({
+      //         type: 'POST',
+      //         url: `${envParams[enviornment].url}:3000/v1/cards`,
+      //         data,
+      //         success: result => { console.log(result); },
+      //         dataType: 'json',
+      //       });
+      //     }
+      //   });
+
+      //   // inject js/myScript into current tab
+      //   chrome.tabs.executeScript(
+      //     activeTabs[0].id, { file: 'dist/myScript.js', allFrames: true }
+      //   );
+      // });
+
     });
   });
 });
