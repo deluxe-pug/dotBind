@@ -1,9 +1,8 @@
 body {
   background-color: #eceff1;
   background-image: url('http://content.wallpapers-room.com/resolutions/1920x1200/D/Wallpapers-room_com___Dark_Wooden_Wall_by_kano89_1920x1200.jpg');
-  /*background-image: url('http://bgfons.com/upload/notebook_texture2464.jpg');*/
-  /*background-image: url('http://www.pageresource.com/wallpapers/wallpaper/crumpled-brown-paper-texture-high-resolution-pixels_3511836.jpg');*/
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .translucent {
@@ -83,6 +82,7 @@ header, main, footer {
 .card-action {
   color: black;
   background-color: black;
+  z-index: 0 !important;
 }
 
 .card-snippet{
@@ -101,4 +101,8 @@ header, main, footer {
 
 .add-tag:first-child:hover {
   font-style: italic !important;
+}
+
+.close-modal {
+  float: right;
 }
