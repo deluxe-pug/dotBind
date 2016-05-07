@@ -109,6 +109,10 @@ header, main, footer {
   margin-right: 10px;
 }
 
+.add-tag {
+  margin-left: 10px;
+}
+
 .close-modal {
   /*float: right;*/
 }
