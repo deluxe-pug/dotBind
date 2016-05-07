@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - '4.2.4'
+env:
+  - CXX=g++-4.8 NODE_ENV=test
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database api_development;' -U postgres
+env:
+  - TEST_DIR=server/api
+  - TEST_DIR=server/static
+script: cd $TEST_DIR && npm install && npm test
+

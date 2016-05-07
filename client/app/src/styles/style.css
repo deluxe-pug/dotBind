@@ -1,0 +1,104 @@
+body {
+  background-color: #eceff1;
+  background-image: url('http://content.wallpapers-room.com/resolutions/1920x1200/D/Wallpapers-room_com___Dark_Wooden_Wall_by_kano89_1920x1200.jpg');
+  /*background-image: url('http://bgfons.com/upload/notebook_texture2464.jpg');*/
+  /*background-image: url('http://www.pageresource.com/wallpapers/wallpaper/crumpled-brown-paper-texture-high-resolution-pixels_3511836.jpg');*/
+  background-size: cover;
+}
+
+.translucent {
+  /*background-color: rgba(0,255,255,.40);*/
+  background-color: #cfd8dc;
+  opacity: .4;
+}
+
+.black-icon {
+  color: black;
+}
+
+.search-input {
+  background-color: #26a69a !important;
+  border-radius: 30px !important;
+}
+
+.dotbind-logo:first-child {
+  margin-left: 10px;
+  color: black;
+}
+
+header, main, footer {
+  padding-left: 240px;
+}
+
+.search input {
+  padding-left: 10px;
+  font-family: Arial, 'FontAwesome';
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+.tag {
+  margin: 3px;
+  border: 2px white solid;
+  border-radius: 50px;
+  padding: 10px;
+  text-align: center;
+  /*background-color: #b0bec5;*/
+  -webkit-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+  -moz-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+  box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+}
+
+.tag > span {
+  /*text-decoration: underline;*/
+  color: white;
+  font-size: 14pt;
+}
+
+.tag > span:hover {
+  color: grey;
+  font-style: italic;
+}
+
+.sidebar {
+  border-right: 2px grey solid;
+}
+
+.custom-card {
+  background-color: #fff59d;
+  -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  height: 380px;
+}
+
+.custom-card:hover {
+  background-color: #ffa726;
+}
+
+.card-action {
+  color: black;
+  background-color: black;
+}
+
+.card-snippet{
+  font-style: italic;
+  border-top: 1px black solid;
+}
+
+.block-span {
+  display: block;
+  padding: 5px;
+}
+
+.add-tag:first-child {
+  color: black !important;
+}
+
+.add-tag:first-child:hover {
+  font-style: italic !important;
+}

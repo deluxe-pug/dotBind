@@ -1,0 +1,10 @@
+.DS_Store
+server/api/node_modules
+server/static/node_modules
+server/static/dist
+client/app/dist
+client/app/node_modules
+client/chrome/node_modules
+../../npm-debug.log
+server/api/npm-debug.log
+server/api/search.js
