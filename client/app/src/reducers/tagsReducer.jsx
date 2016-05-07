@@ -1,4 +1,3 @@
-
 const tagsReducer = (state = [], action) => {
   switch(action.type) {
 

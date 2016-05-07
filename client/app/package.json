@@ -4,14 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "npm test -- --watch",
     "build": "webpack --progress --colors --watch",
     "compile": "./node_modules/.bin/babel app.js --watch --out-dir build",
     "lint": "eslint ./src/*.jsx ./src/**/*.jsx; exit 0",
-    "test": "mocha --compilers js:babel-register --recursive",
-    "test:watch": "npm test -- --watch",
-    "build": "webpack --progress --colors --watch",
-    "compile": "./node_modules/.bin/babel app.js --watch --out-dir build"
+    "test": "mocha --compilers js:babel-register --recursive"
   },
   "repository": {
     "type": "git",
@@ -57,6 +54,7 @@
     "jquery": "^2.2.3",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
+    "react-modal": "^1.2.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-promise": "^0.5.3"

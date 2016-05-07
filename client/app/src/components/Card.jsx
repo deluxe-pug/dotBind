@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import Modal from 'react-modal';
+// import TagsContainer from '../containers/TagsContainer';
+import CardTag from './CardTag';
 
 let snippedId = 0;
 const customStyles = {
@@ -64,18 +66,32 @@ class Card extends React.Component {
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">Card Title</span>
               <p className="card-snippet">
-                {this.props.snippets.map( (snippet) =>
-                  <span className="block-span" key={snippedId++}>{snippet.content.substring(0,125)}...</span>
-                )}
+                {this.props.content}
+
               </p>
             <p><a href={this.props.url}>{this.props.url}</a></p>
           </div>
+
           <div className="card-action">
-            <a className="add-tag modal-trigger" href="#modal1">
-            <i className=" material-icons left">label_outline</i>
-            add tag
-            </a>
+            <ul>
+              <li>
+                {this.props.cardTags.map((cardTag) => {
+                  console.log('here it is');
+                  <CardTag key={cardTag.tag.id} {...cardTag.tag}/>
+                })}
+              </li>
+
+              <li>
+                <a className="add-tag modal-trigger" href="#modal1">
+                  <i className=" material-icons left">label_outline</i>
+                  add tag
+                </a>
+              </li>
+
+            </ul>
+
           </div>
+
         </div>
       </div>
 
@@ -84,3 +100,7 @@ class Card extends React.Component {
 };
 
 export default Card;
+
+// {this.props.snippets.map( (snippet) =>
+//   <span className="block-span" key={snippedId++}>{snippet.content.substring(0,125)}...</span>
+// )}
