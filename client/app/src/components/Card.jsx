@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import Modal from 'react-modal';
+// import TagsContainer from '../containers/TagsContainer';
+import CardTag from './CardTag';
 
 let snippedId = 0;
 const customStyles = {
@@ -70,12 +72,27 @@ class Card extends React.Component {
               </p>
             <p><a href={this.props.url}>{this.props.url}</a></p>
           </div>
+
           <div className="card-action">
-            <a className="add-tag modal-trigger" href="#modal1">
-            <i className=" material-icons left">label_outline</i>
-            add tag
-            </a>
+            <ul>
+              <li>
+                {this.props.cardTags.map((cardTag) => {
+                  console.log('here it is');
+                  <CardTag key={cardTag.id} {...cardTag}/>
+                })}
+              </li>
+
+              <li>
+                <a className="add-tag modal-trigger" href="#modal1">
+                  <i className=" material-icons left">label_outline</i>
+                  add tag
+                </a>
+              </li>
+
+            </ul>
+
           </div>
+
         </div>
       </div>
 

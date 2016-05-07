@@ -42,6 +42,8 @@ class TopBar extends React.Component {
                 <i className="material-icons black-icon">
                  search
                 </i>
+              </a>
+            </li>
 
             <li>
               <a className="waves-effect waves-light modal-trigger" 
