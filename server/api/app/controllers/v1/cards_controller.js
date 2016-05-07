@@ -10,9 +10,9 @@ module.exports = (function() {
   const Tag = Nodal.require('app/models/tag.js');
   const UserTag = Nodal.require('app/models/user_tag.js');
   const CardTag = Nodal.require('app/models/card_tag.js');
-
-  const findOrCreateTag = PromiseMaker(Tag.findOrCreate, {context: Tag});
+  
   const findOrCreateUser = PromiseMaker(User.findOrCreate, {context: User});
+  const findOrCreateTag = PromiseMaker(Tag.findOrCreate, {context: Tag});
   const findOrCreateUserTag = PromiseMaker(UserTag.findOrCreate, {context: UserTag});
   const findOrCreateCardTag = PromiseMaker(CardTag.findOrCreate, {context: CardTag});
   const createCard = PromiseMaker(Card.create, {context: Card});
