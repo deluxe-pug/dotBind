@@ -8,7 +8,7 @@ class SearchContainer extends React.Component {
   render() {
     return (
       <div className="search">
-        <input type="search" placeholder="Search &#xF002;" />
+        <input className="search-input" type="search" placeholder="Search &#xF002;" />
       </div>
     );
   }

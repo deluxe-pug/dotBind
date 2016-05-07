@@ -18,28 +18,28 @@ class TopBar extends React.Component {
 
   render() {
     return (
-      <nav className="transparent">
+      <nav className="translucent">
         <div className="nav-wrapper">
-          <a href="#!" className="brand-logo">dotBind</a>
+          <a href="#!" className="brand-logo dotbind-logo">dotBind</a>
 
           <ul className="right hide-on-med-and-down">
 
             <li>
-              { this.state.displaySearchBar ? 
+              { this.state.displaySearchBar ?
                 <SearchContainer /> : <span></span> }
             </li>
 
             <li>
               <a onClick={() => this.toggleSearchBar()}>
-                <i className="material-icons">
+                <i className="material-icons black-icon">
                  search
                 </i>
               </a>
             </li>
 
-            <li><a href="badges.html"><i className="material-icons">view_module</i></a></li>
-            <li><a href="collapsible.html"><i className="material-icons">refresh</i></a></li>
-            <li><a href="mobile.html"><i className="material-icons">more_vert</i></a></li>
+            <li><a href="badges.html"><i className="material-icons black-icon">view_module</i></a></li>
+            <li><a href="collapsible.html"><i className="material-icons black-icon">refresh</i></a></li>
+            <li><a href="mobile.html"><i className="material-icons black-icon">more_vert</i></a></li>
           </ul>
         </div>
       </nav>

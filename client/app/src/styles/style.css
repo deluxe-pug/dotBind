@@ -6,6 +6,26 @@ body {
   background-size: cover;
 }
 
+.translucent {
+  /*background-color: rgba(0,255,255,.40);*/
+  background-color: #cfd8dc;
+  opacity: .4;
+}
+
+.black-icon {
+  color: black;
+}
+
+.search-input {
+  background-color: #26a69a !important;
+  border-radius: 30px !important;
+}
+
+.dotbind-logo:first-child {
+  margin-left: 10px;
+  color: black;
+}
+
 header, main, footer {
   padding-left: 240px;
 }
@@ -53,11 +73,26 @@ header, main, footer {
   -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
   -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
   box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  height: 380px;
+}
+
+.custom-card:hover {
+  background-color: #ffa726;
 }
 
 .card-action {
-    color: black;
-    background-color: black;
+  color: black;
+  background-color: black;
+}
+
+.card-snippet{
+  font-style: italic;
+  border-top: 1px black solid;
+}
+
+.block-span {
+  display: block;
+  padding: 5px;
 }
 
 .add-tag:first-child {
