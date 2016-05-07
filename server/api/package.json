@@ -10,7 +10,7 @@
   "dependencies": {
     "bluebird": "^3.3.5",
     "elasticsearch": "^11.0.1",
-    "nodal": "0.9.0"
+    "nodal": "git://github.com/michelleheh/nodal.git"
   },
   "devDependencies": {
     "chai": "~3.5.0",
