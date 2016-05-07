@@ -54,13 +54,13 @@ class Card extends React.Component {
       <div className="col s12 m4">
         <div className="card custom-card" onClick={this.openModal.bind(this)}>
 
-        <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
-          onRequestClose={this.closeModal.bind(this)} style={customStyles} >
+          <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
+            onRequestClose={this.closeModal.bind(this)} style={customStyles} >
 
-          <h3 ref="subtitle">Hello</h3>
-          <button className="waves-effect waves-light btn close-modal" onClick={this.closeModal.bind(this)}>Close</button>
+            <h3 ref="subtitle">Hello</h3>
+            <button className="waves-effect waves-light btn close-modal" onClick={this.closeModal.bind(this)}>Close</button>
 
-        </Modal>
+          </Modal>
 
           <div className="card-image waves-effect waves-block waves-light">
             <img className="activator" src={this.props.icon}></img>
