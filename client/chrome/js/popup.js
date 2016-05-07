@@ -11,7 +11,7 @@ const envParams = {
 };
 
 
-function getCurrentTabUrl(callback) {
+function getCurrentTabProps(callback) {
   const queryInfo = {
     active: true,
     currentWindow: true,
@@ -37,87 +37,72 @@ function renderIcon(icon) {
 
 // when extention window is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // inject js/myScript into current tab
-  getCurrentTabUrl((url, icon) => {
-    const snippets = [];
-    const notes = [];
-    const tags = [];
+  getCurrentTabProps((url, icon) => {
     // render icon and url to the popup
     renderIcon(icon);
     renderStatus(url);
-    // add snippet
-    $('body').on('click', 'button.snippet', () => {
-      console.log('save snippet fired!');
-      if ($('input.snippet').val()) {
-        $('ul.snippets').append($('<li>').text($('input.snippet').val()));
-        snippets.push(($('input.snippet').val()));
-        $('input.snippet').val('');
-      }
-    });
+  
+    let domain = url.replace(/https?:\/\//, '');
+    domain = domain.replace(/\/(.)+/, '');
+    
+    const data = {
+      card: {
+        icon,
+        url,
+        domain,
+        content: null,
+        note: null,
+      },
+      username: "public",
+      tags: [],
+    };
+
     // add tag
     $('body').on('click', 'button.tag', () => {
-      console.log('save tag fired!');
-      if ($('input.tag').val()) {
-        $('ul.tags').append($('<li>').text($('input.tag').val()));
-        tags.push(($('input.tag').val()));
+      const tag = $('input.tag').val();
+      if (tag) {
+        $('ul.tags').append($('<li>').text(tag));
+        data.tags.push({name: tag});
         $('input.tag').val('');
       }
     });
     // add note
     $('body').on('click', 'button.note', () => {
-      console.log('save note fired!');
-      if ($('input.note').val()) {
-        $('ul.notes').append($('<li>').text($('input.note').val()));
-        notes.push(($('input.note').val()));
+      data.note = $('input.note').val();
+      if (note) {
+        $('ul.notes').append($('<li>').text(note));
         $('input.note').val('');
       }
     });
-
-    $('body').on('click', 'button.tag', () => {
-      console.log('save tag fired');
-    });
-
+    // save card
     $('body').on('click', '#save', () => {
       console.log('save button clicked!');
 
       chrome.tabs.query({ active: true, currentWindow: true }, activeTabs => {
         chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           console.log('message recieved!', request.selection);
-          // const snippet = request.selection;
           sendResponse({ from: 'popup', msg: 'card saved!' });
-          // assemble request body
-          // const userId = 1;
-          // const data = {
-          //   user_id: userId,
-          //   icon,
-          //   url,
-          //   snippet,
-          // };
+          
+          data.card.content = request.selection;
+          
+          if (request.selection) {
+            console.log(data);
 
-          const data = {
-            username: 'public',
-            card: { url },
-            snippets: [
-               { content: 'american' },
-               { content: 'pie' },
-            ],
-            tags,
-          };
-
-          console.log(envParams[enviornment]);
-          $.ajax({
-            type: 'POST',
-            url: `${envParams[enviornment].url}:3000/v1/cards`,
-            data,
-            success: result => { console.log(result); },
-            dataType: 'json',
-          });
+            $.ajax({
+              type: 'POST',
+              url: `${envParams[enviornment].url}:3000/v1/cards`,
+              data,
+              success: result => { console.log(result); },
+              dataType: 'json',
+            });
+          }
         });
 
+        // inject js/myScript into current tab
         chrome.tabs.executeScript(
           activeTabs[0].id, { file: 'dist/myScript.js', allFrames: true }
         );
       });
-    });
+    }); 
   });
 });

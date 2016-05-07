@@ -12,7 +12,7 @@ var envParams = {
   }
 };
 
-function getCurrentTabUrl(callback) {
+function getCurrentTabProps(callback) {
   var queryInfo = {
     active: true,
     currentWindow: true
@@ -38,16 +38,43 @@ function renderIcon(icon) {
 
 // when extention window is fully loaded
 document.addEventListener('DOMContentLoaded', function () {
-  // inject js/myScript into current tab
-  getCurrentTabUrl(function (url, icon) {
+  getCurrentTabProps(function (url, icon) {
     // render icon and url to the popup
     renderIcon(icon);
     renderStatus(url);
-    // add snippet
-    $('body').on('click', 'button .snippet', function () {
-      console.log('save snippet fired');
-    });
+
+    var domain = url.replace(/https?:\/\//, '');
+    domain = url.replace(/\/(.)+/, '');
+
+    var data = {
+      card: {
+        icon: icon,
+        url: url,
+        domain: domain,
+        content: null,
+        note: null
+      },
+      username: "public",
+      tags: []
+    };
+
     // add tag
+    $('body').on('click', 'button.tag', function () {
+      var tag = $('input.tag').val();
+      if (tag) {
+        $('ul.tags').append($('<li>').text(tag));
+        data.tags.push({ name: tag });
+        $('input.tag').val('');
+      }
+    });
+    // add note
+    $('body').on('click', 'button.note', function () {
+      data.note = $('input.note').val();
+      if (note) {
+        $('ul.notes').append($('<li>').text(note));
+        $('input.note').val('');
+      }
+    });
 
     $('body').on('click', '#save', function () {
       console.log('save button clicked!');
@@ -55,29 +82,26 @@ document.addEventListener('DOMContentLoaded', function () {
       chrome.tabs.query({ active: true, currentWindow: true }, function (activeTabs) {
         chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
           console.log('message recieved!', request.selection);
-          var snippet = request.selection;
           sendResponse({ from: 'popup', msg: 'card saved!' });
-          // assemble request body
-          var userId = 1;
-          var data = {
-            user_id: userId,
-            icon: icon,
-            url: url,
-            snippet: snippet
-          };
 
-          console.log(envParams[enviornment]);
-          $.ajax({
-            type: 'POST',
-            url: envParams[enviornment].url + ':3000/v1/cards',
-            data: data,
-            success: function success(result) {
-              console.log(result);
-            },
-            dataType: 'json'
-          });
+          data.card.content = request.selection;
+
+          if (request.selection) {
+            console.log(data);
+
+            $.ajax({
+              type: 'POST',
+              url: envParams[enviornment].url + ':3000/v1/cards',
+              data: data,
+              success: function success(result) {
+                console.log(result);
+              },
+              dataType: 'json'
+            });
+          }
         });
 
+        // inject js/myScript into current tab
         chrome.tabs.executeScript(activeTabs[0].id, { file: 'dist/myScript.js', allFrames: true });
       });
     });
