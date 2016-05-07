@@ -63,6 +63,8 @@ class Card extends React.Component {
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
 
+            <h4 ref="subtitle">Notes:</h4>
+            <p>{this.props.note}</p>
             <button className="waves-effect waves-light btn close-modal" onClick={this.closeModal.bind(this)}>Close</button>
             <div className="modal-notes">
               <h4 ref="subtitle">Notes:</h4>
