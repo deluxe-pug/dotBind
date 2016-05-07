@@ -63,13 +63,16 @@ class Card extends React.Component {
           </Modal>
 
           <div className="card-image waves-effect waves-block waves-light">
-            <img className="activator" src={this.props.icon}></img>
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">Card Title</span>
-              <p className="card-snippet">
-                {this.props.content}
-              </p>
+
+            <img className="activator card-image" src={this.props.icon} />
+
+            <p className="card-snippet">
+              {this.props.content}
+            </p>
+
             <p><a href={this.props.url}>{this.props.url}</a></p>
           </div>
 
@@ -77,7 +80,6 @@ class Card extends React.Component {
             <ul>
               <li>
                 {this.props.cardTags.map((cardTag) => {
-                  console.log('here it is');
                   <CardTag key={cardTag.tag.id} {...cardTag.tag}/>
                 })}
               </li>

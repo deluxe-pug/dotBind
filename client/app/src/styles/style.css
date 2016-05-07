@@ -79,6 +79,10 @@ header, main, footer {
   background-color: #ffa726;
 }
 
+.card-image {
+  float: right;
+}
+
 .card-action {
   color: black;
   background-color: black;
