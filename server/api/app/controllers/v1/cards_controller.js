@@ -7,6 +7,8 @@ module.exports = (function() {
   const Snippet = Nodal.require('app/models/snippet.js');
   const User = Nodal.require('app/models/user.js');
   const Tag = Nodal.require('app/models/tag.js');
+  const UserTag = Nodal.require('app/models/user_tag.js');
+  const CardTag = Nodal.require('app/models/card_tag.js');
 
   class V1CardsController extends Nodal.Controller {
 
@@ -24,7 +26,7 @@ module.exports = (function() {
           // cards[0].joined('snippets')
 
           // cards[0].joined('cardTags')
-          this.respond( err || cards, ['id', 'url', {snippets: ['content']}, {cardTags: [{tag: ['name']}]}]);
+          this.respond( err || cards, ['url', 'icon', 'domain', 'content', 'note', {cardTags: [{tag: ['name']}]}]);
           // this.respond( err || cards, ['id', 'url', {snippets: ['id', 'content']}, {cardTags: ['id', {tag: 'name'}]} ]);
 
           // this.respond( err || cards, ['url', {cardTags: ['tag']}] );
@@ -47,7 +49,9 @@ module.exports = (function() {
     /* Sample POST Request
        {
            "card": {
-              "url": "http://american.com"
+              "url": "http://american.com",
+              "content": "This is my content",
+              "note": "This is a note about my content"
             },
             "username": "public"
            "snippets": [
@@ -86,25 +90,56 @@ module.exports = (function() {
 
           // create entry for CardTag - {card_id: card_id, tag_id: ?}
 
-          let username = this.params.body.username;
+          let username = this.params.body.username || '';
+          let tags = this.params.body.tags || [];
+          let card = this.params.body.card || {};
           let user_id;
+          let card_id;
+          let tag_id;
 
-          User.query()
-            .where({username})
-            .end((err, users) => {
-              // if any users with username
-              if (users.length) { 
-                user_id = users[0].get('id'); 
-                // do something with user
-              } else {
-                // otherwise, create a user
-                User.create({username}, (err, user) => {
-                  console.log('new user id: ', user.get('id'));
+          console.log(Promise.all);
+
+          // User.query()
+          //   .where({username})
+          //   .end((err, users) => {
+          //     // if any users with username
+          //     if (users.length) { 
+          //       user_id = users[0].get('id'); 
+          //       // do something with user
+          //     } else {
+          //       // otherwise, create a user
+          //       User.create({username}, (err, user) => {
+          //         console.log('new user id: ', user.get('id'));
+          //       })
+          //     }
+          //     // response
+          //   })
+          User.findOrCreate({username}, (err, user) => {
+            user_id = user.get('id');
+            card.user_id = user_id;
+            // assume 1 tag , promises
+            let name = tags[0].name;
+            Tag.findOrCreate({name}, (err, tag) => {
+              tag_id = tag.get('id');
+              UserTag.findOrCreate({tag_id, user_id}, (err, user_tag) => {
+                // if card count is null
+                if (user_tag.get('card_count') === null) {
+                  user_tag.set('card_count', 1); // initialize to 1
+                  user_tag.save();
+                } else if (user_tag.get('card_count')) {
+                  user_tag.set('card_count', user_tag.get('card_count') + 1)
+                  user_tag.save();
+                }
+                Card.create(card, (err, card) => {
+                  card_id = card.get('id');
+                  CardTag.findOrCreate({tag_id, card_id}, (err, card_tag) => {
+                    this.respond(err || card);
+                  });
                 })
-              }
-              // response
-            })
-          this.respond('Response!')
+              })
+            });
+          })
+          // this.respond('Response!')
         // this.respond([ card, snippetRecords ]);
 
       // });
