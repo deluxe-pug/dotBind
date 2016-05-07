@@ -73,15 +73,21 @@ class Card extends React.Component {
           </div>
 
           <div className="card-action">
-            <button className="waves-effect waves-light btn open-modal" onClick={this.openModal.bind(this)}>View Details   -></button>
+            <div className="card-buttons">
+              <button className="waves-effect waves-light btn open-modal" onClick={this.openModal.bind(this)}>
+                <i className="material-icons large">info_outline</i>
+              </button>
+              <button className="waves-effect waves-light btn add-tag">
+                <i className="material-icons">label_outline</i>
+              </button>
+            </div>
             <ul>
+              <li>
+              </li>
               <li>
                 {this.props.cardTags.map((cardTag) => {
                   <CardTag key={cardTag.tag.id} {...cardTag.tag}/>
                 })}
-              </li>
-              <li>
-                <button className="waves-effect waves-light btn add-tag"><i className=" material-icons left">label_outline</i>Add Tag</button>          
               </li>
             </ul>
           </div>

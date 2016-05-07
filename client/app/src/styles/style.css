@@ -1,5 +1,5 @@
 body {
-  background-color: #eceff1;
+  background-color: black;
   background-image: url('http://content.wallpapers-room.com/resolutions/1920x1200/D/Wallpapers-room_com___Dark_Wooden_Wall_by_kano89_1920x1200.jpg');
   background-size: cover;
   background-attachment: fixed;
@@ -101,12 +101,16 @@ header, main, footer {
   padding: 5px;
 }
 
-.add-tag {
-  width: 180px;
+.card-buttons {
+  text-align: center;
 }
 
 .open-modal {
-  z-index: 0;
+  margin-right: 10px;
+}
+
+.add-tag {
+  margin-left: 10px;
 }
 
 .close-modal {
