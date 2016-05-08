@@ -75,9 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // save note
     $('body').on('click', 'button.note', () => {
-      data.note = $('input.note').val();
-      if (data.note) {
-        console.log('note saved!: ', data.note);
+      data.card.note = $('input.note').val();
+      if (data.card.note) {
+        console.log('note saved!: ', data.card.note);
       }
     });
 
