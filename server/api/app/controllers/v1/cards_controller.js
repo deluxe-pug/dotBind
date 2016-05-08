@@ -5,7 +5,6 @@ module.exports = (function() {
   const Nodal = require('nodal');
   const PromiseMaker = require('bluebird').promisify;
   const Card = Nodal.require('app/models/card.js');
-  const Snippet = Nodal.require('app/models/snippet.js');
   const User = Nodal.require('app/models/user.js');
   const Tag = Nodal.require('app/models/tag.js');
   const UserTag = Nodal.require('app/models/user_tag.js');
