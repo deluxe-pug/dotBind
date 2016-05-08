@@ -22,24 +22,10 @@ module.exports = (function() {
 
     index() {
 
-      var tag = 'agular';
-      console.log('--> this is the query', this.params.query);
       Card.query()
-        .join('snippets')
         .join('cardTags__tag')
-        // .where({ cardTags__tag__name: 'react', cardTags__tag__name: 'angular' })
-        // .where(this.params.query)
         .end((err, cards) => {
-
-          // cards[0].joined('snippets')
-
-          // cards[0].joined('cardTags')
-          this.respond( err || cards, ['url', 'icon', 'domain', 'content', 'note', {cardTags: [{tag: ['name']}]}]);
-          // this.respond( err || cards, ['id', 'url', {snippets: ['id', 'content']}, {cardTags: ['id', {tag: 'name'}]} ]);
-
-          // this.respond( err || cards, ['url', {cardTags: ['tag']}] );
-          // this.respond( err || cards, ['id', 'url', {cardTags: [{ tag: ['id','name']}]}] );
-
+          this.respond( err || cards, ['id', 'user_id', 'url', 'icon', 'domain', 'content', 'note', {cardTags: [{tag: ['name']}]}]);
         });
 
     }
@@ -101,7 +87,8 @@ module.exports = (function() {
             // Resolve User and Tag promises
             Promise.all(userAndTagPromises).then((values) => {
               user_id = values[0].get('id'); // get user id
-              card.user_id = user_id;
+              aCard.set('user_id', user_id);
+              aCard.save();
 
               let tagModels = values.slice(1);
 
