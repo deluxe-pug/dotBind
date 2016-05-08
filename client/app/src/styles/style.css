@@ -150,6 +150,7 @@ header, main, footer {
   margin-top: 10px;
   margin-left: 40px;
   margin-right: 40px;
+  z-index: 2;
 }
 
 .add-tag {
