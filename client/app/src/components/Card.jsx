@@ -68,6 +68,7 @@ class Card extends React.Component {
               <h4 ref="subtitle">Notes:</h4>
               <p>{this.props.note}</p>
             </div>
+            <h5>Code Snippet</h5>
             <div id="editor" className="modal-editor">
               <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"  name="UNIQUE_ID_OF_DIV" editorProps={{$blockScrolling: true}} />
             </div>
