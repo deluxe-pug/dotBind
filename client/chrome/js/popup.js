@@ -22,33 +22,40 @@ function getCurrentTabProps(callback) {
 
     const icon = tab.favIconUrl;
     const url = tab.url;
+    const title = tab.title;
 
-    callback(url, icon);
+    callback(url, icon, title);
   });
 }
 
-function renderStatus(statusText) {
-  document.getElementById('url').textContent = statusText;
+function renderStatus(url) {
+  document.getElementById('url').textContent = url;
 }
 
 function renderIcon(icon) {
   document.getElementById('image-result').src = icon;
 }
 
+function renderTitle(title) {
+  document.getElementById('title').textContent = title;
+}
+
 // when extention window is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  getCurrentTabProps((url, icon) => {
+  getCurrentTabProps((url, icon, title) => {
     // render icon and url to the popup
     renderIcon(icon);
     renderStatus(url);
+    renderTitle(title);
 
     let domain = url.replace(/https?:\/\//, '');
     domain = domain.replace(/\/(.)+/, '');
 
-    let data = {
+    const data = {
       card: {
         icon,
         url,
+        title,
         domain,
         content: null,
         note: null,
@@ -59,36 +66,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // add tag
     $('body').on('click', 'button.tag', () => {
-      const tag = $('input.tag').val();
+      const tag = $('input.tag').val().toLowerCase();
       if (tag) {
         $('ul.tags').append($('<li>').text(tag));
         data.tags.push(tag);
         $('input.tag').val('');
       }
     });
-    // add note
+    // save note
     $('body').on('click', 'button.note', () => {
       data.note = $('input.note').val();
       if (data.note) {
-        $('ul.notes').append($('<li>').text(data.note));
-        $('input.note').val('');
+        console.log('note saved!: ', data.note);
       }
     });
 
     // save card
     $('body').on('click', '#save', () => {
-
       console.log('--> save button clicked!');
       console.log(JSON.stringify(data));
 
       $.ajax({
         type: 'POST',
         url: `${envParams[enviornment].url}:3000/v1/cards`,
-        data: data,
+        data,
         success: result => { console.log(result); },
         dataType: 'json',
       });
-
 
       // chrome.tabs.query({ active: true, currentWindow: true }, activeTabs => {
       //   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -116,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
       //     activeTabs[0].id, { file: 'dist/myScript.js', allFrames: true }
       //   );
       // });
-
     });
   });
 });
