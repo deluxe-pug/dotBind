@@ -11,10 +11,11 @@ module.exports = (function() {
 
       CardTag.query()
         .join('card')
+        .join('tag')
         .where(this.params.query)
         .end((err, models) => {
           console.log('this is cardtag query --------> :', this.params);
-          this.respond(err || models, ['id', 'card_id', {card: ['id', 'url']}, {tag: ['id']} ]);
+          this.respond(err || models, ['id', {card: ['id', 'url']}, {tag: ['id']} ]);
         });
 
     }
