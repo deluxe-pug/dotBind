@@ -14,7 +14,7 @@
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
       }
-      #status {
+      #content {
         /* avoid an excessively wide status text */
         white-space: pre;
         text-overflow: ellipsis;
@@ -36,6 +36,13 @@
     <img id="image-result">
     <h3 id="title"></h3>
     <div id="url"></div>
+
+    <div class="toggle-btn-grp joint-toggle">
+      <label class="toggle-btn"><input type="radio" checked="checked"/>Code</label>
+      <label class="toggle-btn"><input type="radio"/>Text</label>
+    </div>
+
+    <div id="content"></div>
 
     <input class="note"></input>
     <button class="note">Save note</button>

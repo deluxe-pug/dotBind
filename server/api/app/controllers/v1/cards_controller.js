@@ -24,7 +24,7 @@ module.exports = (function() {
       Card.query()
         .join('cardTags__tag')
         .end((err, cards) => {
-          this.respond( err || cards, ['id', 'user_id', 'url', 'icon', 'domain', 'content', 'note', {cardTags: [{tag: ['name']}]}]);
+          this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'content', 'note', {cardTags: [{tag: ['name']}]}]);
         });
 
     }
@@ -43,6 +43,7 @@ module.exports = (function() {
        {
         "card": {
           "url": "http://american.com",
+          "title": "about USA"
           "content": "This is my content",
           "note": "This is a note about my content",
           "domain": "american.com"

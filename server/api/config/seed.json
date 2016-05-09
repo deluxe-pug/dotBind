@@ -12,6 +12,7 @@
     "Card": [
       {
         "url": "http://google.com",
+        "title": "Best Search Engine",
         "user_id": 1,
         "icon": "https://www.google.com/images/branding/product/ico/googleg_lodp.ico",
         "domain": "google.com",
@@ -20,6 +21,7 @@
       },
       {
         "url": "http://facebook.com",
+        "title": "Largest Friends Network",
         "user_id": 2,
         "icon": "https://www.facebook.com/rsrc.php/yl/r/H3nktOa7ZMg.ico",
         "domain": "facebook.com",
@@ -28,6 +30,7 @@
       },
       {
         "url": "http://airbnb.com",
+        "title": "Your Home on Vacation",
         "user_id": 1,
         "icon": "https://a1.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico",
         "domain": "airbnb.com",
@@ -36,6 +39,7 @@
       },
       {
         "url": "http://amazon.com",
+        "title": "Online Shopping Giant",
         "user_id": 1,
         "icon": "http://www.amazon.com/favicon.ico",
         "domain": "amazon.com",

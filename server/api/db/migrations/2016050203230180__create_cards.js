@@ -17,8 +17,10 @@ module.exports = (function() {
         this.createTable("cards", [
           {"name":"icon", "type":"string"},
           {"name":"url", "type":"string"},
+          {"name":"title", "type":"string"},
           {"name":"user_id","type":"int"},
           {"name":"content", "type":"string"},
+          {"name":"text", "type":"string"},
           {"name":"note", "type":"string"},
           {"name":"domain", "type":"string"}
         ])
