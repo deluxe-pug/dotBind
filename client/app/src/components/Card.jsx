@@ -5,7 +5,6 @@ import CardTag from './CardTag';
 
 import brace from 'brace';
 import AceEditor from 'react-ace';
-
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 
@@ -54,7 +53,6 @@ class Card extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
-
   render() {
     return (
       <div className="col s12 m4">
@@ -69,8 +67,9 @@ class Card extends React.Component {
               <p>{this.props.note}</p>
             </div>
             <h5>Code Snippet</h5>
-            <div id="editor" className="modal-editor">
-              <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"  name="UNIQUE_ID_OF_DIV" editorProps={{$blockScrolling: true}} />
+            <div className="modal-editor">
+              <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"
+              name="editor" editorProps={{$blockScrolling: true}} value={this.props.note} />
             </div>
           </Modal>
 
@@ -95,7 +94,7 @@ class Card extends React.Component {
             <ul>
               <li>
 
-                {this.props.cardTags.map((cardTag) => 
+                {this.props.cardTags.map((cardTag) =>
                   <CardTag key={cardTag.tag.id} name={cardTag.tag.name}/>
                 )}
               </li>
