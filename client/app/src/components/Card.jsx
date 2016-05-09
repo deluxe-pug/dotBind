@@ -60,16 +60,17 @@ class Card extends React.Component {
         <div className="card custom-card" >
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
-
-            <button className="waves-effect waves-light btn close-modal" onClick={this.closeModal.bind(this)}>Close</button>
-            <div className="modal-notes">
-              <h4 ref="subtitle">Notes:</h4>
-              <p>{this.props.note}</p>
+            <div className="modal-nav">
+              <button className="waves-effect waves-light btn-flat close-modal" onClick={this.closeModal.bind(this)}>X</button>
             </div>
             <h5>Code Snippet</h5>
             <div className="modal-editor">
-              <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"
-              name="editor" editorProps={{$blockScrolling: true}} value={this.props.note} />
+            <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"
+            name="editor" editorProps={{$blockScrolling: true}} value={this.props.note} />
+            </div>
+            <h5>Notes:</h5>
+            <div className="modal-notes">
+              <p>{this.props.note}</p>
             </div>
           </Modal>
 
