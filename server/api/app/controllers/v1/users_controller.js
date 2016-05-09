@@ -14,7 +14,7 @@ module.exports = (function() {
         .where(this.params.query)
         .end((err, users) => {
 
-          this.respond(err || users, ['username', {userTags: [{tag: ['name']}, 'card_count']}] );
+          this.respond(err || users, ['id', 'username', 'email', 'created_at', {userTags: [{tag: ['name']}, 'card_count']}] );
 
         });
 
@@ -22,9 +22,9 @@ module.exports = (function() {
 
     show() {
 
-      User.find(this.params.route.id, (err, model) => {
+      User.find(this.params.route.id, (err, user) => {
 
-        this.respond(err || model);
+        this.respond(err || user, ['id', 'username', 'email', 'created_at']);
 
       });
 
@@ -32,9 +32,9 @@ module.exports = (function() {
 
     create() {
 
-      User.create(this.params.body, (err, model) => {
+      User.create(this.params.body, (err, user) => {
 
-        this.respond(err || model);
+        this.respond(err || user, ['id', 'username', 'email', 'created_at']);
 
       });
 
@@ -42,9 +42,9 @@ module.exports = (function() {
 
     update() {
 
-      User.update(this.params.route.id, this.params.body, (err, model) => {
+      User.update(this.params.route.id, this.params.body, (err, user) => {
 
-        this.respond(err || model);
+        this.respond(err || user, ['id', 'username', 'email', 'created_at']);
 
       });
 
@@ -52,9 +52,9 @@ module.exports = (function() {
 
     destroy() {
 
-      User.destroy(this.params.route.id, (err, model) => {
+      User.destroy(this.params.route.id, (err, user) => {
 
-        this.respond(err || model);
+        this.respond(err || user, ['id', 'username', 'email', 'created_at']);
 
       });
 
