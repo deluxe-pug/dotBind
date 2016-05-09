@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
             url,
             title,
             domain,
-            content: null,
+            code: null,
+            text: null,
             note: null,
           },
           username: 'public',
@@ -75,11 +76,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // save selection from tab
         if (request.selection) {
           console.log(request.selection);
-          data.card.content = request.selection;
+          data.card.code = request.selection;
           renderContent(request.selection);
         }
         // TODO: toggle content
+        $('body').on('click', '.code', () => {
+          data.card.code = request.selection;
+          data.card.text = null;
+          $(this).prop('checked', true);
+          $('.text input').prop('checked', false);
+        });
 
+        $('body').on('click', '.text', () => {
+          data.card.text = request.selection;
+          data.card.code = null;
+          $(this).prop('checked', true);
+          $('.code input').prop('checked', false);
+        });
         // add tag
         $('body').on('click', 'button.tag', () => {
           const tag = $('input.tag').val().toLowerCase();
