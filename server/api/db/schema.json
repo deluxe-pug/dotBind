@@ -14,7 +14,7 @@
         {"name": "url", "type": "string", "properties": {}},
         {"name": "title", "type": "string", "properties": {}},
         {"name": "user_id", "type": "int", "properties": {}},
-        {"name": "content", "type": "string", "properties": {}},
+        {"name": "code", "type": "string", "properties": {}},
         {"name": "text", "type": "string", "properties": {}},
         {"name": "note", "type": "string", "properties": {}},
         {"name": "domain", "type": "string", "properties": {}},
