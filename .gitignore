@@ -9,3 +9,4 @@ client/chrome/node_modules
 npm-debug.log
 server/api/npm-debug.log
 server/api/search.js
+server/api/logfile
