@@ -3,6 +3,12 @@ import Modal from 'react-modal';
 // import TagsContainer from '../containers/TagsContainer';
 import CardTag from './CardTag';
 
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/javascript';
+import 'brace/theme/monokai';
+
 let snippetId = 0;
 const customStyles = {
   overlay : {
@@ -14,7 +20,7 @@ const customStyles = {
     backgroundColor   : 'rgba(38, 50, 56, 0.90)',
   },
   content : {
-    border: '2px #ffa726 solid',
+    // border: '2px #ffa726 solid',
     borderRadius: '50px',
     marginLeft: '150',
     marginRight: '150',
@@ -52,45 +58,49 @@ class Card extends React.Component {
   render() {
     return (
       <div className="col s12 m4">
-        <div className="card custom-card" onClick={this.openModal.bind(this)}>
 
+        <div className="card custom-card" >
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
 
-            <h3 ref="subtitle">Hello</h3>
             <button className="waves-effect waves-light btn close-modal" onClick={this.closeModal.bind(this)}>Close</button>
-
+            <div className="modal-notes">
+              <h4 ref="subtitle">Notes:</h4>
+              <p>{this.props.note}</p>
+            </div>
+            <h5>Code Snippet</h5>
+            <div id="editor" className="modal-editor">
+              <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"  name="UNIQUE_ID_OF_DIV" editorProps={{$blockScrolling: true}} />
+            </div>
           </Modal>
 
-          <div className="card-image waves-effect waves-block waves-light">
-            <img className="activator" src={this.props.icon}></img>
-          </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">Card Title</span>
-              <p className="card-snippet">
-                {this.props.content}
-              </p>
+            <img className="activator card-img" src={this.props.icon} />
+            <p className="card-snippet">
+              {this.props.content}
+            </p>
             <p><a href={this.props.url}>{this.props.url}</a></p>
           </div>
 
           <div className="card-action">
+            <div className="card-buttons">
+              <button className="waves-effect waves-light btn open-modal" onClick={this.openModal.bind(this)}>
+                <i className="material-icons large">info_outline</i>
+              </button>
+              <button className="waves-effect waves-light btn add-tag">
+                <i className="material-icons">label_outline</i>
+              </button>
+            </div>
             <ul>
               <li>
+              </li>
+              <li>
                 {this.props.cardTags.map((cardTag) => {
-                  console.log('here it is');
                   <CardTag key={cardTag.tag.id} {...cardTag.tag}/>
                 })}
               </li>
-
-              <li>
-                <a className="add-tag modal-trigger" href="#modal1">
-                  <i className=" material-icons left">label_outline</i>
-                  add tag
-                </a>
-              </li>
-
             </ul>
-
           </div>
 
         </div>
