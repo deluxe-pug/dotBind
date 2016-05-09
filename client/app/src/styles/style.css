@@ -122,9 +122,8 @@ header, main, footer {
   opacity: .65;
 }
 
-.close-modal > button {
+.close-modal {
   /*position: absolute;*/
-  float: right;
   text-align: right;
   font-weight: bold;
   font-size: 16pt;
@@ -147,10 +146,23 @@ header, main, footer {
 }
 
 .modal-nav {
-  background-color: green;
-  /*z-index: 2;*/
-  border: 1px solid black;
-  padding: 3px;
+  border-bottom: 1px solid black;
+  padding-bottom: 3px;
+}
+
+.modal-nav-buttons {
+  text-align: right;
+}
+
+.modal-nav-buttons > input {
+  width: 50%;
+  /*background-color: purple;*/
+  margin-right: 5px;
+}
+
+.modal-nav-buttons > button {
+  text-align: right;
+  margin-right: 3px;
 }
 
 .modal-editor {

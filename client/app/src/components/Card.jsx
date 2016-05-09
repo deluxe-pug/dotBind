@@ -46,7 +46,7 @@ class Card extends React.Component {
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    this.refs.subtitle.style.color = 'black';
+    // this.refs.subtitle.style.color = 'black';
   }
 
   closeModal() {
@@ -60,13 +60,19 @@ class Card extends React.Component {
         <div className="card custom-card" >
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
-            <div className="modal-nav">
-              <button className="waves-effect waves-light btn-flat close-modal" onClick={this.closeModal.bind(this)}>X</button>
+            <div className="row modal-nav">
+              <div className="col s2">
+                <button className="waves-effect waves-light btn-flat close-modal" onClick={this.closeModal.bind(this)}>X</button>
+              </div>
+              <div className="col s10 input-field modal-nav-buttons">
+                <input type="text" placeholder="Tag" />
+                <button className="waves-effect waves-light btn">Add Tag</button>
+              </div>
             </div>
-            <h5>Code Snippet</h5>
+            <h5>Code Snippet:</h5>
             <div className="modal-editor">
-            <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"
-            name="editor" editorProps={{$blockScrolling: true}} value={this.props.note} />
+              <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"
+              name="editor" editorProps={{$blockScrolling: true}} value={this.props.note} />
             </div>
             <h5>Notes:</h5>
             <div className="modal-notes">
@@ -78,7 +84,7 @@ class Card extends React.Component {
             <span className="card-title activator grey-text text-darken-4">Card Title</span>
             <img className="activator card-img" src={this.props.icon} />
             <p className="card-snippet">
-              {this.props.content}
+              {this.props.content.substring(0,250)}...
             </p>
             <p><a href={this.props.url}>{this.props.url}</a></p>
           </div>
