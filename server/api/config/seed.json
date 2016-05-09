@@ -3,10 +3,14 @@
   "development": {
     "User": [
       {
-        "username": "public"
+        "username": "public",
+        "password": "password",
+        "email": "public@gmail.com"
       },
       {
-        "username": "adam"
+        "username": "adam",
+        "password": "password",
+        "email": "adam@gmail.com"
       }
     ],
     "Card": [
