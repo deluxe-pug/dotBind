@@ -38,8 +38,9 @@ module.exports = (function() {
   const V1TagsController = Nodal.require('app/controllers/v1/tags_controller.js');
   const V1CardTagsController = Nodal.require('app/controllers/v1/card_tags_controller.js');
   const V1SnippetsController = Nodal.require('app/controllers/v1/snippets_controller.js');
-  const V1UsersController = Nodal.require('app/controllers/v1/users_controller.js');
+  // const V1UsersController = Nodal.require('app/controllers/v1/users_controller.js');
   const V1UserTagsController = Nodal.require('app/controllers/v1/user_tags_controller.js');
+  const V1UsersController = Nodal.require('app/controllers/v1/users_controller.js');
 
   /* generator: end imports */
 
@@ -51,8 +52,9 @@ module.exports = (function() {
   router.route('/v1/tags/{id}').use(V1TagsController);
   router.route('/v1/card_tags/{id}').use(V1CardTagsController);
   router.route('/v1/snippets/{id}').use(V1SnippetsController);
-  router.route('/v1/users/{id}').use(V1UsersController);
+  // router.route('/v1/users/{id}').use(V1UsersController);
   router.route('/v1/user_tags/{id}').use(V1UserTagsController);
+  router.route('/v1/users/{id}').use(V1UsersController);
 
   /* generator: end routes */
 
