@@ -31,6 +31,7 @@ module.exports = (function() {
     //   }
 
     // }
+    
 
     verifyPassword(unencrypted, callback) {
 
