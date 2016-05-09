@@ -59,6 +59,7 @@ module.exports = (function() {
   router.route('/v1/users/{id}').use(V1UsersController);
   router.route('/v1/access_tokens/{id}').use(V1AccessTokensController);
 
+
   /* generator: end routes */
 
   return router;
