@@ -42,11 +42,12 @@ header, main, footer {
 
 .tag {
   margin: 3px;
-  border: 2px white solid;
-  border-radius: 50px;
-  padding: 10px;
-  text-align: center;
+  /*border: 2px white solid;*/
+  border-radius: 10px;
+  width: 130px;
+  /*padding: 10px;*/
   /*background-color: #b0bec5;*/
+  /*text-align: center;*/
   -webkit-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
   -moz-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
   box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);

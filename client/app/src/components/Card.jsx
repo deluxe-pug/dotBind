@@ -94,11 +94,10 @@ class Card extends React.Component {
             </div>
             <ul>
               <li>
-              </li>
-              <li>
-                {this.props.cardTags.map((cardTag) => {
-                  <CardTag key={cardTag.tag.id} {...cardTag.tag}/>
-                })}
+
+                {this.props.cardTags.map((cardTag) => 
+                  <CardTag key={cardTag.tag.id} name={cardTag.tag.name}/>
+                )}
               </li>
             </ul>
           </div>
@@ -111,6 +110,10 @@ class Card extends React.Component {
 };
 
 export default Card;
+
+          // <div className="card-image waves-effect waves-block waves-light">
+          //   <img className="activator" src={this.props.icon}></img>
+          // </div>
 
 // {this.props.snippets.map( (snippet) =>
 //   <span className="block-span" key={snippedId++}>{snippet.content.substring(0,125)}...</span>

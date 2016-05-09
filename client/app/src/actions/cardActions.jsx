@@ -45,3 +45,12 @@ export const fetchCardsAction = () => {
     payload: request
   };
 };
+
+export const filterCardsAction = (tag) => {
+  console.log('filterCardsAction is called');
+  return {
+    type: 'FILTER_CARDS',
+    tag: tag
+  }
+
+};

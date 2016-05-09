@@ -8,9 +8,15 @@ const cardsReducer = (state = [], action) => {
           url: action.url
         }, ...state];
     case 'FETCH_CARDS':
-      console.log('payload: ', action.payload.data.data);
       return [...state, ...action.payload.data.data];
-
+    case 'FILTER_CARDS':
+      const filteredCards = state.slice().filter((card) => {
+        for (var i = 0; i < card.cardTags.length; i++) {
+          if (card.cardTags[i].tag.name === action.tag) { return true; }
+        };
+        return false;
+      });
+      return [...filteredCards];
     default:
       return state;
   };
@@ -18,6 +24,10 @@ const cardsReducer = (state = [], action) => {
 
 export default cardsReducer;
 
+// filter((tag) => {
+//   // console.log('tagname: ', tag.tag.name === action.tag)
+//   tag.tag.name === action.tag
+// }
 
     // case 'REMOVE_CARD':
     //   return
