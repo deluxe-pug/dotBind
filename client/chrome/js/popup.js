@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
           data.card.text = null;
           $(this).prop('checked', true);
           $('.text input').prop('checked', false);
+          console.log(data.card.code);
         });
 
         $('body').on('click', '.text', () => {
@@ -92,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
           data.card.code = null;
           $(this).prop('checked', true);
           $('.code input').prop('checked', false);
+          console.log(data.card.text);
         });
         // add tag
         $('body').on('click', 'button.tag', () => {
@@ -107,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
           data.card.note = $('input.note').val();
           if (data.card.note) {
             console.log('note saved!: ', data.card.note);
+            $('#note').text(data.card.note);
           }
         });
 
