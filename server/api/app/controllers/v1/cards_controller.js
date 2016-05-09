@@ -30,6 +30,7 @@ module.exports = (function() {
 
       Card.query()
         .join('cardTags__tag')
+        .join('user')
         .where(this.params.query)
         .end((err, cards) => {
           this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {cardTags: ['id', {tag: ['id', 'name']}]}]);
