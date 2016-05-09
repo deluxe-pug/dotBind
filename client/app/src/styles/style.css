@@ -1,0 +1,159 @@
+body {
+  background-color: black;
+  background-image: url('http://content.wallpapers-room.com/resolutions/1920x1200/D/Wallpapers-room_com___Dark_Wooden_Wall_by_kano89_1920x1200.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.translucent {
+  /*background-color: rgba(0,255,255,.40);*/
+  background-color: #cfd8dc;
+  opacity: .4;
+}
+
+.black-icon {
+  color: black;
+}
+
+.search-input {
+  background-color: #26a69a !important;
+  border-radius: 30px !important;
+}
+
+.dotbind-logo:first-child {
+  margin-left: 10px;
+  color: black;
+}
+
+header, main, footer {
+  padding-left: 240px;
+}
+
+.search input {
+  padding-left: 10px;
+  font-family: Arial, 'FontAwesome';
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+.tag {
+  margin: 3px;
+  /*border: 2px white solid;*/
+  border-radius: 10px;
+  width: 130px;
+  /*padding: 10px;*/
+  /*background-color: #b0bec5;*/
+  /*text-align: center;*/
+  -webkit-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+  -moz-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+  box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+}
+
+.tag > span {
+  /*text-decoration: underline;*/
+  color: white;
+  font-size: 14pt;
+}
+
+.tag > span:hover {
+  color: grey;
+  font-style: italic;
+}
+
+.sidebar {
+  border-right: 2px grey solid;
+}
+
+.custom-card {
+  background-color: #fff59d;
+  -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  height: 380px;
+}
+
+.custom-card:hover {
+  background-color: #ffa726;
+}
+
+.card-img {
+  float: right;
+  width: 32px;
+  height: 32px;
+}
+
+.card-action {
+  color: black;
+  background-color: black;
+  z-index: 0 !important;
+}
+
+.card-snippet{
+  font-style: italic;
+  border-top: 1px black solid;
+}
+
+.block-span {
+  display: block;
+  padding: 5px;
+}
+
+.card-buttons {
+  text-align: center;
+}
+
+.open-modal {
+  margin-right: 10px;
+}
+
+.close-modal {
+  /*float: right;*/
+}
+
+.modal-notes {
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #fff59d;
+  -webkit-box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
+  -moz-box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
+  box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
+  opacity: .65;
+}
+
+.close-modal {
+  /*float: right;*/
+}
+
+.modal-notes {
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #fff59d;
+  -webkit-box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
+  -moz-box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
+  box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
+  opacity: .65;
+}
+
+.modal-notes > p {
+}
+
+.modal-editor {
+  border: 3px black solid;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  z-index: 2;
+}
+
+.add-tag {
+  margin-left: 10px;
+}
