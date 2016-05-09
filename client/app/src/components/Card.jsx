@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Modal from 'react-modal';
 // import TagsContainer from '../containers/TagsContainer';
 import CardTag from './CardTag';
+import { addTag } from '../actions/tagActions';
+import { bindActionCreators } from 'redux';
 
 import brace from 'brace';
 import AceEditor from 'react-ace';
@@ -30,6 +33,7 @@ const customStyles = {
   }
 };
 
+let input;
 class Card extends React.Component {
 
   constructor(props) {
@@ -73,8 +77,20 @@ class Card extends React.Component {
                 <button className="waves-effect waves-light btn-flat close-modal" onClick={this.closeModal.bind(this)}>X</button>
               </div>
               <div className="col s10 input-field modal-nav-buttons">
-                <input type="text" placeholder="Tag" />
-                <button className="waves-effect waves-light btn" onClick={this.addTag.bind(this)}>Add Tag</button>
+              <form onSubmit={ (e) => {
+
+                if ( !input.value.trim() ) {
+                  return;
+                }
+                this.props.dispatch( addTag(input.value) );
+                input.value ='';
+              }}>
+                <input type='text' ref={ node => {
+                  input = node;
+                }}/>
+
+                  <button type="submit" className="waves-effect waves-light btn" onClick={this.addTag.bind(this)}>Add Tag</button>
+                  </form>
               </div>
             </div>
             <h5>Code Snippet:</h5>
@@ -125,6 +141,12 @@ class Card extends React.Component {
     );
   }
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({addTag: addTag}, dispatch);
+}
+
+Card = connect(mapDispatchToProps)(Card);
 
 export default Card;
 
