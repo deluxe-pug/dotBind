@@ -55,6 +55,7 @@ module.exports = (function() {
           "code": "var hello = function() {};",
           "text": "This is my text",
           "note": "This is a note about my content",
+          "icon": "Icon url",
           "domain": "american.com"
         },
         "username": "public",
