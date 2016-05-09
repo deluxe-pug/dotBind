@@ -53,6 +53,14 @@ class Card extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
+  updateCard() {
+    Materialize.toast('Changes saved!', 2000, 'rounded');
+  }
+
+  addTag() {
+    Materialize.toast('Tag Added!', 2000, 'rounded');
+  }
+
   render() {
     return (
       <div className="col s12 m4">
@@ -66,17 +74,20 @@ class Card extends React.Component {
               </div>
               <div className="col s10 input-field modal-nav-buttons">
                 <input type="text" placeholder="Tag" />
-                <button className="waves-effect waves-light btn">Add Tag</button>
+                <button className="waves-effect waves-light btn" onClick={this.addTag.bind(this)}>Add Tag</button>
               </div>
             </div>
             <h5>Code Snippet:</h5>
             <div className="modal-editor">
               <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"
-              name="editor" editorProps={{$blockScrolling: true}} value={this.props.note} />
+              name="editor" editorProps={{$blockScrolling: true}} value={this.props.content} />
             </div>
             <h5>Notes:</h5>
             <div className="modal-notes">
               <p>{this.props.note}</p>
+            </div>
+            <div className="modal-footer">
+              <button className="waves-effect waves-light btn" onClick={this.updateCard.bind(this)}>Save Changes</button>
             </div>
           </Modal>
 
