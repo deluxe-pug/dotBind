@@ -7,22 +7,9 @@
 <html>
   <head>
     <title>dotBind Popup</title>
+    <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <style>
-      body {
-        width:300px;
-        Height:800px;
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #content {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
 
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
@@ -34,26 +21,32 @@
     <script src="js/popup.js"></script>
   </head>
   <body>
-    <img id="image-result">
-    <h3 id="title"></h3>
-    <div id="url"></div>
+    <div class="card medium">
+      <img id="image-result">
+      <h5 id="title"></h5>
+      <div id="url"></div>
 
-    <div>
-      <label class="code"><input type="radio" checked="checked"/>Code</label>
-      <label class="text"><input type="radio"/>Text</label>
+      <div>
+        <button class="btn waves-effect indigo btn-small" type="submit" name="action">Code
+          <i class="material-icons right">code</i>
+        </button>
+        <button class="btn waves-effect indigo btn-small" type="submit" name="action">Text
+          <i class="material-icons right">comment</i>
+        </button>
+      </div>
+
+      <p id="content" class="flow-text"></p>
+      <p id="note" class="flow-text"></p>
+
+      <input class="note"></input>
+      <button class="note">Save note</button>
+
+      <ul class="tags"></ul>
+      <input class="tag"></input>
+      <button class="tag">Add tag</button>
+
+      <button id="save">Save</button>
     </div>
-
-    <div id="content"></div>
-    <div id="note"></div>
-
-    <input class="note"></input>
-    <button class="note">Save note</button>
-
-    <ul class="tags"></ul>
-    <input class="tag"></input>
-    <button class="tag">Add tag</button>
-
-    <button id="save">Save</button>
   </body>
 </html>
 
