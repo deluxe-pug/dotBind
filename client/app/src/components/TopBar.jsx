@@ -47,7 +47,7 @@ class TopBar extends React.Component {
             </li>
 
             <li>
-              <a className="waves-effect waves-light modal-trigger" 
+              <a className="modal-trigger" 
                  onClick={() => this.toggleAddBar()} 
                  href="#modal1">
                 <i className="material-icons">library_add</i>

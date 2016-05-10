@@ -5,6 +5,12 @@ body {
   /*background-image: url('http://content.wallpapers-room.com/resolutions/1920x1200/D/Wallpapers-room_com___Dark_Wooden_Wall_by_kano89_1920x1200.jpg');*/
 }
 
+#app {
+  position: absolute;
+  height:100%;           
+  width:100%;
+}
+
 .topbar {
   background-color: #5f9cd2;
 }
@@ -21,6 +27,7 @@ header, main, footer {
 }
 
 .sidebar {
+  height:100%;
   border-right: 2px #5f9cd2 solid;
 }
 

@@ -5,6 +5,7 @@ import AllCardsContainer from '../containers/AllCardsContainer';
 import TagsContainer from '../containers/TagsContainer';
 import Sidebar from './Sidebar';
 import TopBar from './TopBar';
+import $ from 'jquery';
 
 require("./../styles/style.css");
 
@@ -19,7 +20,7 @@ const App = () => (
       <Sidebar />
     </div>
 
-    <div className="col s10">
+    <div className="col s10 content">
       <AllCardsContainer />
     </div>
   </div>
