@@ -18,7 +18,6 @@ module.exports = (function() {
 
   const AuthController = Nodal.require('app/controllers/auth_controller.js'); 
 
-<<<<<<< c92c6d8eaa051bb13614de7db3e2cc4b112ffd2d
   /* ElasticSearch */
   const elasticsearch = require('elasticsearch');
   const client = new elasticsearch.Client({
@@ -26,11 +25,7 @@ module.exports = (function() {
     log: 'trace'
   });
 
-  class V1CardsController extends Nodal.Controller {
-=======
-
   class V1CardsController extends AuthController {
->>>>>>> Extend v1CardsController with Auth Controller
 
     index() {
 
