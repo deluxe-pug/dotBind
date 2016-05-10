@@ -73,10 +73,10 @@ class Card extends React.Component {
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
             <div className="row modal-nav">
-              <div className="col s1">
+              <div className="col s2">
                 <button className="waves-effect waves-light btn-flat close-modal" onClick={this.closeModal.bind(this)}>X</button>
               </div>
-              <div className="col s11 input-field">
+              <div className="col s10 input-field">
                 <form onSubmit={ (e) => {
                   if ( !input.value.trim() ) {
                     return;
@@ -84,7 +84,7 @@ class Card extends React.Component {
                   this.props.dispatch( addTag(input.value) );
                   this.notifyAddTag();
                   input.value =''; }}>
-                  <div className="col s6">
+                  <div className="col s6 add-tag-button">
                     <button type="submit" className="waves-effect waves-light btn">Add Tag</button>
                   </div>
                   <div className="col s6">
@@ -96,7 +96,7 @@ class Card extends React.Component {
             <h5>Code Snippet:</h5>
             <div className="modal-editor">
               <AceEditor height="240px" width="100%" mode="javascript" theme="monokai"
-              name="editor" editorProps={{$blockScrolling: true}} value={this.props.content} />
+              name="editor" editorProps={{$blockScrolling: true}} value={this.props.code} />
             </div>
             <h5>Notes:</h5>
             <div className="modal-notes">
@@ -108,10 +108,10 @@ class Card extends React.Component {
           </Modal>
 
           <div className="card-content">
-            <span className="card-title activator grey-text text-darken-4">Card Title</span>
+            <span className="card-title activator grey-text text-darken-4">{this.props.title}</span>
             <img className="activator card-img" src={this.props.icon} />
             <p className="card-snippet">
-              {this.props.content.substring(0,250)}...
+              {this.props.text}...
             </p>
             <p><a href={this.props.url}>{this.props.url}</a></p>
           </div>

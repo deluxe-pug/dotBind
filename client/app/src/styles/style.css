@@ -177,3 +177,7 @@ header, main, footer {
 .add-tag {
   margin-left: 10px;
 }
+
+.add-tag-button {
+  text-align: right;
+}
