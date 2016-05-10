@@ -1,4 +1,6 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'
+import { searchCardAction } from '../actions/cardActions';
 
 class SearchContainer extends React.Component {
   constructor(props) {
@@ -25,6 +27,8 @@ class SearchContainer extends React.Component {
   }
 };
 
+const mapDispatchToProps = () => {
+  return bindActionCreators({searchCards: searchCardAction}, dispatch);
+};
 
-
-export default SearchContainer;
+export default connect(null, mapDispatchToProps)(SearchContainer);

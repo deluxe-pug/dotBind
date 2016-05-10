@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export const searchCardAction = () => {
-  
+export const searchCardAction = (keyword) => {
+  const request = axios.get()
 };

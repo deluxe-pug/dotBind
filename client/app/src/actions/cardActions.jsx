@@ -52,5 +52,12 @@ export const filterCardsAction = (tag) => {
     type: 'FILTER_CARDS',
     tag: tag
   }
+};
 
+export const searchCardAction = (keyword) => {
+  const request = axios.get(keyword);
+  return {
+    type: 'SEARCH_CARDS',
+    payload: request
+  }
 };
