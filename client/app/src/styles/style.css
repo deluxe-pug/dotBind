@@ -59,7 +59,7 @@ header, main, footer {
 /******************** TOPBAR STYLES ********************/
 .dotbind-logo:first-child {
   margin-left: 10px;
-  color: white;
+  /*color: white;*/
 }
 
 .search-input {
@@ -70,8 +70,8 @@ header, main, footer {
 .search input {
   padding-left: 10px;
   font-family: Arial, 'FontAwesome';
+  color: #5f9cd2;
 }
-
 
 /******************** TAG STYLES ********************/
 .tag-container {

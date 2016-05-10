@@ -7,11 +7,24 @@ class SearchContainer extends React.Component {
 
   render() {
     return (
-      <div className="search">
-        <input className="search-input" type="search" placeholder="Search &#xF002;" />
-      </div>
+      <form className="search"
+        onSubimt={e => 
+          e.preventDefault();
+          if (!input.value.trim()) { return; }
+          this.props.searchCards(input.value);
+          input.value = '';
+        }>
+        <input className="search-input" 
+          type="text" 
+          placeholder="Search &#xF002;" 
+          ref={node => {
+            input = node;
+          }}/>
+      </form>
     );
   }
 };
+
+
 
 export default SearchContainer;
