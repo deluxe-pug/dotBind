@@ -7,7 +7,7 @@ body {
 
 #app {
   position: absolute;
-  height:100%;           
+  height:100%;
   width:100%;
 }
 
@@ -90,10 +90,13 @@ header, main, footer {
   /*box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
 }
 
-/*.custom-card:hover {
-  background-color: #ffa726;
+.custom-card:hover {
+  /*background-color: #ffa726;*/
+  -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
 }
-*/
+
 
 .card-header {
   margin: 10px 10px 0px 10px;
