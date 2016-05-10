@@ -10,7 +10,6 @@ const envParams = {
   },
 };
 
-
 function getCurrentTabUrl(callback) {
   const queryInfo = {
     active: true,

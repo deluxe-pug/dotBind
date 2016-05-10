@@ -19,7 +19,7 @@ module.exports = (function() {
           {"name":"url", "type":"string"},
           {"name":"title", "type":"string"},
           {"name":"user_id","type":"int"},
-          {"name":"content", "type":"string"},
+          {"name":"code", "type":"string"},
           {"name":"text", "type":"string"},
           {"name":"note", "type":"string"},
           {"name":"domain", "type":"string"}
