@@ -16,8 +16,10 @@ module.exports = (function() {
   const findOrCreateCardTag = PromiseMaker(CardTag.findOrCreate, {context: CardTag});
   const createCard = PromiseMaker(Card.create, {context: Card});
 
+  const AuthController = Nodal.require('app/controllers/auth_controller.js'); 
 
-  class V1CardsController extends Nodal.Controller {
+
+  class V1CardsController extends AuthController {
 
     index() {
 
