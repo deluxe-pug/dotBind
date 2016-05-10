@@ -57,11 +57,11 @@ class Card extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
-  updateCard() {
+  notifyCardUpdate() {
     Materialize.toast('Changes saved!', 2000, 'rounded');
   }
 
-  addTag() {
+  notifyAddTag() {
     Materialize.toast('Tag Added!', 2000, 'rounded');
   }
 
@@ -73,24 +73,24 @@ class Card extends React.Component {
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
             <div className="row modal-nav">
-              <div className="col s2">
+              <div className="col s1">
                 <button className="waves-effect waves-light btn-flat close-modal" onClick={this.closeModal.bind(this)}>X</button>
               </div>
-              <div className="col s10 input-field modal-nav-buttons">
-              <form onSubmit={ (e) => {
-
-                if ( !input.value.trim() ) {
-                  return;
-                }
-                this.props.dispatch( addTag(input.value) );
-                input.value ='';
-              }}>
-                <input type='text' ref={ node => {
-                  input = node;
-                }}/>
-
-                  <button type="submit" className="waves-effect waves-light btn" onClick={this.addTag.bind(this)}>Add Tag</button>
-                  </form>
+              <div className="col s11 input-field modal-nav-buttons">
+                <form onSubmit={ (e) => {
+                  if ( !input.value.trim() ) {
+                    return;
+                  }
+                  this.props.dispatch( addTag(input.value) );
+                  this.notifyAddTag();
+                  input.value =''; }}>
+                  <div className="col s6">
+                    <button type="submit" className="waves-effect waves-light btn">Add Tag</button>
+                  </div>
+                  <div className="col s6">
+                    <input type='text' placeholder="Tag" ref={ node => { input = node; }}/>
+                  </div>
+                </form>
               </div>
             </div>
             <h5>Code Snippet:</h5>
@@ -103,7 +103,7 @@ class Card extends React.Component {
               <p>{this.props.note}</p>
             </div>
             <div className="modal-footer">
-              <button className="waves-effect waves-light btn" onClick={this.updateCard.bind(this)}>Save Changes</button>
+              <button className="waves-effect waves-light btn" onClick={this.notifyCardUpdate.bind(this)}>Save Changes</button>
             </div>
           </Modal>
 
@@ -145,7 +145,6 @@ class Card extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({addTag: addTag}, dispatch);
 }
-
 Card = connect(mapDispatchToProps)(Card);
 
 export default Card;
