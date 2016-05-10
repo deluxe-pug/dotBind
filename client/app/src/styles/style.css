@@ -156,13 +156,8 @@ header, main, footer {
 
 .modal-nav-buttons > input {
   width: 50%;
-  background-color: purple;
+  /*background-color: purple;*/
   margin-right: 5px;
-}
-
-.modal-nav-buttons > button {
-  text-align: right;
-  margin-right: 3px;
 }
 
 .modal-footer {

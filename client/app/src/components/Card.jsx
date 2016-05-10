@@ -76,7 +76,7 @@ class Card extends React.Component {
               <div className="col s1">
                 <button className="waves-effect waves-light btn-flat close-modal" onClick={this.closeModal.bind(this)}>X</button>
               </div>
-              <div className="col s11 input-field modal-nav-buttons">
+              <div className="col s11 input-field">
                 <form onSubmit={ (e) => {
                   if ( !input.value.trim() ) {
                     return;
