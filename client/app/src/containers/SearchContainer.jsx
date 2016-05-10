@@ -16,7 +16,6 @@ class SearchContainer extends React.Component {
           e.preventDefault();
           if (!input.value.trim()) { return; }
           var keywords = input.value.split(' ').filter(word => word.length !== 0);
-          console.log(keywords);
           this.props.searchCards(keywords);
           input.value = '';
         }}>
