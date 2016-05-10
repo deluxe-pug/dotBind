@@ -20,7 +20,6 @@ const App = () => (
     </div>
 
     <div className="col s10">
-
       <AllCardsContainer />
     </div>
   </div>

@@ -1,37 +1,17 @@
 body {
-  background-color: black;
-  background-image: url('http://content.wallpapers-room.com/resolutions/1920x1200/D/Wallpapers-room_com___Dark_Wooden_Wall_by_kano89_1920x1200.jpg');
+  background-color: #F0F0F0;
   background-size: cover;
   background-attachment: fixed;
+  /*background-image: url('http://content.wallpapers-room.com/resolutions/1920x1200/D/Wallpapers-room_com___Dark_Wooden_Wall_by_kano89_1920x1200.jpg');*/
 }
 
-.translucent {
-  /*background-color: rgba(0,255,255,.40);*/
-  background-color: #cfd8dc;
-  /*opacity: .4;*/
+.topbar {
+  background-color: #5f9cd2;
 }
 
-.black-icon {
-  color: black;
-}
-
-.search-input {
-  background-color: #26a69a !important;
-  border-radius: 30px !important;
-}
-
-.dotbind-logo:first-child {
-  margin-left: 10px;
-  color: black;
-}
-
+/******************** SIDEBAR STYLES ********************/
 header, main, footer {
   padding-left: 240px;
-}
-
-.search input {
-  padding-left: 10px;
-  font-family: Arial, 'FontAwesome';
 }
 
 @media only screen and (max-width : 992px) {
@@ -40,23 +20,50 @@ header, main, footer {
   }
 }
 
+.sidebar {
+  border-right: 2px #5f9cd2 solid;
+}
+
+/******************** TOPBAR STYLES ********************/
+.dotbind-logo:first-child {
+  margin-left: 10px;
+  color: white;
+}
+
+.search-input {
+  background-color: white !important;
+  border-radius: 30px !important;
+}
+
+.search input {
+  padding-left: 10px;
+  font-family: Arial, 'FontAwesome';
+}
+
+
+/******************** TAG STYLES ********************/
+.tag-container {
+  padding: 10px;
+}
+
 .tag {
   margin: 3px;
-  /*border: 2px white solid;*/
   border-radius: 10px;
   width: 130px;
+  background-color: #5f9cd2;
+  /*border: 2px white solid;*/
   /*padding: 10px;*/
   /*background-color: #b0bec5;*/
   /*text-align: center;*/
-  -webkit-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
-  -moz-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
-  box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);
+  /*-webkit-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);*/
+  /*-moz-box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);*/
+  /*box-shadow: inset 0px 0px 21px 2px rgba(255,255,255,0.6);*/
 }
 
 .tag > span {
-  /*text-decoration: underline;*/
   color: white;
   font-size: 14pt;
+  /*text-decoration: underline;*/
 }
 
 .tag > span:hover {
@@ -64,37 +71,58 @@ header, main, footer {
   font-style: italic;
 }
 
-.sidebar {
-  border-right: 2px grey solid;
-}
 
+/******************** CARD STYLES ********************/
 .custom-card {
-  background-color: #fff59d;
-  -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
-  -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
-  box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
-  height: 380px;
+  background-color: #FFFFFF;
+  border-color: #f48f7f;
+  border-radius: 20px;
+  height: 250px;
+  /*-webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
+  /*-moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
+  /*box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
 }
 
-.custom-card:hover {
+/*.custom-card:hover {
   background-color: #ffa726;
 }
+*/
 
-.card-img {
+.card-header {
+  margin: 10px 10px 0px 10px;
+  padding: 5px 5px 0px 5px;
+}
+
+.card-icon {
   float: right;
   width: 32px;
   height: 32px;
 }
 
-.card-action {
+.card-preview {
+  margin: 0px 10px 0px 10px;
+  height: 140px;
+}
+
+.card-footer {
+  margin: 0px 10px 10px 10px;
+  padding: 5px 5px 5px 5px;
+}
+
+.small-icon {
+  font-size: 20px;
+  float: right;
+}
+
+/*.card-action {
   color: black;
   background-color: black;
   z-index: 0 !important;
 }
-
+*/
 .card-snippet{
   font-style: italic;
-  border-top: 1px black solid;
+  /*border-top: 1px black solid;*/
 }
 
 .block-span {
@@ -102,10 +130,15 @@ header, main, footer {
   padding: 5px;
 }
 
-.card-buttons {
+/*.card-button {
   text-align: center;
+}*/
+
+.card-tag {
+  color: #5f9cd2;
 }
 
+/******************** MODAL STYLES ********************/
 .open-modal {
   margin-right: 10px;
 }

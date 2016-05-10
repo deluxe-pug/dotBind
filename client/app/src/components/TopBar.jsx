@@ -24,15 +24,10 @@ class TopBar extends React.Component {
     });
   }
 
-  // toggleDropdown() {
-  //   this.setState({
-  //     displayDropdown: !this.state.displayDropdown,
-  //   });
-  // }
-
   render() {
     return (
-      <nav className="translucent">
+      <div className="navbar-fixed">
+      <nav className="topbar">
         <div className="nav-wrapper">
           <a href="#!" className="brand-logo dotbind-logo">dotBind</a>
 
@@ -45,7 +40,7 @@ class TopBar extends React.Component {
 
             <li>
               <a onClick={() => this.toggleSearchBar()}>
-                <i className="material-icons black-icon">
+                <i className="material-icons">
                  search
                 </i>
               </a>
@@ -55,21 +50,21 @@ class TopBar extends React.Component {
               <a className="waves-effect waves-light modal-trigger" 
                  onClick={() => this.toggleAddBar()} 
                  href="#modal1">
-                <i className="material-icons black-icon">library_add</i>
+                <i className="material-icons">library_add</i>
               </a>
             </li>
 
             <li>
               <a className='dropdown-button'
                  href='#' data-beloworigin="true" data-activates='dropdown2'>
-                <i className="material-icons black-icon">add</i>
+                <i className="material-icons">add</i>
               </a>
             </li>
 
             <li>
               <a className='dropdown-button'
                  href='#' data-beloworigin="true" data-activates='dropdown1'>
-                <i className="material-icons black-icon">more_vert</i>
+                <i className="material-icons">more_vert</i>
               </a>
             </li>
 
@@ -88,6 +83,7 @@ class TopBar extends React.Component {
         { this.state.displayAddBar ? 
           <AddCardContainer /> : <span></span> }
       </nav>
+      </div>
     )
   }
 };
