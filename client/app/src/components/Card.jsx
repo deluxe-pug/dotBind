@@ -11,7 +11,6 @@ import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 
-let snippetId = 0;
 const customStyles = {
   overlay : {
     position          : 'fixed',
@@ -22,7 +21,6 @@ const customStyles = {
     backgroundColor   : 'rgba(38, 50, 56, 0.90)',
   },
   content : {
-    // border: '2px #ffa726 solid',
     borderRadius: '50px',
     marginLeft: '150',
     marginRight: '150',
