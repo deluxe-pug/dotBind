@@ -97,9 +97,11 @@ class Card extends React.Component {
             <span className="modal-span">(click to edit)</span>
 
             <div className="modal-notes input-field">
-              <textarea className="notes" onChange={this.remindSave.bind(this)}>{this.props.note}</textarea>
+              <textarea className="notes" defaultValue={this.props.note} onChange={this.remindSave.bind(this)}></textarea>
             </div>
+            <hr/>
             <div className="modal-footer">
+              Link to original: <a href={this.props.url}>{this.props.url}</a><br/>
               <button className="waves-effect waves-light btn" onClick={this.notifyCardUpdate.bind(this)}>Save Changes</button>
             </div>
           </Modal>
