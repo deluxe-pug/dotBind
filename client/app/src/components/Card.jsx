@@ -70,7 +70,7 @@ class Card extends React.Component {
           
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
-<<<<<<< c5d1266d458baef8737c10973f5c643278c5ed25
+
             <div className="row modal-nav">
               <div className="col s2">
                 <button className="waves-effect waves-light btn-flat close-modal" onClick={this.closeModal.bind(this)}>X</button>
@@ -98,9 +98,7 @@ class Card extends React.Component {
               name="editor" editorProps={{$blockScrolling: true}} value={this.props.code} />
             </div>
             <h5>Notes:</h5>
-=======
-            <button className="waves-effect waves-light btn close-modal" onClick={this.closeModal.bind(this)}>Close</button>
->>>>>>> Update background and main colors, fix card display styles
+
             <div className="modal-notes">
               <p>{this.props.note}</p>
             </div>
@@ -109,17 +107,8 @@ class Card extends React.Component {
             </div>
           </Modal>
 
-<<<<<<< c5d1266d458baef8737c10973f5c643278c5ed25
-          <div className="card-content">
-            <span className="card-title activator grey-text text-darken-4">{this.props.title}</span>
-            <img className="activator card-img" src={this.props.icon} />
-            <p className="card-snippet">
-              {this.props.text}...
-            </p>
-            <p><a href={this.props.url}>{this.props.url}</a></p>
-=======
           <div className='card-header'>
-            <span className="card-title activator grey-text text-darken-4">Card Title</span>
+            <span className="card-title activator grey-text text-darken-4 title">{this.props.title}</span>
             <img className="activator card-icon" src={this.props.icon} />
           </div>
           <li className="divider"></li>
@@ -127,20 +116,13 @@ class Card extends React.Component {
           <div className="card-preview open-modal" onClick={this.openModal.bind(this)}>
             <pre>
               <code> 
-                {this.props.content}
+                {this.props.text}...
               </code>
             </pre>
->>>>>>> Update background and main colors, fix card display styles
           </div>
 
-            <div className="card-button">
-            </div>
-<<<<<<< c5d1266d458baef8737c10973f5c643278c5ed25
-            <ul>
-              <li>
-
-                {this.props.cardTags.map((cardTag) =>
-=======
+          <div className="card-button">
+          </div>
           
           <li className="divider"></li>
           <div className='card-footer'>
@@ -148,7 +130,6 @@ class Card extends React.Component {
             <div className="card-tag">
                 Tags: 
                 {this.props.cardTags.map((cardTag) => 
->>>>>>> Update background and main colors, fix card display styles
                   <CardTag key={cardTag.tag.id} name={cardTag.tag.name}/>
                 )}
                 <a><i className="material-icons small-icon">mode_edit</i></a>
