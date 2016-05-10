@@ -27,6 +27,7 @@ body {
 
 .login-buttons {
   width: 100%;
+  margin-top: 5px;
 }
 
 #app {
