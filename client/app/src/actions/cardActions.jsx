@@ -35,12 +35,13 @@ export const filterCardsAction = (tag) => {
 };
 
 export const searchCardsAction = (keywords) => {
-  let query = endpoints.cards + '?body__contains=' + keywords[0];
+  let query = endpoints.cards + '?title__contains=' + keywords[0];
   if (keywords.length > 1) {
     for (var i = 1; i < keywords.length; i++) {
       query = query.concat('%20', keywords[i]);
     }
   }
+  console.log('query: ', query);
   const request = axios.get(query);
   return {
     type: 'SEARCH_CARDS',
