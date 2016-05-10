@@ -157,12 +157,6 @@ header, main, footer {
   float: right;
 }
 
-/*.card-action {
-  color: black;
-  background-color: black;
-  z-index: 0 !important;
-}
-*/
 .card-snippet{
   font-style: italic;
   /*border-top: 1px black solid;*/
@@ -172,10 +166,6 @@ header, main, footer {
   display: block;
   padding: 5px;
 }
-
-/*.card-button {
-  text-align: center;
-}*/
 
 .card-tag {
   color: #5f9cd2;
@@ -187,15 +177,30 @@ header, main, footer {
 }
 
 .modal-notes {
-  padding: 10px;
+  /*padding: 10px;*/
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
+}
+
+.notes {
+  height: 175px;
+  resize: none;
   background-color: white;
+  border: none;
   border-radius: 10px;
   -webkit-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
   -moz-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
   box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+}
+
+.modal-heading {
+  margin-left: 10px;
+}
+
+.modal-span {
+  margin-left: 15px;
+  font-style: italic;
 }
 
 .modal-icon {

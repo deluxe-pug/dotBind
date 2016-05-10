@@ -33,6 +33,7 @@ const customStyles = {
 };
 
 let input;
+let sentSaveReminder = false;
 class Card extends React.Component {
 
   constructor(props) {
@@ -64,6 +65,13 @@ class Card extends React.Component {
     Materialize.toast('Tag Added!', 2000, 'rounded');
   }
 
+  remindSave(){
+    if ( !sentSaveReminder ) {
+      Materialize.toast('Remember to save your changes!', 5000, 'rounded');
+      sentSaveReminder = true;
+    }
+  }
+
   render() {
     return (
       <div className="col s12 m4">
@@ -85,10 +93,11 @@ class Card extends React.Component {
               <AceEditor height="240px" width="100%" mode="javascript" theme="tomorrow_night"
               name="editor" editorProps={{$blockScrolling: true}} value={this.props.code} />
             </div>
-            <h5>Notes:</h5>
+            <h5 className="modal-heading">Notes:</h5>
+            <span className="modal-span">(click to edit)</span>
 
-            <div className="modal-notes">
-              <p>{this.props.note}</p>
+            <div className="modal-notes input-field">
+              <textarea className="notes" onChange={this.remindSave.bind(this)}>{this.props.note}</textarea>
             </div>
             <div className="modal-footer">
               <button className="waves-effect waves-light btn" onClick={this.notifyCardUpdate.bind(this)}>Save Changes</button>
