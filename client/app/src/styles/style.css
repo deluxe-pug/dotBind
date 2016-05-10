@@ -2,7 +2,18 @@ body {
   background-color: #F0F0F0;
   background-size: cover;
   background-attachment: fixed;
-  /*background-image: url('http://content.wallpapers-room.com/resolutions/1920x1200/D/Wallpapers-room_com___Dark_Wooden_Wall_by_kano89_1920x1200.jpg');*/
+}
+
+.login-bg {
+  background-color: #5f9cd2;
+}
+
+.login-box {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-top: 150px;
+  margin-bottom: 150px;
 }
 
 #app {
