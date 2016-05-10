@@ -5,17 +5,7 @@ import { addCardAction } from '../actions/cardActions';
 let AddCardContainer = ({dispatch}) => {
   let input;
   return (
-    <div id="modal1" class="modal">
-
-
-        <div class="modal-content">
-
-
-        <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-
-
+    <div>
       <form onSubmit={e => {
         e.preventDefault();
         if (!input.value.trim()) {
@@ -31,7 +21,6 @@ let AddCardContainer = ({dispatch}) => {
           Add Card
         </button>
       </form>
-      </div>
     </div>
   )
 };

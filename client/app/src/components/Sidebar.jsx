@@ -4,8 +4,7 @@ import AddTagContainer from '../containers/AddTagContainer';
 
 const Sidebar = () => {
   return (
-    <div>
-      <AddTagContainer />
+    <div className="tag-container">
       <TagsContainer />
     </div>
   );
