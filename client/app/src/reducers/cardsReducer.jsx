@@ -17,6 +17,9 @@ const cardsReducer = (state = [], action) => {
         return false;
       });
       return [...filteredCards];
+    case 'SEARH_CARDS':
+      
+      return;
     default:
       return state;
   };

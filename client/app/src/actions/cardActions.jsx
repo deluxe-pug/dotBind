@@ -1,8 +1,3 @@
-// action creater - function that returns an object
-// object is automatically sent to all reducers
-// reducers will choose to return a different piece of state, depending on action
-// newly returned state piped into application state
-
 import axios from 'axios';
 import endpoints from './endpoints';
 
@@ -16,27 +11,12 @@ export const addCardAction = (url) => {
   };
 };
 
-// export const addCardAction = (url) => {
-//   return {
-//     type: 'ADD_CARD',
-//     id: nextCardId++,
-//     url: url
-//   };
-// };
-
 export const removeCardAction = (id) => {
   return {
     type: 'REMOVE_CARD',
     id: id
   };
 };
-
-// export const displayCardAction = (card) => {
-//   return {
-//     type: 'DISPLAY_CARD',
-//     payload: card
-//   };
-// };
 
 export const fetchCardsAction = () => {
   const request = axios.get(endpoints.cards);
@@ -54,8 +34,13 @@ export const filterCardsAction = (tag) => {
   }
 };
 
-export const searchCardAction = (keyword) => {
-  const request = axios.get(keyword);
+export const searchCardsAction = (keyword) => {
+  // const request = axios.get(endpoints.cards, {
+  //   params: {
+  //     keyword: keyword
+  //   }
+  // });
+  const request = axios.get(endpoints.cards + '?body=' + keyword);
   return {
     type: 'SEARCH_CARDS',
     payload: request

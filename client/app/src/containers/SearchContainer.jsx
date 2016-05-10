@@ -1,6 +1,7 @@
 import React from 'react';
-import { bindActionCreators } from 'redux'
-import { searchCardAction } from '../actions/cardActions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { searchCardsAction } from '../actions/cardActions';
 
 class SearchContainer extends React.Component {
   constructor(props) {
@@ -8,14 +9,17 @@ class SearchContainer extends React.Component {
   }
 
   render() {
+    let input;
     return (
       <form className="search"
-        onSubimt={e => 
+        onSubmit={e => { 
           e.preventDefault();
           if (!input.value.trim()) { return; }
-          this.props.searchCards(input.value);
+          var keywords = input.value.split(' ').filter(word => word.length !== 0);
+          console.log(keywords);
+          this.props.searchCards(keywords);
           input.value = '';
-        }>
+        }}>
         <input className="search-input" 
           type="text" 
           placeholder="Search &#xF002;" 
@@ -27,8 +31,8 @@ class SearchContainer extends React.Component {
   }
 };
 
-const mapDispatchToProps = () => {
-  return bindActionCreators({searchCards: searchCardAction}, dispatch);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({searchCards: searchCardsAction}, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(SearchContainer);
