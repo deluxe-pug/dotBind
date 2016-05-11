@@ -102,6 +102,12 @@ class Card extends React.Component {
             <hr/>
             <div className="modal-footer">
               Link to original: <a href={this.props.url}>{this.props.url}</a><br/>
+              {this.props.cardTags.map((cardTag) =>
+                <div className="chip">
+                  <CardTag key={cardTag.tag.id} name={cardTag.tag.name}/>
+                  <i className="material-icons">close</i>
+                </div>
+              )} <br/>
               <button className="waves-effect waves-light btn" onClick={this.notifyCardUpdate.bind(this)}>Save Changes</button>
             </div>
           </Modal>
