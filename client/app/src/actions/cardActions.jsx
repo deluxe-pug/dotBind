@@ -27,7 +27,7 @@ export const addCardAction = (url) => {
 export const removeCardAction = (id) => {
   return {
     type: 'REMOVE_CARD',
-    id: id
+    id: id,
   };
 };
 
@@ -42,7 +42,7 @@ export const fetchCardsAction = () => {
   const request = axios.get(endpoints.cards);
   return {
     type: 'FETCH_CARDS',
-    payload: request
+    payload: request,
   };
 };
 
@@ -50,7 +50,7 @@ export const filterCardsAction = (tag) => {
   console.log('filterCardsAction is called');
   return {
     type: 'FILTER_CARDS',
-    tag: tag
+    tag: tag,
   }
 
 };
