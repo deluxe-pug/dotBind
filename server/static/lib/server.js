@@ -1,11 +1,8 @@
 const express = require('express');
 const passport = require('passport');
-const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session');
-const bodyParser = require('body-parser');
 const GitHubStrategy = require('passport-github').Strategy;
-const OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 const ENV = require('../.env');
+const session = require('express-session');
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -13,6 +10,17 @@ const port = process.env.PORT || 8000;
 app.use(express.static(__dirname + '/../../../client/app', {
   extensions: ['html']
 }));
+
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
+
+passport.serializeUser(function(user, cb) {
+  console.log('the user: ', user);
+  cb(null, { id: user.id, username: user.username });
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
 
 passport.use(new GitHubStrategy({
     clientID: ENV.GITHUB_CLIENT_ID,
@@ -25,20 +33,7 @@ passport.use(new GitHubStrategy({
   }
 ));
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
-});
 
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
-
-app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2']
-}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -67,19 +62,27 @@ app.use(passport.session());
 // })
 
 
+
+
 app.get('/auth/github', passport.authenticate('github'));
 app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    console.log(req.session);
-    // res.location('/');
-    // res.json(req.session)
+    console.log(req.isAuthenticated());
+
     res.redirect('/');
   }
 );
 app.get('/test', (req, res) => {
+  console.log('this is the user object on req: ', req.user);
+  console.log('This is the session object on req', req.session);
   res.end('hey');
 })
+
+// app.get('/logout', function(req, res){
+//   req.logout();
+//   res.redirect('/login');
+// })
 
 app.listen(port, () => console.log('Listening on port ' + port));
