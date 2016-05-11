@@ -27,6 +27,17 @@ passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
 
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
+
+passport.serializeUser(function(user, cb) {
+  console.log('the user: ', user);
+  cb(null, { id: user.id, username: user.username });
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
 passport.use(new GitHubStrategy({
     clientID: ENV.GITHUB_CLIENT_ID,
     clientSecret: ENV.GITHUB_CLIENT_SECRET,
@@ -109,6 +120,7 @@ app.get('/auth/github/callback',
     res.redirect('/');
   }
 );
+
 app.get('/auth', (req, res) => {
   console.log('this is the user object on req: ', req.user);
   console.log('This is the session object on req', req.session);
@@ -126,6 +138,11 @@ app.get(/^(.+)$/, function(req, res) {
   if (!path.extname(req.url)) {res.end('Path not available. Try another url');}
   res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
 })
+
+// app.get('/logout', function(req, res){
+//   req.logout();
+//   res.redirect('/login');
+// })
 
 app.listen(port, () => console.log('Listening on port ' + port));
 
