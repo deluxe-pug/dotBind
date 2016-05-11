@@ -127,8 +127,6 @@ app.get(/^(.+)$/, function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
 })
 
-
-
 app.listen(port, () => console.log('Listening on port ' + port));
 
 
