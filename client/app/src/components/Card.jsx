@@ -101,7 +101,7 @@ class Card extends React.Component {
             </div>
             <hr/>
             <div className="modal-footer">
-              Link to original: <a href={this.props.url}>{this.props.url}</a><br/>
+              <a className="modal-link" href={this.props.url}>View Original Resource</a><br/>
               {this.props.cardTags.map((cardTag) =>
                 <div className="chip">
                   <CardTag key={cardTag.tag.id} name={cardTag.tag.name}/>
@@ -135,7 +135,7 @@ class Card extends React.Component {
             <div className="card-tag">
                 Tags:
                 {this.props.cardTags.map((cardTag) =>
-                  <CardTag key={cardTag.tag.id} name={cardTag.tag.name}/>
+                  <CardTag key={cardTag.tag.id} name={cardTag.tag.name + ', '}/>
                 )}
                 <a><i className="material-icons small-icon">mode_edit</i></a>
             </div>

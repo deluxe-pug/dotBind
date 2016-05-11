@@ -144,7 +144,6 @@ header, main, footer {
 }
 
 .card-footer {
-  margin: 0px 10px 10px 10px;
   padding: 5px 5px 5px 5px;
 }
 
@@ -152,12 +151,17 @@ header, main, footer {
   color: #5f9cd2;
 }
 
+.card-tag > span {
+  /*background-color: grey;*/
+  color: #4d7421;
+}
+
 .small-icon {
   font-size: 20px;
   float: right;
 }
 
-.card-snippet{
+.card-snippet {
   font-style: italic;
   /*border-top: 1px black solid;*/
 }
@@ -169,6 +173,7 @@ header, main, footer {
 
 .card-tag {
   color: #5f9cd2;
+  overflow: hidden;
 }
 
 /******************** MODAL STYLES ********************/
@@ -239,12 +244,36 @@ hr {
 
 .modal-footer {
   /*border-top: 1px solid grey;*/
-  margin-top: 20px;
+  margin-top: 0px;
   text-align: center;
 }
 
 .modal-footer > button {
   margin: 10px;
+}
+
+.modal-link {
+  font-size: 14pt;
+}
+
+.modal-link:hover {
+  color: #3883c6;
+  font-weight: bold;
+}
+
+.chip {
+  background-color: #5F9CD2;
+  color: white;
+  margin-right: 2px;
+}
+
+.chip:hover {
+  background-color: #3883c6;
+  color: white;
+  font-weight: bold;
+  -webkit-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
 }
 
 .modal-editor {
