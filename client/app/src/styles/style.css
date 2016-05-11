@@ -280,16 +280,39 @@ hr {
   font-weight: bold;*/
 }
 
-.chip {
+.modal-tag {
   background-color: #5F9CD2;
   color: white;
-  margin-right: 2px;
+  margin-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 15px;
+  display: inline-block;
 }
 
-.chip:hover {
+.modal-tag > .tag-name::after {
+  content: '';
+  border-left: 1px solid white;
+  margin-left: 3px;
+  padding-left: 2px;
+  /*padding-left: 3px;
+  padding-right: 15px;*/
+}
+
+.tag-delete {
+  font-size: 10pt;
+  margin-left: 3px;
+}
+
+.tag-delete:hover {
+  color: grey;
+}
+
+.modal-tag:hover {
   background-color: #3883c6;
   color: white;
-  font-weight: bold;
   -webkit-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);

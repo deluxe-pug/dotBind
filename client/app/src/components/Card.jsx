@@ -22,10 +22,10 @@ const customStyles = {
   },
   content : {
     borderRadius: '15px',
-    marginLeft: '150',
-    marginRight: '150',
-    marginTop: '55',
-    marginBottom: '55',
+    marginLeft: '125',
+    marginRight: '125',
+    marginTop: '45',
+    marginBottom: '0',
     padding: '0px',
     border: 'none',
     backgroundColor: '#F0F0F0',
@@ -51,7 +51,7 @@ class Card extends React.Component {
   afterOpenModal() {
     // references are now sync'd and can be accessed.
     // this.refs.subtitle.style.color = 'black';
-    Materialize.toast('Click anywhere to exit', 2000, 'rounded notication');
+    Materialize.toast('Click outside to exit', 2000, 'rounded notication');
   }
 
   closeModal() {
@@ -68,9 +68,13 @@ class Card extends React.Component {
 
   remindSave(){
     if ( !sentSaveReminder ) {
-      Materialize.toast('Remember to save your changes!', 5000, 'rounded');
+      Materialize.toast('Remember to save your changes!', 5000, 'rounded notification');
       sentSaveReminder = true;
     }
+  }
+
+  testFunc() {
+    console.log('called!');
   }
 
   render() {
@@ -95,19 +99,15 @@ class Card extends React.Component {
               name="editor" editorProps={{$blockScrolling: true}} value={this.props.code} />
             </div>
             <h5 className="modal-heading">Notes:</h5>
-            <span className="modal-span">(click to edit)</span>
 
             <div className="modal-notes input-field">
               <textarea className="notes" defaultValue={this.props.note} onChange={this.remindSave.bind(this)}></textarea>
             </div>
             <hr/>
-            <div className="modal-footer">
 
+            <div className="modal-footer">
               {this.props.cardTags.map((cardTag) =>
-                <div className="chip">
                   <CardTag key={cardTag.tag.id} name={cardTag.tag.name}/>
-                  <i className="material-icons">close</i>
-                </div>
               )} <br/>
               <div className="row save-bar">
                 <div className="col s6">
