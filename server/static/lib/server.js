@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+<<<<<<< dd5a9d1caf9e53f659bf5bed50907bda13d95505
 const GitHubStrategy = require('passport-github').Strategy;
 const ENV = require('../.env');
 const session = require('express-session');
