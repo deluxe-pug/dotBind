@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+<<<<<<< dd5a9d1caf9e53f659bf5bed50907bda13d95505
 const GitHubStrategy = require('passport-github').Strategy;
 const ENV = require('../.env');
 const session = require('express-session');
@@ -126,8 +127,6 @@ app.get(/^(.+)$/, function(req, res) {
   if (!path.extname(req.url)) {res.end('Path not available. Try another url');}
   res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
 })
-
-
 
 app.listen(port, () => console.log('Listening on port ' + port));
 
