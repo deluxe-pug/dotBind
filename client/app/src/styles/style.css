@@ -144,8 +144,16 @@ header, main, footer {
 }
 
 .card-footer {
-  margin: 0px 10px 10px 10px;
   padding: 5px 5px 5px 5px;
+}
+
+.card-url {
+  color: #5f9cd2;
+}
+
+.card-tag > span {
+  /*background-color: grey;*/
+  color: #4d7421;
 }
 
 .small-icon {
@@ -153,13 +161,7 @@ header, main, footer {
   float: right;
 }
 
-/*.card-action {
-  color: black;
-  background-color: black;
-  z-index: 0 !important;
-}
-*/
-.card-snippet{
+.card-snippet {
   font-style: italic;
   /*border-top: 1px black solid;*/
 }
@@ -169,12 +171,9 @@ header, main, footer {
   padding: 5px;
 }
 
-/*.card-button {
-  text-align: center;
-}*/
-
 .card-tag {
   color: #5f9cd2;
+  overflow: hidden;
 }
 
 /******************** MODAL STYLES ********************/
@@ -183,20 +182,40 @@ header, main, footer {
 }
 
 .modal-notes {
-  border-radius: 10px;
-  padding: 10px;
+  /*padding: 10px;*/
   margin-left: 10px;
   margin-right: 10px;
-  background-color: #fff59d;
-  -webkit-box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
-  -moz-box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
-  box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
-  opacity: .65;
+  margin-bottom: 10px;
+}
+
+.notes {
+  height: 175px;
+  resize: none;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  -moz-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+}
+
+.modal-heading {
+  margin-left: 10px;
+}
+
+.modal-span {
+  margin-left: 15px;
+  font-style: italic;
+}
+
+.modal-icon {
+  float: left;
+  margin: 10px;
 }
 
 .close-modal {
-  /*position: absolute;*/
-  text-align: right;
+  margin-top: 5px;
+  float: right;
   font-weight: bold;
   font-size: 16pt;
 }
@@ -205,21 +224,8 @@ header, main, footer {
   font-size: 20pt;
 }
 
-.modal-notes {
-  border-radius: 10px;
-  padding: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: #fff59d;
-  -webkit-box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
-  -moz-box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
-  box-shadow: 0px 0px 59px 8px rgba(255,245,157,1);
-  opacity: .65;
-}
-
 .modal-nav {
-  border-bottom: 1px solid black;
-  padding-bottom: 3px;
+  margin-bottom: 0px;
 }
 
 .modal-nav-buttons {
@@ -232,17 +238,45 @@ header, main, footer {
   margin-right: 5px;
 }
 
+hr {
+  width: 50%;
+}
+
 .modal-footer {
-  margin-top: 8px;
+  /*border-top: 1px solid grey;*/
+  margin-top: 0px;
   text-align: center;
 }
 
+.modal-footer > button {
+  margin: 10px;
+}
+
+.modal-link {
+  font-size: 14pt;
+}
+
+.modal-link:hover {
+  color: #3883c6;
+  font-weight: bold;
+}
+
+.chip {
+  background-color: #5F9CD2;
+  color: white;
+  margin-right: 2px;
+}
+
+.chip:hover {
+  background-color: #3883c6;
+  color: white;
+  font-weight: bold;
+  -webkit-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+}
+
 .modal-editor {
-  border: 3px black solid;
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-left: 40px;
-  margin-right: 40px;
   z-index: 2;
 }
 
