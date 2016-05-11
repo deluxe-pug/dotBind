@@ -4,6 +4,8 @@ body {
   background-attachment: fixed;
 }
 
+/******************** LOGIN-PAGE STYLES ********************/
+
 .login-bg {
   background-color: #5f9cd2;
 }
@@ -36,10 +38,6 @@ body {
   width:100%;
 }
 
-.topbar {
-  background-color: #5f9cd2;
-}
-
 /******************** SIDEBAR STYLES ********************/
 header, main, footer {
   padding-left: 240px;
@@ -54,23 +52,6 @@ header, main, footer {
 .sidebar {
   height:100%;
   border-right: 2px #5f9cd2 solid;
-}
-
-/******************** TOPBAR STYLES ********************/
-.dotbind-logo:first-child {
-  margin-left: 10px;
-  /*color: white;*/
-}
-
-.search-input {
-  background-color: white !important;
-  border-radius: 30px !important;
-}
-
-.search input {
-  padding-left: 10px;
-  font-family: Arial, 'FontAwesome';
-  color: #5f9cd2;
 }
 
 /******************** TAG STYLES ********************/

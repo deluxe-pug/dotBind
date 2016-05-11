@@ -2,6 +2,8 @@ import React from 'react';
 import SearchContainer from '../containers/SearchContainer';
 import AddCardContainer from '../containers/AddCardContainer';
 
+require("../styles/topbar.css");
+
 class TopBar extends React.Component {
   constructor(props) {
     super(props)
@@ -12,11 +14,11 @@ class TopBar extends React.Component {
     }
   }
 
-  toggleSearchBar() {
-    this.setState({
-      displaySearchBar: !this.state.displaySearchBar,
-    });
-  }
+  // toggleSearchBar() {
+  //   this.setState({
+  //     displaySearchBar: !this.state.displaySearchBar,
+  //   });
+  // }
 
   toggleAddBar() {
     this.setState({
@@ -26,65 +28,55 @@ class TopBar extends React.Component {
 
   render() {
     return (
-      <div className="navbar-fixed">
-      <nav className="topbar">
-        <div className="nav-wrapper">
-          <a href="#!" className="brand-logo dotbind-logo">dotBind</a>
-
-          <ul className="right hide-on-med-and-down">
-
+      <div className='navbar-fixed topbar'>
+        <nav className="topbar">
+          <span className="dotbind-logo">dotBind</span>
+          <ul className="topnav">
             <li>
-              { this.state.displaySearchBar ?
-                <SearchContainer /> : <span></span> }
-            </li>
-
-            <li>
-              <a onClick={() => this.toggleSearchBar()}>
-                <i className="material-icons">
-                 search
-                </i>
-              </a>
+              <SearchContainer />
             </li>
 
             <li>
               <a className="modal-trigger" 
                  onClick={() => this.toggleAddBar()} 
                  href="#modal1">
-                <i className="material-icons">library_add</i>
-              </a>
-            </li>
-
-            <li>
-              <a className='dropdown-button'
-                 href='#' data-beloworigin="true" data-activates='dropdown2'>
-                <i className="material-icons">add</i>
+                <i className="material-icons small-icon">library_add</i>
               </a>
             </li>
 
             <li>
               <a className='dropdown-button'
                  href='#' data-beloworigin="true" data-activates='dropdown1'>
-                <i className="material-icons">more_vert</i>
+                <i className="material-icons small-icon">more_vert</i>
               </a>
             </li>
-
           </ul>
 
-        </div>
+          <ul id='dropdown1' className='dropdown-content'>
+            <li><a href="#!">Log out</a></li>
+          </ul> 
 
-        <ul id='dropdown1' className='dropdown-content'>
-          <li><a href="#!">Log out</a></li>
-        </ul> 
 
-        <ul id='dropdown2' className='dropdown-content'>
-        </ul>
-        
-        { this.state.displayAddBar ? 
-          <AddCardContainer /> : <span></span> }
-      </nav>
+        </nav>
       </div>
     )
   }
 };
 
 export default TopBar;
+
+// <li>
+//   { this.state.displaySearchBar ?
+//     <SearchContainer /> : <span></span> }
+// </li>
+
+// <li>
+//   <a onClick={() => this.toggleSearchBar()}>
+//     <i className="material-icons small-icon">
+//      search
+//     </i>
+//   </a>
+// </li>
+
+// { this.state.displayAddBar ? 
+//   <AddCardContainer /> : <span></span> }
