@@ -5,6 +5,13 @@ module.exports = (function() {
   const Nodal = require('nodal');
   const router = new Nodal.Router();
 
+  /* ElasticSearch */
+  const elasticsearch = require('elasticsearch');
+  const client = new elasticsearch.Client({
+    host: 'localhost:9200',
+    log: 'trace'
+  });
+
   /* Middleware */
   /* executed *before* Controller-specific middleware */
 
