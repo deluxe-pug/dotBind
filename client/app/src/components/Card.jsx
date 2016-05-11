@@ -51,6 +51,7 @@ class Card extends React.Component {
   afterOpenModal() {
     // references are now sync'd and can be accessed.
     // this.refs.subtitle.style.color = 'black';
+    Materialize.toast('Click anywhere to exit', 2000, 'rounded notication');
   }
 
   closeModal() {
@@ -58,11 +59,11 @@ class Card extends React.Component {
   }
 
   notifyCardUpdate() {
-    Materialize.toast('Changes saved!', 2000, 'rounded');
+    Materialize.toast('Changes saved!', 2000, 'rounded notication');
   }
 
   notifyAddTag() {
-    Materialize.toast('Tag Added!', 2000, 'rounded');
+    Materialize.toast('Tag Added!', 2000, 'rounded notication');
   }
 
   remindSave(){
@@ -101,14 +102,21 @@ class Card extends React.Component {
             </div>
             <hr/>
             <div className="modal-footer">
-              <a className="modal-link" href={this.props.url}>View Original Resource</a><br/>
+
               {this.props.cardTags.map((cardTag) =>
                 <div className="chip">
                   <CardTag key={cardTag.tag.id} name={cardTag.tag.name}/>
                   <i className="material-icons">close</i>
                 </div>
               )} <br/>
-              <button className="waves-effect waves-light btn" onClick={this.notifyCardUpdate.bind(this)}>Save Changes</button>
+              <div className="row save-bar">
+                <div className="col s6">
+                  <a className="waves-effect waves-light btn modal-link" href={this.props.url}>View Original Resource</a>
+                </div>
+                <div className="col s6">
+                  <button className="waves-effect waves-light btn save-button" onClick={this.notifyCardUpdate.bind(this)}>Save Changes</button>
+                </div>
+              </div>
             </div>
           </Modal>
 

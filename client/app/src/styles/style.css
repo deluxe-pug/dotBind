@@ -181,6 +181,12 @@ header, main, footer {
   margin-right: 10px;
 }
 
+.notication {
+  font-weight: bolder;
+  color: white;
+  background-color: rgba(41,182,246,0.8);
+}
+
 .modal-notes {
   /*padding: 10px;*/
   margin-left: 10px;
@@ -250,15 +256,28 @@ hr {
 
 .modal-footer > button {
   margin: 10px;
+  background-color: #c62828;
 }
 
 .modal-link {
-  font-size: 14pt;
+  font-size: 10pt;
+  float: right;
+  width: 50%;
+}
+
+.save-bar {
+  margin-top: 25px;
+}
+
+.save-button {
+  background-color: #c62828;
+  float: left;
+  width: 50%;
 }
 
 .modal-link:hover {
-  color: #3883c6;
-  font-weight: bold;
+  /*color: #3883c6;
+  font-weight: bold;*/
 }
 
 .chip {
