@@ -76,8 +76,7 @@ class TopBar extends React.Component {
           <li><a href="#!">Log out</a></li>
         </ul> 
 
-        <ul id='dropdown2' className='dropdown-content' data-constrainwidth="false">
-          <AddCardContainer />
+        <ul id='dropdown2' className='dropdown-content'>
         </ul>
         
         { this.state.displayAddBar ? 
