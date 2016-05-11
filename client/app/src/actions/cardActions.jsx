@@ -38,7 +38,7 @@ export const searchCardsAction = (keywords) => {
   let query = endpoints.cards + '?title__contains=' + keywords[0];
   if (keywords.length > 1) {
     for (var i = 1; i < keywords.length; i++) {
-      query = query.concat('%20', keywords[i]);
+      query = query.concat(',%20', keywords[i]);
     }
   }
   console.log('query: ', query);

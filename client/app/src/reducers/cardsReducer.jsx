@@ -15,9 +15,10 @@ const cardsReducer = (state = [], action) => {
         return false;
       });
       return [...filteredCards];
-    case 'SEARH_CARDS':
-      console.log('payload: ', payload);
-      return [...state];
+    case 'SEARCH_CARDS':
+      console.log('anything in here???');
+      console.log('payload: ', action.payload.data.data);
+      return [...action.payload.data.data];
     default:
       return state;
   };
