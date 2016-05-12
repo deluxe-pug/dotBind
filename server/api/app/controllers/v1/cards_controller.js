@@ -32,7 +32,7 @@ module.exports = (function() {
         .join('cardTags__tag')
         .where(this.params.query)
         .end((err, cards) => {
-          this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {cardTags: [{tag: ['id', 'name']}]}]);
+          this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {cardTags: ['id', {tag: ['id', 'name']}]}]);
         });
 
     }
