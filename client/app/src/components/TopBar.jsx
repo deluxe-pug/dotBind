@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import SearchContainer from '../containers/SearchContainer';
 import AddCardContainer from '../containers/AddCardContainer';
+import UserProfileContainer from '../containers/UserProfileContainer';
 
 require("../styles/topbar.css");
 
@@ -52,8 +53,10 @@ class TopBar extends React.Component {
                 <i className="material-icons small-icon">more_vert</i>
               </a>
             </li>
+            <li className="avatar">
+              <UserProfileContainer />
+            </li>
           </ul>
-
           <ul id='dropdown1' className='dropdown-content'>
             <li><a href="#!">Log out</a></li>
           </ul>
