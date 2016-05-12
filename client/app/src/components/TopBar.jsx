@@ -10,11 +10,8 @@ class TopBar extends React.Component {
     super(props)
     this.state = {
       displayDropdown: false,
+      modalIsOpen: false,
     }
-  }
-
-  getInitialState() {
-    return { modalIsOpen: false };
   }
 
   openModal() {
@@ -59,7 +56,7 @@ class TopBar extends React.Component {
 
           <ul id='dropdown1' className='dropdown-content'>
             <li><a href="#!">Log out</a></li>
-          </ul> 
+          </ul>
         </nav>
       </div>
     )

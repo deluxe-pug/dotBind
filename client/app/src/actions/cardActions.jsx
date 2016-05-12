@@ -59,3 +59,11 @@ export const searchCardsAction = (keywords) => {
     payload: request,
   }
 };
+
+export const removeTagFromCardAction = (tag) => {
+  const request = axios.delete(endpoints.card_tags + '/' + tag.cardTagId);
+  return {
+    type: 'REMOVE_TAG',
+    payload: request,
+  };
+};

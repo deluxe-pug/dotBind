@@ -1,10 +1,13 @@
 const cardsReducer = (state = [], action) => {
   switch(action.type) {
+
     case 'ADD_CARD':
       console.log('payload: ', action.payload.data);
       return [...state, action.payload.data.data];
+
     case 'FETCH_CARDS':
       return [...state, ...action.payload.data.data];
+
     case 'FILTER_CARDS':
       const filteredCards = state.slice().filter((card) => {
         for (var i = 0; i < card.cardTags.length; i++) {
@@ -13,8 +16,23 @@ const cardsReducer = (state = [], action) => {
         return false;
       });
       return [...filteredCards];
+
     case 'SEARCH_CARDS':
       return [...action.payload.data.data];
+
+    case 'REMOVE_TAG':
+      let removedId = action.payload.data.data[0].id;
+      let newState = state.slice(0);
+      newState.forEach( (card) => {
+        for ( let j = 0; j < card.cardTags.length; j++ ) {
+          console.log(newState[j].cardTags)
+          if ( card.cardTags[j].id === removedId ) {
+            card.cardTags.splice(j,1);
+          }
+        }
+      });
+      return newState;
+
     default:
       return state;
   };
