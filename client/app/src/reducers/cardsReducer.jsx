@@ -21,13 +21,13 @@ const cardsReducer = (state = [], action) => {
       return [...action.payload.data.data];
 
     case 'REMOVE_TAG':
-      console.log('STATE-------> ', state)
       let removedId = action.payload.data.data[0].id;
       let newState = state.slice(0);
       newState.forEach( (card) => {
         for ( let j = 0; j < card.cardTags.length; j++ ) {
-          if ( newState[j].cardTags.id === removedId ) {
-            newState[j].splice(j,1);
+          console.log(newState[j].cardTags)
+          if ( card.cardTags[j].id === removedId ) {
+            card.cardTags.splice(j,1);
           }
         }
       });
