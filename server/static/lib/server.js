@@ -4,15 +4,18 @@ const GitHubStrategy = require('passport-github').Strategy;
 const ENV = require('../.env');
 const session = require('express-session');
 const request = require('request');
+const cookieParser = require('cookie-parser')
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(express.static(__dirname + '/../../../client/app', {
-  extensions: ['html']
-}));
+// app.use(express.static(__dirname + '/../../../client/app', {
+//   extensions: ['html']
+// }));
 
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
+app.use(cookieParser());
 
 passport.serializeUser(function(user, cb) {
   console.log('the user: ', user);
@@ -87,6 +90,13 @@ app.use(passport.session());
 // })
 
 
+app.get('/', ensureAuthenticated, (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/../../../client/app/index.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/../../../client/app/login.html'));
+})
 
 
 app.get('/auth/github', passport.authenticate('github'));
@@ -105,9 +115,25 @@ app.get('/auth', (req, res) => {
   res.send(req.user);
 })
 
-// app.get('/logout', function(req, res){
-//   req.logout();
-//   res.redirect('/login');
-// })
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/login');
+})
+
+// displays other associated assets -- bundle.js
+// and deals with wildcard routes
+app.get(/^(.+)$/, function(req, res) { 
+  if (!path.extname(req.url)) {res.end('Path not available. Try another url');}
+  res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
+})
+
+
 
 app.listen(port, () => console.log('Listening on port ' + port));
+
+
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated() || req.path === '/auth/github') { return next(); }
+  res.redirect('/login')
+}
