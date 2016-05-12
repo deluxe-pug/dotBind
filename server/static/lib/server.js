@@ -28,6 +28,7 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
+app.use(cookieParser());
 
 passport.serializeUser(function(user, cb) {
   console.log('the user: ', user);
@@ -139,11 +140,6 @@ app.get(/^(.+)$/, function(req, res) {
   if (!path.extname(req.url)) {res.end('Path not available. Try another url');}
   res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
 })
-
-// app.get('/logout', function(req, res){
-//   req.logout();
-//   res.redirect('/login');
-// })
 
 app.listen(port, () => console.log('Listening on port ' + port));
 
