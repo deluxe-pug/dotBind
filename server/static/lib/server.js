@@ -31,7 +31,8 @@ app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: fals
 
 passport.serializeUser(function(user, cb) {
   console.log('the user: ', user);
-  cb(null, { id: user.id, username: user.username });
+
+  cb(null, { id: user.id, username: user.username, "img": user.photos[0].value, "access_token": user.nodalToken });
 });
 
 passport.deserializeUser(function(obj, cb) {
