@@ -124,29 +124,33 @@ module.exports = (function() {
                   this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
                   // this.respond([aCard, tags]);
 
-                  // console.log('aCard: ', aCard);
-                  // const cardJSON = JSON.stringify(aCard);
-                  // // client.indices.create('POST', cardJSON);
+                  // console.log('aCard: ', aCard._data);
+                  // console.log('tags: ', tags);
+                  console.log('ELASTICSEARCH!!!!!');
 
-                  // client.ping({
-                  //   // ping usually has a 3000ms timeout 
-                  //   requestTimeout: Infinity,
-                  //   // undocumented params are appended to the query string 
-                  //   hello: "elasticsearch!"
-                  // }, function (error) {
-                  //   if (error) {
-                  //     console.trace('elasticsearch cluster is down!');
-                  //   } else {
-                  //     console.log('All is well');
-                  //   }
-                  // });
+                  const cardData = aCard._data;
+                  const tagData = tags;
+                  const esPost = {
+                    index: 'library',
+                    type: 'cards',
+                    body: {
+                      id: cardData.id,
+                      title: cardData.title,
+                      url: cardData.url,
+                      domain: cardData.domain,
+                      code: cardData.code,
+                      text: cardData.text,
+                      note: cardData.note,
+                      cardTags: tags,
+                    },
+                  };
 
-                  // const exampleJSON = JSON.stringify({
-                  //   title: "Le Petit Prince"
-                  //   price: 19.95
-                  // });
-                  // client.indices.create('localhost:9200/library/books/', exampleJSON);
-
+                  client.create(esPost)
+                    .then((response) => 
+                      console.log('response: ', response),
+                      (error) => 
+                      console.log('error: ', error)
+                    );
                 });
               });
             });            
