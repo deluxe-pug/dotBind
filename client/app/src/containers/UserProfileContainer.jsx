@@ -14,8 +14,7 @@ class UserProfileContainer extends React.Component {
     return (
       <a className='dropdown-button'
          href='#' data-beloworigin="true" data-activates='dropdown1'>
-        <img src={this.props.user ? this.props.user.img : ''} alt="An image" className="material-icons circle" height="60px" width="60px" />
-
+        <img src={this.props.user ? this.props.user.img : ''} alt="An image" className="material-icons circle" height="50px" width="50px" />
       </a>
     );
   }
