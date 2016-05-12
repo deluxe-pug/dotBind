@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeTagAction } from '../actions/tagActions';
+import { removeTagFromCardAction } from '../actions/cardActions';
 import { bindActionCreators } from 'redux';
 
 class CardTag extends React.Component {
 
   constructor(props) {
     super(props);
-    // console.log(props)
   }
 
   handleDelete() {
@@ -24,10 +23,16 @@ class CardTag extends React.Component {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({removeTag: removeTagAction}, dispatch);
-}
+const mapStateToProps = (state) => {
+  return {
+    cards: state.cards,
+  };
+};
 
-CardTag = connect(null, mapDispatchToProps)(CardTag);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({removeTag: removeTagFromCardAction}, dispatch);
+};
+
+CardTag = connect(mapStateToProps, mapDispatchToProps)(CardTag);
 
 export default CardTag;

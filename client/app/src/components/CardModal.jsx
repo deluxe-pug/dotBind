@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from 'react-modal';
 import brace from 'brace';
 import CardTag from './CardTag';
 
@@ -21,7 +22,7 @@ const CardModal = (props) => (
 
     <div className="modal-editor">
       <AceEditor height="240px" width="100%" mode="javascript" theme="tomorrow_night"
-      name="editor" editorProps={{$blockScrolling: true}} value={props.code} />
+      name="editor" editorProps={{$blockScrolling: true}} value={props.code || '// Your code here'} />
     </div>
 
     <h5 className="modal-heading">Notes:</h5>

@@ -10,11 +10,6 @@ const tagsReducer = (state = [], action) => {
     case 'FETCH_TAGS':
       return [...action.payload.data.data, ...state];
 
-    case 'REMOVE_TAG':
-      let removedId = action.payload.data.data[0].id;
-      console.log(state.filter( (tag) => tag.id !== removedId));
-      return state;
-
     default:
       return state;
   };

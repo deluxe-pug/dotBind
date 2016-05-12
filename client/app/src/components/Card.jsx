@@ -89,7 +89,6 @@ class Card extends React.Component {
           <div className="card-preview open-modal" onClick={this.openModal.bind(this)}>
             <pre>
               <code>
-                {this.props.text}...
               </code>
             </pre>
           </div>
