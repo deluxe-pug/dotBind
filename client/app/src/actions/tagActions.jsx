@@ -20,7 +20,7 @@ export const fetchTagsAction = () => {
   };
 };
 
-export const removeTagsAction = (tag) => {
+export const removeTagAction = (tag) => {
   // const request = axios.post(endpoints.tags, {/* insert here */});
   console.log('called', tag);
   return {

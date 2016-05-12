@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeTagsAction } from '../actions/tagActions';
+import { removeTagAction } from '../actions/tagActions';
 import { bindActionCreators } from 'redux';
 
 class CardTag extends React.Component {
@@ -25,7 +25,7 @@ class CardTag extends React.Component {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({removeTag: removeTagsAction}, dispatch);
+  return bindActionCreators({removeTag: removeTagAction}, dispatch);
 }
 
 CardTag = connect(null, mapDispatchToProps)(CardTag);

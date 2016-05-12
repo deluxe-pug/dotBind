@@ -11,6 +11,7 @@ const tagsReducer = (state = [], action) => {
       return [...action.payload.data.data, ...state];
 
     case 'REMOVE_TAG':
+      console.log('REMOVE_TAG reducer called')
       return state;
 
     default:

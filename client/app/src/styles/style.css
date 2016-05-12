@@ -261,6 +261,11 @@ hr {
   background-color: #c62828;
 }
 
+.tag-input {
+  /*border: 1px solid black;*/
+  border-radius: 20px;
+}
+
 .modal-link {
   font-size: 10pt;
   float: right;

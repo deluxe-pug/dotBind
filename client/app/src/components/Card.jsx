@@ -102,6 +102,16 @@ class Card extends React.Component {
             <hr/>
 
             <div className="modal-footer">
+              <div className="row">
+                <div className="col s8 offset-s2">
+                  <div className="col s6">
+                    <input className="tag-input" type="text" placeholder="Add tag" />
+                  </div>
+                  <div className="col s6">
+                    <button className="waves-effect waves-light btn">Add Tag</button>
+                  </div>
+                </div>
+              </div>
               {this.props.cardTags.map((cardTag) =>
                   <CardTag key={cardTag.tag.id} name={cardTag.tag.name} id={cardTag.tag.id} cardId={this.props.id}/>
               )} <br/>
@@ -137,7 +147,7 @@ class Card extends React.Component {
           <div className='card-footer'>
             <div><a className="card-url" href={this.props.url}>{this.props.url.length > 30 ? this.props.url.substring(0,30) + '...' : this.props.url}</a></div>
             <div className="card-tag">
-                Tags:
+                <span>Tags:</span>
                 {this.props.cardTags.map((cardTag) =>
                   ' ' + cardTag.tag.name + ' ' + '| '
                 )}
