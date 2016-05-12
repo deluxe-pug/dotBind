@@ -28,14 +28,18 @@ module.exports = (function() {
   class V1CardsController extends AuthController {
 
     index() {
-
-      Card.query()
-        .join('cardTags__tag')
-        .join('user')
-        .where(this.params.query)
-        .end((err, cards) => {
-          this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {user: ['id', 'username', 'created_at']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
-        });
+      this.authorize((err, accessToken, user) => {
+        if (err) {
+          this.respond(err);
+        }
+        Card.query()
+          .join('cardTags__tag')
+          .join('user')
+          .where(this.params.query)
+          .end((err, cards) => {
+            this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {user: ['id', 'username', 'created_at']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
+          });
+      })
 
     }
 
@@ -63,101 +67,106 @@ module.exports = (function() {
         "username": "public",
          "tags": [
           "React",
-          "Backbone"
+          "Backbone",
+          "Angular"
          ]
         }
       */ 
     create() {
+      this.authorize((err, accessToken, user) => {
+        if (err) {
+          return this.respond(err);
+        }
+        let username = this.params.body.username || '';
+        let tags = this.params.body.tags || [];
+        let card = this.params.body.card || {};
+        let user_id;
+        let card_id;
+        let tag_id;
 
-          let username = this.params.body.username || '';
-          let tags = this.params.body.tags || [];
-          let card = this.params.body.card || {};
-          let user_id;
-          let card_id;
-          let tag_id;
-
-          const userAndTagPromises = [];
-          const userTagPromises = [];
-          const cardTagPromises = [];
-          const cardTagAndUserTagPromises = [];
-          const tagIds = [];
+        const userAndTagPromises = [];
+        const userTagPromises = [];
+        const cardTagPromises = [];
+        const cardTagAndUserTagPromises = [];
+        const tagIds = [];
 
 
-          // Create card
-          createCard(card).then((aCard) => {
-            card_id = aCard.get('id');
+        // Create card
+        createCard(card).then((aCard) => {
+          card_id = aCard.get('id');
 
-            // Add findOrCreateUser promise
-            userAndTagPromises.push(findOrCreateUser({username}));
+          // Add findOrCreateUser promise
+          userAndTagPromises.push(findOrCreateUser({username}));
 
-            // For each tag in tags, add a promise with name bound as first arg
-            tags.forEach((tag) => {
-              let name = tag;
-              userAndTagPromises.push(findOrCreateTag({name}));
+          // For each tag in tags, add a promise with name bound as first arg
+          tags.forEach((tag) => {
+            let name = tag;
+            userAndTagPromises.push(findOrCreateTag({name}));
+          });
+
+          // Resolve User and Tag promises
+          Promise.all(userAndTagPromises).then((values) => {
+            user_id = values[0].get('id'); // get user id
+            aCard.set('user_id', user_id);
+            aCard.save();
+
+            let tagModels = values.slice(1);
+
+            tagModels.forEach((tagModel) => {
+              tag_id = tagModel.get('id');
+              userTagPromises.push(findOrCreateUserTag({tag_id, user_id}));
+              cardTagPromises.push(findOrCreateCardTag({tag_id, card_id}));
             });
 
-            // Resolve User and Tag promises
-            Promise.all(userAndTagPromises).then((values) => {
-              user_id = values[0].get('id'); // get user id
-              aCard.set('user_id', user_id);
-              aCard.save();
-
-              let tagModels = values.slice(1);
-
-              tagModels.forEach((tagModel) => {
-                tag_id = tagModel.get('id');
-                userTagPromises.push(findOrCreateUserTag({tag_id, user_id}));
-                cardTagPromises.push(findOrCreateCardTag({tag_id, card_id}));
+            // Resolve UserTag Promises
+            Promise.all(userTagPromises).then((userTags) => {
+              userTags.forEach((user_tag) => {
+                if (user_tag.get('card_count') === null) {
+                  user_tag.set('card_count', 1); // initialize to 1
+                  user_tag.save();
+                } else if (user_tag.get('card_count')) {
+                  user_tag.set('card_count', user_tag.get('card_count') + 1)
+                  user_tag.save();
+                }
               });
 
-              // Resolve UserTag Promises
-              Promise.all(userTagPromises).then((userTags) => {
-                userTags.forEach((user_tag) => {
-                  if (user_tag.get('card_count') === null) {
-                    user_tag.set('card_count', 1); // initialize to 1
-                    user_tag.save();
-                  } else if (user_tag.get('card_count')) {
-                    user_tag.set('card_count', user_tag.get('card_count') + 1)
-                    user_tag.save();
-                  }
-                });
+              // Resolve CardTag Promises
+              Promise.all(cardTagPromises).then((cardTags) => {
+                this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
+                // this.respond([aCard, tags]);
 
-                // Resolve CardTag Promises
-                Promise.all(cardTagPromises).then((cardTags) => {
-                  this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
-                  // this.respond([aCard, tags]);
+                // console.log('aCard: ', aCard._data);
+                // console.log('tags: ', tags);
+                console.log('ELASTICSEARCH!!!!!');
 
-                  // console.log('aCard: ', aCard._data);
-                  // console.log('tags: ', tags);
-                  console.log('ELASTICSEARCH!!!!!');
+                const cardData = aCard._data;
+                const tagData = tags;
+                const esPost = {
+                  index: 'library',
+                  type: 'cards',
+                  body: {
+                    id: cardData.id,
+                    title: cardData.title,
+                    url: cardData.url,
+                    domain: cardData.domain,
+                    code: cardData.code,
+                    text: cardData.text,
+                    note: cardData.note,
+                    cardTags: tags,
+                  },
+                };
 
-                  const cardData = aCard._data;
-                  const tagData = tags;
-                  const esPost = {
-                    index: 'library',
-                    type: 'cards',
-                    body: {
-                      id: cardData.id,
-                      title: cardData.title,
-                      url: cardData.url,
-                      domain: cardData.domain,
-                      code: cardData.code,
-                      text: cardData.text,
-                      note: cardData.note,
-                      cardTags: tags,
-                    },
-                  };
-
-                  client.create(esPost)
-                    .then((response) => 
-                      console.log('response: ', response),
-                      (error) => 
-                      console.log('error: ', error)
-                    );
-                });
+                client.create(esPost)
+                  .then((response) => 
+                    console.log('response: ', response),
+                    (error) => 
+                    console.log('error: ', error)
+                  );
               });
-            });            
-          });
+            });
+          });            
+        });
+      })
 
     }
 
