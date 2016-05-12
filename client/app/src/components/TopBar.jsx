@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchContainer from '../containers/SearchContainer';
 import AddCardContainer from '../containers/AddCardContainer';
+import UserProfileContainer from '../containers/UserProfileContainer';
 
 class TopBar extends React.Component {
   constructor(props) {
@@ -66,6 +67,9 @@ class TopBar extends React.Component {
                  href='#' data-beloworigin="true" data-activates='dropdown1'>
                 <i className="material-icons">more_vert</i>
               </a>
+            </li>
+            <li className="avatar">
+              <UserProfileContainer />
             </li>
 
           </ul>
