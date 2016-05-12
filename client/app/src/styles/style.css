@@ -284,21 +284,19 @@ hr {
   background-color: #5F9CD2;
   color: white;
   margin-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   border-radius: 15px;
   display: inline-block;
 }
 
-.modal-tag > .tag-name::after {
+.tag-name::after {
   content: '';
   border-left: 1px solid white;
   margin-left: 3px;
   padding-left: 2px;
-  /*padding-left: 3px;
-  padding-right: 15px;*/
 }
 
 .tag-delete {

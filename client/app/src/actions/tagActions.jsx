@@ -19,3 +19,11 @@ export const fetchTagsAction = () => {
     payload: request,
   };
 };
+
+export const removeTagsAction = (tag) => {
+  console.log('called', tag);
+  return {
+    type: 'REMOVE_TAG',
+
+  };
+};
