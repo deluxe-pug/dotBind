@@ -4,7 +4,6 @@ const envParams = {
   dev: {
     url: 'http://localhost',
   },
-
   production: {
     url: 'http://ec2-54-86-26-97.compute-1.amazonaws.com',
   },
@@ -47,7 +46,8 @@ function renderTitle(title) {
 // when extention window is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabProps((url, icon, title) => {
-
+    // render icon and url to the popup
+    // save selection from tab
     renderIcon(icon);
     renderUrl(url);
     renderTitle(title);
@@ -70,16 +70,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     // send message to current tab
     chrome.tabs.query({ active: true, currentWindow: true }, activeTabs => {
+
+      // inject js/myScript into current tab
+      chrome.tabs.executeScript(
+        activeTabs[0].id, { file: 'js/myScript.js', allFrames: true }
+      );
+
       chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        console.log('message recieved!', request.selection);
-        sendResponse({ from: 'popup', msg: 'card saved!' });
-        // render icon and url to the popup
-        // save selection from tab
-        if (request.selection) {
+
+        if (request.method === 'sendSelection') {
+          console.log('message recieved in popup!', request.selection);
+          sendResponse({ from: 'popup', msg: 'message recieved from popups!' });
           console.log('request.selection: ', request.selection);
           data.card.code = request.selection;
           renderContent(request.selection);
-          // TODO: toggle content
+          // toggle content type
           $('body').on('click', '.code', () => {
             data.card.code = request.selection;
             data.card.text = null;
@@ -97,13 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
       });
-
-      // inject js/myScript into current tab
-      chrome.tabs.executeScript(
-        activeTabs[0].id, { file: 'js/myScript.js', allFrames: true }
-      );
     });
-
     // add tag
     $('body').on('click', 'button.tag', () => {
       const tag = $('input.tag').val().toLowerCase();
@@ -121,11 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
         $('#note').text(data.card.note);
       }
     });
-
     // save card
     $('body').on('click', '#save', () => {
       console.log('data sending to api end point v1/cards', data);
-
       $.ajax({
         type: 'POST',
         url: `${envParams[enviornment].url}:3000/v1/cards`,
