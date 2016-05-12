@@ -15,7 +15,7 @@ module.exports = (function() {
 
       AccessToken.verify(this.params, callback);
 
-      callback(null);
+      // callback(null);
 
     }
 
