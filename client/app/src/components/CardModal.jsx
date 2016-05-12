@@ -8,7 +8,7 @@ import 'brace/theme/tomorrow_night';
 
 const CardModal = (props) => (
   <div>
-  
+
     <div className="row modal-nav">
       <div className="col s10">
         <img className="activator modal-icon" src={props.icon} />
@@ -43,7 +43,7 @@ const CardModal = (props) => (
         </div>
       </div>
       {props.cardTags ? props.cardTags.map((cardTag) =>
-          <CardTag key={cardTag.tag.id} name={cardTag.tag.name} id={cardTag.tag.id} cardId={props.id}/>
+          <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={props.id}/>
       ) : <span></span>} <br/>
       <div className="row save-bar">
         <div className="col s6">

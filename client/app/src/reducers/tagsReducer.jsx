@@ -11,7 +11,8 @@ const tagsReducer = (state = [], action) => {
       return [...action.payload.data.data, ...state];
 
     case 'REMOVE_TAG':
-      console.log('REMOVE_TAG reducer called')
+      let removedId = action.payload.data.data[0].id;
+      console.log(state.filter( (tag) => tag.id !== removedId));
       return state;
 
     default:

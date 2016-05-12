@@ -21,10 +21,9 @@ export const fetchTagsAction = () => {
 };
 
 export const removeTagAction = (tag) => {
-  // const request = axios.delete(endpoints.card_tags, {/* insert here */});
-  console.log('called', tag);
+  const request = axios.delete(endpoints.card_tags + '/' + tag.cardTagId);
   return {
     type: 'REMOVE_TAG',
-    // payload: request,
+    payload: request,
   };
 };
