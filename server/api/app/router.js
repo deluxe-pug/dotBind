@@ -5,6 +5,9 @@ module.exports = (function() {
   const Nodal = require('nodal');
   const router = new Nodal.Router();
 
+  /* ElasticSearch used to be here */
+
+
   /* Middleware */
   /* executed *before* Controller-specific middleware */
 

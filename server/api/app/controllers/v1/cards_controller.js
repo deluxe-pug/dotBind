@@ -17,12 +17,20 @@ module.exports = (function() {
   const createCard = PromiseMaker(Card.create, {context: Card});
 
 
+  /* ElasticSearch */
+  const elasticsearch = require('elasticsearch');
+  const client = new elasticsearch.Client({
+    host: 'localhost:9200',
+    log: 'trace'
+  });
+
   class V1CardsController extends Nodal.Controller {
 
     index() {
 
       Card.query()
         .join('cardTags__tag')
+        .where(this.params.query)
         .end((err, cards) => {
           this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {cardTags: [{tag: ['id', 'name']}]}]);
         });
@@ -43,7 +51,7 @@ module.exports = (function() {
        {
         "card": {
           "url": "http://american.com",
-          "title": "about USA"
+          "title": "about USA",
           "code": "var hello = function() {};",
           "text": "This is my text",
           "note": "This is a note about my content",
@@ -113,7 +121,36 @@ module.exports = (function() {
 
                 // Resolve CardTag Promises
                 Promise.all(cardTagPromises).then((cardTags) => {
-                  this.respond(card);
+                  this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
+                  // this.respond([aCard, tags]);
+
+                  // console.log('aCard: ', aCard._data);
+                  // console.log('tags: ', tags);
+                  console.log('ELASTICSEARCH!!!!!');
+
+                  const cardData = aCard._data;
+                  const tagData = tags;
+                  const esPost = {
+                    index: 'library',
+                    type: 'cards',
+                    body: {
+                      id: cardData.id,
+                      title: cardData.title,
+                      url: cardData.url,
+                      domain: cardData.domain,
+                      code: cardData.code,
+                      text: cardData.text,
+                      note: cardData.note,
+                      cardTags: tags,
+                    },
+                  };
+
+                  client.create(esPost)
+                    .then((response) => 
+                      console.log('response: ', response),
+                      (error) => 
+                      console.log('error: ', error)
+                    );
                 });
               });
             });            
