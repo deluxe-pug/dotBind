@@ -172,8 +172,10 @@ header, main, footer {
 }
 
 .card-tag {
-  color: #5f9cd2;
+  /*color: #5f9cd2;*/
+  text-align: center;
   overflow: hidden;
+  font-size: 10pt;
 }
 
 /******************** MODAL STYLES ********************/

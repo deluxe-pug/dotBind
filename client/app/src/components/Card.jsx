@@ -139,7 +139,7 @@ class Card extends React.Component {
             <div className="card-tag">
                 Tags:
                 {this.props.cardTags.map((cardTag) =>
-                  <CardTag key={cardTag.tag.id} name={cardTag.tag.name + ', '}/>
+                  ' ' + cardTag.tag.name + ' ' + '| '
                 )}
                 <a><i className="material-icons small-icon">mode_edit</i></a>
             </div>

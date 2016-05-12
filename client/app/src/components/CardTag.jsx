@@ -11,7 +11,6 @@ class CardTag extends React.Component {
   }
 
   handleDelete() {
-    console.log('callediuwefouhweifuhwef', this.props);
     this.props.removeTag(this.props);
   }
 
