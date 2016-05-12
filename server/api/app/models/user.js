@@ -9,28 +9,28 @@ module.exports = (function() {
 
   class User extends Nodal.Model {
 
-    beforeSave(callback) {
+    // beforeSave(callback) {
 
-      if (!this.hasErrors() && this.hasChanged('password')) {
+    //   if (!this.hasErrors() && this.hasChanged('password')) {
 
-        bcrypt.hash(this.get('password'), 10, (err, hash) => {
+    //     bcrypt.hash(this.get('password'), 10, (err, hash) => {
 
-          if (err) {
-            return callback(new Error('Could not encrypt password'));
-          }
+    //       if (err) {
+    //         return callback(new Error('Could not encrypt password'));
+    //       }
 
-          this.__safeSet__('password', hash);
-          callback();
+    //       this.__safeSet__('password', hash);
+    //       callback();
 
-        });
+    //     });
 
-      } else {
+    //   } else {
 
-        callback();
+    //     callback();
 
-      }
+    //   }
 
-    }
+    // }
 
     verifyPassword(unencrypted, callback) {
 
@@ -47,8 +47,8 @@ module.exports = (function() {
 
   User.joinedBy(UserTag, {multiple: true});
 
-  User.validates('email', 'must be valid', v => v && (v + '').match(/.+@.+\.\w+/i));
-  User.validates('password', 'must be at least 5 characters in length', v => v && v.length >= 5);
+  // User.validates('email', 'must be valid', v => v && (v + '').match(/.+@.+\.\w+/i));
+  // User.validates('password', 'must be at least 5 characters in length', v => v && v.length >= 5);
 
   return User;
 
