@@ -3,6 +3,7 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
 const ENV = require('../.env');
 const session = require('express-session');
+const request = require('request');
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -15,7 +16,8 @@ app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: fals
 
 passport.serializeUser(function(user, cb) {
   console.log('the user: ', user);
-  cb(null, { id: user.id, username: user.username });
+
+  cb(null, { id: user.id, username: user.username, "img": user.photos[0].value, "access_token": user.nodalToken });
 });
 
 passport.deserializeUser(function(obj, cb) {
@@ -29,7 +31,30 @@ passport.use(new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
 
-    return cb(null, profile);
+    // make POST request
+    // request.post('http://localhost:3000/v1/access_tokens')
+    // .form({'username': 'public'})
+    // .on('response', function(response) {
+    //   console.log('This is the response: ', JSON.stringify(response, null, ' '));
+    // })
+    request({
+      uri: 'http://localhost:3000/v1/access_tokens',
+      method: 'POST',
+      json: true,
+      body: {
+        githubId: profile.id,
+        username: profile.username 
+      }
+    }, function(err, message, response) {
+      if (err) {
+        console.error('error: ', err);
+        return cb(err);
+      }
+      console.log('Your response: ', response);
+      profile.nodalToken = response.data[0].access_token;
+      return cb(null, profile);
+    })
+    
   }
 ));
 
@@ -74,10 +99,10 @@ app.get('/auth/github/callback',
     res.redirect('/');
   }
 );
-app.get('/test', (req, res) => {
+app.get('/auth', (req, res) => {
   console.log('this is the user object on req: ', req.user);
   console.log('This is the session object on req', req.session);
-  res.end('hey');
+  res.send(req.user);
 })
 
 // app.get('/logout', function(req, res){
