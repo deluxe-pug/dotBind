@@ -1,29 +1,61 @@
-import React, { PropTypes } from 'react';
-import Modal from 'react-modal';
+import React from 'react';
+import brace from 'brace';
+import CardTag from './CardTag';
 
-const customStyles = {
-  overlay : {
-    position          : 'fixed',
-    top               : 0,
-    left              : 0,
-    right             : 0,
-    bottom            : 0,
-    backgroundColor   : 'rgba(38, 50, 56, 0.90)',
-  },
-  content : {
-    border: '2px #ffa726 solid',
-    borderRadius: '50px',
-    marginLeft: '150',
-    marginRight: '150',
-    marginTop: '60',
-    marginBottom: '60',
-    backgroundColor: '#fff59d',
-    backgroundImage: "url('http://www.peerphinder.com/Pictures/notepadpaper.png')"
-  }
-};
+import AceEditor from 'react-ace';
+import 'brace/mode/javascript';
+import 'brace/theme/tomorrow_night';
 
-class CardModal extends React.Component {
+const CardModal = (props) => (
+  <div>
+  
+    <div className="row modal-nav">
+      <div className="col s10">
+        <img className="activator modal-icon" src={props.icon} />
+        <h5>{props.title}</h5>
+      </div>
+      <div className="col s2">
+        <button className="waves-effect waves-light btn-flat close-modal" onClick={props.closeModal.bind(this)}>X</button>
+      </div>
+    </div>
 
-}
+    <div className="modal-editor">
+      <AceEditor height="240px" width="100%" mode="javascript" theme="tomorrow_night"
+      name="editor" editorProps={{$blockScrolling: true}} value={props.code} />
+    </div>
+
+    <h5 className="modal-heading">Notes:</h5>
+    <div className="modal-notes input-field">
+      <textarea className="notes" defaultValue={props.note} onChange={props.remindSave.bind(this)}></textarea>
+    </div>
+
+    <hr/>
+
+    <div className="modal-footer">
+      <div className="row">
+        <div className="col s8 offset-s2">
+          <div className="col s6">
+            <input className="tag-input" type="text" placeholder="Add tag" />
+          </div>
+          <div className="col s6">
+            <button className="waves-effect waves-light btn">Add Tag</button>
+          </div>
+        </div>
+      </div>
+      {props.cardTags ? props.cardTags.map((cardTag) =>
+          <CardTag key={cardTag.tag.id} name={cardTag.tag.name} id={cardTag.tag.id} cardId={props.id}/>
+      ) : <span></span>} <br/>
+      <div className="row save-bar">
+        <div className="col s6">
+          <a className="waves-effect waves-light btn modal-link" href={props.url}>View Original Resource</a>
+        </div>
+        <div className="col s6">
+          <button className="waves-effect waves-light btn save-button" onClick={props.notifyCardUpdate.bind(this)}>Save Changes</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+);
 
 export default CardModal;
