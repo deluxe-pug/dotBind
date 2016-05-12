@@ -102,6 +102,7 @@ class Card extends React.Component {
             <hr/>
 
             <div className="modal-footer">
+
               <div className="row">
                 <div className="col s8 offset-s2">
                   <div className="col s6">
@@ -112,9 +113,9 @@ class Card extends React.Component {
                   </div>
                 </div>
               </div>
-              {this.props.cardTags.map((cardTag) =>
+              {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
                   <CardTag key={cardTag.tag.id} name={cardTag.tag.name} id={cardTag.tag.id} cardId={this.props.id}/>
-              )} <br/>
+              ) : <span></span>} <br/>
               <div className="row save-bar">
                 <div className="col s6">
                   <a className="waves-effect waves-light btn modal-link" href={this.props.url}>View Original Resource</a>
@@ -123,6 +124,7 @@ class Card extends React.Component {
                   <button className="waves-effect waves-light btn save-button" onClick={this.notifyCardUpdate.bind(this)}>Save Changes</button>
                 </div>
               </div>
+
             </div>
           </Modal>
 

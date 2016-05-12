@@ -1,10 +1,22 @@
 import axios from 'axios';
 import endpoints from './endpoints';
 
-let nextCardId = 1;
-
 export const addCardAction = (url) => {
-  const request = axios.post(endpoints.cards, {});
+  const request = axios.post(endpoints.cards, {
+    "card": {
+      "url": url,
+      "title": "title",
+      "code": "var hello = function() {};",
+      "text": "This is my text",
+      "note": "This is a note about my content",
+      "domain": "american.com"
+    },
+    "username": "public",
+     "tags": [
+      "React",
+      "Backbone"
+     ]
+  });
   return {
     type: 'ADD_CARD',
     payload: request,
@@ -41,7 +53,6 @@ export const searchCardsAction = (keywords) => {
       query = query.concat(',%20', keywords[i]);
     }
   }
-  console.log('query: ', query);
   const request = axios.get(query);
   return {
     type: 'SEARCH_CARDS',

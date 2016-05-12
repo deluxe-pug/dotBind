@@ -44,7 +44,7 @@ module.exports = (function() {
        {
         "card": {
           "url": "http://american.com",
-          "title": "about USA"
+          "title": "about USA",
           "code": "var hello = function() {};",
           "text": "This is my text",
           "note": "This is a note about my content",
@@ -114,7 +114,8 @@ module.exports = (function() {
 
                 // Resolve CardTag Promises
                 Promise.all(cardTagPromises).then((cardTags) => {
-                  this.respond(card);
+                  this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
+                  // this.respond([aCard, tags]);
                 });
               });
             });            

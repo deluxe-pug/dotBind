@@ -1,10 +1,8 @@
 const cardsReducer = (state = [], action) => {
   switch(action.type) {
     case 'ADD_CARD':
-      return [{
-          id: action.id,
-          url: action.url
-        }, ...state];
+      console.log('payload: ', action.payload.data);
+      return [...state, action.payload.data.data];
     case 'FETCH_CARDS':
       return [...state, ...action.payload.data.data];
     case 'FILTER_CARDS':
@@ -16,8 +14,6 @@ const cardsReducer = (state = [], action) => {
       });
       return [...filteredCards];
     case 'SEARCH_CARDS':
-      console.log('anything in here???');
-      console.log('payload: ', action.payload.data.data);
       return [...action.payload.data.data];
     default:
       return state;
