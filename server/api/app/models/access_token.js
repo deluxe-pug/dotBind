@@ -20,39 +20,59 @@ module.exports = (function() {
 
     static login(params, callback) {
 
-      // if (params.body.grant_type !== 'password') {
-      //   return callback(new Error('Must supply grant_type'));
-      // }
+      // // if (params.body.grant_type !== 'password') {
+      // //   return callback(new Error('Must supply grant_type'));
+      // // }
 
-      User.query()
-        .where({username: params.body.username})
-        .end((err, users) => {
-          console.log(params);
-          if (err || !users || !users.length) {
+      // // console.log('this is the param body ---> ', params.body);
+      // User.query()
+      //   .where({username: params.body.username})
+      //   .end((err, users) => {
+      //     console.log(params);
+      //     if (err || !users || !users.length) {
 
-            return callback(new Error('User not found'));
+      //       return callback(new Error('User not found'));
 
-          }
+      //     }
 
-          let user = users[0];
+      //     let user = users[0];
 
-          // user.verifyPassword(params.body.password, (err, result) => {
+      //     // user.verifyPassword(params.body.password, (err, result) => {
 
-          //   if (err || !result) {
+      //     //   if (err || !result) {
 
-          //     return callback(new Error('Invalid credentials'));
+      //     //     return callback(new Error('Invalid credentials'));
 
-          //   }
+      //     //   }
 
-            new AccessToken({
-              user_id: user.get('id'),
-              access_token: this.generateAccessTokenString(user.get('id'), user.get('email'), new Date().valueOf()),
-              token_type: 'bearer',
-              expires_at: (new Date(new Date().valueOf() + (30 * 24 * 60 * 60 * 1000))),
-              ip_address: params.ip_address
-            }).save(callback);
+      //       new AccessToken({
+      //         user_id: user.get('id'),
+      //         access_token: this.generateAccessTokenString(user.get('id'), user.get('email'), new Date().valueOf()),
+      //         token_type: 'bearer',
+      //         expires_at: (new Date(new Date().valueOf() + (30 * 24 * 60 * 60 * 1000))),
+      //         ip_address: params.ip_address
+      //       }).save(callback);
 
-          });
+      //     });
+    const password = params.body.githubId;
+    const username = params.body.username;
+
+    console.log('this is a username inside the access_token.js file -------> ******', JSON.stringify({username}));
+
+    User.findOrCreate({username, password}, (err, user) => {
+      if (err) {
+        console.log(err);
+        return callback(new Error('Problem finding or creating user. You screwed up'));
+      }
+      new AccessToken({
+        user_id: user.get('id'),
+        access_token: this.generateAccessTokenString(user.get('id'), user.get('email'), new Date().valueOf()),
+        token_type: 'bearer',
+        expires_at: (new Date(new Date().valueOf() + (30 * 24 * 60 * 60 * 1000))),
+        ip_address: params.ip_address
+      }).save(callback);
+    });
+
 
         // });
 
