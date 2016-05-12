@@ -73,10 +73,6 @@ class Card extends React.Component {
     }
   }
 
-  testFunc() {
-    console.log('called!');
-  }
-
   render() {
     return (
       <div className="col s12 m4">
@@ -107,7 +103,7 @@ class Card extends React.Component {
 
             <div className="modal-footer">
               {this.props.cardTags.map((cardTag) =>
-                  <CardTag key={cardTag.tag.id} name={cardTag.tag.name}/>
+                  <CardTag key={cardTag.tag.id} name={cardTag.tag.name} id={cardTag.tag.id} cardId={this.props.id}/>
               )} <br/>
               <div className="row save-bar">
                 <div className="col s6">
