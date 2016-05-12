@@ -19,3 +19,12 @@ export const fetchTagsAction = () => {
     payload: request,
   };
 };
+
+export const removeTagAction = (tag) => {
+  // const request = axios.post(endpoints.tags, {/* insert here */});
+  console.log('called', tag);
+  return {
+    type: 'REMOVE_TAG',
+    // payload: request,
+  };
+};

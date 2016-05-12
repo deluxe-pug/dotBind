@@ -14,12 +14,13 @@ class AllCardsContainer extends React.Component {
   }
 
   render() {
+    // console.log(this.props)
     return (
       <div>
         {this.props.cards.map((card) =>
           <Card
             key={card.id}
-            {...card} />
+            {...card} id={card.id} />
         )}
       </div>
     )

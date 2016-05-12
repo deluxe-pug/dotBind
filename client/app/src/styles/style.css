@@ -172,13 +172,21 @@ header, main, footer {
 }
 
 .card-tag {
-  color: #5f9cd2;
+  /*color: #5f9cd2;*/
+  text-align: center;
   overflow: hidden;
+  font-size: 10pt;
 }
 
 /******************** MODAL STYLES ********************/
 .open-modal {
   margin-right: 10px;
+}
+
+.notication {
+  font-weight: bolder;
+  color: white;
+  background-color: rgba(41,182,246,0.8);
 }
 
 .modal-notes {
@@ -250,27 +258,66 @@ hr {
 
 .modal-footer > button {
   margin: 10px;
+  background-color: #c62828;
+}
+
+.tag-input {
+  /*border: 1px solid black;*/
+  border-radius: 20px;
 }
 
 .modal-link {
-  font-size: 14pt;
+  font-size: 10pt;
+  float: right;
+  width: 50%;
+}
+
+.save-bar {
+  margin-top: 25px;
+}
+
+.save-button {
+  background-color: #c62828;
+  float: left;
+  width: 50%;
 }
 
 .modal-link:hover {
-  color: #3883c6;
-  font-weight: bold;
+  /*color: #3883c6;
+  font-weight: bold;*/
 }
 
-.chip {
+.modal-tag {
   background-color: #5F9CD2;
   color: white;
-  margin-right: 2px;
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 15px;
+  display: inline-block;
 }
 
-.chip:hover {
+.tag-name::after {
+  content: '';
+  border-left: 1px solid white;
+  margin-left: 3px;
+  padding-left: 2px;
+}
+
+.tag-delete {
+  font-size: 10pt;
+  margin-left: 3px;
+}
+
+.tag-delete:hover {
+  color: grey;
+}
+
+.modal-tag:hover {
   background-color: #3883c6;
   color: white;
-  font-weight: bold;
   -webkit-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
