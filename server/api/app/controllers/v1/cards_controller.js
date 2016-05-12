@@ -17,6 +17,13 @@ module.exports = (function() {
   const createCard = PromiseMaker(Card.create, {context: Card});
 
 
+  /* ElasticSearch */
+  const elasticsearch = require('elasticsearch');
+  const client = new elasticsearch.Client({
+    host: 'localhost:9200',
+    log: 'trace'
+  });
+
   class V1CardsController extends Nodal.Controller {
 
     index() {
@@ -116,6 +123,30 @@ module.exports = (function() {
                 Promise.all(cardTagPromises).then((cardTags) => {
                   this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
                   // this.respond([aCard, tags]);
+
+                  // console.log('aCard: ', aCard);
+                  // const cardJSON = JSON.stringify(aCard);
+                  // // client.indices.create('POST', cardJSON);
+
+                  // client.ping({
+                  //   // ping usually has a 3000ms timeout 
+                  //   requestTimeout: Infinity,
+                  //   // undocumented params are appended to the query string 
+                  //   hello: "elasticsearch!"
+                  // }, function (error) {
+                  //   if (error) {
+                  //     console.trace('elasticsearch cluster is down!');
+                  //   } else {
+                  //     console.log('All is well');
+                  //   }
+                  // });
+
+                  // const exampleJSON = JSON.stringify({
+                  //   title: "Le Petit Prince"
+                  //   price: 19.95
+                  // });
+                  // client.indices.create('localhost:9200/library/books/', exampleJSON);
+
                 });
               });
             });            
