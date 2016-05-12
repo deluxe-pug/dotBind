@@ -40,7 +40,6 @@ module.exports = (function() {
             this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {user: ['id', 'username', 'created_at']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
           });
       })
-
     }
 
     show() {

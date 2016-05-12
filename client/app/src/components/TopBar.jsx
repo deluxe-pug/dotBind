@@ -6,6 +6,7 @@ import UserProfileContainer from '../containers/UserProfileContainer';
 
 require("../styles/topbar.css");
 
+
 class TopBar extends React.Component {
   constructor(props) {
     super(props)

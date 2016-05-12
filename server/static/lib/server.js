@@ -7,14 +7,12 @@ const request = require('request');
 const cookieParser = require('cookie-parser')
 const path = require('path');
 
-
 const app = express();
 const port = process.env.PORT || 8000;
 
 // app.use(express.static(__dirname + '/../../../client/app', {
 //   extensions: ['html']
 // }));
-
 
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 app.use(cookieParser());
@@ -128,6 +126,7 @@ app.get(/^(.+)$/, function(req, res) {
   if (!path.extname(req.url)) {res.end('Path not available. Try another url');}
   res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
 })
+
 
 
 app.listen(port, () => console.log('Listening on port ' + port));
