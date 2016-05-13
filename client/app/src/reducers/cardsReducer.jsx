@@ -18,7 +18,10 @@ const cardsReducer = (state = [], action) => {
 
     case 'SEARCH_CARDS':
       console.log('SEARCH CARDS PAYLOAD: ', payload);
-      return [...action.payload.data.data];
+      // return [...action.payload.data.data];
+      console.log("ARE WE HERE?????");
+      console.log('SEARCH CARDS PAYLOAD: ', action.payload.hits.hits);
+      return [...action.payload.hits.hits];
 
     case 'REMOVE_TAG':
       let removedId = action.payload.data.data[0].id;

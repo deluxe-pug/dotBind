@@ -65,20 +65,20 @@ export const searchCardsAction = (keywords) => {
     }
   };
 
-  const request = client.search(query)
-    .then((response) => {
-      console.log('RESPONSE: ', response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  console.log("HOW ABOUT HERE?");
+  const request = client.search(query);
+    // .then((response) => {
+    //   console.log('RESPONSE: ', response);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
 
   // const request = axios.get(endpoints.cards, {params: query})
-  //   .catch(error => console.log(error));
-  // return {
-  //   type: 'SEARCH_CARDS',
-  //   payload: request,
-  // }
+  return {
+    type: 'SEARCH_CARDS',
+    payload: request,
+  }
 
 };
 
