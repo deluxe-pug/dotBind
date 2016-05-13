@@ -1,5 +1,5 @@
 const endpoints = {
-  cards: 'http://localhost:3000/v1/cards',
+  cards: 'http://localhost:3000/v1/cards?access_token=dotBind',
   tags: 'http://localhost:3000/v1/tags',
   card_tags: 'http://localhost:3000/v1/card_tags',
   card_tags: 'http://localhost:3000/v1/card_tags',

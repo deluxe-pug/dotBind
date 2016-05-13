@@ -97,6 +97,14 @@
         "card_count": 1
       }
     ],
+    "AccessToken": [
+      {
+        "access_token": "dotBind",
+        "user_id": 1,
+        "expires_at": "2016-06-12 11:24:35.172",
+        "token_type": "bearer"
+      }
+    ],
     "CardTag": [
       {
         "card_id": 1,
