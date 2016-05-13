@@ -2,6 +2,7 @@ const tagsReducer = (state = [], action) => {
   switch(action.type) {
 
     case 'ADD_TAG':
+      console.log('reducer called!')
       return [...state, {
         id: action.payload.data.data[0].id,
         name: action.payload.data.data[0].name,

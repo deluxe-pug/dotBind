@@ -4,6 +4,7 @@ import endpoints from './endpoints';
 let tagId = 0;
 
 export const addTag = (tag) => {
+  console.log('action called!')
   const request = axios.post(endpoints.tags, {name: tag});
   console.log(request);
   return {

@@ -8,6 +8,10 @@ import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/tomorrow_night';
 
+import { bindActionCreators } from 'redux';
+import { addTag } from '../actions/tagActions';
+
+let input;
 class CardModal extends React.Component {
   constructor(props) {
     super(props);
@@ -41,12 +45,22 @@ class CardModal extends React.Component {
         <div className="modal-footer">
           <div className="row">
             <div className="col s8 offset-s2">
-              <div className="col s6">
-                <input className="tag-input" type="text" placeholder="Add tag" />
-              </div>
-              <div className="col s6">
-                <button className="waves-effect waves-light btn">Add Tag</button>
-              </div>
+              <form onSubmit={ (e) => {
+                console.log(input.value)
+                e.preventDefault()
+                if ( !input.value.trim() ) {
+                  return;
+                }
+                this.props.dispatch( addTag(input.value) );
+                input.value = '';
+              }}>
+                <div className="col s6">
+                  <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
+                </div>
+                <div className="col s6">
+                  <button className="waves-effect waves-light btn">Add Tag</button>
+                </div>
+              </form>
             </div>
           </div>
           {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
@@ -74,5 +88,25 @@ class CardModal extends React.Component {
 //   };
 // };
 //
-// // Card Modal = connect(mapStateToProps)(CardModal);
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({addTag: addTag}, dispatch);
+};
+CardModal = connect(null, mapDispatchToProps)(CardModal);
 export default CardModal;
+
+
+// <form onSubmit={ (e) => {
+//   if ( !input.value.trim() ) {
+//     return;
+//   }
+//   this.props.dispatch( addTag(input.value) );
+//   this.notifyAddTag();
+//   input.value =''; }}>
+//   <div className="col s6 add-tag-button">
+//     <button type="submit" className="waves-effect waves-light btn">Add Tag</button>
+//   </div>
+//   <div className="col s6">
+//     <input type='text' placeholder="Tag" ref={ node => { input = node; }}/>
+//   </div>
+// </form>
