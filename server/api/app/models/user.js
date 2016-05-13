@@ -3,7 +3,7 @@ module.exports = (function() {
   'use strict';
 
   const Nodal = require('nodal');
-  const bcrypt = require('bcrypt');
+  // const bcrypt = require('bcrypt');
 
   const UserTag = Nodal.require('app/models/user_tag.js');
 
@@ -32,13 +32,13 @@ module.exports = (function() {
 
     // }
 
-    verifyPassword(unencrypted, callback) {
+    // verifyPassword(unencrypted, callback) {
 
-      bcrypt.compare(unencrypted, this.get('password'), (err, result) => {
-        callback.call(this, err, result);
-      });
+    //   bcrypt.compare(unencrypted, this.get('password'), (err, result) => {
+    //     callback.call(this, err, result);
+    //   });
 
-    }
+    // }
 
   }
 
