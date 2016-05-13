@@ -69,6 +69,7 @@ class Card extends React.Component {
   }
 
   render() {
+    // console.log('INSIDE CARD COMPONENT: ', this.props);
     return (
       <div className="col s12 m4">
         <div className="card custom-card" >
