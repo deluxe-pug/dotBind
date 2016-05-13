@@ -5,7 +5,9 @@ module.exports = (function() {
   const Nodal = require('nodal');
   const UserTag = Nodal.require('app/models/user_tag.js');
 
-  class V1UserTagsController extends Nodal.Controller {
+  const AuthController = Nodal.require('app/controllers/auth_controller.js');
+
+  class V1UserTagsController extends AuthController {
 
     index() {
 
