@@ -31,7 +31,7 @@ export const removeCardAction = (id) => {
 };
 
 export const fetchCardsAction = () => {
-  const request = axios.get(endpoints.cards);
+  const request = axios.get(endpoints.cards).catch((err) => console.error('Error fetching cards: ', err));
   return {
     type: 'FETCH_CARDS',
     payload: request,
