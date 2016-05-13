@@ -17,11 +17,12 @@ const cardsReducer = (state = [], action) => {
       return [...filteredCards];
 
     case 'SEARCH_CARDS':
-      console.log('SEARCH CARDS PAYLOAD: ', payload);
-      // return [...action.payload.data.data];
-      console.log("ARE WE HERE?????");
-      console.log('SEARCH CARDS PAYLOAD: ', action.payload.hits.hits);
-      return [...action.payload.hits.hits];
+      let searchCardsState = [];
+      action.payload.hits.hits.forEach(function(obj) {
+        searchCardsState.push(obj._source);
+      })
+      // console.log('SEARCH CARDS PAYLOAD: ', searchCardsState);
+      return [...searchCardsState];
 
     case 'REMOVE_TAG':
       let removedId = action.payload.data.data[0].id;
