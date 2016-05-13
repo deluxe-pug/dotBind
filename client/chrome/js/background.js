@@ -9,9 +9,9 @@
     // add event listener to recieve message from myScript.js
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.method === "logInDotBind") {
-        console.log('message recieved!', request.doBindAccesToken);
-        localStorage.setItem('doBindAccesToken', request.doBindAccesToken);
-        localStorage.setItem('gitHubId', request.gitHubId);
+        console.log('message recieved!', request.dotBindAccessToken);
+        localStorage.setItem('dotBindAccessToken', request.dotBindAccessToken);
+        localStorage.setItem('githubId', request.githubId);
         sendResponse({ from: 'background', msg: 'got the message in background!' });
       }
     });
