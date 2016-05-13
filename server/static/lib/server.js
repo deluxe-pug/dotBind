@@ -1,14 +1,14 @@
 const express = require('express');
 const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
-const ENV = require('../.env') || {GITHUB_CLIENT_ID: '', GITHUB_CLIENT_SECRET: '', callbackURL: ''};
 const session = require('express-session');
 const request = require('request');
 const cookieParser = require('cookie-parser')
 const path = require('path');
-
 const app = express();
 const port = process.env.PORT || 8000;
+
+require('env2')('../../config.env'); // import environment variables
 
 // app.use(express.static(__dirname + '/../../../client/app', {
 //   extensions: ['html']
@@ -28,9 +28,9 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 passport.use(new GitHubStrategy({
-    clientID: ENV.GITHUB_CLIENT_ID,
-    clientSecret: ENV.GITHUB_CLIENT_SECRET,
-    callbackURL: ENV.callbackURL
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: process.env.callbackURL
   },
   function(accessToken, refreshToken, profile, cb) {
 
