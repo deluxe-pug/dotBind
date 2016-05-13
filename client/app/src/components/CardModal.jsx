@@ -39,11 +39,19 @@ class CardModal extends React.Component {
         <div className="modal-notes input-field">
           <textarea className="notes" defaultValue={this.props.note} onChange={this.props.remindSave.bind(this)}></textarea>
         </div>
-
-        <hr/>
-
         <div className="modal-footer">
           <div className="row">
+            <div className="row save-bar">
+              <div className="col s6">
+                <a className="waves-effect waves-light btn modal-link" href={this.props.url}>View Original Resource</a>
+              </div>
+              <div className="col s6">
+                <button className="waves-effect waves-light btn save-button" onClick={this.props.notifyCardUpdate.bind(this)}>Save Changes</button>
+              </div>
+            </div>
+
+            <hr/>
+
             <div className="col s8 offset-s2">
               <form onSubmit={ (e) => {
                 console.log(input.value)
@@ -63,18 +71,11 @@ class CardModal extends React.Component {
               </form>
             </div>
           </div>
-          {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
+          <div className="tags-div">
+            {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
               <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
-          ) : <span></span>} <br/>
-          <div className="row save-bar">
-            <div className="col s6">
-              <a className="waves-effect waves-light btn modal-link" href={this.props.url}>View Original Resource</a>
-            </div>
-            <div className="col s6">
-              <button className="waves-effect waves-light btn save-button" onClick={this.props.notifyCardUpdate.bind(this)}>Save Changes</button>
-            </div>
+            ) : <span></span>} <br/>
           </div>
-
         </div>
       </div>
     );

@@ -37,6 +37,7 @@ const cardsReducer = (state = [], action) => {
       let userId = state[0].user_id;
       let newTag = action.payload.data.data[0]._data;
       let updatedState = [...state];
+      console.log('state => ', state);
       updatedState.forEach( (card) => {
         if ( card.id === cardId ) {
           card.cardTags.push({
@@ -49,7 +50,6 @@ const cardsReducer = (state = [], action) => {
         }
       });
 
-      console.log('old state ==>  ', state);
       return updatedState;
 
     default:
