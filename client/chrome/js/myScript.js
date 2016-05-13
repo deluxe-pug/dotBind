@@ -6,7 +6,7 @@
     method: 'sendSelection',
     selected: window.getSelection().toString(),
   };
-  console.log(selection);
+
   // form message with user infomation to send to background.js
   const logInDotBind = {
     from: 'myScript',

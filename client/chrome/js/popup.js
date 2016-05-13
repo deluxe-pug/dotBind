@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('request.selected: ', request.selected);
           data.card.code = request.selected;
           renderContent(request.selected);
+
           // toggle content type
           $('body').on('click', '.code', () => {
             data.card.code = request.selected;
