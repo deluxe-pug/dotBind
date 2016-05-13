@@ -62,7 +62,7 @@ class TopBar extends React.Component {
             </li>
           </ul>
           <ul id='dropdown1' className='dropdown-content'>
-            <li><a href="http://localhost:8000/logout">Log out</a></li>
+            <li><a href="/logout">Log out</a></li>
           </ul> 
         </nav>
       </div>
