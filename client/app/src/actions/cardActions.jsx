@@ -1,10 +1,18 @@
 import axios from 'axios';
 import endpoints from './endpoints';
 
-// import elasticsearch from 'elasticsearch';
-// // const elasticsearch = require('elasticsearch');
+import elasticsearch from 'elasticsearch';
+const client = new elasticsearch.Client({
+  host: endpoints.elasticsearch.host,
+  log: 'trace'
+});
+
 // const client = new elasticsearch.Client({
-//   host: endpoints.elasticsearch.root,
+//   host: {
+//     host: endpoints.elasticsearch.root,
+//     port: 9200,
+//     path: '/library/cards',
+//   },
 //   log: 'trace'
 // });
 
@@ -67,21 +75,47 @@ export const searchCardsAction = (keywords) => {
   //   }
   // });
 
+  // const query = {
+  //   "query": {
+  //     "query_string": {
+  //       "query": keywords
+  //     }
+  //   }
+  // };
+
+  // const query = {
+  //   "query": {
+  //     "match": {
+  //       "url": keywords
+  //     }
+  //   }
+  // }
+
   const query = {
-    "query": {
-      "match": {
-        "title": keywords
+    index: 'library',
+    body: {
+      "query": {
+        "query_string": {
+          "query": keywords
+        }
       }
     }
   };
 
-  // const request = client.search(query);
-  const request = axios.get(endpoints.cards, {params: query})
-    .catch(error => console.log(error));
-  return {
-    type: 'SEARCH_CARDS',
-    payload: request,
-  }
+  const request = client.search(query)
+    .then((response) => {
+      console.log('RESPONSE: ', response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  // const request = axios.get(endpoints.cards, {params: query})
+  //   .catch(error => console.log(error));
+  // return {
+  //   type: 'SEARCH_CARDS',
+  //   payload: request,
+  // }
 
 };
 

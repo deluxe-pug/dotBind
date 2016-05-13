@@ -5,7 +5,7 @@ const endpoints = {
   card_tags: 'http://localhost:3000/v1/card_tags',
   auth: 'http://localhost:8000/auth',
   elasticsearch: {
-    root: 'http://localhost:9200',
+    host: 'http://localhost:9200',
     cards: 'http://localhost:9200/library/cards',
   }
 };
