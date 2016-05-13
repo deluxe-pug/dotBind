@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
-const ENV = require('../.env');
+const ENV = require('../.env') || {GITHUB_CLIENT_ID: '', GITHUB_CLIENT_SECRET: '', callbackURL: ''};
 const session = require('express-session');
 const request = require('request');
 const cookieParser = require('cookie-parser')
