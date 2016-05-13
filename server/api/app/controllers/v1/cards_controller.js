@@ -16,7 +16,7 @@ module.exports = (function() {
   const findOrCreateCardTag = PromiseMaker(CardTag.findOrCreate, {context: CardTag});
   const createCard = PromiseMaker(Card.create, {context: Card});
 
-  const AuthController = Nodal.require('app/controllers/auth_controller.js'); 
+  const AuthController = Nodal.require('app/controllers/auth_controller.js');
 
   /* ElasticSearch */
   const elasticsearch = require('elasticsearch');
@@ -30,16 +30,22 @@ module.exports = (function() {
     index() {
       this.authorize((err, accessToken, user) => {
         if (err) {
-          this.respond(err);
+          return this.respond(err);
         }
+
+        const user_id = user.get('id');
+
         Card.query()
           .join('cardTags__tag')
           .join('user')
+          .where({user_id})
           .where(this.params.query)
           .end((err, cards) => {
+            // this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {cardTags: ['id', {tag: ['id', 'name']}]}]);
             this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {user: ['id', 'username', 'created_at']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
           });
       })
+
     }
 
     show() {
@@ -60,14 +66,13 @@ module.exports = (function() {
           "code": "var hello = function() {};",
           "text": "This is my text",
           "note": "This is a note about my content",
-          "icon": "Icon url",
+          "icon": "An icon",
           "domain": "american.com"
         },
         "username": "public",
          "tags": [
           "React",
-          "Backbone",
-          "Angular"
+          "Backbone"
          ]
         }
       */ 
