@@ -35,40 +35,21 @@ module.exports = (function() {
 
         const user_id = user.get('id');
 
-      // console.log('INDEX PARAMS TYPE: ', typeof this.params.query);
-      // console.log('MY OBJECT!! ', this.params.query);
+        //   console.log('QUERY============>: ', this.params.query);
+        //   client.search(this.params.query.query, function(err, cards) {
+        //     console.log('ES SEARCH RESPONSE: ', cards);
+        //     console.log('ES SEARCH ERROR: ', error);
+        //     this.respond( err || cards );
+        //   }.bind(this));
 
-      // if (this.params.query.hasOwnProperty('0')) {
-      //   client.search(this.params.query['0'])
-      //     .then((response) => {
-      //       console.log('ES SEARCH RESPONSE: ', response);
-      //       console.log('another console.log');
-      //         this.respond(response.hits.hits);
-      //       }, (error) => 
-      //       console.log('ES SEARCH ERROR: ', error)
-      //     )
-      // }
-      console.log('ANYTHING??????', this.params.query);
-
-      if (this.params.query.query) {
-        console.log('QUERY============>: ', this.params.query);
-        client.search(this.params.query.query, function(err, cards) {
-          console.log('ES SEARCH RESPONSE: ', cards);
-          console.log('ES SEARCH ERROR: ', error);
-          this.respond( err || cards );
-          // console.log('ES SEARCH THIS: ', this);
-        }.bind(this));
-      } else {
         Card.query()
           .join('cardTags__tag')
           .where(this.params.query)
           .end((err, cards) => {
-            // console.log("DB CARDS: ", cards);
             this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {cardTags: [{tag: ['id', 'name']}]}]);
           });     
-      }
-    })
-  }
+      })
+    }
 
     show() {
 

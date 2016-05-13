@@ -7,15 +7,6 @@ const client = new elasticsearch.Client({
   log: 'trace'
 });
 
-// const client = new elasticsearch.Client({
-//   host: {
-//     host: endpoints.elasticsearch.root,
-//     port: 9200,
-//     path: '/library/cards',
-//   },
-//   log: 'trace'
-// });
-
 export const addCardAction = (url) => {
   const request = axios.post(endpoints.cards, {
     "card": {
@@ -62,34 +53,6 @@ export const filterCardsAction = (tag) => {
 };
 
 export const searchCardsAction = (keywords) => {
-  console.log('search keywords: ', keywords);
-  // let query = JSON.stringify({
-  //   "query": {
-  //     "bool": {
-  //       "should": [{
-  //         "match": {
-  //           "title": keywords
-  //         }
-  //       }],
-  //     },
-  //   }
-  // });
-
-  // const query = {
-  //   "query": {
-  //     "query_string": {
-  //       "query": keywords
-  //     }
-  //   }
-  // };
-
-  // const query = {
-  //   "query": {
-  //     "match": {
-  //       "url": keywords
-  //     }
-  //   }
-  // }
 
   const query = {
     index: 'library',
@@ -154,4 +117,3 @@ export const addTagToCardAction = (tagName, userId, cardId) => {
 //     payload: request,
 //   }
 // };
-
