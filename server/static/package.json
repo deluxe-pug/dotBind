@@ -12,7 +12,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.4"
+    "cookie-parser": "^1.4.1",
+    "env2": "^2.0.7",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "passport": "^0.3.2",
+    "passport-github": "^1.1.0",
+    "passport-oauth": "^1.0.0",
+    "request": "^2.72.0"
   },
   "devDependencies": {
     "babel-cli": "^6.7.7",

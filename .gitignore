@@ -11,3 +11,5 @@ server/api/npm-debug.log
 server/api/search.js
 server/api/logfile
 .env.js
+config.env
+node_modules
