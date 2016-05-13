@@ -4,18 +4,59 @@ module.exports = (function() {
 
   const Nodal = require('nodal');
   const UserTag = Nodal.require('app/models/user_tag.js');
+  const Tag = Nodal.require('app/models/tag.js');
+  const PromiseMaker = require('bluebird').promisify;
 
-  class V1UserTagsController extends Nodal.Controller {
+  const findTag = PromiseMaker(Tag.find, {context: Tag});
+  const AuthController = Nodal.require('app/controllers/auth_controller.js');
+
+  class V1UserTagsController extends AuthController {
 
     index() {
 
-      UserTag.query()
-        .where(this.params.query)
-        .end((err, models) => {
+      this.authorize((err, accessToken, user) => {
+        const user_id = user.get('id');
+        const tagPromises = [];
 
-          this.respond(err || models);
+        UserTag.query()
+          .where({user_id})
+          .where(this.params.query)
+          .end((err, userTags) => {
 
-        });
+            // iterate through all userTags
+            userTags.forEach((userTag) => {
+              let tag_id = userTag.get('tag_id');
+              tagPromises.push(findTag(tag_id))
+            })
+
+            Promise.all(tagPromises)
+              .then((tags) => {
+
+                // convert tags into an object with tag ids as keys
+                tags = tags.reduce((accum, tag) => {
+                  accum[tag._data.id] = tag._data; // refactor if possible to not use private variables
+                  return accum;
+                }, {})
+
+                // map through userTags
+                userTags = userTags.map((userTag) => {
+                  let id = userTag.get('id');
+                  let card_count = userTag.get('card_count');
+                  let tag_id = userTag.get('tag_id');
+                  let tagName = tags[tag_id]['name'];
+                  return Object.assign({}, {id, user_id, tag_id, card_count}, {tagName}); 
+                })
+                this.respond(userTags);
+
+              })
+              .catch((error) => {
+                console.error('Error with tagPromises: ', error);
+                this.respond(error);
+              });
+
+          });
+      })
+
 
     }
 
