@@ -8,7 +8,7 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 8000;
 
-var configPath = process.env.LOAD_SAMPLE ? '../../sample.config.env' : '../../config.env';
+var configPath = !!process.env.LOAD_SAMPLE ? '../../sample.config.env' : '../../config.env';
 
 require('env2')(configPath); // import environment variables
 
