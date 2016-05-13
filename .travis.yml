@@ -18,4 +18,4 @@ addons:
   postgresql: '9.3'
 before_script:
 - psql -c 'create database api_development;' -U postgres
-script: cd $TEST_DIR && npm install && npm test
+script: export LOAD_SAMPLE=true & cd $TEST_DIR && npm install && npm test
