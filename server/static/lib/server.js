@@ -8,7 +8,9 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 8000;
 
-require('env2')('../../config.env'); // import environment variables
+var configPath = process.env.LOAD_SAMPLE ? '../../sample.config.env' : '../../config.env';
+
+require('env2')(configPath); // import environment variables
 
 // app.use(express.static(__dirname + '/../../../client/app', {
 //   extensions: ['html']
