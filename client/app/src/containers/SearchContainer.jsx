@@ -15,8 +15,7 @@ class SearchContainer extends React.Component {
         onSubmit={e => { 
           e.preventDefault();
           if (!input.value.trim()) { return; }
-          var keywords = input.value.split(' ').filter(word => word.length !== 0);
-          this.props.searchCards(keywords);
+          this.props.searchCards(input.value.trim());
           input.value = '';
         }}>
         <input className="search-input" 
@@ -35,3 +34,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(SearchContainer);
+
+// var keywords = input.value.split(' ').filter(word => word.length !== 0);
+

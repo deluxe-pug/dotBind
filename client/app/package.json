@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "axios": "^0.11.0",
+    "elasticsearch": "^11.0.1",
     "jquery": "^2.2.3",
     "react": "^15.0.2",
     "react-ace": "^3.4.1",

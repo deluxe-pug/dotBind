@@ -2,7 +2,6 @@ const cardsReducer = (state = [], action) => {
   switch(action.type) {
 
     case 'ADD_CARD':
-      console.log('payload: ', action.payload.data);
       return [...state, action.payload.data.data];
 
     case 'FETCH_CARDS':
@@ -18,6 +17,7 @@ const cardsReducer = (state = [], action) => {
       return [...filteredCards];
 
     case 'SEARCH_CARDS':
+      console.log('SEARCH CARDS PAYLOAD: ', payload);
       return [...action.payload.data.data];
 
     case 'REMOVE_TAG':

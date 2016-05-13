@@ -1,6 +1,13 @@
 import axios from 'axios';
 import endpoints from './endpoints';
 
+// import elasticsearch from 'elasticsearch';
+// // const elasticsearch = require('elasticsearch');
+// const client = new elasticsearch.Client({
+//   host: endpoints.elasticsearch.root,
+//   log: 'trace'
+// });
+
 export const addCardAction = (url) => {
   const request = axios.post(endpoints.cards, {
     "card": {
@@ -40,7 +47,6 @@ export const fetchCardsAction = () => {
 };
 
 export const filterCardsAction = (tag) => {
-  console.log('filterCardsAction is called');
   return {
     type: 'FILTER_CARDS',
     tag: tag,
@@ -48,17 +54,35 @@ export const filterCardsAction = (tag) => {
 };
 
 export const searchCardsAction = (keywords) => {
-  let query = endpoints.cards + '?title__contains=' + keywords[0];
-  if (keywords.length > 1) {
-    for (var i = 1; i < keywords.length; i++) {
-      query = query.concat(',%20', keywords[i]);
+  console.log('search keywords: ', keywords);
+  // let query = JSON.stringify({
+  //   "query": {
+  //     "bool": {
+  //       "should": [{
+  //         "match": {
+  //           "title": keywords
+  //         }
+  //       }],
+  //     },
+  //   }
+  // });
+
+  const query = {
+    "query": {
+      "match": {
+        "title": keywords
+      }
     }
-  }
-  const request = axios.get(query);
+  };
+
+  // const request = client.search(query);
+  const request = axios.get(endpoints.cards, {params: query})
+    .catch(error => console.log(error));
   return {
     type: 'SEARCH_CARDS',
     payload: request,
   }
+
 };
 
 export const removeTagFromCardAction = (tag) => {
@@ -82,3 +106,18 @@ export const addTagToCardAction = (tagName, userId, cardId) => {
     payload: request,
   };
 };
+
+// export const searchCardsAction = (keywords) => {
+//   let query = endpoints.cards + '?title__contains=' + keywords[0];
+//   if (keywords.length > 1) {
+//     for (var i = 1; i < keywords.length; i++) {
+//       query = query.concat(',%20', keywords[i]);
+//     }
+//   }
+//   const request = axios.get(query);
+//   return {
+//     type: 'SEARCH_CARDS',
+//     payload: request,
+//   }
+// };
+
