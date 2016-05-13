@@ -77,16 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
       );
 
       chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        console.log('here is the request', request);
 
         if (request.method === 'sendSelection') {
-          console.log('message recieved in popup!', request.selection);
+          console.log('message recieved in popup!', request.selected);
           sendResponse({ from: 'popup', msg: 'message recieved from popups!' });
-          console.log('request.selection: ', request.selection);
-          data.card.code = request.selection;
-          renderContent(request.selection);
+          console.log('request.selected: ', request.selected);
+          data.card.code = request.selected;
+          renderContent(request.selected);
           // toggle content type
           $('body').on('click', '.code', () => {
-            data.card.code = request.selection;
+            data.card.code = request.selected;
             data.card.text = null;
             $(this).prop('checked', true);
             $('.text input').prop('checked', false);
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
 
           $('body').on('click', '.text', () => {
-            data.card.text = request.selection;
+            data.card.text = request.selected;
             data.card.code = null;
             $(this).prop('checked', true);
             $('.code input').prop('checked', false);
@@ -121,11 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     // save card
+    // const accesstoken = localStorage.getItem('dotBindAccessToken');
+    const accesstoken = 'dotBind';
+
     $('body').on('click', '#save', () => {
       console.log('data sending to api end point v1/cards', data);
       $.ajax({
         type: 'POST',
-        url: `${envParams[enviornment].url}:3000/v1/cards`,
+        url: `${envParams[enviornment].url}:3000/v1/cards?access_token=${accesstoken}`,
         data,
         success: result => { console.log(result); },
         dataType: 'json',

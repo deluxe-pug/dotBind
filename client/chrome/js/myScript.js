@@ -1,22 +1,22 @@
 (() => {
   console.log('myScript loaded!');
-  
   // form message with selection to send to popup.js
   const selection = {
     from: 'myScript',
     method: 'sendSelection',
     selected: window.getSelection().toString(),
   };
+  console.log(selection);
   // form message with user infomation to send to background.js
   const logInDotBind = {
     from: 'myScript',
     method: 'logInDotBind',
-    doBindAccesToken: localStorage.getItem('doBindAccesToken'),
-    gitHubId: localStorage.getItem('gitHubId'),
+    dotBindAccessToken: localStorage.getItem('dotBindAccessToken'),
+    githubId: localStorage.getItem('githubId'),
   }
 
   // send DotBind user infomation to background.js
-  if ( logInDotBind.doBindAccesToken ) {
+  if ( logInDotBind.dotBindAccessToken ) {
     chrome.runtime.sendMessage(logInDotBind, response => console.log(response.msg));
   }
   // send selected text to popup.js
