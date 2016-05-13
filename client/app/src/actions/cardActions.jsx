@@ -3,7 +3,7 @@ import endpoints from './endpoints';
 
 import elasticsearch from 'elasticsearch';
 const client = new elasticsearch.Client({
-  host: endpoints.elasticsearch.host,
+  host: endpoints.elasticsearch,
   log: 'trace'
 });
 
