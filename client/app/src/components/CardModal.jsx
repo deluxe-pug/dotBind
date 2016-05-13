@@ -15,7 +15,6 @@ let input;
 class CardModal extends React.Component {
   constructor(props) {
     super(props);
-    console.log('modal props => ',props)
   }
 
   render() {
@@ -93,19 +92,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 CardModal = connect(mapStateToProps, mapDispatchToProps)(CardModal);
 export default CardModal;
-
-
-// <form onSubmit={ (e) => {
-//   if ( !input.value.trim() ) {
-//     return;
-//   }
-//   this.props.dispatch( addTag(input.value) );
-//   this.notifyAddTag();
-//   input.value =''; }}>
-//   <div className="col s6 add-tag-button">
-//     <button type="submit" className="waves-effect waves-light btn">Add Tag</button>
-//   </div>
-//   <div className="col s6">
-//     <input type='text' placeholder="Tag" ref={ node => { input = node; }}/>
-//   </div>
-// </form>

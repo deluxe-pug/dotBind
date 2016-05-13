@@ -25,7 +25,6 @@ const cardsReducer = (state = [], action) => {
       let newState = state.slice(0);
       newState.forEach( (card) => {
         for ( let j = 0; j < card.cardTags.length; j++ ) {
-          console.log(newState[j].cardTags)
           if ( card.cardTags[j].id === removedId ) {
             card.cardTags.splice(j,1);
           }
@@ -34,9 +33,24 @@ const cardsReducer = (state = [], action) => {
       return newState;
 
     case 'ADD_CARD_TAG':
-      console.log('ADD_CARD_TAG reducer');
-      console.log('reducer state', state)
-      return state;
+      let cardId = JSON.parse(action.payload.config.data).card_id;
+      let userId = state[0].user_id;
+      let newTag = action.payload.data.data[0]._data;
+      let updatedState = [...state];
+      updatedState.forEach( (card) => {
+        if ( card.id === cardId ) {
+          card.cardTags.push({
+            id: 100,
+            tag: {
+              id: newTag.id,
+              name: newTag.name,
+            },
+          });
+        }
+      });
+
+      console.log('old state ==>  ', state);
+      return updatedState;
 
     default:
       return state;

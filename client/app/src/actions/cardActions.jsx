@@ -69,9 +69,6 @@ export const removeTagFromCardAction = (tag) => {
   };
 };
 
-
-// needs card id, tag name, user id
-// where are these variables stored??
 export const addTagToCardAction = (tagName, userId, cardId) => {
   const request = axios.post(endpoints.tags, {
     user_id: userId,
@@ -80,8 +77,7 @@ export const addTagToCardAction = (tagName, userId, cardId) => {
       tagName
     ],
   });
-  console.log('ADD_CARD_TAG action');
-  console.log(tagName, userId, cardId)
+  console.log(cardId);
   return {
     type: 'ADD_CARD_TAG',
     payload: request,
