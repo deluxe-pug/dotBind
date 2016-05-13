@@ -33,6 +33,11 @@ const cardsReducer = (state = [], action) => {
       });
       return newState;
 
+    case 'ADD_CARD_TAG':
+      console.log('ADD_CARD_TAG reducer');
+      console.log(action.payload)
+      return state;
+
     default:
       return state;
   };

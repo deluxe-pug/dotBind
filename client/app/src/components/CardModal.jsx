@@ -9,7 +9,7 @@ import 'brace/mode/javascript';
 import 'brace/theme/tomorrow_night';
 
 import { bindActionCreators } from 'redux';
-import { addTag } from '../actions/tagActions';
+import { addTagToCardAction } from '../actions/cardActions';
 
 let input;
 class CardModal extends React.Component {
@@ -47,11 +47,11 @@ class CardModal extends React.Component {
             <div className="col s8 offset-s2">
               <form onSubmit={ (e) => {
                 console.log(input.value)
-                e.preventDefault()
+                e.preventDefault();
                 if ( !input.value.trim() ) {
                   return;
                 }
-                this.props.dispatch( addTag(input.value) );
+                this.props.dispatch( addTagToCardAction(input.value) );
                 input.value = '';
               }}>
                 <div className="col s6">
@@ -81,18 +81,18 @@ class CardModal extends React.Component {
   }
 };
 
-// const mapStateToProps = (state) => {
-//   console.log('-=-=-=-', state)
-//   return {
-//     cardTags: state.cardTags,
-//   };
-// };
-//
+const mapStateToProps = (state) => {
+
+  return {
+    cards: state.cards,
+  };
+};
+
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({addTag: addTag}, dispatch);
+  return bindActionCreators({addTag: addTagToCardAction}, dispatch);
 };
-CardModal = connect(null, mapDispatchToProps)(CardModal);
+CardModal = connect(mapStateToProps, mapDispatchToProps)(CardModal);
 export default CardModal;
 
 
