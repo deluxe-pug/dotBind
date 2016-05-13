@@ -15,6 +15,7 @@ let input;
 class CardModal extends React.Component {
   constructor(props) {
     super(props);
+    console.log('modal props => ',props)
   }
 
   render() {
@@ -51,7 +52,7 @@ class CardModal extends React.Component {
                 if ( !input.value.trim() ) {
                   return;
                 }
-                this.props.dispatch( addTagToCardAction(input.value) );
+                this.props.dispatch( addTagToCardAction(input.value, this.props.user_id, this.props.id) );
                 input.value = '';
               }}>
                 <div className="col s6">
@@ -82,12 +83,10 @@ class CardModal extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-
   return {
     cards: state.cards,
   };
 };
-
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({addTag: addTagToCardAction}, dispatch);

@@ -35,7 +35,7 @@ const cardsReducer = (state = [], action) => {
 
     case 'ADD_CARD_TAG':
       console.log('ADD_CARD_TAG reducer');
-      console.log(action.payload)
+      console.log('reducer state', state)
       return state;
 
     default:
