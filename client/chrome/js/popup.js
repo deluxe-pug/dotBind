@@ -1,4 +1,4 @@
-const enviornment = 'production';
+const enviornment = 'dev';
 
 const envParams = {
   dev: {
