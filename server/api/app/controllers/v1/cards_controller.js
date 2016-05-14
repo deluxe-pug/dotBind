@@ -161,12 +161,21 @@ module.exports = (function() {
                     },
                   };
 
-                  client.create(esPost)
-                    .then((response) => 
-                      console.log('this should not be responding: ', response),
-                      (error) => 
-                      console.log('this sould not be responding: ', error)
-                    );
+                  client.create(esPost, function(error, response) {
+                    if (error) {
+                      console.log('ElasticSearch POST error');
+                    } else {
+                      console.log('ElasticSearch POST success');
+                      this.respond(response);
+                    }
+                  });
+                    // .then((response) => {
+                    //   console.log('this should not be responding: ', response),
+                    //   this.respond(response);
+                    // }.bind(this),
+                    //   (error) => 
+                    //   console.log('this sould not be responding: ', error)
+                    // );
                 });
               });
             });

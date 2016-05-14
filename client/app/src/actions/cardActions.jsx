@@ -9,7 +9,7 @@ const client = new elasticsearch.Client({
 
 export const addCardAction = (url) => {
   console.log('addCardAction is triggered');
-  
+
   const request = axios.post(endpoints.cards, {
     "card": {
       "url": url,
@@ -25,7 +25,7 @@ export const addCardAction = (url) => {
       "Backbone"
      ]
   });
-
+  console.log('checking middle logs')
   return {
     type: 'ADD_CARD',
     payload: request,
