@@ -15,12 +15,13 @@ require('env2')(configPath); // import environment variables
 //   extensions: ['html']
 // }));
 
+// enable expression session and cookies 
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 app.use(cookieParser());
 
 passport.serializeUser(function(user, cb) {
   console.log('the user: ', user);
-
+  // specify items to attach to user session
   cb(null, { id: user.id, username: user.username, "img": user.photos[0].value, "access_token": user.nodalToken });
 });
 
@@ -62,7 +63,6 @@ passport.use(new GitHubStrategy({
   }
 ));
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -90,7 +90,6 @@ app.use(passport.session());
 //   });
 // })
 
-
 app.get('/', ensureAuthenticated, (req, res) => {
   res.sendFile(path.resolve(__dirname + '/../../../client/app/index.html'));
 });
@@ -99,23 +98,51 @@ app.get('/login', (req, res) => {
   res.sendFile(path.resolve(__dirname + '/../../../client/app/login.html'));
 })
 
-
+// **************************************************************************
+//                        Github/passport Auth Route 
+// **************************************************************************
 app.get('/auth/github', passport.authenticate('github'));
 app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
     console.log(req.isAuthenticated());
-
     res.redirect('/');
   }
 );
 
+// **************************************************************************
+//                         Regular user Auth Route
+// **************************************************************************
+app.get('/auth/regular', (req, res) => {
+  // hit the nodal validating user end point
+    // if the user is valid
+      // set up session with username and token
+      req.session.dotBind = {};
+      req.session.dotBind.username = 'public';
+      req.session.dotBind.access_token = 'fake token';
+      // redirect to home page
+      res.redirect('/');
+    // if the user is not valid
+      // send back response 'user not valid'
+});
+
+// **************************************************************************
+//                      after seccussful user login
+// **************************************************************************
 app.get('/auth', (req, res) => {
-  console.log('this is the user object on req: ', req.user);
-  console.log('This is the session object on req', req.session);
-  res.send(req.user);
-})
+  console.log('--> this is the user object on req: ', req.user);
+  console.log('--> This is the session object on req', req.session);
+  // passport with github persist session
+  if ( req.user ) {
+    res.send(req.user);
+  // regular user login, no session has been created?
+  } else if ( req.session.dotBind ) {
+    res.send(req.session.dotBind);
+  } else {
+    res.send('something is not right... see server.js');
+  }
+});
 
 app.get('/logout', function(req, res){
   // Destroy Access Token in database
@@ -184,14 +211,18 @@ app.get('/logout', function(req, res){
 
 // displays other associated assets -- bundle.js
 // and deals with wildcard routes
-app.get(/^(.+)$/, function(req, res) { 
+app.get(/^(.+)$/, function(req, res) {
   if (!path.extname(req.url)) {res.end('Path not available. Try another url');}
   res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
-})
+});
 
+// start server
 app.listen(port, () => console.log('Listening on port ' + port));
 
+// custom middleware function to make sure the user is logged in when accessing home page
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated() || req.path === '/auth/github') { return next(); }
+/*req.isAuthenticated() is created when user logs in as regular users
+  req.session is created when user logs in as regular users */
+  if (req.session.dotBind || req.isAuthenticated() || req.path === '/auth/github') { return next(); }
   res.redirect('/login')
 }
