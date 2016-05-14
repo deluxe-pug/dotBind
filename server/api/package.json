@@ -8,9 +8,13 @@
     "node": "4.2.4"
   },
   "dependencies": {
+    "bcrypt": "^0.8.6",
     "bluebird": "^3.3.5",
     "elasticsearch": "^11.0.1",
     "nodal": "git://github.com/michelleheh/nodal.git"
+  },
+  "env": {
+    "PYTHON": "/opt/local/bin/python2.7"
   },
   "devDependencies": {
     "chai": "~3.5.0",
