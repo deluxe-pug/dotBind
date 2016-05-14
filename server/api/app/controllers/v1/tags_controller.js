@@ -80,6 +80,22 @@ module.exports = (function() {
                 user_tag.save();
               }
             });
+
+            // convert cardTagModels into object by tagId
+            let cardTagsByTagId = cardTagModels.reduce((accum, cardTag) => {
+              accum[cardTag._data.tag_id] = cardTag._data;
+              return accum;
+            }, {})
+
+            // map over tagModels & add cardTagId
+            tagModels = tagModels.map((tagModel) => {
+              tag_id = tagModel._data.id;
+              let tagName = tagModel._data.name;
+              let cardTagId = cardTagsByTagId[tag_id].id;
+              return Object.assign( {}, {id: tag_id, name: tagName}, {cardTagId} );
+            })
+
+
             this.respond(tagModels);
           });
         });
