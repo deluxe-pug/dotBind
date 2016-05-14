@@ -109,9 +109,11 @@ export const searchCardsAction = (keywords) => {
 
 };
 
-export const updateCardAction = (cardInfo) => {
-  const request = axios.put(endpoints.cards, {
-
+export const updateCardAction = (reqBody) => {
+  const endpoint = `${endpoints.cards}/${reqBody.id}/?access_token=${reqBody.token}`;
+  const request = axios.put(endpoint, {
+    code: reqBody.code,
+    note: reqBody.note,
   });
   return {
     type: 'UPDATE_CARD',

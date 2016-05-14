@@ -34,7 +34,7 @@ const cardsReducer = (state = [], action) => {
       return [...searchedCards];
 
     case 'UPDATE_CARD':
-      
+      console.log('UPDATE_CARD reducer called');
       return state;
 
     case 'REMOVE_TAG':

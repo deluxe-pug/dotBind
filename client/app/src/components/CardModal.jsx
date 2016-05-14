@@ -17,16 +17,26 @@ let note = '';
 class CardModal extends React.Component {
   constructor(props) {
     super(props);
+    editorCode = this.props.code;
+    note = this.props.note;
   }
 
   editorHasChanged(val) {
     editorCode = val;
-    console.log(editorCode)
   }
 
   noteHasChanged(event) {
-    console.log(event.target.value)
     note = event.target.value;
+  }
+
+  saveChanges() {
+    let requestBody = {
+      id: this.props.id,
+      token: localStorage.getItem('dotBindAccessToken'),
+      code: editorCode,
+      note: note,
+    };
+    this.props.updateCard(requestBody);
   }
 
   render() {
@@ -43,13 +53,19 @@ class CardModal extends React.Component {
         </div>
 
         <div className="modal-editor">
-          <AceEditor height="240px" width="100%" onFocus={this.props.remindSave.bind(this)} onChange={this.editorHasChanged} mode="javascript" theme="tomorrow_night"
-          name="editor" editorProps={{$blockScrolling: true}} value={this.props.code || '// Your code here'} />
+          <AceEditor height="240px" width="100%"
+            onFocus={this.props.remindSave.bind(this)}
+            onChange={this.editorHasChanged} mode="javascript"
+            theme="tomorrow_night" name="editor"
+            editorProps={{$blockScrolling: true}}
+            value={this.props.code || '// Your code here'} />
         </div>
 
         <div className="modal-notes input-field">
-          <textarea className="notes" defaultValue={'// Edit your notes here. \n' + this.props.note}
-            onChange={this.props.remindSave.bind(this), this.noteHasChanged}></textarea>
+          <textarea className="notes"
+            defaultValue={'// Edit your notes here. \n' + this.props.note}
+            onChange={this.props.remindSave.bind(this), this.noteHasChanged}>
+          </textarea>
         </div>
         <div className="modal-footer">
           <div className="row">
@@ -58,7 +74,10 @@ class CardModal extends React.Component {
                 <a className="waves-effect waves-light btn modal-link" href={this.props.url}>View Original Resource</a>
               </div>
               <div className="col s6">
-                <button className="waves-effect waves-light btn save-button" onClick={this.props.notifyCardUpdate.bind(this)}>Save Changes</button>
+                <button className="waves-effect waves-light btn save-button"
+                  onClick={this.props.notifyCardUpdate.bind(this), this.saveChanges.bind(this)}>
+                  Save Changes
+                </button>
               </div>
             </div>
 
@@ -102,7 +121,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({addTag: addTagToCardAction}, dispatch);
+  return bindActionCreators({
+    addTag: addTagToCardAction,
+    updateCard: updateCardAction,
+  }, dispatch);
 };
 CardModal = connect(mapStateToProps, mapDispatchToProps)(CardModal);
 export default CardModal;
