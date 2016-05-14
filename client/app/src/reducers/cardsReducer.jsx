@@ -33,6 +33,10 @@ const cardsReducer = (state = [], action) => {
 
       return [...searchedCards];
 
+    case 'UPDATE_CARD':
+      
+      return state;
+
     case 'REMOVE_TAG':
       let removedId = action.payload.data.data[0].id;
       let newState = state.slice(0);
