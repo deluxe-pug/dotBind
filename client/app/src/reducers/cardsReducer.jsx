@@ -20,6 +20,7 @@ const cardsReducer = (state = [], action) => {
       return [...filteredCards];
 
     case 'SEARCH_CARDS':
+      console.log('PAYLOAD: ', action.payload);
       const returnedIDs = [];
       action.payload.hits.hits.forEach(function(obj) {
         returnedIDs.push(obj._source.id);

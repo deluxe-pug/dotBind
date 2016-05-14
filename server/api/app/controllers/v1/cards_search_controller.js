@@ -22,7 +22,6 @@ module.exports = (function() {
   class V1CardsSearchController extends Nodal.Controller {
 
     index() {
-
       console.log('QUERY============>: ', this.params.query); // query: '{"index":"library","body":{"query":{"query_string":{"query":"hi"}}}}'
       client.search(JSON.parse(this.params.query.query), function(error, cards) {
         if (error) {
@@ -31,27 +30,15 @@ module.exports = (function() {
         console.log('ES SEARCH RESPONSE: ', cards);
         this.respond( error || cards );
       }.bind(this));
-
     }
 
-    show() {
+    show() {}
 
+    create() {}
 
-    }
+    update() {}
 
-    create() {
-
-
-    }
-
-    update() {
-
-
-    }
-
-    destroy() {
-
-    }
+    destroy() {}
 
   }
 
