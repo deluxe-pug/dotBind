@@ -12,6 +12,7 @@
         console.log('message recieved!', request.dotBindAccessToken);
         localStorage.setItem('dotBindAccessToken', request.dotBindAccessToken);
         localStorage.setItem('githubId', request.githubId);
+        localStorage.setItem('githubUsername', request.githubUsername)
         sendResponse({ from: 'background', msg: 'got the message in background!' });
       }
     });

@@ -12,6 +12,7 @@
     from: 'myScript',
     method: 'logInDotBind',
     dotBindAccessToken: localStorage.getItem('dotBindAccessToken'),
+    githubUsername: localStorage.getItem('githubUsername'),
     githubId: localStorage.getItem('githubId'),
   }
 

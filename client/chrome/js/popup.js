@@ -5,7 +5,7 @@ const envParams = {
     url: 'http://localhost',
   },
   production: {
-    url: 'http://ec2-54-86-26-97.compute-1.amazonaws.com',
+    url: 'http://www.dotbind.io',
   },
 };
 
@@ -65,7 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         text: null,
         note: null,
       },
-      username: 'public',
+      // username: 'public',
+      username: localStorage.getItem('githubUsername'),
       tags: [],
     };
     // send message to current tab
@@ -123,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     // save card
-    // const accesstoken = localStorage.getItem('dotBindAccessToken');
-    const accesstoken = 'dotBind';
+    const accesstoken = localStorage.getItem('dotBindAccessToken');
+    // const accesstoken = 'dotBind';
 
     $('body').on('click', '#save', () => {
       console.log('data sending to api end point v1/cards', data);
