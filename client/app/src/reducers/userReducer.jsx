@@ -6,6 +6,7 @@ export default (state = {}, action) => {
       // Refactor, no side effects should be present in reducer
       window.localStorage.setItem('dotBindAccessToken', action.payload.data.access_token);
       window.localStorage.setItem('githubId', action.payload.data.id)
+      window.localStorage.setItem('githubUsername', action.payload.data.username);
       return action.payload.data;
     default:
       return state;
