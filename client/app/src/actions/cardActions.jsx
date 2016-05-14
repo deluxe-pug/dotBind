@@ -31,7 +31,8 @@ export const removeCardAction = (id) => {
 };
 
 export const fetchCardsAction = () => {
-  const request = axios.get(endpoints.cards).catch((err) => console.error('Error fetching cards: ', err));
+  const accesstoken = localStorage.getItem('dotBindAccessToken');
+  const request = axios.get(`${endpoints.cards}?access_token=${accesstoken}`).catch((err) => console.error('Error fetching cards: ', err));
   return {
     type: 'FETCH_CARDS',
     payload: request,
