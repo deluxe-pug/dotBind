@@ -24,6 +24,10 @@ class TopBar extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
+  handleLogout() {
+    localStorage.clear(); // clear local storage upon logout
+  }
+
 
   render() {
     return (
@@ -59,7 +63,7 @@ class TopBar extends React.Component {
             </li>
           </ul>
           <ul id='dropdown1' className='dropdown-content'>
-            <li><a href="/logout">Log out</a></li>
+            <li><a onClick={this.handleLogout.bind(this)} href="/logout">Log out</a></li>
           </ul> 
         </nav>
       </div>
