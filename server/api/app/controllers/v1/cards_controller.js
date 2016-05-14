@@ -174,13 +174,32 @@ module.exports = (function() {
 
     }
 
+    /* Sample PUT request body
+    URI- http://localhost:3000/v1/cards/${card_id}/?access_token=${access_token}
+
+    { 
+      "url": "http://liamhatcher.com",
+      "title": "about liam",
+      "code": "var liam = function() {};",
+      "text": "This is liam",
+      "note": "This is a note about liam not me",
+      "icon": "An icon about liam",
+      "domain": "liamhatcher.com" 
+    }
+    */
     update() {
 
-      Card.update(this.params.route.id, this.params.body, (err, model) => {
+      this.authorize((err, accessToken, user) => {
+        if (err) {
+          return this.respond(err);
+        }
 
-        this.respond(err || model);
+        Card.update(this.params.route.id, this.params.body, (error, model) => {
 
-      });
+          this.respond(error || model);
+
+        });
+      })
 
     }
 
