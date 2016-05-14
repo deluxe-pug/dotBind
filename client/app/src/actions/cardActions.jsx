@@ -109,6 +109,16 @@ export const searchCardsAction = (keywords) => {
 
 };
 
+export const updateCardAction = (cardInfo) => {
+  const request = axios.put(endpoints.cards, {
+
+  });
+  return {
+    type: 'UPDATE_CARD',
+    payload: request,
+  };
+};
+
 export const removeTagFromCardAction = (tag) => {
   const request = axios.delete(endpoints.card_tags + '/' + tag.cardTagId);
   return {
