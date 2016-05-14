@@ -174,6 +174,17 @@ module.exports = (function() {
 
     }
 
+    /* Sample PUT request
+    { 
+      "url": "http://liamhatcher.com",
+      "title": "about liam",
+      "code": "var liam = function() {};",
+      "text": "This is liam",
+      "note": "This is a note about liam not me",
+      "icon": "An icon about liam",
+      "domain": "liamhatcher.com" 
+    }
+    */
     update() {
 
       Card.update(this.params.route.id, this.params.body, (err, model) => {
