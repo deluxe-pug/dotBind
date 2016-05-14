@@ -10,7 +10,7 @@ class AllCardsContainer extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchCards(); // async!!!
+    setTimeout(this.props.fetchCards, 100); // TODO: we need to figure out a solution to dispactch actions asyncly.
   }
 
   render() {
