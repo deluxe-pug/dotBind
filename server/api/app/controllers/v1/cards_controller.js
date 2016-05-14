@@ -186,12 +186,18 @@ module.exports = (function() {
     }
     */
     update() {
+      
+      this.authorize((err, accessToken, user) => {
+        if (err) {
+          return this.respond(err);
+        }
 
-      Card.update(this.params.route.id, this.params.body, (err, model) => {
+        Card.update(this.params.route.id, this.params.body, (error, model) => {
 
-        this.respond(err || model);
+          this.respond(error || model);
 
-      });
+        });
+      })
 
     }
 
