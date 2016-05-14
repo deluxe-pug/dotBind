@@ -13,6 +13,9 @@
     "elasticsearch": "^11.0.1",
     "nodal": "git://github.com/michelleheh/nodal.git"
   },
+  "env": {
+    "PYTHON": "/opt/local/bin/python2.7"
+  },
   "devDependencies": {
     "chai": "~3.5.0",
     "eslint": "^2.9.0",
