@@ -62,12 +62,14 @@ class CardModal extends React.Component {
                 this.props.dispatch( addTagToCardAction(input.value, this.props.user_id, this.props.id) );
                 input.value = '';
               }}>
+              <div className="row">
+                <div className="col s6">
+                  <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
+                </div>
                 <div className="col s6">
                   <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
                 </div>
-                <div className="col s6">
-                  <button className="waves-effect waves-light btn">Add Tag</button>
-                </div>
+              </div>
               </form>
             </div>
           </div>

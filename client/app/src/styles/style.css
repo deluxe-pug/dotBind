@@ -318,5 +318,6 @@ hr {
 }
 
 .add-tag-button {
-  text-align: right;
+  /*text-align: right;*/
+  width: 100%;
 }
