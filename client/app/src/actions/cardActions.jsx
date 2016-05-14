@@ -77,7 +77,6 @@ export const addTagToCardAction = (tagName, userId, cardId) => {
       tagName
     ],
   });
-  console.log(cardId);
   return {
     type: 'ADD_CARD_TAG',
     payload: request,

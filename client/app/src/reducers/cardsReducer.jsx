@@ -34,22 +34,21 @@ const cardsReducer = (state = [], action) => {
 
     case 'ADD_CARD_TAG':
       let cardId = JSON.parse(action.payload.config.data).card_id;
-      let userId = state[0].user_id;
-      let newTag = action.payload.data.data[0]._data;
+      let newTagData = action.payload.data.data[0];
+      let cardTagId = newTagData.cardTagId;
+      let newTag = {
+        id: newTagData.id,
+        name: newTagData.name,
+      };
       let updatedState = [...state];
-      console.log('state => ', state);
       updatedState.forEach( (card) => {
         if ( card.id === cardId ) {
           card.cardTags.push({
-            id: 100,
-            tag: {
-              id: newTag.id,
-              name: newTag.name,
-            },
+            id: cardTagId,
+            tag: newTag,
           });
         }
       });
-
       return updatedState;
 
     default:
