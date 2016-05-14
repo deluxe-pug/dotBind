@@ -8,6 +8,10 @@ import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/tomorrow_night';
 
+import { bindActionCreators } from 'redux';
+import { addTagToCardAction } from '../actions/cardActions';
+
+let input;
 class CardModal extends React.Component {
   constructor(props) {
     super(props);
@@ -35,44 +39,58 @@ class CardModal extends React.Component {
         <div className="modal-notes input-field">
           <textarea className="notes" defaultValue={this.props.note} onChange={this.props.remindSave.bind(this)}></textarea>
         </div>
-
-        <hr/>
-
         <div className="modal-footer">
           <div className="row">
-            <div className="col s8 offset-s2">
+            <div className="row save-bar">
               <div className="col s6">
-                <input className="tag-input" type="text" placeholder="Add tag" />
+                <a className="waves-effect waves-light btn modal-link" href={this.props.url}>View Original Resource</a>
               </div>
               <div className="col s6">
-                <button className="waves-effect waves-light btn">Add Tag</button>
+                <button className="waves-effect waves-light btn save-button" onClick={this.props.notifyCardUpdate.bind(this)}>Save Changes</button>
               </div>
             </div>
-          </div>
-          {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
-              <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
-          ) : <span></span>} <br/>
-          <div className="row save-bar">
-            <div className="col s6">
-              <a className="waves-effect waves-light btn modal-link" href={this.props.url}>View Original Resource</a>
-            </div>
-            <div className="col s6">
-              <button className="waves-effect waves-light btn save-button" onClick={this.props.notifyCardUpdate.bind(this)}>Save Changes</button>
-            </div>
-          </div>
 
+            <hr/>
+
+            <div className="col s8 offset-s2">
+              <form onSubmit={ (e) => {
+                e.preventDefault();
+                if ( !input.value.trim() ) {
+                  return;
+                }
+                this.props.dispatch( addTagToCardAction(input.value, this.props.user_id, this.props.id) );
+                input.value = '';
+              }}>
+                <div className="row">
+                  <div className="col s6">
+                    <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
+                  </div>
+                  <div className="col s6">
+                    <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="tags-div">
+            {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
+              <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
+            ) : <span></span>} <br/>
+          </div>
         </div>
       </div>
     );
   }
 };
 
-// const mapStateToProps = (state) => {
-//   console.log('-=-=-=-', state)
-//   return {
-//     cardTags: state.cardTags,
-//   };
-// };
-//
-// // Card Modal = connect(mapStateToProps)(CardModal);
+const mapStateToProps = (state) => {
+  return {
+    cards: state.cards,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({addTag: addTagToCardAction}, dispatch);
+};
+CardModal = connect(mapStateToProps, mapDispatchToProps)(CardModal);
 export default CardModal;

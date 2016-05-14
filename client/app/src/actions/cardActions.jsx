@@ -68,3 +68,17 @@ export const removeTagFromCardAction = (tag) => {
     payload: request,
   };
 };
+
+export const addTagToCardAction = (tagName, userId, cardId) => {
+  const request = axios.post(endpoints.tags, {
+    user_id: userId,
+    card_id: cardId,
+    tags: [
+      tagName
+    ],
+  });
+  return {
+    type: 'ADD_CARD_TAG',
+    payload: request,
+  };
+};
