@@ -2,6 +2,8 @@ import axios from 'axios';
 import endpoints from './endpoints';
 
 export const addCardAction = (url) => {
+  console.log('addCardAction is triggered');
+
   const request = axios.post(endpoints.cards, {
     "card": {
       "url": url,
@@ -17,6 +19,7 @@ export const addCardAction = (url) => {
       "Backbone"
      ]
   });
+  console.log('checking middle logs')
   return {
     type: 'ADD_CARD',
     payload: request,
@@ -40,7 +43,6 @@ export const fetchCardsAction = () => {
 };
 
 export const filterCardsAction = (tag) => {
-  console.log('filterCardsAction is called');
   return {
     type: 'FILTER_CARDS',
     tag: tag,
@@ -48,17 +50,63 @@ export const filterCardsAction = (tag) => {
 };
 
 export const searchCardsAction = (keywords) => {
-  let query = endpoints.cards + '?title__contains=' + keywords[0];
-  if (keywords.length > 1) {
-    for (var i = 1; i < keywords.length; i++) {
-      query = query.concat(',%20', keywords[i]);
-    }
-  }
-  const request = axios.get(query);
+
+  // SIMPLE QUERY
+  // const query = {
+  //   params: {
+  //     query: {
+  //       index: 'library',
+  //       body: {
+  //         "query": {
+  //           "query_string": {
+  //             "query": keywords
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+  const query = {
+    params: {
+      "query": {
+        index: "library",
+        type: "cards",
+        body: {
+          "query": {
+            "bool": {
+              "should": [{
+                "multi_match": {
+                  "query": keywords,
+                  "fields": ["title", "url", "code", "text", "note", "cardTags"],
+                },
+              }],
+            },
+          },
+          "highlight": {
+            "fields": {
+              "title": {},
+              "url": {},
+              "code": {},
+              "text": {},
+              "note": {},
+              "domain": {},
+              "cardTags": {},
+            },
+          },
+        },
+      },
+    },
+  };
+
+
+  const request = axios.get(endpoints.search, query);
+
   return {
     type: 'SEARCH_CARDS',
     payload: request,
   }
+
 };
 
 export const removeTagFromCardAction = (tag) => {

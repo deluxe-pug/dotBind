@@ -37,15 +37,11 @@ module.exports = (function() {
 
         Card.query()
           .join('cardTags__tag')
-          .join('user')
-          .where({user_id})
           .where(this.params.query)
           .end((err, cards) => {
-            // this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {cardTags: ['id', {tag: ['id', 'name']}]}]);
-            this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {user: ['id', 'username', 'created_at']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
-          });
+            this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {cardTags: [{tag: ['id', 'name']}]}]);
+          });     
       })
-
     }
 
     show() {
@@ -134,44 +130,50 @@ module.exports = (function() {
                 }
               });
 
-              // Resolve CardTag Promises
-              Promise.all(cardTagPromises).then((cardTags) => {
-                this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
-                // this.respond([aCard, tags]);
+                // Resolve CardTag Promises
+                Promise.all(cardTagPromises).then((cardTags) => {
+                  this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
 
-                // console.log('aCard: ', aCard._data);
-                // console.log('tags: ', tags);
-                console.log('ELASTICSEARCH!!!!!');
+                  // POST to ELASTICSEARCH
+                  const cardData = aCard._data;
+                  const tagData = tags;
+                  const esPost = {
+                    index: 'library',
+                    type: 'cards',
+                    body: {
+                      id: cardData.id,
+                      user_id: cardData.user_id,
+                      title: cardData.title,
+                      url: cardData.url,
+                      icon: cardData.icon,
+                      domain: cardData.domain,
+                      code: cardData.code,
+                      text: cardData.text,
+                      note: cardData.note,
+                      cardTags: tags, // need to get cardTags in the right format???
+                    },
+                  };
 
-                const cardData = aCard._data;
-                const tagData = tags;
-                const esPost = {
-                  index: 'library',
-                  type: 'cards',
-                  body: {
-                    id: cardData.id,
-                    title: cardData.title,
-                    url: cardData.url,
-                    domain: cardData.domain,
-                    code: cardData.code,
-                    text: cardData.text,
-                    note: cardData.note,
-                    cardTags: tags,
-                  },
-                };
-
-                client.create(esPost)
-                  .then((response) => 
-                    console.log('response: ', response),
-                    (error) => 
-                    console.log('error: ', error)
-                  );
+                  client.create(esPost, function(error, response) {
+                    if (error) {
+                      console.log('ElasticSearch POST error');
+                    } else {
+                      console.log('ElasticSearch POST success');
+                      this.respond(response);
+                    }
+                  });
+                    // .then((response) => {
+                    //   console.log('this should not be responding: ', response),
+                    //   this.respond(response);
+                    // }.bind(this),
+                    //   (error) => 
+                    //   console.log('this sould not be responding: ', error)
+                    // );
+                });
               });
             });
           });            
         });
-      })
-
     }
 
     /* Sample PUT request body
