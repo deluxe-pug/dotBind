@@ -174,7 +174,9 @@ module.exports = (function() {
 
     }
 
-    /* Sample PUT request
+    /* Sample PUT request body
+    URI- http://localhost:3000/v1/cards/${card_id}/?access_token=${access_token}
+
     { 
       "url": "http://liamhatcher.com",
       "title": "about liam",
@@ -186,7 +188,7 @@ module.exports = (function() {
     }
     */
     update() {
-      
+
       this.authorize((err, accessToken, user) => {
         if (err) {
           return this.respond(err);
