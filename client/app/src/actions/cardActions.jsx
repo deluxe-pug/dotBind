@@ -57,33 +57,56 @@ export const filterCardsAction = (tag) => {
 
 export const searchCardsAction = (keywords) => {
 
+  // const query = {
+  //   params: {
+  //     query: {
+  //       index: 'library',
+  //       body: {
+  //         "query": {
+  //           "query_string": {
+  //             "query": keywords
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+
   const query = {
     params: {
-      query: {
-        index: 'library',
-        body: {
-          "query": {
-            "query_string": {
-              "query": keywords
+      "query": {
+        "bool": {
+          "must": [{}],
+          "must_not": [{}],
+          "should": [{
+            "multi-match": {
+              "query": keywords,
+              "fields": ["title", "url", "code", "text", "note", "cardTags"],
+            },
+            "match": {
+              "query": keywords,
+              "type": "phrase_prefix",
+              "field": "domain",
             }
-          }
+          }]
+        }
+      },
+      "highlight": {
+        "fields": {
+          "title": {},
+          "url": {},
+          "code": {},
+          "text": {},
+          "note": {},
+          "domain": {},
+          "cardTags": {},
         }
       }
     }
   }
 
-  // const query = {
-  //   index: 'library',
-  //   body: {
-  //     "query": {
-  //       "query_string": {
-  //         "query": keywords
-  //       }
-  //     }
-  //   }
-  // };
 
-  // const request = client.search(query);
   const request = axios.get(endpoints.search, query);
 
   return {
