@@ -10,6 +10,7 @@ class CardTag extends React.Component {
   }
 
   handleDelete() {
+    console.log(' tag props ==> ', this.props)
     this.props.removeTag(this.props);
   }
 

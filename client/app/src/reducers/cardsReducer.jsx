@@ -33,18 +33,8 @@ const cardsReducer = (state = [], action) => {
       return [...searchedCards];
 
     case 'UPDATE_CARD':
-      console.log('Current state => ', state);
-      console.log('New info => ', action.payload.data.data);
       var data = action.payload.data.data[0];
-      var newCardId = data.id;
-      var newCardState = state.slice(0);
-      newCardState.forEach( (card) => {
-        if ( card.id === newCardId ) {
-          card.code = data.code;
-          card.note = data.note;
-        }
-      })
-      return newCardState;
+      return updatedCard(state, data);
 
     case 'REMOVE_TAG':
       let removedId = action.payload.data.data[0].id;
@@ -59,27 +49,43 @@ const cardsReducer = (state = [], action) => {
       return newState;
 
     case 'ADD_CARD_TAG':
-      let cardId = JSON.parse(action.payload.config.data).card_id;
-      let newTagData = action.payload.data.data[0];
-      let cardTagId = newTagData.cardTagId;
-      let newTag = {
-        id: newTagData.id,
-        name: newTagData.name,
-      };
-      let updatedState = [...state];
-      updatedState.forEach( (card) => {
-        if ( card.id === cardId ) {
-          card.cardTags.push({
-            id: cardTagId,
-            tag: newTag,
-          });
-        }
-      });
-      return updatedState;
+      return addedCardTag(state, action.payload);
 
     default:
       return state;
   };
+};
+
+const updatedCard = (state, data) => {
+  const newCardId = data.id;
+  let newCardState = [...state];
+  newCardState.forEach( (card) => {
+    if ( card.id === newCardId ) {
+      card.code = data.code;
+      card.note = data.note;
+    }
+  });
+  return newCardState;
+};
+
+const addedCardTag = (state, payload) => {
+  const cardId = JSON.parse(payload.config.data).card_id;
+  const newTagData = payload.data.data[0];
+  const cardTagId = newTagData.cardTagId;
+  const newTag = {
+    id: newTagData.id,
+    name: newTagData.name,
+  };
+  let updatedState = [...state];
+  updatedState.forEach( (card) => {
+    if ( card.id === cardId ) {
+      card.cardTags.push({
+        id: cardTagId,
+        tag: newTag,
+      });
+    }
+  });
+  return updatedState;
 };
 
 export default cardsReducer;

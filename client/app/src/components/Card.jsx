@@ -33,6 +33,7 @@ class Card extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log('card props =====> ', props)
   }
 
   componentWillMount(){
