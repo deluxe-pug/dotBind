@@ -72,39 +72,37 @@ export const searchCardsAction = (keywords) => {
   //   }
   // }
 
-
   const query = {
     params: {
       "query": {
-        "bool": {
-          "must": [{}],
-          "must_not": [{}],
-          "should": [{
-            "multi-match": {
-              "query": keywords,
-              "fields": ["title", "url", "code", "text", "note", "cardTags"],
+        index: "library",
+        type: "cards",
+        body: {
+          "query": {
+            "bool": {
+              "should": [{
+                "multi_match": {
+                  "query": keywords,
+                  "fields": ["title", "url", "code", "text", "note", "cardTags"],
+                },
+              }],
             },
-            "match": {
-              "query": keywords,
-              "type": "phrase_prefix",
-              "field": "domain",
-            }
-          }]
-        }
+          },
+          "highlight": {
+            "fields": {
+              "title": {},
+              "url": {},
+              "code": {},
+              "text": {},
+              "note": {},
+              "domain": {},
+              "cardTags": {},
+            },
+          },
+        },
       },
-      "highlight": {
-        "fields": {
-          "title": {},
-          "url": {},
-          "code": {},
-          "text": {},
-          "note": {},
-          "domain": {},
-          "cardTags": {},
-        }
-      }
-    }
-  }
+    },
+  };
 
 
   const request = axios.get(endpoints.search, query);

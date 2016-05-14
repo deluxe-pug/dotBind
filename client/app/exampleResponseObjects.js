@@ -150,3 +150,10 @@
 {"index": {"_id": 4}}
 {"id": 4, "url": "http://amazon.com", "title": "Online Shopping Giant", "user_id": 1, "icon": "http://www.amazon.com/favicon.ico", "domain": "amazon.com", "code": "var test = function() {};", "note": "An amazoner left this note"}
 
+
+// ES SEARCH RESPONSE
+starting request { method: 'POST',
+  path: '/library/cards/_search',
+  body: { query: { bool: [Object] }, highlight: { fields: [Object] } },
+  query: {} 
+}
