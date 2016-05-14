@@ -30,12 +30,21 @@ const cardsReducer = (state = [], action) => {
         if (returnedIDs.indexOf(card.id) > -1) { return true; }
       });
       // console.log('searchedCards: ', searchedCards);
-
       return [...searchedCards];
 
     case 'UPDATE_CARD':
-      console.log('UPDATE_CARD reducer called');
-      return state;
+      console.log('Current state => ', state);
+      console.log('New info => ', action.payload.data.data);
+      var data = action.payload.data.data[0];
+      var newCardId = data.id;
+      var newCardState = state.slice(0);
+      newCardState.forEach( (card) => {
+        if ( card.id === newCardId ) {
+          card.code = data.code;
+          card.note = data.note;
+        }
+      })
+      return newCardState;
 
     case 'REMOVE_TAG':
       let removedId = action.payload.data.data[0].id;

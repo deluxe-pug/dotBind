@@ -51,22 +51,6 @@ export const filterCardsAction = (tag) => {
 
 export const searchCardsAction = (keywords) => {
 
-  // SIMPLE QUERY
-  // const query = {
-  //   params: {
-  //     query: {
-  //       index: 'library',
-  //       body: {
-  //         "query": {
-  //           "query_string": {
-  //             "query": keywords
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
   const query = {
     params: {
       "query": {
@@ -98,15 +82,11 @@ export const searchCardsAction = (keywords) => {
       },
     },
   };
-
-
   const request = axios.get(endpoints.search, query);
-
   return {
     type: 'SEARCH_CARDS',
     payload: request,
   }
-
 };
 
 export const updateCardAction = (reqBody) => {
@@ -142,3 +122,19 @@ export const addTagToCardAction = (tagName, userId, cardId) => {
     payload: request,
   };
 };
+
+// SIMPLE QUERY
+// const query = {
+//   params: {
+//     query: {
+//       index: 'library',
+//       body: {
+//         "query": {
+//           "query_string": {
+//             "query": keywords
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
