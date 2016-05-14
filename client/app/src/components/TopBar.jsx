@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import SearchContainer from '../containers/SearchContainer';
+import SearchTagContainer from '../containers/SearchTagContainer';
 import AddCardContainer from '../containers/AddCardContainer';
 import UserProfileContainer from '../containers/UserProfileContainer';
 
@@ -37,6 +38,7 @@ class TopBar extends React.Component {
           <ul className="topnav">
             <li>
               <SearchContainer />
+              <SearchTagContainer />
             </li>
 
             <li>
