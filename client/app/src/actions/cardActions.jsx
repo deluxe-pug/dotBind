@@ -1,11 +1,11 @@
 import axios from 'axios';
 import endpoints from './endpoints';
 
-import elasticsearch from 'elasticsearch';
-const client = new elasticsearch.Client({
-  host: endpoints.elasticsearch,
-  log: 'trace'
-});
+// import elasticsearch from 'elasticsearch';
+// const client = new elasticsearch.Client({
+//   host: endpoints.elasticsearch,
+//   log: 'trace'
+// });
 
 export const addCardAction = (url) => {
   console.log('addCardAction is triggered');
@@ -68,15 +68,9 @@ export const searchCardsAction = (keywords) => {
     }
   };
 
-  const request = client.search(query);
-    // .then((response) => {
-    //   console.log('RESPONSE: ', response);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+  // const request = client.search(query);
+  const request = axios.get(endpoints.search, query);
 
-  // const request = axios.get(endpoints.cards, {params: query})
   return {
     type: 'SEARCH_CARDS',
     payload: request,
