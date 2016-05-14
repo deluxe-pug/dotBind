@@ -12,9 +12,15 @@ import { bindActionCreators } from 'redux';
 import { addTagToCardAction, updateCardAction } from '../actions/cardActions';
 
 let input;
+let editorCode = '';
 class CardModal extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  editorChanged(val) {
+    editorCode = val;
+    console.log(editorCode)
   }
 
   render() {
@@ -31,12 +37,12 @@ class CardModal extends React.Component {
         </div>
 
         <div className="modal-editor">
-          <AceEditor height="240px" width="100%" mode="javascript" theme="tomorrow_night"
+          <AceEditor height="240px" width="100%" onFocus={this.props.remindSave.bind(this)} onChange={this.editorChanged} mode="javascript" theme="tomorrow_night"
           name="editor" editorProps={{$blockScrolling: true}} value={this.props.code || '// Your code here'} />
         </div>
 
         <div className="modal-notes input-field">
-          <textarea className="notes" defaultValue={'// Edit your notes here. \n' + this.props.note} 
+          <textarea className="notes" defaultValue={'// Edit your notes here. \n' + this.props.note}
             onChange={this.props.remindSave.bind(this)}></textarea>
         </div>
         <div className="modal-footer">
