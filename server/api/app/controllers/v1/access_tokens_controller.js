@@ -13,6 +13,12 @@ module.exports = (function() {
       });
     }
 
+    destroy() {
+      AccessToken.logout(this.params, (err, accessToken) => {
+        this.respond(err || accessToken);
+      });
+    }
+
   }
 
   return V1AccessTokensController;
