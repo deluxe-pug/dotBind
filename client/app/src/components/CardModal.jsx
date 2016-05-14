@@ -9,7 +9,7 @@ import 'brace/mode/javascript';
 import 'brace/theme/tomorrow_night';
 
 import { bindActionCreators } from 'redux';
-import { addTagToCardAction } from '../actions/cardActions';
+import { addTagToCardAction, updateCardAction } from '../actions/cardActions';
 
 let input;
 class CardModal extends React.Component {
@@ -35,9 +35,9 @@ class CardModal extends React.Component {
           name="editor" editorProps={{$blockScrolling: true}} value={this.props.code || '// Your code here'} />
         </div>
 
-        <h5 className="modal-heading">Notes:</h5>
         <div className="modal-notes input-field">
-          <textarea className="notes" defaultValue={this.props.note} onChange={this.props.remindSave.bind(this)}></textarea>
+          <textarea className="notes" defaultValue={'// Edit your notes here. \n' + this.props.note} 
+            onChange={this.props.remindSave.bind(this)}></textarea>
         </div>
         <div className="modal-footer">
           <div className="row">

@@ -17,9 +17,9 @@ const customStyles = {
   },
   content : {
     borderRadius: '15px',
-    marginLeft: '125',
-    marginRight: '125',
-    marginTop: '45',
+    marginLeft: '75',
+    marginRight: '75',
+    marginTop: '40',
     marginBottom: '0',
     padding: '0px',
     border: 'none',
