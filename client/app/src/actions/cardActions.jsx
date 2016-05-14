@@ -58,15 +58,30 @@ export const filterCardsAction = (tag) => {
 export const searchCardsAction = (keywords) => {
 
   const query = {
-    index: 'library',
-    body: {
-      "query": {
-        "query_string": {
-          "query": keywords
+    params: {
+      query: {
+        index: 'library',
+        body: {
+          "query": {
+            "query_string": {
+              "query": keywords
+            }
+          }
         }
       }
     }
-  };
+  }
+
+  // const query = {
+  //   index: 'library',
+  //   body: {
+  //     "query": {
+  //       "query_string": {
+  //         "query": keywords
+  //       }
+  //     }
+  //   }
+  // };
 
   // const request = client.search(query);
   const request = axios.get(endpoints.search, query);
