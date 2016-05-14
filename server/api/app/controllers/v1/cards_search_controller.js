@@ -27,8 +27,8 @@ module.exports = (function() {
         if (error) {
           console.log('ES SEARCH ERROR: ', error);
         }
-        console.log('ES SEARCH RESPONSE: ', cards);
-        this.respond( error || cards );
+        console.log('ES SEARCH RESPONSE: ', cards.hits.hits);
+        this.respond( error || cards.hits.hits );
       }.bind(this));
     }
 

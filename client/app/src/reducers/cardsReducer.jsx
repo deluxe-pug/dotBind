@@ -20,23 +20,17 @@ const cardsReducer = (state = [], action) => {
       return [...filteredCards];
 
     case 'SEARCH_CARDS':
-      console.log('PAYLOAD: ', action.payload);
+      // console.log('PAYLOAD: ', action.payload.data.data);
       const returnedIDs = [];
-      action.payload.hits.hits.forEach(function(obj) {
+      action.payload.data.data.forEach(function(obj) {
         returnedIDs.push(obj._source.id);
       })
-      console.log('returnedIDs: ', returnedIDs);
+      // console.log('returnedIDs: ', returnedIDs);
       const searchedCards = state.slice().filter((card) => {
         if (returnedIDs.indexOf(card.id) > -1) { return true; }
       });
-      console.log('searchedCards: ', searchedCards);
+      // console.log('searchedCards: ', searchedCards);
 
-      // console.log('SEARCH: ', action.payload.hits.hits[0]._source);
-      // let searchCardsState = [];
-      // action.payload.hits.hits.forEach(function(obj) {
-      //   searchCardsState.push(obj._source);
-      // })
-      // console.log('SEARCH CARDS PAYLOAD: ', searchCardsState);
       return [...searchedCards];
 
     case 'REMOVE_TAG':

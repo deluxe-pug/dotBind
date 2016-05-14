@@ -157,3 +157,11 @@ starting request { method: 'POST',
   body: { query: { bool: [Object] }, highlight: { fields: [Object] } },
   query: {} 
 }
+
+starting request { method: 'POST',
+  path: '/library/_search',
+  body: { query: { query_string: [Object] } },
+  query: {} 
+}
+
+
