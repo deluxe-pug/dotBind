@@ -118,8 +118,68 @@ app.get('/auth', (req, res) => {
 })
 
 app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/login');
+  // Destroy Access Token in database
+
+  request({
+    uri: `http://localhost:3000/v1/users?username=${req.user.username}`,
+    method: 'GET',
+  }, function(err, message, response) {
+    if (err) {
+      console.error('error: ', err);
+      return;
+    }
+    const user_id = JSON.parse(response).data[0].id;
+    const access_token = req.user.access_token;
+    const deleteURI = `http://localhost:3000/v1/access_tokens/${user_id}/?access_token=${access_token}`;
+
+    request({
+      uri: deleteURI,
+      method: 'DELETE'
+    }, function(error, message2, response2) {
+      if (error) {
+        console.error('Error deleting access token: ', error);
+        return;
+      }
+      console.log('This is the DELETE response: ', response2);
+      req.logout();
+      res.redirect('/login');
+      return;
+    });
+    // request({
+    //   uri: `http://localhost:3000/v1/access_token/${response.data[0].id}`,
+    //   method: 'DELETE'
+    // }, function(error, message2, response2) => {
+    //   if (error) {
+    //     console.error('Error deleting access token: ', error);
+    //     return;
+    //   }
+    //   // Logout and redirect after deleting access token
+    //   return;
+    // })
+    // return cb(null, profile);
+  });
+
+
+  // request({
+  //   uri: `http://localhost:3000/v1/access_tokens?access_token=${req.user.access_token}`,
+  //   method: 'DELETE',
+  //   json: true,
+  //   body: {
+  //     githubId: profile.id,
+  //     username: profile.username 
+  //   }
+  // }, function(err, message, response) {
+  //   if (err) {
+  //     console.error('error: ', err);
+  //     return cb(err);
+  //   }
+  //   console.log('Your response: ', response);
+  //   profile.nodalToken = response.data[0].access_token;
+  //   return cb(null, profile);
+  // })
+
+  // req.logout();
+  // res.redirect('/login');
 })
 
 // displays other associated assets -- bundle.js
