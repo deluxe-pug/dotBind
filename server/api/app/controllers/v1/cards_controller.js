@@ -35,13 +35,6 @@ module.exports = (function() {
 
         const user_id = user.get('id');
 
-        //   console.log('QUERY============>: ', this.params.query);
-        //   client.search(this.params.query.query, function(err, cards) {
-        //     console.log('ES SEARCH RESPONSE: ', cards);
-        //     console.log('ES SEARCH ERROR: ', error);
-        //     this.respond( err || cards );
-        //   }.bind(this));
-
         Card.query()
           .join('cardTags__tag')
           .where(this.params.query)
