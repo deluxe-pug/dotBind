@@ -2,7 +2,6 @@ language: node_js
 node_js:
 - 4.2.4
 env:
-  - TRAVIS=travis CXX=g++-4.8
   matrix:
   - TEST_DIR=server/api
   - TEST_DIR=server/static
@@ -23,6 +22,7 @@ addons:
 before_script:
   - psql -c 'create database api_development;' -U postgres
 env:
+  - TRAVIS=travis CXX=g++-4.8
   - TEST_DIR=server/api
   - TEST_DIR=server/static
 script: 
