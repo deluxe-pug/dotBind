@@ -4,6 +4,7 @@ const GitHubStrategy = require('passport-github').Strategy;
 const session = require('express-session');
 const request = require('request');
 const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const port = process.env.PORT || 8000;
@@ -19,6 +20,7 @@ require('env2')(configPath); // import environment variables
 // enable expression session and cookies 
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }))
 
 passport.serializeUser(function(user, cb) {
   console.log('the user: ', user);
@@ -115,7 +117,7 @@ app.get('/auth/github/callback',
 // **************************************************************************
 //                         Regular user Auth Route
 // **************************************************************************
-app.get('/auth/regular', regularAuthHandler.regularAuth);
+app.post('/auth/regular', regularAuthHandler.regularAuth);
 
 // **************************************************************************
 //                      after seccussful user login
