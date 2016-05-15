@@ -16,6 +16,7 @@ const utils = require('./utils.js')
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -126,6 +126,7 @@ module.exports = (function() {
       // });
 
 
+
         // });
 
     }
@@ -161,6 +162,8 @@ module.exports = (function() {
     }
 
     static logout(params, callback) {
+
+      const username = params.body.username;
 
       this.verify(params, (err, accessToken) => {
 
