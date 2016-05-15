@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const port = process.env.PORT || 8000;
 const passport = require('./passport-config.js');
-const regularAuthHandler = require('./regularAuth-handler.js');
 const handlers = require('./request-handlers.js');
 
 const utils = require('./utils.js')
