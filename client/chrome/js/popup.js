@@ -43,9 +43,15 @@ function renderTitle(title) {
   document.getElementById('title').textContent = title;
 }
 
-// when extention window is fully loaded
+// when popup window is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabProps((url, icon, title) => {
+    
+    $('body').on('click', '#login', () => {
+      chrome.tabs.create({url: 'localhost:8000'});
+      window.close();
+    });
+
     // render icon and url to the popup
     // save selection from tab
     renderIcon(icon);
