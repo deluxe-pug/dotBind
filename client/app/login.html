@@ -14,12 +14,11 @@
         <div class="container">
           <a class="waves-effect waves-light btn login-buttons" href="../auth/github">Login w/ Github</a>
           <p>--- or ---</p>
-          <form>
-            <input id="email" type="email" placeholder="email" />
-            <input id="password" type="password" placeholder="password"/>
+          <form action="auth/regular" method="post">
+            <input id="email" type="email" placeholder="email" name="email" />
+            <input id="password" type="password" placeholder="password" name="password" />
             <button id="login" class="waves-effect waves-light btn login-buttons">Login</button>
             <button id="guest-login" class="waves-effect waves-light btn login-buttons">Guest Login</button>
-            <a class="waves-effect waves-light btn login-buttons" href="../auth/regular">Test Login</a>
           </form>
         </div>
       </div>

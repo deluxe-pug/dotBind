@@ -12,11 +12,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.1",
     "cookie-parser": "^1.4.1",
     "env2": "^2.0.7",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "nodemon": "^1.9.2",
+    "octodex": "^1.0.0",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
     "passport-oauth": "^1.0.0",

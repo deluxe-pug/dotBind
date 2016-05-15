@@ -1,8 +1,40 @@
 const path = require('path');
 const request = require('request');
+const cat = require('octodex'); // generates a random octocat image
 
 exports.regularAuth = (req, res) => {
-  // incorporate kevin's code
+
+  const email = req.body.email;
+  const password = req.body.password;
+  const username = email.split('@')[0] // map to Github email if found in database & vice versa
+
+  request({
+    uri: 'http://localhost:3000/v1/access_tokens',
+    method: 'POST',
+    json: true,
+    body: {username, password, email}
+  }, (err, message, response) => {
+    if (err) {
+      console.error('Error POSTing to access_token: ', err);
+      return;
+    }
+    const access_token = username === 'public' ? 'dotBind' : response.data[0] ? response.data[0].access_token : 'dotBind';
+    console.log('Your response from POSTing to access_tokens: ', response);
+    // if the user is valid
+      // set up session with username and token
+    cat.img((err, octoUrl) => {
+      req.session.dotBind = {};
+      req.session.dotBind.username = username;
+      req.session.dotBind.access_token = access_token;
+      req.session.dotBind.img = octoUrl;
+
+      // redirect to home page
+      res.redirect('/');
+      return;
+    // if the user is not valid
+      // send back response 'user not valid'
+    }, true);
+  });
 };
 
 exports.index = (req, res) => {
@@ -29,7 +61,16 @@ exports.auth = (req, res) => {
 
 exports.logout = (req, res) => {
   // Destroy Access Token in database
+  if (req.session.dotBind) {
+    req.user = req.session.dotBind;
+  }
 
+  if (req.user.username === 'public') {
+    req.logout();
+    req.session.dotBind = null;
+    res.redirect('/login');
+    return;
+  }
   request({
     uri: `http://localhost:3000/v1/users?username=${req.user.username}`,
     method: 'GET',
@@ -52,43 +93,11 @@ exports.logout = (req, res) => {
       }
       console.log('This is the DELETE response: ', response2);
       req.logout();
+      req.session.dotBind = null;
       res.redirect('/login');
       return;
     });
-    // request({
-    //   uri: `http://localhost:3000/v1/access_token/${response.data[0].id}`,
-    //   method: 'DELETE'
-    // }, function(error, message2, response2) => {
-    //   if (error) {
-    //     console.error('Error deleting access token: ', error);
-    //     return;
-    //   }
-    //   // Logout and redirect after deleting access token
-    //   return;
-    // })
-    // return cb(null, profile);
   });
-
-  // request({
-  //   uri: `http://localhost:3000/v1/access_tokens?access_token=${req.user.access_token}`,
-  //   method: 'DELETE',
-  //   json: true,
-  //   body: {
-  //     githubId: profile.id,
-  //     username: profile.username 
-  //   }
-  // }, function(err, message, response) {
-  //   if (err) {
-  //     console.error('error: ', err);
-  //     return cb(err);
-  //   }
-  //   console.log('Your response: ', response);
-  //   profile.nodalToken = response.data[0].access_token;
-  //   return cb(null, profile);
-  // })
-
-  // req.logout();
-  // res.redirect('/login');
 };
 
 exports.other = (req, res) => {

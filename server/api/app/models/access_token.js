@@ -54,24 +54,77 @@ module.exports = (function() {
       //       }).save(callback);
 
       //     });
-    const password = params.body.githubId;
+    const password = params.body.githubId || params.body.password;
     const username = params.body.username;
+    const email = params.body.email;
 
-    console.log('this is a username inside the access_token.js file -------> ******', JSON.stringify({username}));
+    if (username === 'public') {
+      return callback(null, {id: 1, user_id: 1, access_token: 'dotBind', token_type: 'bearer'});
+    }
 
-    User.findOrCreate({username, password}, (err, user) => {
+    // find a user 
+    User.findBy('username', username, (err, user) => {
       if (err) {
-        console.log(err);
-        return callback(new Error('Problem finding or creating user. You screwed up'));
+        User.create({username, password, email}, (err, aUser) => {
+          // if (err) {
+          //   return callback(err);
+          // }
+          aUser.verifyPassword(password, (error, result) => {
+            if (error || !result) {
+              console.log('Verify password error: ', error)
+              return callback(new Error('Invalid credentials'));
+            }
+            new AccessToken({
+              user_id: aUser.get('id'),
+              access_token: this.generateAccessTokenString(aUser.get('id'), aUser.get('email'), new Date().valueOf()),
+              token_type: 'bearer',
+              expires_at: (new Date(new Date().valueOf() + (30 * 24 * 60 * 60 * 1000))),
+              ip_address: params.ip_address
+            }).save(callback);   
+          })
+        });
       }
-      new AccessToken({
-        user_id: user.get('id'),
-        access_token: this.generateAccessTokenString(user.get('id'), user.get('email'), new Date().valueOf()),
-        token_type: 'bearer',
-        expires_at: (new Date(new Date().valueOf() + (30 * 24 * 60 * 60 * 1000))),
-        ip_address: params.ip_address
-      }).save(callback);
-    });
+      if (user) {
+        user.verifyPassword(password, (error, result) => {
+          if (error || !result) {
+            console.log('Verify password error: ', error)
+            return callback(new Error('Invalid credentials'));
+          }
+          new AccessToken({
+            user_id: user.get('id'),
+            access_token: this.generateAccessTokenString(user.get('id'), user.get('email'), new Date().valueOf()),
+            token_type: 'bearer',
+            expires_at: (new Date(new Date().valueOf() + (30 * 24 * 60 * 60 * 1000))),
+            ip_address: params.ip_address
+          }).save(callback);   
+        });
+      } 
+      
+
+    })
+
+    console.log('this is a username and password inside the access_token.js file -------> ******', JSON.stringify({username, password}));
+
+      // User.findOrCreate({username, password}, (err, user) => {
+      //   if (err) {
+      //     console.log('find or create user error: ', err);
+      //     return callback(new Error('Problem finding or creating user. You screwed up'));
+      //   }
+      //   user.verifyPassword(password, (error, result) => {
+      //     if (error || !result) {
+      //       console.log('Verify password error: ', error)
+      //       return callback(new Error('Invalid credentials'));
+      //     }
+      //     new AccessToken({
+      //       user_id: user.get('id'),
+      //       access_token: this.generateAccessTokenString(user.get('id'), user.get('email'), new Date().valueOf()),
+      //       token_type: 'bearer',
+      //       expires_at: (new Date(new Date().valueOf() + (30 * 24 * 60 * 60 * 1000))),
+      //       ip_address: params.ip_address
+      //     }).save(callback);   
+      //   })
+      // });
+
 
 
         // });
@@ -109,6 +162,8 @@ module.exports = (function() {
     }
 
     static logout(params, callback) {
+
+      const username = params.body.username;
 
       this.verify(params, (err, accessToken) => {
 
