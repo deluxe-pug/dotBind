@@ -138,10 +138,18 @@ app.get('/auth', (req, res) => {
 
 app.get('/logout', function(req, res){
   // Destroy Access Token in database
+  if (req.session.dotBind) {
+    req.user = req.session.dotBind;
+  }
 
+  if (req.user.username === 'public') {
+    req.logout();
+    res.redirect('/login');
+    return;
+  }
   request({
     uri: `http://localhost:3000/v1/users?username=${req.user.username}`,
-    method: 'GET',
+    method: 'GET'
   }, function(err, message, response) {
     if (err) {
       console.error('error: ', err);
