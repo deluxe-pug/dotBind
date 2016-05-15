@@ -38,6 +38,7 @@ app.post('/auth/regular', regularAuthHandler.regularAuth);
 // after seccussful user login
 app.get('/auth', handlers.auth);
 app.get('/logout', handlers.logout);
+
 // displays other associated assets -- bundle.js
 // and deals with wildcard routes
 app.get(/^(.+)$/, handlers.other);
