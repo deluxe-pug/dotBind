@@ -3,7 +3,10 @@ const app = express();
 
 const session = require('express-session');
 const cookieParser = require('cookie-parser')
-
+const bodyParser = require('body-parser');
+const path = require('path');
+const app = express();
+const port = process.env.PORT || 8000;
 const passport = require('./passport-config.js');
 const regularAuthHandler = require('./regularAuth-handler.js');
 const handlers = require('./request-handlers.js');
@@ -13,6 +16,7 @@ const utils = require('./utils.js')
 // **************** enable middlewares ****************
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -30,7 +34,7 @@ app.get('/auth/github/callback',
   }
 );
 // Regular user Auth Route
-app.get('/auth/regular', regularAuthHandler.regularAuth);
+app.post('/auth/regular', regularAuthHandler.regularAuth);
 // after seccussful user login
 app.get('/auth', handlers.auth);
 app.get('/logout', handlers.logout);
