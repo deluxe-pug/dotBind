@@ -5,7 +5,6 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
 const path = require('path');
-const app = express();
 const port = process.env.PORT || 8000;
 const passport = require('./passport-config.js');
 const regularAuthHandler = require('./regularAuth-handler.js');
@@ -34,7 +33,7 @@ app.get('/auth/github/callback',
   }
 );
 // Regular user Auth Route
-app.post('/auth/regular', regularAuthHandler.regularAuth);
+app.post('/auth/regular', handlers.regularAuth);
 // after seccussful user login
 app.get('/auth', handlers.auth);
 app.get('/logout', handlers.logout);
