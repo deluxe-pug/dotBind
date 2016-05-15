@@ -1,4 +1,7 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { switchDisplayAction } from '../actions/searchActions';
 
 class SearchTagContainer extends React.Component {
   constructor(props) {
@@ -7,7 +10,8 @@ class SearchTagContainer extends React.Component {
 
   render() {
     return (
-      <form className="search">
+      <form className="search"
+        onClick={() => this.props}>
         <div className="chip">
           Tag
           <i className="material-icons">close</i>
@@ -16,6 +20,10 @@ class SearchTagContainer extends React.Component {
     );
   }
 
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return 
 };
 
 export default SearchTagContainer;

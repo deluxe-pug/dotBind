@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { searchCardsAction } from '../actions/cardActions';
-import { switchSearchBarAction } from '../actions/searchActions';
+import { switchDisplayAction } from '../actions/searchActions';
 
 class SearchContainer extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class SearchContainer extends React.Component {
           e.preventDefault();
           if (!input.value.trim()) { return; }
           this.props.searchCards(input.value.trim());
-          this.props.switchSearchBar('button-view');
+          this.props.switchDisplay(false);
           console.log(this.props);
 
           input.value = '';
@@ -36,7 +36,7 @@ class SearchContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     searchCards: searchCardsAction,
-    switchSearchBar: switchSearchBarAction,
+    switchDisplay: switchDisplayAction,
   }, dispatch);
 };
 

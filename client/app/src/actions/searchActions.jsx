@@ -1,7 +1,7 @@
-export const switchSearchBarAction = (searchbarOrButtonView) => {
-  console.log('searchbarOrButtonView: ', searchbarOrButtonView);
+export const switchDisplayAction = (bool) => {
+  console.log('searchbarOrButtonView: ', bool);
   return {
-    type: 'SWITCH_SEARCH_BAR',
-    payload: searchbarOrButtonView
+    type: 'SWITCH_DISPLAY',
+    payload: bool
   }
 };

@@ -7,7 +7,6 @@ import UserProfileContainer from '../containers/UserProfileContainer';
 
 require("../styles/topbar.css");
 
-
 class TopBar extends React.Component {
   constructor(props) {
     super(props)
@@ -38,7 +37,7 @@ class TopBar extends React.Component {
           <ul className="topnav">
             <li>
               {this.props.search ? <SearchContainer /> : <SearchTagContainer />}
-            </li>
+             </li>
 
             <li>
               <a onClick={this.openModal.bind(this)}>
