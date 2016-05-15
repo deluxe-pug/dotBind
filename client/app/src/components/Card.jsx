@@ -85,10 +85,11 @@ class Card extends React.Component {
           <li className="divider"></li>
 
           <div className="card-preview open-modal" onClick={this.openModal.bind(this)}>
-            <pre>
-              <code>
-              </code>
-            </pre>
+              {
+                this.props.code ?
+                <code> {this.props.code.substring(0, 95) + '...'} </code>
+                : '(Click to add code)'
+              }
           </div>
 
           <div className="card-button">

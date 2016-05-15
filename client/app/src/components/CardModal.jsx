@@ -64,7 +64,7 @@ class CardModal extends React.Component {
 
         <div className="modal-notes input-field">
           <textarea className="notes"
-            defaultValue={'// Edit your notes here. \n' + this.props.note}
+            defaultValue={this.props.note || '// Edit your notes here. \n' + this.props.note }
             onChange={this.props.remindSave.bind(this), this.noteHasChanged}>
           </textarea>
         </div>
