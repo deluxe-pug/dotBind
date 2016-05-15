@@ -44,6 +44,7 @@ module.exports = (function() {
   const V1AccessTokensController = Nodal.require('app/controllers/v1/access_tokens_controller.js');
   const V1CardsSearchController = Nodal.require('app/controllers/v1/cards_search_controller.js');
 
+  const V1MessagesController = Nodal.require('app/controllers/v1/messages_controller.js');
 
   /* generator: end imports */
 
@@ -61,6 +62,7 @@ module.exports = (function() {
   router.route('/v1/access_tokens/{id}').use(V1AccessTokensController);
   router.route('/v1/search').use(V1CardsSearchController);
 
+  router.route('/v1/messages/{id}').use(V1MessagesController);
 
   /* generator: end routes */
 
