@@ -37,7 +37,7 @@ class TopBar extends React.Component {
           <span className="dotbind-logo">dotBind</span>
           <ul className="topnav">
             <li>
-              <SearchContainer />
+              {this.props.search ? <SearchContainer /> : <SearchTagContainer />}
             </li>
 
             <li>
@@ -70,6 +70,12 @@ class TopBar extends React.Component {
       </div>
     )
   }
+};
+
+const mapStateToProps = (state) => {
+  return {
+    search: state.search
+  };
 };
 
 export default TopBar;
