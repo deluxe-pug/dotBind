@@ -106,6 +106,7 @@
         {"name": "email", "type": "string", "properties": {"unique":true}},
         {"name": "password", "type": "string", "properties": {}},
         {"name": "username", "type": "string", "properties": {}},
+        {"name": "message_count", "type": "int", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
