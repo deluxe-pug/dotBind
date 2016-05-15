@@ -126,6 +126,7 @@ header, main, footer {
 
 .card-footer {
   padding: 5px 5px 5px 5px;
+  text-align: center;
 }
 
 .card-url {
@@ -243,14 +244,12 @@ hr {
 }
 
 .tag-input {
-  /*border: 1px solid black;*/
-  border-radius: 20px;
+  width: 30%;
 }
 
 .modal-link {
-  font-size: 10pt;
-  float: right;
-  width: 50%;
+  font-size: 12pt;
+  margin-top: 20px;
 }
 
 .save-bar {
@@ -293,7 +292,8 @@ hr {
 }
 
 .tag-delete {
-  font-size: 10pt;
+  font-size: 14pt;
+  font-weight: bold;
   margin-left: 3px;
 }
 
@@ -319,5 +319,6 @@ hr {
 
 .add-tag-button {
   /*text-align: right;*/
-  width: 100%;
+  /*width: 100%;*/
+  float: right;
 }

@@ -17,9 +17,9 @@ const customStyles = {
   },
   content : {
     borderRadius: '15px',
-    marginLeft: '125',
-    marginRight: '125',
-    marginTop: '45',
+    marginLeft: '75',
+    marginRight: '75',
+    marginTop: '40',
     marginBottom: '0',
     padding: '0px',
     border: 'none',
@@ -53,10 +53,6 @@ class Card extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
-  notifyCardUpdate() {
-    Materialize.toast('Changes saved!', 2000, 'rounded notication');
-  }
-
   notifyAddTag() {
     Materialize.toast('Tag Added!', 2000, 'rounded notication');
   }
@@ -76,8 +72,10 @@ class Card extends React.Component {
 
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
-            <CardModal {...this.props} closeModal={this.closeModal} remindSave={this.remindSave}
-              notifyCardUpdate={this.notifyCardUpdate} notifyAddTag={this.notifyAddTag} />
+            <CardModal {...this.props}
+              closeModal={this.closeModal.bind(this)}
+              remindSave={this.remindSave}
+              notifyAddTag={this.notifyAddTag}/>
           </Modal>
 
           <div className='card-header'>
@@ -87,10 +85,11 @@ class Card extends React.Component {
           <li className="divider"></li>
 
           <div className="card-preview open-modal" onClick={this.openModal.bind(this)}>
-            <pre>
-              <code>
-              </code>
-            </pre>
+              {
+                this.props.code ?
+                <code> {this.props.code.substring(0, 95) + '...'} </code>
+                : '(Click to add code)'
+              }
           </div>
 
           <div className="card-button">
@@ -98,13 +97,13 @@ class Card extends React.Component {
 
           <li className="divider"></li>
           <div className='card-footer'>
-            <div><a className="card-url" href={this.props.url}>{this.props.url.length > 30 ? this.props.url.substring(0,30) + '...' : this.props.url}</a></div>
+            <div><a className="card-url" href={this.props.url}>{this.props.domain}</a></div>
             <div className="card-tag">
                 <span>Tags:</span>
                 {this.props.cardTags.map((cardTag) =>
                   ' ' + cardTag.tag.name + ' ' + '| '
                 )}
-                <a><i className="material-icons small-icon">mode_edit</i></a>
+    
             </div>
           </div>
 

@@ -9,12 +9,35 @@ import 'brace/mode/javascript';
 import 'brace/theme/tomorrow_night';
 
 import { bindActionCreators } from 'redux';
-import { addTagToCardAction } from '../actions/cardActions';
+import { addTagToCardAction, updateCardAction } from '../actions/cardActions';
 
 let input;
+let editorCode = '';
+let note = '';
 class CardModal extends React.Component {
   constructor(props) {
     super(props);
+    editorCode = this.props.code;
+    note = this.props.note;
+  }
+
+  editorHasChanged(val) {
+    editorCode = val;
+  }
+
+  noteHasChanged(event) {
+    note = event.target.value;
+  }
+
+  saveChanges() {
+    let requestBody = {
+      id: this.props.id,
+      token: localStorage.getItem('dotBindAccessToken'),
+      code: editorCode,
+      note: note,
+    };
+    this.props.updateCard(requestBody);
+    Materialize.toast('Changes saved!', 2000, 'rounded notication');
   }
 
   render() {
@@ -31,26 +54,33 @@ class CardModal extends React.Component {
         </div>
 
         <div className="modal-editor">
-          <AceEditor height="240px" width="100%" mode="javascript" theme="tomorrow_night"
-          name="editor" editorProps={{$blockScrolling: true}} value={this.props.code || '// Your code here'} />
+          <AceEditor height="240px" width="100%"
+            onFocus={this.props.remindSave.bind(this)}
+            onChange={this.editorHasChanged} mode="javascript"
+            theme="tomorrow_night" name="editor"
+            editorProps={{$blockScrolling: true}}
+            value={this.props.code || '// Your code here'} />
         </div>
 
-        <h5 className="modal-heading">Notes:</h5>
         <div className="modal-notes input-field">
-          <textarea className="notes" defaultValue={this.props.note} onChange={this.props.remindSave.bind(this)}></textarea>
+          <textarea className="notes"
+            defaultValue={this.props.note || '// Edit your notes here. \n' + this.props.note }
+            onChange={this.props.remindSave.bind(this), this.noteHasChanged}>
+          </textarea>
         </div>
         <div className="modal-footer">
           <div className="row">
             <div className="row save-bar">
-              <div className="col s6">
-                <a className="waves-effect waves-light btn modal-link" href={this.props.url}>View Original Resource</a>
+              <div className="col s8 offset-s4">
+                <button className="waves-effect waves-light btn save-button"
+                  onClick={this.saveChanges.bind(this)}>
+                  Save Changes
+                </button>
               </div>
-              <div className="col s6">
-                <button className="waves-effect waves-light btn save-button" onClick={this.props.notifyCardUpdate.bind(this)}>Save Changes</button>
-              </div>
+              <a className="modal-link" href={this.props.url}>
+                {this.props.domain}
+              </a>
             </div>
-
-            <hr/>
 
             <div className="col s8 offset-s2">
               <form onSubmit={ (e) => {
@@ -65,7 +95,7 @@ class CardModal extends React.Component {
                   <div className="col s6">
                     <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
                   </div>
-                  <div className="col s6">
+                  <div className="col s4">
                     <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
                   </div>
                 </div>
@@ -90,7 +120,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({addTag: addTagToCardAction}, dispatch);
+  return bindActionCreators({
+    addTag: addTagToCardAction,
+    updateCard: updateCardAction,
+  }, dispatch);
 };
 CardModal = connect(mapStateToProps, mapDispatchToProps)(CardModal);
 export default CardModal;

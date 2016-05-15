@@ -10,6 +10,7 @@ class CardTag extends React.Component {
   }
 
   handleDelete() {
+    console.log(' tag props ==> ', this.props)
     this.props.removeTag(this.props);
   }
 
@@ -17,7 +18,7 @@ class CardTag extends React.Component {
     return (
       <div className="modal-tag">
         <span className="tag-name"> {this.props.name} </span>
-        <span className="tag-delete" onClick={this.handleDelete.bind(this)}>X</span>
+        <span className="tag-delete" onClick={this.handleDelete.bind(this)}>x</span>
       </div>
     );
   }
