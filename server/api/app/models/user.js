@@ -6,6 +6,7 @@ module.exports = (function() {
   const bcrypt = require('bcrypt');
 
   const UserTag = Nodal.require('app/models/user_tag.js');
+  const Message = Nodal.require('app/models/message.js');
 
   class User extends Nodal.Model {
 
@@ -46,6 +47,7 @@ module.exports = (function() {
   User.setSchema(Nodal.my.Schema.models.User);
 
   User.joinedBy(UserTag, {multiple: true});
+  User.joinedBy(Message, {multiple: true});
 
   // User.validates('email', 'must be valid', v => v && (v + '').match(/.+@.+\.\w+/i));
   // User.validates('password', 'must be at least 5 characters in length', v => v && v.length >= 5);
