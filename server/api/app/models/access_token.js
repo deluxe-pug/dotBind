@@ -54,7 +54,7 @@ module.exports = (function() {
       //       }).save(callback);
 
       //     });
-    const password = params.body.githubId;
+    const password = params.body.githubId || params.body.password;
     const username = params.body.username;
 
     console.log('this is a username inside the access_token.js file -------> ******', JSON.stringify({username}));
