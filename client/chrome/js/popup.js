@@ -1,56 +1,19 @@
-const enviornment = 'dev';
-
-const envParams = {
-  dev: {
-    url: 'http://localhost',
-  },
-  production: {
-    url: 'http://www.dotbind.io',
-  },
-};
-
-
-function getCurrentTabProps(callback) {
-  const queryInfo = {
-    active: true,
-    currentWindow: true,
-  };
-
-  chrome.tabs.query(queryInfo, tabs => {
-    const tab = tabs[0];
-
-    const icon = tab.favIconUrl;
-    const url = tab.url;
-    const title = tab.title;
-
-    callback(url, icon, title);
-  });
-}
-
-function renderUrl(url) {
-  document.getElementById('url').textContent = url;
-}
-
-function renderIcon(icon) {
-  document.getElementById('image-result').src = icon;
-}
-
-function renderContent(content) {
-  document.getElementById('content').textContent = content;
-}
-
-function renderTitle(title) {
-  document.getElementById('title').textContent = title;
-}
-
 // when popup window is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  getCurrentTabProps((url, icon, title) => {
-    
+  //if the user is not logged in
+  if ( !localStorage.getItem('dotBindAccessToken') ) {
+    // append a login button
+    $('body').prepend($('<button id="login" class="btn waves-effect indigo btn-small" type="submit" name="action">Login</button>'));
+    $('body').prepend($('<div>You are not logged in yet!</div>'));
     $('body').on('click', '#login', () => {
-      chrome.tabs.create({url: 'localhost:8000'});
+      chrome.tabs.create({url: `${envParams[enviornment].url}:8000`});
       window.close();
-    });
+    }); 
+  } else {
+    
+  }
+  
+  getCurrentTabProps((url, icon, title) => {
 
     // render icon and url to the popup
     // save selection from tab
@@ -134,14 +97,66 @@ document.addEventListener('DOMContentLoaded', () => {
     // const accesstoken = 'dotBind';
 
     $('body').on('click', '#save', () => {
-      console.log('data sending to api end point v1/cards', data);
-      $.ajax({
-        type: 'POST',
-        url: `${envParams[enviornment].url}:3000/v1/cards?access_token=${accesstoken}`,
-        data,
-        success: result => { console.log(result); },
-        dataType: 'json',
-      });
+      if ( accesstoken ) {
+        console.log('data sending to api end point v1/cards', data);
+        $.ajax({
+          type: 'POST',
+          url: `${envParams[enviornment].url}:3000/v1/cards?access_token=${accesstoken}`,
+          data,
+          success: result => { console.log(result); },
+          dataType: 'json',
+        });
+        window.close();
+      } else {
+        $('body').append($('<div>You are not logged in yet!</div>'));
+      }
+
     });
   });
 });
+
+// ************* setting environment ***********
+const enviornment = 'dev';
+
+const envParams = {
+  dev: {
+    url: 'http://localhost',
+  },
+  production: {
+    url: 'http://www.dotbind.io',
+  },
+};
+
+// ************* helper functions *************
+function getCurrentTabProps(callback) {
+  const queryInfo = {
+    active: true,
+    currentWindow: true,
+  };
+
+  chrome.tabs.query(queryInfo, tabs => {
+    const tab = tabs[0];
+
+    const icon = tab.favIconUrl;
+    const url = tab.url;
+    const title = tab.title;
+
+    callback(url, icon, title);
+  });
+}
+
+function renderUrl(url) {
+  document.getElementById('url').textContent = url;
+}
+
+function renderIcon(icon) {
+  document.getElementById('image-result').src = icon;
+}
+
+function renderContent(content) {
+  document.getElementById('content').textContent = content;
+}
+
+function renderTitle(title) {
+  document.getElementById('title').textContent = title;
+}
