@@ -4,13 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if ( !localStorage.getItem('dotBindAccessToken') ) {
     // append a login button
     $('body').prepend($('<button id="login" class="btn waves-effect indigo btn-small" type="submit" name="action">Login</button>'));
-    $('body').prepend($('<div>You are not logged in yet!</div>'));
+    $('body').prepend($('<h6>You are not logged in yet!</h6>'));
     $('body').on('click', '#login', () => {
       chrome.tabs.create({url: `${envParams[enviornment].url}:8000`});
       window.close();
     }); 
-  } else {
-    
   }
   
   getCurrentTabProps((url, icon, title) => {
@@ -75,14 +73,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
-    // add tag
-    $('body').on('click', 'button.tag', () => {
-      const tag = $('input.tag').val().toLowerCase();
-      if (tag) {
-        $('ul.tags').append($('<li>').text(tag));
-        data.tags.push(tag);
-        $('input.tag').val('');
+    // add tags
+    function addTags() {
+      if ( !!$('input.tag').val() ) {
+        const tags = $('input.tag').val().toLowerCase().split(' ');
+        console.log(tags);
+        tags.forEach((tag) => {
+          let $tag = $('<div class="chip"></div>').text(tag);
+          $tag.append($('<i class="material-icons">close</i>'));
+          $('ul.tags').append($tag);
+          data.tags.push(tag);
+          $('input.tag').val('');
+        });
       }
+    };
+
+    $('body').on('click', 'button.tag', addTags);
+    $('input.tag').keypress((event) => {
+      if ( event.which === 13 ) { addTags(); }
+    });
+    // delete tag
+    $('ul.tags').on('click','.chip i.material-icons', (event) => {
+      let $tag = $(event.target).parent();
+      let index = data.tags.indexOf($tag.text().replace('close', ''));
+      data.tags.splice(index, 1)
+      console.log('tags after delete: ',data.tags);
+      $tag.remove();
     });
     // save note
     $('body').on('click', 'button.note', () => {
