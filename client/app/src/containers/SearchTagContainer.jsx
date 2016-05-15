@@ -11,7 +11,7 @@ class SearchTagContainer extends React.Component {
   render() {
     return (
       <form className="search"
-        onClick={() => this.props}>
+        onClick={() => this.props.switchDisplay(true)}>
         <div className="chip">
           Tag
           <i className="material-icons">close</i>
@@ -23,7 +23,9 @@ class SearchTagContainer extends React.Component {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return 
+  return bindActionCreators({
+    switchDisplay: switchDisplayAction,
+  }, dispatch);
 };
 
-export default SearchTagContainer;
+export default connect(null, mapDispatchToProps)(SearchTagContainer);
