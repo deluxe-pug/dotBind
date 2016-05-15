@@ -71,18 +71,16 @@ class CardModal extends React.Component {
         <div className="modal-footer">
           <div className="row">
             <div className="row save-bar">
-              <div className="col s6">
-                <a className="waves-effect waves-light btn modal-link" href={this.props.url}>View Original Resource</a>
-              </div>
-              <div className="col s6">
+              <div className="col s8 offset-s4">
                 <button className="waves-effect waves-light btn save-button"
                   onClick={this.saveChanges.bind(this)}>
                   Save Changes
                 </button>
               </div>
+              <a className="modal-link" href={this.props.url}>
+                {this.props.domain}
+              </a>
             </div>
-
-            <hr/>
 
             <div className="col s8 offset-s2">
               <form onSubmit={ (e) => {
@@ -97,7 +95,7 @@ class CardModal extends React.Component {
                   <div className="col s6">
                     <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
                   </div>
-                  <div className="col s6">
+                  <div className="col s4">
                     <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
                   </div>
                 </div>

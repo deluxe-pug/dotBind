@@ -50,7 +50,6 @@ class Card extends React.Component {
   }
 
   closeModal() {
-    console.log('closed!!!')
     this.setState({modalIsOpen: false});
   }
 
@@ -98,13 +97,13 @@ class Card extends React.Component {
 
           <li className="divider"></li>
           <div className='card-footer'>
-            <div><a className="card-url" href={this.props.url}>{this.props.url.length > 30 ? this.props.url.substring(0,30) + '...' : this.props.url}</a></div>
+            <div><a className="card-url" href={this.props.url}>{this.props.domain}</a></div>
             <div className="card-tag">
                 <span>Tags:</span>
                 {this.props.cardTags.map((cardTag) =>
                   ' ' + cardTag.tag.name + ' ' + '| '
                 )}
-                <a><i className="material-icons small-icon">mode_edit</i></a>
+    
             </div>
           </div>
 
