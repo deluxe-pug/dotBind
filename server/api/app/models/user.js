@@ -3,42 +3,42 @@ module.exports = (function() {
   'use strict';
 
   const Nodal = require('nodal');
-  // const bcrypt = require('bcrypt');
+  const bcrypt = require('bcrypt');
 
   const UserTag = Nodal.require('app/models/user_tag.js');
 
   class User extends Nodal.Model {
 
-    // beforeSave(callback) {
+    beforeSave(callback) {
 
-    //   if (!this.hasErrors() && this.hasChanged('password')) {
+      if (!this.hasErrors() && this.hasChanged('password')) {
 
-    //     bcrypt.hash(this.get('password'), 10, (err, hash) => {
+        bcrypt.hash(this.get('password'), 10, (err, hash) => {
 
-    //       if (err) {
-    //         return callback(new Error('Could not encrypt password'));
-    //       }
+          if (err) {
+            return callback(new Error('Could not encrypt password'));
+          }
 
-    //       this.__safeSet__('password', hash);
-    //       callback();
+          this.__safeSet__('password', hash);
+          callback();
 
-    //     });
+        });
 
-    //   } else {
+      } else {
 
-    //     callback();
+        callback();
 
-    //   }
+      }
 
-    // }
+    }
 
-    // verifyPassword(unencrypted, callback) {
+    verifyPassword(unencrypted, callback) {
 
-    //   bcrypt.compare(unencrypted, this.get('password'), (err, result) => {
-    //     callback.call(this, err, result);
-    //   });
+      bcrypt.compare(unencrypted, this.get('password'), (err, result) => {
+        callback.call(this, err, result);
+      });
 
-    // }
+    }
 
   }
 
