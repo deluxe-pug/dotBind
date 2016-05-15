@@ -101,7 +101,7 @@
       {
         "access_token": "dotBind",
         "user_id": 1,
-        "expires_at": "2016-06-12 11:24:35.172",
+        "expires_at": "2099-06-12 11:24:35.172",
         "token_type": "bearer"
       }
     ],
