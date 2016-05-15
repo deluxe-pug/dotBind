@@ -17,6 +17,9 @@ class SearchContainer extends React.Component {
           e.preventDefault();
           if (!input.value.trim()) { return; }
           this.props.searchCards(input.value.trim());
+          this.props.switchSearchBar('button-view');
+          console.log(this.props);
+
           input.value = '';
         }}>
         <input className="search-input" 
@@ -33,11 +36,8 @@ class SearchContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     searchCards: searchCardsAction,
-    switchSearchBar: switchSearchBarAction
+    switchSearchBar: switchSearchBarAction,
   }, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(SearchContainer);
-
-// var keywords = input.value.split(' ').filter(word => word.length !== 0);
-

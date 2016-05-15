@@ -38,7 +38,6 @@ class TopBar extends React.Component {
           <ul className="topnav">
             <li>
               <SearchContainer />
-              <SearchTagContainer />
             </li>
 
             <li>
