@@ -1,9 +1,12 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import SearchContainer from '../containers/SearchContainer';
 import SearchTagContainer from '../containers/SearchTagContainer';
 import AddCardContainer from '../containers/AddCardContainer';
 import UserProfileContainer from '../containers/UserProfileContainer';
+import { switchDisplayAction } from '../actions/searchActions';
 
 require("../styles/topbar.css");
 
@@ -28,8 +31,12 @@ class TopBar extends React.Component {
     localStorage.clear(); // clear local storage upon logout
   }
 
+  componentWillMount() {
+    this.props.switchDisplay(true);
+  }
 
   render() {
+    console.log('SEARCH BAR?', this.props.search);
     return (
       <div className='navbar-fixed topbar'>
         <nav className="topbar">
@@ -77,7 +84,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default TopBar;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    switchDisplay: switchDisplayAction,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
 
 const customStyles = {
   content : {
