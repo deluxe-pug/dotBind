@@ -1,13 +1,14 @@
 body {
   width:400px;
   Height:800px;
-/*  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-  font-size: 100%;*/
+
 }
-/* avoid an excessively wide status text 
-#content {
-  white-space: pre;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  max-width: 400px;
-} */
+
+.foreground:before {
+    position: absolute;
+    content: '';
+    background: rgba(0,0,0, 0.5); /*partially transparent image*/
+    width: 400px;
+    height: 600px;
+    pointer-events: none;
+}

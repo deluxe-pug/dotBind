@@ -1,51 +1,18 @@
-const enviornment = 'dev';
-
-const envParams = {
-  dev: {
-    url: 'http://localhost',
-  },
-  production: {
-    url: 'http://www.dotbind.io',
-  },
-};
-
-
-function getCurrentTabProps(callback) {
-  const queryInfo = {
-    active: true,
-    currentWindow: true,
-  };
-
-  chrome.tabs.query(queryInfo, tabs => {
-    const tab = tabs[0];
-
-    const icon = tab.favIconUrl;
-    const url = tab.url;
-    const title = tab.title;
-
-    callback(url, icon, title);
-  });
-}
-
-function renderUrl(url) {
-  document.getElementById('url').textContent = url;
-}
-
-function renderIcon(icon) {
-  document.getElementById('image-result').src = icon;
-}
-
-function renderContent(content) {
-  document.getElementById('content').textContent = content;
-}
-
-function renderTitle(title) {
-  document.getElementById('title').textContent = title;
-}
-
-// when extention window is fully loaded
+// when popup window is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+  //if the user is not logged in
+  if ( !localStorage.getItem('dotBindAccessToken') ) {
+    // append a login button
+    $('body').prepend($('<button id="login" class="btn waves-effect indigo btn-small" type="submit" name="action">Login</button>'));
+    $('body').prepend($('<h6>You are not logged in yet!</h6>'));
+    $('body').on('click', '#login', () => {
+      chrome.tabs.create({url: `${envParams[enviornment].url}:8000`});
+      window.close();
+    }); 
+  }
+  
   getCurrentTabProps((url, icon, title) => {
+
     // render icon and url to the popup
     // save selection from tab
     renderIcon(icon);
@@ -106,14 +73,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
-    // add tag
-    $('body').on('click', 'button.tag', () => {
-      const tag = $('input.tag').val().toLowerCase();
-      if (tag) {
-        $('ul.tags').append($('<li>').text(tag));
-        data.tags.push(tag);
-        $('input.tag').val('');
+    // add tags
+    function addTags() {
+      if ( !!$('input.tag').val() ) {
+        const tags = $('input.tag').val().toLowerCase().split(' ');
+        console.log(tags);
+        tags.forEach((tag) => {
+          let $tag = $('<div class="chip"></div>').text(tag);
+          $tag.append($('<i class="material-icons">close</i>'));
+          $('ul.tags').append($tag);
+          data.tags.push(tag);
+          $('input.tag').val('');
+        });
       }
+    };
+
+    $('body').on('click', 'button.tag', addTags);
+    $('input.tag').keypress((event) => {
+      if ( event.which === 13 ) { addTags(); }
+    });
+    // delete tag
+    $('ul.tags').on('click','.chip i.material-icons', (event) => {
+      let $tag = $(event.target).parent();
+      let index = data.tags.indexOf($tag.text().replace('close', ''));
+      data.tags.splice(index, 1)
+      console.log('tags after delete: ',data.tags);
+      $tag.remove();
     });
     // save note
     $('body').on('click', 'button.note', () => {
@@ -128,14 +113,66 @@ document.addEventListener('DOMContentLoaded', () => {
     // const accesstoken = 'dotBind';
 
     $('body').on('click', '#save', () => {
-      console.log('data sending to api end point v1/cards', data);
-      $.ajax({
-        type: 'POST',
-        url: `${envParams[enviornment].url}:3000/v1/cards?access_token=${accesstoken}`,
-        data,
-        success: result => { console.log(result); },
-        dataType: 'json',
-      });
+      if ( accesstoken ) {
+        console.log('data sending to api end point v1/cards', data);
+        $.ajax({
+          type: 'POST',
+          url: `${envParams[enviornment].url}:3000/v1/cards?access_token=${accesstoken}`,
+          data,
+          success: result => { console.log(result); },
+          dataType: 'json',
+        });
+        window.close();
+      } else {
+        $('body').append($('<div>You are not logged in yet!</div>'));
+      }
+
     });
   });
 });
+
+// ************* setting environment ***********
+const enviornment = 'dev';
+
+const envParams = {
+  dev: {
+    url: 'http://localhost',
+  },
+  production: {
+    url: 'http://www.dotbind.io',
+  },
+};
+
+// ************* helper functions *************
+function getCurrentTabProps(callback) {
+  const queryInfo = {
+    active: true,
+    currentWindow: true,
+  };
+
+  chrome.tabs.query(queryInfo, tabs => {
+    const tab = tabs[0];
+
+    const icon = tab.favIconUrl;
+    const url = tab.url;
+    const title = tab.title;
+
+    callback(url, icon, title);
+  });
+}
+
+function renderUrl(url) {
+  document.getElementById('url').textContent = url;
+}
+
+function renderIcon(icon) {
+  document.getElementById('image-result').src = icon;
+}
+
+function renderContent(content) {
+  document.getElementById('content').textContent = content;
+}
+
+function renderTitle(title) {
+  document.getElementById('title').textContent = title;
+}
