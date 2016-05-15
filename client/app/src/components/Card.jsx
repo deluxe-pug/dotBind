@@ -50,6 +50,7 @@ class Card extends React.Component {
   }
 
   closeModal() {
+    console.log('closed!!!')
     this.setState({modalIsOpen: false});
   }
 
@@ -73,7 +74,7 @@ class Card extends React.Component {
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
             <CardModal {...this.props}
-              closeModal={this.closeModal}
+              closeModal={this.closeModal.bind(this)}
               remindSave={this.remindSave}
               notifyAddTag={this.notifyAddTag}/>
           </Modal>
