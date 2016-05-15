@@ -37,6 +37,7 @@ class CardModal extends React.Component {
       note: note,
     };
     this.props.updateCard(requestBody);
+    Materialize.toast('Changes saved!', 2000, 'rounded notication');
   }
 
   render() {
@@ -75,7 +76,7 @@ class CardModal extends React.Component {
               </div>
               <div className="col s6">
                 <button className="waves-effect waves-light btn save-button"
-                  onClick={this.props.notifyCardUpdate.bind(this), this.saveChanges.bind(this)}>
+                  onClick={this.saveChanges.bind(this)}>
                   Save Changes
                 </button>
               </div>

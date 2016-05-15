@@ -10,14 +10,7 @@ const cardsReducer = (state = [], action) => {
       return [...state, ...action.payload.data.data];
 
     case 'FILTER_CARDS':
-      const filteredCards = state.slice().filter((card) => {
-        for (var i = 0; i < card.cardTags.length; i++) {
-          if (card.cardTags[i].tag.name === action.tag) { return true; }
-        };
-        return false;
-      });
-      console.log('filteredCards', filteredCards);
-      return [...filteredCards];
+      return filteredCards(state, action.tag);
 
     case 'SEARCH_CARDS':
       // console.log('PAYLOAD: ', action.payload.data.data);
@@ -37,16 +30,7 @@ const cardsReducer = (state = [], action) => {
       return updatedCard(state, data);
 
     case 'REMOVE_TAG':
-      let removedId = action.payload.data.data[0].id;
-      let newState = state.slice(0);
-      newState.forEach( (card) => {
-        for ( let j = 0; j < card.cardTags.length; j++ ) {
-          if ( card.cardTags[j].id === removedId ) {
-            card.cardTags.splice(j,1);
-          }
-        }
-      });
-      return newState;
+      return removedCardTag(state, action.payload);
 
     case 'ADD_CARD_TAG':
       return addedCardTag(state, action.payload);
@@ -54,6 +38,18 @@ const cardsReducer = (state = [], action) => {
     default:
       return state;
   };
+};
+
+
+///////////////////////// HELPERS ///////////////////////////
+const filteredCards = (state, tag) => {
+  const results = [...state].filter( card => {
+    for (var i = 0; i < card.cardTags.length; i++) {
+      if (card.cardTags[i].tag.name === tag) { return true; }
+    };
+    return false;
+  });
+  return results;
 };
 
 const updatedCard = (state, data) => {
@@ -66,6 +62,15 @@ const updatedCard = (state, data) => {
     }
   });
   return newCardState;
+};
+
+const removedCardTag = (state, payload) => {
+  const removedId = payload.data.data[0].id;
+  let updatedState = [...state];
+  updatedState.forEach( (card) => {
+    card.cardTags = card.cardTags.filter( (tag) => tag.id !== removedId );
+  });
+  return updatedState;
 };
 
 const addedCardTag = (state, payload) => {
@@ -89,9 +94,3 @@ const addedCardTag = (state, payload) => {
 };
 
 export default cardsReducer;
-
-
-// case 'REMOVE_CARD':
-//   return
-//     [...state.slice(0, index),
-//      ...state.slice(index+1)];

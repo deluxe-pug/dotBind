@@ -33,7 +33,6 @@ class Card extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('card props =====> ', props)
   }
 
   componentWillMount(){
@@ -52,10 +51,6 @@ class Card extends React.Component {
 
   closeModal() {
     this.setState({modalIsOpen: false});
-  }
-
-  notifyCardUpdate() {
-    Materialize.toast('Changes saved!', 2000, 'rounded notication');
   }
 
   notifyAddTag() {
@@ -77,8 +72,10 @@ class Card extends React.Component {
 
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
-            <CardModal {...this.props} closeModal={this.closeModal} remindSave={this.remindSave}
-              notifyCardUpdate={this.notifyCardUpdate} notifyAddTag={this.notifyAddTag} />
+            <CardModal {...this.props}
+              closeModal={this.closeModal}
+              remindSave={this.remindSave}
+              notifyAddTag={this.notifyAddTag}/>
           </Modal>
 
           <div className='card-header'>
