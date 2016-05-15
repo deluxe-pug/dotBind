@@ -5,6 +5,7 @@ module.exports = (function() {
   const Nodal = require('nodal');
   const CardTag = Nodal.require('app/models/card_tag.js');
   const Snippet = Nodal.require('app/models/snippet.js');
+  const Message = Nodal.require('app/models/message.js');
   const User = Nodal.require('app/models/user.js');
 
   class Card extends Nodal.Model {}
@@ -14,6 +15,7 @@ module.exports = (function() {
   
   Card.joinedBy(CardTag, {multiple: true});
   Card.joinedBy(Snippet, {multiple: true});
+  Card.joinedBy(Message, {multiple: true});
 
   Card.joinsTo(User, {multiple: true});
 
