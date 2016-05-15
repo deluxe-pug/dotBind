@@ -36,14 +36,14 @@ class TopBar extends React.Component {
   }
 
   render() {
-    console.log('SEARCH BAR?', this.props.search);
+    console.log('SEARCH BAR?', this.props.search.display);
     return (
       <div className='navbar-fixed topbar'>
         <nav className="topbar">
           <span className="dotbind-logo">dotBind</span>
           <ul className="topnav">
             <li>
-              {this.props.search ? <SearchContainer /> : <SearchTagContainer />}
+              {this.props.search.display ? <SearchContainer /> : <SearchTagContainer />}
              </li>
 
             <li>
