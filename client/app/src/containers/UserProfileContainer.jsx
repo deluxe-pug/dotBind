@@ -10,7 +10,6 @@ class UserProfileContainer extends React.Component {
   }
 
   render() {
-    console.log('this is inside the component: ', this.props.user);
     return (
       <a className='dropdown-button'
          href='#' data-beloworigin="true" data-activates='dropdown1'>

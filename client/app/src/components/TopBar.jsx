@@ -1,11 +1,14 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import SearchContainer from '../containers/SearchContainer';
+import SearchTagContainer from '../containers/SearchTagContainer';
 import AddCardContainer from '../containers/AddCardContainer';
 import UserProfileContainer from '../containers/UserProfileContainer';
+import { switchDisplayAction } from '../actions/searchActions';
 
 require("../styles/topbar.css");
-
 
 class TopBar extends React.Component {
   constructor(props) {
@@ -28,6 +31,9 @@ class TopBar extends React.Component {
     localStorage.clear(); // clear local storage upon logout
   }
 
+  componentWillMount() {
+    this.props.switchDisplay(true);
+  }
 
   render() {
     return (
@@ -36,8 +42,8 @@ class TopBar extends React.Component {
           <span className="dotbind-logo">dotBind</span>
           <ul className="topnav">
             <li>
-              <SearchContainer />
-            </li>
+              {this.props.search.display ? <SearchContainer /> : <SearchTagContainer />}
+             </li>
 
             <li>
               <a onClick={this.openModal.bind(this)}>
@@ -71,7 +77,19 @@ class TopBar extends React.Component {
   }
 };
 
-export default TopBar;
+const mapStateToProps = (state) => {
+  return {
+    search: state.search
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    switchDisplay: switchDisplayAction,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
 
 const customStyles = {
   content : {

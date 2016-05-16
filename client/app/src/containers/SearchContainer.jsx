@@ -1,11 +1,18 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { searchCardsAction } from '../actions/cardActions';
+import { searchCardsAction, fetchCardsAction } from '../actions/cardActions';
+import { switchDisplayAction } from '../actions/searchActions';
 
 class SearchContainer extends React.Component {
   constructor(props) {
     super(props)
+  }
+
+  componentDidMount() {
+    if (this.props.search.input) {
+      $('.search-input').val(this.props.search.input);
+    }
   }
 
   render() {
@@ -14,11 +21,15 @@ class SearchContainer extends React.Component {
       <form className="search"
         onSubmit={e => { 
           e.preventDefault();
-          if (!input.value.trim()) { return; }
-          this.props.searchCards(input.value.trim());
-          input.value = '';
+          if (!input.value.trim()) {
+            this.props.fetchCards();
+          } else {
+            this.props.searchCards(input.value.trim());
+            this.props.switchDisplay(false, input.value.trim());
+            console.log('SEARCH CONTAINER: ', input.value.trim());
+          }
         }}>
-        <input className="search-input" 
+        <input className="search-input"
           type="text" 
           placeholder="Search &#xF002;" 
           ref={node => {
@@ -29,11 +40,20 @@ class SearchContainer extends React.Component {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({searchCards: searchCardsAction}, dispatch);
+
+const mapStateToProps = (state) => {
+  return {
+    search: state.search,
+  };
 };
 
-export default connect(null, mapDispatchToProps)(SearchContainer);
 
-// var keywords = input.value.split(' ').filter(word => word.length !== 0);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    searchCards: searchCardsAction,
+    switchDisplay: switchDisplayAction,
+    fetchCards: fetchCardsAction,
+  }, dispatch);
+};
 
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);
