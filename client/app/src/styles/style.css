@@ -275,8 +275,13 @@ hr {
   margin-top: 25px;
 }
 
-.save-button {
+.delete-button {
+  margin-right: 3px;
+  float: left;
   background-color: #c62828;
+}
+
+.save-button {
   float: left;
   width: 50%;
 }

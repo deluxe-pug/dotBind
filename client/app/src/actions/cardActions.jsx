@@ -26,13 +26,6 @@ export const addCardAction = (url) => {
   };
 };
 
-export const removeCardAction = (id) => {
-  return {
-    type: 'REMOVE_CARD',
-    id: id,
-  };
-};
-
 export const fetchCardsAction = () => {
   const accesstoken = localStorage.getItem('dotBindAccessToken');
   const request = axios.get(`${endpoints.cards}?access_token=${accesstoken}`).catch((err) => console.error('Error fetching cards: ', err));
@@ -98,6 +91,15 @@ export const updateCardAction = (reqBody) => {
   return {
     type: 'UPDATE_CARD',
     payload: request,
+  };
+};
+
+export const deleteCardAction = (cardId) => {
+  const endpoint = `${endpoints.cards}/${cardId}/access_token?=${localStorage.getItem('dotBindAccessToken')}`;
+  const request = axios.delete(endpoint);
+  return {
+    type: 'DELETE_CARD',
+    deleted: cardId,
   };
 };
 

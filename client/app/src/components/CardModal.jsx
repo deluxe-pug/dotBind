@@ -72,6 +72,10 @@ class CardModal extends React.Component {
           <div className="row">
             <div className="row save-bar">
               <div className="col s8 offset-s4">
+                <button className="waves-effect waves-light btn delete-button"
+                  onClick={this.saveChanges.bind(this)}>
+                  <i className="material-icons">delete</i>
+                </button>
                 <button className="waves-effect waves-light btn save-button"
                   onClick={this.saveChanges.bind(this)}>
                   Save Changes
