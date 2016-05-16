@@ -16,7 +16,6 @@ class SearchTagContainer extends React.Component {
       <form className="search"
         onClick={() => {
           this.props.switchDisplay(true, this.props.search.input)}}>
-        {console.log('SEARCHTAGCONTIANER: ', this.props.search.input)}
         {this.props.search.input.split(' ').map(button => (
           <SearchTag
            key={tagId++}

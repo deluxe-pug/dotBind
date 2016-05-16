@@ -36,7 +36,6 @@ class TopBar extends React.Component {
   }
 
   render() {
-    console.log('SEARCH BAR?', this.props.search.display);
     return (
       <div className='navbar-fixed topbar'>
         <nav className="topbar">
