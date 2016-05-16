@@ -66,12 +66,12 @@ exports.invalid = (req, res) => {
 exports.logout = (req, res) => {
   // Destroy Access Token in database
   if (req.session.dotBind) {
-    req.user = req.session.dotBind;
+    req.user = Object.assign({}, req.session.dotBind);
   }
 
   if (req.user.username === 'public') {
     req.logout();
-    req.session.dotBind = null;
+    req.session.dotBind = {};
     res.redirect('/login');
     return;
   }
@@ -97,7 +97,7 @@ exports.logout = (req, res) => {
       }
       console.log('This is the DELETE response: ', response2);
       req.logout();
-      req.session.dotBind = null;
+      req.session.dotBind = {};
       res.redirect('/login');
       return;
     });
