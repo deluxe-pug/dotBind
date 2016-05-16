@@ -12,12 +12,10 @@ class Tag extends React.Component {
 
   render() {
     return (
-      <div className="collection">
         <a className="collection-item" onClick={() => this.props.filterCards(this.props.tagName)}>
           {this.props.tagName}
-          <span className="badge tag-count">x {this.props.card_count}</span>
+          <span className="badge">{this.props.card_count}</span>
         </a>
-      </div>
     );
   }
 };

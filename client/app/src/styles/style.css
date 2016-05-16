@@ -54,21 +54,26 @@ header, main, footer {
   border-right: 2px #5f9cd2 solid;
 }
 
-/*.tag-count::before {
-  margin
-}*/
-
 .collection {
-  background-color: green;
+  border: none;
 }
 
-.tag-count {
-  /*border: 1px black solid;*/
-  padding: 15px;
+.collection-item {
+  margin-top: 8px !important;
+}
+
+.collection-item:hover {
+  background-color: #5f9cd2 !important;
+  color: white !important;
+}
+
+.collection-item > span {
+  padding: 0px !important;
+  margin-bottom: 15px;
+  color: white;
+  background-color: #5f9cd2;
   border-radius: 50px;
-  height: 75%;
 }
-
 
 /******************** TAG STYLES ********************/
 .tag-container {
