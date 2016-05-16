@@ -11,7 +11,7 @@ class SearchContainer extends React.Component {
 
   componentDidMount() {
     if (this.props.search.input) {
-      $('.search-input').val('TEXT HERE!!!')
+      $('.search-input').val(this.props.search.input)
       
     }
   }
@@ -29,6 +29,7 @@ class SearchContainer extends React.Component {
         }}>
         <input className="search-input"
           type="text" 
+          placeholder="Search &#xF002;" 
           ref={node => {
             input = node;
           }}/>
@@ -37,7 +38,6 @@ class SearchContainer extends React.Component {
   }
 };
 
-          // placeholder="Search &#xF002;" 
 
 const mapStateToProps = (state) => {
   return {
