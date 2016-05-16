@@ -71,10 +71,11 @@ exports.logout = (req, res) => {
 
   if (req.user.username === 'public') {
     req.logout();
-    req.session.dotBind = {};
+    req.session.dotBind = null;
     res.redirect('/login');
     return;
   }
+
   request({
     uri: `http://localhost:3000/v1/users?username=${req.user.username}`,
     method: 'GET',
@@ -97,7 +98,7 @@ exports.logout = (req, res) => {
       }
       console.log('This is the DELETE response: ', response2);
       req.logout();
-      req.session.dotBind = {};
+      req.session.dotBind = null;
       res.redirect('/login');
       return;
     });
