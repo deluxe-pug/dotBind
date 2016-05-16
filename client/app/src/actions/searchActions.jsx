@@ -1,7 +1,8 @@
-export const switchDisplayAction = (bool) => {
-  console.log('switchDisplayAction is called: ', bool);
+export const switchDisplayAction = (bool, buttons) => {
+  console.log('switchDisplayAction is called: ', bool, buttons);
   return {
     type: 'SWITCH_DISPLAY',
-    payload: bool,
-  }
+    display: bool,
+    buttons: buttons
+  };
 };

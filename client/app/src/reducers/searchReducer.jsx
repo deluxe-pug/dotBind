@@ -4,10 +4,10 @@ const searchReducer = (state = {
 }, action) => {
   switch(action.type) {
     case 'SWITCH_DISPLAY':
-      console.log('searchReducer is called: ', action.payload);
+      console.log('searchReducer is called: ', action.display);
       return {
-        display: action.payload,
-        buttons: []
+        display: action.display,
+        buttons: action.buttons
       };
     default:
       console.log('searchReducer is called, default state: ', state);
