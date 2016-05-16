@@ -9,10 +9,8 @@ const tagsReducer = (state = [], action) => {
       }];
 
     case 'FETCH_TAGS':
-      // console.log('tags reducer payload => ', action.payload.data.data);
-      // console.log('tags reducer state => ', state);
-      // return [...action.payload.data.data, ...state];
-      return sortedTags(state, action.payload.data.data, (a, b) => a.card_count < b.card_count);
+      const newTags = action.payload.data.data;
+      return sortedTags(state, newTags, (a, b) => a.card_count < b.card_count);
 
     default:
       return state;
@@ -21,12 +19,7 @@ const tagsReducer = (state = [], action) => {
 
 const sortedTags = (state, data, callback) => {
   let newState = [...state, ...data];
-  console.log('before sort ===> ', newState);
-  newState.sort( (tagA, tagB) => {
-    return callback(tagA,tagB);
-  });
-
-  console.log('after sort ===> ', newState);
+  newState.sort( (tagA, tagB) => callback(tagA,tagB) );
   return newState;
 };
 
