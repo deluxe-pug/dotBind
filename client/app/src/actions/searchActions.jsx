@@ -3,6 +3,6 @@ export const switchDisplayAction = (bool, buttons) => {
   return {
     type: 'SWITCH_DISPLAY',
     display: bool,
-    buttons: buttons
+    buttons: buttons,
   };
 };

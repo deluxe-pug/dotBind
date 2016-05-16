@@ -2,6 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { switchDisplayAction } from '../actions/searchActions';
+import SearchTag from '../components/SearchTag';
+
+let tagId = 0;
 
 class SearchTagContainer extends React.Component {
   constructor(props) {
@@ -12,10 +15,12 @@ class SearchTagContainer extends React.Component {
     return (
       <form className="search"
         onClick={() => this.props.switchDisplay(true)}>
-        <div className="chip">
-          {this.props.search.buttons[0]}
-          <i className="material-icons">close</i>
-        </div>
+        {console.log('SEARCHTAGCONTIANER: ', this.props.search.buttons)}
+        {this.props.search.buttons.map(button => (
+          <SearchTag
+           key={tagId++}
+           name={button} />
+        ))}
       </form>
     );
   }
