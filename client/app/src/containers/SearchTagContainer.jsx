@@ -13,7 +13,7 @@ class SearchTagContainer extends React.Component {
       <form className="search"
         onClick={() => this.props.switchDisplay(true)}>
         <div className="chip">
-          Tag
+          {this.props.search.buttons[0]}
           <i className="material-icons">close</i>
         </div>
       </form>
@@ -34,4 +34,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(SearchTagContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchTagContainer);
