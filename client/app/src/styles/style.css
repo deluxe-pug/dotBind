@@ -78,6 +78,11 @@ header, main, footer {
 /******************** TAG STYLES ********************/
 .tag-container {
   padding: 10px;
+  overflow: scroll;
+}
+
+.side-nav {
+  z-index: 0;
 }
 
 .tag {
