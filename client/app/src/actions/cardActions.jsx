@@ -42,6 +42,15 @@ export const fetchCardsAction = () => {
   };
 };
 
+export const fetchInboxAction = () => {
+  const accesstoken = localStorage.getItem('dotBindAccessToken');
+  const request = axios.get(`${endpoints.inbox}?access_token=${accesstoken}`).catch((err) => console.error('Error fetching cards: ', err));
+  return {
+    type: 'FETCH_INBOX',
+    payload: request,
+  };
+};
+
 export const filterCardsAction = (tag) => {
   return {
     type: 'FILTER_CARDS',
