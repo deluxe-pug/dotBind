@@ -17,10 +17,8 @@ class SearchContainer extends React.Component {
           e.preventDefault();
           if (!input.value.trim()) { return; }
           this.props.searchCards(input.value.trim());
-          this.props.switchDisplay(false, input.value.split(' '));
-          console.log(this.props);
-
-          input.value = '';
+          this.props.switchDisplay(false, input.value.trim());
+          console.log('SEARCH CONTAINER: ', input.value.trim());
         }}>
         <input className="search-input" 
           type="text" 
