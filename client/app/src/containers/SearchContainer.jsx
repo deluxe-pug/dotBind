@@ -9,6 +9,13 @@ class SearchContainer extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    if (this.props.search.input) {
+      $('.search-input').val('TEXT HERE!!!')
+      
+    }
+  }
+
   render() {
     let input;
     return (
@@ -20,9 +27,8 @@ class SearchContainer extends React.Component {
           this.props.switchDisplay(false, input.value.trim());
           console.log('SEARCH CONTAINER: ', input.value.trim());
         }}>
-        <input className="search-input" 
+        <input className="search-input"
           type="text" 
-          placeholder="Search &#xF002;" 
           ref={node => {
             input = node;
           }}/>
@@ -31,6 +37,15 @@ class SearchContainer extends React.Component {
   }
 };
 
+          // placeholder="Search &#xF002;" 
+
+const mapStateToProps = (state) => {
+  return {
+    search: state.search,
+  };
+};
+
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     searchCards: searchCardsAction,
@@ -38,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(SearchContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);

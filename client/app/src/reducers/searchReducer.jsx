@@ -7,7 +7,7 @@ const searchReducer = (state = {
       console.log('searchReducer is called: ', action);
       return {
         display: action.display,
-        buttons: action.input,
+        input: action.input,
       };
     default:
       console.log('searchReducer is called, default state: ', state);
