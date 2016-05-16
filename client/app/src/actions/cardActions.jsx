@@ -2,7 +2,7 @@ import axios from 'axios';
 import endpoints from './endpoints';
 
 export const addCardAction = (url) => {
-  console.log('addCardAction is triggered');
+  // console.log('addCardAction is triggered');
 
   const request = axios.post(endpoints.cards, {
     "card": {
@@ -19,7 +19,7 @@ export const addCardAction = (url) => {
       "Backbone"
      ]
   });
-  console.log('checking middle logs')
+  // console.log('checking middle logs')
   return {
     type: 'ADD_CARD',
     payload: request,
