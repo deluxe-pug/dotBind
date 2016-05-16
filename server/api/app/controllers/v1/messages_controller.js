@@ -12,7 +12,6 @@ module.exports = (function() {
   class V1MessagesController extends AuthController {
 
     index() {
-      
       this.authorize((err, accessToken, user) => {
         if (err) { return this.respond(err); }
         const user_id = user.get('id');
@@ -59,6 +58,7 @@ module.exports = (function() {
 
     create() {
       // --> this.params.body: { from: 'public', to: 'michelleheh', card_id: '3' }
+      console.log('this is the request body in message_controller.js: ', this.params);
       const from_user = this.params.body.from;
       const to_user = this.params.body.to;
       const card_id = this.params.body.card_id;
