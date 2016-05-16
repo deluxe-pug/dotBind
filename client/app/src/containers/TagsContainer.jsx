@@ -11,7 +11,8 @@ class TagsContainer extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchTags();
+    // this.props.fetchTags();
+    setTimeout(this.props.fetchTags, 150);
   }
 
   render() {

@@ -59,15 +59,19 @@ exports.auth = (req, res) => {
   }
 };
 
+exports.invalid = (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/../../../client/app/404.html'));
+}
+
 exports.logout = (req, res) => {
   // Destroy Access Token in database
   if (req.session.dotBind) {
-    req.user = req.session.dotBind;
+    req.user = Object.assign({}, req.session.dotBind);
   }
 
   if (req.user.username === 'public') {
     req.logout();
-    req.session.dotBind = null;
+    req.session.dotBind = {};
     res.redirect('/login');
     return;
   }
@@ -93,7 +97,7 @@ exports.logout = (req, res) => {
       }
       console.log('This is the DELETE response: ', response2);
       req.logout();
-      req.session.dotBind = null;
+      req.session.dotBind = {};
       res.redirect('/login');
       return;
     });
@@ -101,6 +105,6 @@ exports.logout = (req, res) => {
 };
 
 exports.other = (req, res) => {
-  if (!path.extname(req.url)) {res.end('Path not available. Try another url');}
+  if (!path.extname(req.url)) {res.redirect('/404');}
   res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
 };

@@ -16,7 +16,7 @@ module.exports = (function() {
   const findOrCreateCardTag = PromiseMaker(CardTag.findOrCreate, {context: CardTag});
   const createCard = PromiseMaker(Card.create, {context: Card});
 
-  const AuthController = Nodal.require('app/controllers/auth_controller.js');
+  const AuthController = Nodal.require('app/controllers/auth_controller.js'); 
 
   /* ElasticSearch */
   const elasticsearch = require('elasticsearch');
@@ -32,15 +32,15 @@ module.exports = (function() {
         if (err) {
           return this.respond(err);
         }
-
         const user_id = user.get('id');
-
         Card.query()
           .join('cardTags__tag')
+          .join('user')
+          .where({user_id})
           .where(this.params.query)
           .end((err, cards) => {
-            this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {cardTags: ['id', {tag: ['id', 'name']}]}]);
-          });     
+            this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {user: ['id', 'username', 'created_at']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
+          });
       })
     }
 
@@ -62,13 +62,14 @@ module.exports = (function() {
           "code": "var hello = function() {};",
           "text": "This is my text",
           "note": "This is a note about my content",
-          "icon": "An icon",
+          "icon": "Icon url",
           "domain": "american.com"
         },
         "username": "public",
          "tags": [
           "React",
-          "Backbone"
+          "Backbone",
+          "Angular"
          ]
         }
       */ 
@@ -130,78 +131,66 @@ module.exports = (function() {
                 }
               });
 
-                // Resolve CardTag Promises
-                Promise.all(cardTagPromises).then((cardTags) => {
-                  this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
+              // Resolve CardTag Promises
+              Promise.all(cardTagPromises).then((cardTags) => {
+                this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
+                // this.respond([aCard, tags]);
 
-                  // POST to ELASTICSEARCH
-                  const cardData = aCard._data;
-                  const tagData = tags;
-                  const esPost = {
-                    index: 'library',
-                    type: 'cards',
-                    body: {
-                      id: cardData.id,
-                      user_id: cardData.user_id,
-                      title: cardData.title,
-                      url: cardData.url,
-                      icon: cardData.icon,
-                      domain: cardData.domain,
-                      code: cardData.code,
-                      text: cardData.text,
-                      note: cardData.note,
-                      cardTags: tags, // need to get cardTags in the right format???
-                    },
-                  };
+                // console.log('aCard: ', aCard._data);
+                // console.log('tags: ', tags);
+                console.log('ELASTICSEARCH!!!!!');
 
-                  client.create(esPost, function(error, response) {
-                    if (error) {
-                      console.log('ElasticSearch POST error');
-                    } else {
-                      console.log('ElasticSearch POST success');
-                      this.respond(response);
-                    }
-                  });
-                    // .then((response) => {
-                    //   console.log('this should not be responding: ', response),
-                    //   this.respond(response);
-                    // }.bind(this),
-                    //   (error) => 
-                    //   console.log('this sould not be responding: ', error)
-                    // );
-                });
+                const cardData = aCard._data;
+                const tagData = tags;
+                const esPost = {
+                  index: 'library',
+                  type: 'cards',
+                  body: {
+                    id: cardData.id,
+                    title: cardData.title,
+                    url: cardData.url,
+                    domain: cardData.domain,
+                    code: cardData.code,
+                    text: cardData.text,
+                    note: cardData.note,
+                    cardTags: tags,
+                  },
+                };
+
+                client.create(esPost)
+                  .then((response) => 
+                    console.log('response: ', response),
+                    (error) => 
+                    console.log('error: ', error)
+                  );
               });
             });
           });            
         });
+      })
+
     }
 
     /* Sample PUT request body
-    URI- http://localhost:3000/v1/cards/${card_id}/?access_token=${access_token}
-
-    { 
-      "url": "http://liamhatcher.com",
-      "title": "about liam",
-      "code": "var liam = function() {};",
-      "text": "This is liam",
-      "note": "This is a note about liam not me",
-      "icon": "An icon about liam",
-      "domain": "liamhatcher.com" 
-    }
-    */
+    -    URI- http://localhost:3000/v1/cards/${card_id}/?access_token=${access_token}
+    -
+    -    {
+    -      "url": "http://liamhatcher.com",
+    -      "title": "about liam",
+    -      "code": "var liam = function() {};",
+    -      "text": "This is liam",
+    -      "note": "This is a note about liam not me",
+    -      "icon": "An icon about liam",
+    -      "domain": "liamhatcher.com"
+         }
+    -    */
     update() {
 
-      this.authorize((err, accessToken, user) => {
-        if (err) {
-          return this.respond(err);
-        }
+      Card.update(this.params.route.id, this.params.body, (err, model) => {
 
-        Card.update(this.params.route.id, this.params.body, (error, model) => {
+        this.respond(err || model);
 
-          this.respond(error || model);
-
-        });
-      })
+      });
 
     }
 

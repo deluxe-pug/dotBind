@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
           success: result => { console.log(result); },
           dataType: 'json',
         });
-        window.close();
+        // window.close();
       } else {
         $('body').append($('<div>You are not logged in yet!</div>'));
       }

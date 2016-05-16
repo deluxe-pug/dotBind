@@ -38,6 +38,9 @@ app.post('/auth/regular', handlers.regularAuth);
 app.get('/auth', handlers.auth);
 app.get('/logout', handlers.logout);
 
+// invalid page
+app.get('/404', handlers.invalid);
+
 // displays other associated assets -- bundle.js
 // and deals with wildcard routes
 app.get(/^(.+)$/, handlers.other);
