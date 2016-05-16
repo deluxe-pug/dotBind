@@ -22,6 +22,12 @@ class SearchTagContainer extends React.Component {
 
 };
 
+const mapStateToProps = (state) => {
+  return {
+    search: state.search
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     switchDisplay: switchDisplayAction,
