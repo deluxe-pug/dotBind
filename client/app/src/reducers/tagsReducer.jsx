@@ -9,11 +9,18 @@ const tagsReducer = (state = [], action) => {
       }];
 
     case 'FETCH_TAGS':
-      return [...action.payload.data.data, ...state];
+      const newTags = action.payload.data.data;
+      return sortedTags(state, newTags, (a, b) => a.card_count < b.card_count);
 
     default:
       return state;
   };
+};
+
+const sortedTags = (state, data, callback) => {
+  let newState = [...state, ...data];
+  newState.sort( (tagA, tagB) => callback(tagA,tagB) );
+  return newState;
 };
 
 export default tagsReducer;

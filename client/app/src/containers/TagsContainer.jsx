@@ -18,9 +18,12 @@ class TagsContainer extends React.Component {
   render() {
     return (
       <div>
-        {this.props.tags.map( (tag) =>
-          <Tag key={tag.id}{...tag} />
-        )}
+        <h5>Tags</h5>
+        <div className="collection">
+          {this.props.tags.map( (tag) =>
+            <Tag key={tag.id}{...tag} />
+          )}
+        </div>
       </div>
     );
   }
