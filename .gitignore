@@ -2,7 +2,6 @@
 server/api/node_modules
 server/static/node_modules
 server/static/dist
-client/app/src/action/endpoints.jsx
 client/app/dist
 client/app/node_modules
 client/chrome/node_modules
