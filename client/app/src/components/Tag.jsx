@@ -11,8 +11,8 @@ class Tag extends React.Component {
 
   render() {
     return (
-      <a className="btn tag" onClick={() => this.props.filterCards(this.props.name)}>
-        {this.props.name}
+      <a className="btn tag" onClick={() => this.props.filterCards(this.props.tagName)}>
+        {this.props.tagName}
       </a>
     );
   }
