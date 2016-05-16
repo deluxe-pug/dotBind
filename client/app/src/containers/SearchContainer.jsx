@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { searchCardsAction } from '../actions/cardActions';
+import { searchCardsAction, fetchCardsAction } from '../actions/cardActions';
 import { switchDisplayAction } from '../actions/searchActions';
 
 class SearchContainer extends React.Component {
@@ -11,8 +11,7 @@ class SearchContainer extends React.Component {
 
   componentDidMount() {
     if (this.props.search.input) {
-      $('.search-input').val(this.props.search.input)
-      
+      $('.search-input').val(this.props.search.input);
     }
   }
 
@@ -22,10 +21,13 @@ class SearchContainer extends React.Component {
       <form className="search"
         onSubmit={e => { 
           e.preventDefault();
-          if (!input.value.trim()) { return; }
-          this.props.searchCards(input.value.trim());
-          this.props.switchDisplay(false, input.value.trim());
-          console.log('SEARCH CONTAINER: ', input.value.trim());
+          if (!input.value.trim()) {
+            this.props.fetchCards();
+          } else {
+            this.props.searchCards(input.value.trim());
+            this.props.switchDisplay(false, input.value.trim());
+            console.log('SEARCH CONTAINER: ', input.value.trim());
+          }
         }}>
         <input className="search-input"
           type="text" 
@@ -50,6 +52,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     searchCards: searchCardsAction,
     switchDisplay: switchDisplayAction,
+    fetchCards: fetchCardsAction,
   }, dispatch);
 };
 
