@@ -100,29 +100,27 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('tags after delete: ',data.tags);
       $tag.remove();
     });
-    // save note
-    $('body').on('click', 'button.note', () => {
-      data.card.note = $('input.note').val();
-      if (data.card.note) {
-        console.log('note saved!: ', data.card.note);
-        $('#note').text(data.card.note);
-      }
-    });
     // save card
     const accesstoken = localStorage.getItem('dotBindAccessToken');
     // const accesstoken = 'dotBind';
 
     $('body').on('click', '#save', () => {
       if ( accesstoken ) {
+        // save note
+        if ( !!$('input.note').val() ) {
+          data.card.note = $('input.note').val();
+        }
         console.log('data sending to api end point v1/cards', data);
         $.ajax({
           type: 'POST',
           url: `${envParams[enviornment].url}:3000/v1/cards?access_token=${accesstoken}`,
           data,
-          success: result => { console.log(result); },
+          success: result => { 
+            console.log(result); 
+            window.close();
+          },
           dataType: 'json',
         });
-        // window.close();
       } else {
         $('body').append($('<div>You are not logged in yet!</div>'));
       }
