@@ -46,7 +46,7 @@ class CardModal extends React.Component {
     console.log(this.props.id);
     Materialize.toast('Card deleted!', 2000, 'rounded notication');
     this.props.deleteCard(this.props.id);
-    this.props.closeModal();
+    this.props.closeModal.bind(this);
   }
 
   render() {

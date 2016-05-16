@@ -100,7 +100,7 @@ export const deleteCardAction = (cardId) => {
   // const request = axios.delete(endpoint);
   return {
     type: 'DELETE_CARD',
-    deletedCard: cardId,
+    payload: request,
   };
 };
 
