@@ -32,6 +32,7 @@ module.exports = (function() {
               'text',
               'note',
               {messages: ['id']},
+              // {messages: ['id', 'from_user_id', 'to_user_id', 'card_id']},
               {cardTags: [
                 'id', 
                 {tag: [
@@ -59,7 +60,6 @@ module.exports = (function() {
 
     create() {
       // --> this.params.body: { from: 'public', to: 'michelleheh', card_id: '3' }
-      console.log('this is the request body in message_controller.js: ', this.params);
       const from_user = this.params.body.from;
       const to_user = this.params.body.to;
       const card_id = this.params.body.card_id;
