@@ -141,9 +141,10 @@ class CardModal extends React.Component {
               <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
             ) : <span></span>} <br/>
           </div>
-          <a className="button" href="#popup1">Let me Pop up</a>
 
+          <a className="button" href="#popup1">Let me Pop up</a>
           <ShareModal />
+          
         </div>
       </div>
     );

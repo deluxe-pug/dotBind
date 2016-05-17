@@ -147,6 +147,13 @@ export const deleteCardAction = (cardId) => {
   };
 };
 
+export const shareCardAction = (username) => {
+  console.log('action called => ', username);
+  return {
+    type: 'SHARE_CARD',
+  };
+}
+
 export const removeTagFromCardAction = (tag) => {
   const request = axios.delete(`${endpoints.card_tags}/${tag.cardTagId}/?access_token=${localStorage.getItem('dotBindAccessToken')}`);
   return {
