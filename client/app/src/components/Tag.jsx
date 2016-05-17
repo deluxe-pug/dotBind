@@ -7,7 +7,6 @@ import { filterCardsAction, setToFilterAction } from '../actions/cardActions';
 class Tag extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.tagName, ' <---> ', props.card_count);
   }
 
   handleFilter(){
