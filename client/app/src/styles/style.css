@@ -279,11 +279,13 @@ hr {
   margin-right: 3px;
   float: left;
   background-color: #c62828;
+  z-index: 0;
 }
 
 .save-button {
   float: left;
   width: 50%;
+  z-index: 0;
 }
 
 .modal-link:hover {
@@ -333,8 +335,8 @@ hr {
   box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
 }
 
-.modal-editor {
-  z-index: 2;
+.modal-editor > div {
+  z-index: 0;
 }
 
 .add-tag {
@@ -345,4 +347,5 @@ hr {
   /*text-align: right;*/
   /*width: 100%;*/
   float: right;
+  z-index: 0;
 }
