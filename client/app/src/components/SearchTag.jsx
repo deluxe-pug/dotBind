@@ -15,20 +15,12 @@ class SearchTag extends React.Component {
       <div className="chip">
         {this.props.name}
         <i className="material-icons" onClick={() => {
-          const searchInput = [];
-          this.props.search.input.split(' ').forEach(tag => {
-            if (tag !== this.props.name) {
-              searchInput.push(tag);
-            }
-          });
-          let searchString = '';
-          if (searchInput) {
-            searchInput.forEach(tag => {
-              searchString = searchString.concat(' ', tag)
-            });
-          }
-          this.props.removeCardFilter(searchString);
+          console.log('SEARCH STATE? ', this.props.search)
 
+          let searchString = this.props.search.input.split(' ').filter(tag =>
+            tag !== this.props.name
+          ).join(' ');
+          this.props.removeCardFilter(searchString);
           this.props.deleteSearchTag(this.props.name);
         }}>
           close
@@ -37,6 +29,22 @@ class SearchTag extends React.Component {
     ); 
   }
 };
+            // let searchString = this.props.search.input.split(' ').filter((tag) => 
+            //   return tag !== this.props.name
+            // ).join(' ');
+
+// const searchInput = [];
+// this.props.search.input.split(' ').forEach(tag => {
+//   if (tag !== this.props.name) {
+//     searchInput.push(tag);
+//   }
+// });
+// let searchString = '';
+// if (searchInput) {
+//   searchInput.forEach(tag => {
+//     searchString = searchString.concat(' ', tag)
+//   });
+// }
 
 const mapStateToProps = (state) => {
   return {
