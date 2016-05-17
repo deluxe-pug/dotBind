@@ -7,10 +7,22 @@ require('../styles/popoutform.css');
 const ShareModal = () => (
   <div id="popup1" className="overlay">
       <div className="popup">
-          <h2>Here i am</h2>
+          <h4>Share this card </h4>
           <a className="close" href="#">&times;</a>
-          <div className="content">
-              Thank to pop me out of that button, but now im done so you can close this
+          <div className="container">
+            <div className="row">
+
+              <div className="col s8">
+                <input type="text" placeholder="github handle" />
+              </div>
+
+              <div className="col s4">
+                <button type="submit" className="waves-effect waves-light btn">
+                  Share!
+                </button>
+              </div>
+
+            </div>
           </div>
       </div>
   </div>
