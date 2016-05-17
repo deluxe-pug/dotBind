@@ -90,12 +90,17 @@ module.exports = (function() {
     }
 
     destroy() {
+      console.log('--> this is this.params', this.params.route.id)
+      const card_id = this.params.route.id;
 
-      Message.destroy(this.params.route.id, (err, model) => {
+      Message.query()
+        .where({card_id})
+        .end((err, models) => {
+          Message.destroy(models[0].get('id'), (err, model) => {
+            this.respond(err || model);
+          });
 
-        this.respond(err || model);
-
-      });
+        })
 
     }
 
