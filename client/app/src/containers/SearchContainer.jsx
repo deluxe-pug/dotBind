@@ -28,7 +28,6 @@ class SearchContainer extends React.Component {
           } else {
             this.props.searchCards(input.value.trim());
             this.props.switchDisplay(false, input.value.trim());
-            console.log('SEARCH CONTAINER: ', input.value.trim());
           }
         }}>
         <input className="search-input"

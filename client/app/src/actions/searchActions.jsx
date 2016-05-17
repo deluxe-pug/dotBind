@@ -1,3 +1,4 @@
+// For typed input
 export const switchDisplayAction = (bool, input) => {
   return {
     type: 'SWITCH_DISPLAY',
@@ -6,6 +7,7 @@ export const switchDisplayAction = (bool, input) => {
   };
 };
 
+// For clicked tags
 export const addSearchKeywordAction = (bool, input) => {
   return {
     type: 'ADD_SEARCH_KEYWORD',
