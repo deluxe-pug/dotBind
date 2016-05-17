@@ -14,3 +14,9 @@ export const addSearchKeywordAction = (bool, input) => {
     input: input,
   }
 };
+
+export const setEmptyInputAction = () => {
+  return {
+    type: 'SET_EMPTY_INPUT'
+  }
+};

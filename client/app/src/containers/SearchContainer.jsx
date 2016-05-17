@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { searchCardsAction, fetchCardsAction } from '../actions/cardActions';
-import { switchDisplayAction } from '../actions/searchActions';
+import { switchDisplayAction, setEmptyInputAction } from '../actions/searchActions';
 
 class SearchContainer extends React.Component {
   constructor(props) {
@@ -23,6 +23,8 @@ class SearchContainer extends React.Component {
           e.preventDefault();
           if (!input.value.trim()) {
             this.props.fetchCards();
+            this.props.setEmptyInput();
+
           } else {
             this.props.searchCards(input.value.trim());
             this.props.switchDisplay(false, input.value.trim());
@@ -53,6 +55,7 @@ const mapDispatchToProps = (dispatch) => {
     searchCards: searchCardsAction,
     switchDisplay: switchDisplayAction,
     fetchCards: fetchCardsAction,
+    setEmptyInput: setEmptyInputAction,
   }, dispatch);
 };
 
