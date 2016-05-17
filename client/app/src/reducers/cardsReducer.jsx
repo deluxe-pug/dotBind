@@ -15,9 +15,6 @@ const cardsReducer = (state = [], action) => {
       console.log(action.payload.data.data)
       return state;
 
-    case 'FILTER_CARDS':
-      return filteredCards(state, action.tag);
-
     case 'SEARCH_CARDS':
       // console.log('PAYLOAD: ', action.payload.data.data);
       const returnedIDs = [];

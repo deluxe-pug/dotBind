@@ -86,6 +86,7 @@ export const filterCardsAction = (tag) => {
 };
 
 export const searchCardsAction = (keywords) => {
+  console.log("searchCardsAction is called: ", keywords);
 
   const query = {
     params: {
