@@ -12,9 +12,16 @@ const searchReducer = (state = {
       };
 
     case 'ADD_SEARCH_KEYWORD':
+      let allInput;
+      if (state.input) {
+        allInput = state.input.concat(' ', action.input);
+        console.log('allInput: ', allInput)
+      } else {
+        allInput = action.input
+      }
       return {
         display: action.display,
-        input: action.input
+        input: allInput
       }
 
 
