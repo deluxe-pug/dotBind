@@ -1,46 +1,46 @@
 import axios from 'axios';
 import endpoints from './endpoints';
 
-export const searchCardsByTagAction = (keywords) => {
-  console.log("searchCardsByTagAction is called! ", keywords);
-  const query = {
-    params: {
-      "query": {
-        index: "library",
-        type: "cards",
-        body: {
-          "query": {
-            "bool": {
-              "should": [{
-                "multi_match": {
-                  "query": keywords,
-                  "type": "most_fields",
-                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
-                },
-              }],
-            },
-          },
-          "highlight": {
-            "fields": {
-              "title": {},
-              "url": {},
-              "code": {},
-              "text": {},
-              "note": {},
-              "domain": {},
-              "cardTags.tag.name": {},
-            },
-          },
-        },
-      },
-    },
-  };
-  const request = axios.get(endpoints.search, query);
-  return {
-    type: 'SEARCH_CARDS_BY_TAG',
-    payload: request,
-  }
-};
+// export const searchCardsByTagAction = (keywords) => {
+//   console.log("searchCardsByTagAction is called! ", keywords);
+//   const query = {
+//     params: {
+//       "query": {
+//         index: "library",
+//         type: "cards",
+//         body: {
+//           "query": {
+//             "bool": {
+//               "should": [{
+//                 "multi_match": {
+//                   "query": keywords,
+//                   "type": "most_fields",
+//                   "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
+//                 },
+//               }],
+//             },
+//           },
+//           "highlight": {
+//             "fields": {
+//               "title": {},
+//               "url": {},
+//               "code": {},
+//               "text": {},
+//               "note": {},
+//               "domain": {},
+//               "cardTags.tag.name": {},
+//             },
+//           },
+//         },
+//       },
+//     },
+//   };
+//   const request = axios.get(endpoints.search, query);
+//   return {
+//     type: 'SEARCH_CARDS_BY_TAG',
+//     payload: request,
+//   }
+// };
 
 
 export const addCardAction = (url) => {

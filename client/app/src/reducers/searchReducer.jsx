@@ -17,7 +17,6 @@ const searchReducer = (state = {
       } else {
         allInput = action.input
       }
-      // console.log('ADD_SEARCH_KEYWORD', allInput);
       return {
         display: action.display,
         input: allInput
@@ -32,7 +31,7 @@ const searchReducer = (state = {
     case 'DELETE_SEARCH_TAG':
       // change search input
       // if (state.input) {
-        const newInput = state.input.split(' ').filter(searchTag => searchTag !== action.input).join(' ');
+      const newInput = state.input.split(' ').filter(searchTag => searchTag !== action.input).join(' ');
       // }
       console.log('DELETE_SEARCH_TAG', newInput);
       return {
