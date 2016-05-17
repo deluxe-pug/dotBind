@@ -75,7 +75,7 @@ module.exports = (function() {
               if (user_tag.get('card_count') === null) {
                 user_tag.set('card_count', 1); // initialize to 1
                 user_tag.save();
-              } else if (user_tag.get('card_count')) {
+              } else if (user_tag.get('card_count') >= 0) {
                 user_tag.set('card_count', user_tag.get('card_count') + 1) // NOTE: does not account for cards that already have tag; Retagging should be prevented client-side
                 user_tag.save();
               }
