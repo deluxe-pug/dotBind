@@ -47,7 +47,7 @@ module.exports = (function() {
                   return Object.assign({}, {id, user_id, tag_id, card_count}, {tagName}); 
                 })
                 // sorts user_tags by card count descending order
-                this.respond(userTags.slice().sort((tagA, tagB) => {return tagA.card_count < tagB.card_count}));
+                this.respond(userTags.filter((userTag) => {return userTag.card_count !== 0}).sort((tagA, tagB) => {return tagA.card_count < tagB.card_count}));
 
               })
               .catch((error) => {
