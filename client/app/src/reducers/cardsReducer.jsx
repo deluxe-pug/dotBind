@@ -33,7 +33,7 @@ const cardsReducer = (state = [], action) => {
       return state;
 
     case 'REMOVE_TAG':
-      return action.payload.data.data;
+      return removedCardTag(state, action.payload);
 
     case 'ADD_CARD_TAG':
       return addedCardTag(state, action.payload);
