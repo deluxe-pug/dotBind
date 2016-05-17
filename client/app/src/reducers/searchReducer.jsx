@@ -29,11 +29,7 @@ const searchReducer = (state = {
       };
 
     case 'DELETE_SEARCH_TAG':
-      // change search input
-      // if (state.input) {
       const newInput = state.input.split(' ').filter(searchTag => searchTag !== action.input).join(' ');
-      // }
-      console.log('DELETE_SEARCH_TAG', newInput);
       return {
         display: state.display,
         input: newInput
