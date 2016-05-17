@@ -18,7 +18,15 @@ class Tag extends React.Component {
   render() {
     return (
         <a className="collection-item" onClick={() => {
-          this.props.searchCardsByTag(this.props.tagName);
+
+          let searchString = '';
+          if (this.props.search) {
+            searchString = searchString.concat(this.props.search.input, ' ', this.props.tagName)
+          } else {
+            searchString = searchString.concat(this.props.tagName)
+          }
+          console.log('searchString in tag', searchString);
+          this.props.searchCardsByTag(searchString);
           this.props.addSearchKeyword(false, this.props.tagName);
         }}>
           {this.props.tagName}
@@ -30,13 +38,17 @@ class Tag extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+<<<<<<< 70221e9c359fa1a2103ceb169b5eea09934ad885
     cardsState: state.cardsState
+=======
+    search: state.search
+>>>>>>> Fix tag connection to search
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    searchCards: searchCardsAction,
+    // searchCards: searchCardsAction,
     // switchDisplay: switchDisplayAction
     addSearchKeyword: addSearchKeywordAction,
     searchCardsByTag: searchCardsByTagAction,
