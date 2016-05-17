@@ -7,10 +7,11 @@ export const switchDisplayAction = (bool, input) => {
   };
 };
 
-// export const addSearchKeywordAction = (input) => {
-//   console.log('addSearchKeywordAction is called!', input);
-//   return {
-//     type: 'ADD_SEARCH_KEYWORD',
-//     input: input,
-//   }
-// };
+export const addSearchKeywordAction = (bool, input) => {
+  // console.log('addSearchKeywordAction is called!', input);
+  return {
+    type: 'ADD_SEARCH_KEYWORD',
+    display: bool,
+    input: input,
+  }
+};

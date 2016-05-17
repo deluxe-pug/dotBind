@@ -11,6 +11,13 @@ const searchReducer = (state = {
         input: action.input,
       };
 
+    case 'ADD_SEARCH_KEYWORD':
+      return {
+        display: action.display,
+        input: action.input
+      }
+
+
     // case 'ADD_SEARCH_KEYWORD':
     //   console.log('ADD_SEARCH_KEYWORD reducer is called', {
     //     display: state.display,
