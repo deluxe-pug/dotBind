@@ -14,3 +14,42 @@ export const fetchUserAction = () => {
   };
 };
 
+export const searchUsersAction = (keywords) => {
+
+  const query = {
+    params: {
+      "query": {
+        index: "library",
+        type: "cards",
+        body: {
+          "query": {
+            "bool": {
+              "should": [{
+                "multi_match": {
+                  "query": keywords,
+                  "fields": ["username"],
+                },
+              }],
+            },
+          },
+          "highlight": {
+            "fields": {
+              "title": {},
+              "url": {},
+              "code": {},
+              "text": {},
+              "note": {},
+              "domain": {},
+              "cardTags": {},
+            },
+          },
+        },
+      },
+    },
+  };
+  const request = axios.get(endpoints.searchUsers, query);
+  return {
+    type: 'SEARCH_USERS',
+    payload: request,
+  }
+};
