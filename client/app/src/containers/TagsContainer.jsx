@@ -13,7 +13,11 @@ class TagsContainer extends React.Component {
   componentWillMount() {
     setTimeout(() => {
       this.props.fetchTags();
-      const tagIntervalId = setInterval(this.props.fetchTags, 2000)
+      const tagIntervalId = setInterval(() => {
+        if (!localStorage.getItem('modalIsOpen')) {
+          this.props.fetchTags();
+        }
+      }, 2000)
       localStorage.setItem('tagIntervalId', tagIntervalId);
     }, 150);
   }
