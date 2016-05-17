@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import brace from 'brace';
 import CardTag from './CardTag';
+import ShareModal from './ShareModal';
 
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
@@ -15,8 +16,6 @@ import {
   deleteCardAction,
   saveCardFromInboxAction
 } from '../actions/cardActions';
-
-require('../styles/popoutform.css');
 
 let input;
 let editorCode = '';
@@ -142,19 +141,9 @@ class CardModal extends React.Component {
               <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
             ) : <span></span>} <br/>
           </div>
-          <div className="box">
-    <a className="button" href="#popup1">Let me Pop up</a>
-</div>
+          <a className="button" href="#popup1">Let me Pop up</a>
 
-<div id="popup1" className="overlay">
-    <div className="popup">
-        <h2>Here i am</h2>
-        <a className="close" href="#">&times;</a>
-        <div className="content">
-            Thank to pop me out of that button, but now im done so you can close this
-        </div>
-    </div>
-</div>
+          <ShareModal />
         </div>
       </div>
     );
