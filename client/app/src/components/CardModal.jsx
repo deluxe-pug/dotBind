@@ -11,7 +11,8 @@ import 'brace/theme/tomorrow_night';
 import { bindActionCreators } from 'redux';
 import { addTagToCardAction,
          updateCardAction,
-         deleteCardAction } from '../actions/cardActions';
+         deleteCardAction,
+         saveCardFromInboxAction } from '../actions/cardActions';
 
 let input;
 let editorCode = '';
@@ -42,11 +43,26 @@ class CardModal extends React.Component {
     Materialize.toast('Changes saved!', 2000, 'rounded notication');
   }
 
+  saveNewCard(){
+    let cardObject = {
+      url: this.props.url,
+      title: this.props.title,
+      code: this.props.code,
+      text: this.props.text,
+      note: this.props.note,
+      icon: this.props.icon,
+      domain: this.props.domain,
+    };
+    let tags = [];
+    this.props.cardTags.forEach( cardTag => tags.push(cardTag.tag.name) );
+    this.props.saveCard(cardObject, localStorage.getItem('githubUsername'), tags);
+  }
+
   notifyDelete(){
     console.log(this.props.id);
-    Materialize.toast('Card deleted!', 2000, 'rounded notication');
-    this.props.deleteCard(this.props.id);
     this.props.closeModal.bind(this);
+    this.props.deleteCard(this.props.id);
+    Materialize.toast('Card deleted!', 2000, 'rounded notication');
   }
 
   render() {
@@ -86,8 +102,9 @@ class CardModal extends React.Component {
                   <i className="material-icons">delete</i>
                 </button>
                 <button className="waves-effect waves-light btn save-button"
-                  onClick={this.saveChanges.bind(this)}>
-                  Save Changes
+                  onClick={this.props.cardsState !== 'inbox' ?
+                  this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
+                  {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
                 </button>
               </div>
               <a className="modal-link" href={this.props.url}>
@@ -96,14 +113,15 @@ class CardModal extends React.Component {
             </div>
 
             <div className="col s8 offset-s2">
-              <form onSubmit={ (e) => {
+              { this.props.cardsState !== 'inbox' ?
+                <form onSubmit={ (e) => {
                 e.preventDefault();
                 if ( !input.value.trim() ) {
                   return;
                 }
                 this.props.dispatch( addTagToCardAction(input.value, this.props.user_id, this.props.id) );
                 input.value = '';
-              }}>
+                }}>
                 <div className="row">
                   <div className="col s6">
                     <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
@@ -112,7 +130,7 @@ class CardModal extends React.Component {
                     <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
                   </div>
                 </div>
-              </form>
+              </form> : null }
             </div>
           </div>
           <div className="tags-div">
@@ -129,6 +147,7 @@ class CardModal extends React.Component {
 const mapStateToProps = (state) => {
   return {
     cards: state.cards,
+    cardsState: state.cardsState,
   };
 };
 
@@ -137,6 +156,7 @@ const mapDispatchToProps = (dispatch) => {
     addTag: addTagToCardAction,
     updateCard: updateCardAction,
     deleteCard: deleteCardAction,
+    saveCard: saveCardFromInboxAction,
   }, dispatch);
 };
 CardModal = connect(mapStateToProps, mapDispatchToProps)(CardModal);

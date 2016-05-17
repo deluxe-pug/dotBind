@@ -11,7 +11,9 @@ class CardTag extends React.Component {
 
   handleDelete() {
     console.log(' tag props ==> ', this.props)
-    this.props.removeTag(this.props);
+    if ( this.props.cardsState !== 'inbox' ) {
+      this.props.removeTag(this.props);
+    }
   }
 
   render() {
@@ -27,6 +29,7 @@ class CardTag extends React.Component {
 const mapStateToProps = (state) => {
   return {
     cards: state.cards,
+    cardsState: state.cardsState,
   };
 };
 

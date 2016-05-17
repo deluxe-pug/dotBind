@@ -26,6 +26,22 @@ export const addCardAction = (url) => {
   };
 };
 
+export const saveCardFromInboxAction = (cardObj, username, tagArray) => {
+  // console.log('CardObject => ', cardObj);
+  // console.log('username => ', username);
+  // console.log('tags => ', tagArray);
+  const endpoint = `${endpoints.cards}?access_token=${localStorage.getItem('dotBindAccessToken')}`;
+  const request = axios.post(endpoint, {
+    card: cardObj,
+    username: username,
+    tags: tagArray,
+  });
+  return {
+    type: 'SAVE_NEW_CARD',
+    payload: request,
+  }
+};
+
 export const fetchCardsAction = () => {
   const accesstoken = localStorage.getItem('dotBindAccessToken');
   const request = axios.get(`${endpoints.cards}?access_token=${accesstoken}`).catch((err) => console.error('Error fetching cards: ', err));
