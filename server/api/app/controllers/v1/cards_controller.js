@@ -146,8 +146,10 @@ module.exports = (function() {
                 const cardTagsFormatted = [];
                 tagModels.forEach(tagModel =>
                   cardTagsFormatted.push({
-                    id: tagModel._data.id,
-                    name: tagModel._data.name,
+                    tag: {
+                      id: tagModel._data.id,
+                      name: tagModel._data.name,
+                    }
                   })
                 )
 

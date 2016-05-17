@@ -14,21 +14,19 @@ class SearchTag extends React.Component {
       <div className="chip">
         {this.props.name}
         <i className="material-icons" onClick={() => {
-          const remainingSearchInput = [];
+          const searchInput = [];
           this.props.search.input.split(' ').forEach(tag => {
             if (tag !== this.props.name) {
-              remainingSearchInput.push(tag);
+              searchInput.push(tag);
             }
           });
-          console.log('remainingSearchInput ', remainingSearchInput);
-          if (remainingSearchInput) {
-            let remainingSearchString = '';
-            remainingSearchInput.forEach(tag => {
-              remainingSearchString.concat(tag);
-            })            
+          let searchString = '';
+          if (searchInput) {
+            searchInput.forEach(tag => {
+              searchString = searchString.concat(' ', tag)
+            });
           }
-          console.log('remainingSearchString ', remainingSearchString)
-          this.props.searchCards('remaining keyword');
+          this.props.searchCards(searchString);
           this.props.deleteSearchTag(this);
         }}>
           close

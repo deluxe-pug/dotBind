@@ -94,7 +94,7 @@ export const searchCardsAction = (keywords) => {
                 "multi_match": {
                   "query": keywords,
                   "type": "most_fields",
-                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.name"],
+                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
                 },
               }],
             },
@@ -107,8 +107,7 @@ export const searchCardsAction = (keywords) => {
               "text": {},
               "note": {},
               "domain": {},
-              "cardTags.id": {},
-              "cardTags.name": {},
+              "cardTags.tag.name": {},
             },
           },
         },
