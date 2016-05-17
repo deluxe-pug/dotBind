@@ -96,14 +96,15 @@ class CardModal extends React.Component {
             </div>
 
             <div className="col s8 offset-s2">
-              <form onSubmit={ (e) => {
+              {this.props.cardsState !== 'inbox' ?
+                <form onSubmit={ (e) => {
                 e.preventDefault();
                 if ( !input.value.trim() ) {
                   return;
                 }
                 this.props.dispatch( addTagToCardAction(input.value, this.props.user_id, this.props.id) );
                 input.value = '';
-              }}>
+                }}>
                 <div className="row">
                   <div className="col s6">
                     <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
@@ -112,7 +113,7 @@ class CardModal extends React.Component {
                     <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
                   </div>
                 </div>
-              </form>
+              </form> : null }
             </div>
           </div>
           <div className="tags-div">
@@ -129,6 +130,7 @@ class CardModal extends React.Component {
 const mapStateToProps = (state) => {
   return {
     cards: state.cards,
+    cardsState: state.cardsState,
   };
 };
 
