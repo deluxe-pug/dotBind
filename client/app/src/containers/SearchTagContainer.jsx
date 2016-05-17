@@ -11,6 +11,13 @@ class SearchTagContainer extends React.Component {
     super(props);
   }
 
+  componentDidUpdate() {
+    console.log('IM HERE', this.props.search.input)
+    if (!this.props.search.input) {
+      this.props.switchDisplay(true, '');
+    }
+  }
+
   render() {
     return (
         <form className="search-tags"

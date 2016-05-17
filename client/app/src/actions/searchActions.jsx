@@ -1,5 +1,6 @@
 // For typed input
 export const switchDisplayAction = (bool, input) => {
+  console.log('switchDisplayAction is called')
   return {
     type: 'SWITCH_DISPLAY',
     display: bool,

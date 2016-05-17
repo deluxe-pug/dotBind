@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { searchCardsAction } from '../actions/cardActions';
 import { removeCardFilterAction, searchCardsAction } from '../actions/cardActions';
-import { deleteSearchTagAction } from '../actions/searchActions';
+import { deleteSearchTagAction, switchDisplayAction } from '../actions/searchActions';
 
 class SearchTag extends React.Component {
   constructor(props) {
@@ -17,11 +17,16 @@ class SearchTag extends React.Component {
         <i className="material-icons search-tag" id="search-tag"
           onClick={(e) => {
             e.stopPropagation();
-            let searchString = this.props.search.input.split(' ').filter(tag =>
-              tag !== this.props.name
-            ).join(' ');
-            this.props.removeCardFilter(searchString);
-            this.props.deleteSearchTag(this.props.name);
+            console.log('INPUT LENGTH: ', this.props.search.input.length);
+            if (this.props.search.input.length > 0) {
+              let searchString = this.props.search.input.split(' ').filter(tag =>
+                tag !== this.props.name
+              ).join(' ');
+              this.props.removeCardFilter(searchString);
+              this.props.deleteSearchTag(this.props.name);
+            } else {
+              this.props.switchDisplay(true);
+            }
           }}>
           close
         </i>
@@ -41,6 +46,7 @@ const mapDispatchToProps = (dispatch) => {
     searchCards: searchCardsAction,
     deleteSearchTag: deleteSearchTagAction,
     removeCardFilter: removeCardFilterAction,
+    switchDisplay: switchDisplayAction,
   }, dispatch);
 };
 
