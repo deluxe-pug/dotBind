@@ -7,9 +7,9 @@ export const switchDisplayAction = (bool, input) => {
   };
 };
 
-export const addKeyword = (input) => {
+export const addSearchKeywordAction = (input) => {
   return {
-    type: 'ADD_KEYWORD',
+    type: 'ADD_SEARCH_KEYWORD',
     input: input,
   }
 };
