@@ -96,8 +96,8 @@ export const updateCardAction = (reqBody) => {
 
 export const deleteCardAction = (cardId) => {
   console.log('action called');
-  const endpoint = `${endpoints.cards}/${cardId}/access_token?=${localStorage.getItem('dotBindAccessToken')}`;
-  // const request = axios.delete(endpoint);
+  const endpoint = `${endpoints.cards}/${cardId}/?access_token=${localStorage.getItem('dotBindAccessToken')}`;
+  const request = axios.delete(endpoint);
   return {
     type: 'DELETE_CARD',
     payload: request,

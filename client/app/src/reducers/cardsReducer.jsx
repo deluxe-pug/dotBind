@@ -30,7 +30,7 @@ const cardsReducer = (state = [], action) => {
       return updatedCard(state, data);
 
     case 'DELETE_CARD':
-      return deletedCard(state, action.deletedCard);
+      return state;
 
     case 'REMOVE_TAG':
       return action.payload.data.data;
