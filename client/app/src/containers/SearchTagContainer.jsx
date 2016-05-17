@@ -12,6 +12,7 @@ class SearchTagContainer extends React.Component {
   }
 
   render() {
+    console.log('SearchTagContainer state has changed');
     return (
       <form className="search"
         onClick={() => {

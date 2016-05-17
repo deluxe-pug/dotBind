@@ -23,6 +23,7 @@ export const setEmptyInputAction = () => {
 };
 
 export const deleteSearchTagAction = (searchTagName) => {
+  console.log('deleteSearchTagAction is called', searchTagName);
   return {
     type: 'DELETE_SEARCH_TAG',
     input: searchTagName,
