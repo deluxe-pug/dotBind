@@ -17,6 +17,7 @@ const searchReducer = (state = {
       } else {
         allInput = action.input
       }
+      // console.log('ADD_SEARCH_KEYWORD', allInput);
       return {
         display: action.display,
         input: allInput

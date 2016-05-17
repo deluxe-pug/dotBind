@@ -23,9 +23,6 @@ const cardsReducer = (state = [], action) => {
       const searchedCards = state.slice().filter((card) => {
         if (returnedIDs.indexOf(card.id) > -1) { return true; }
       });
-      // let searchedCards = [];
-      // action.payload.data.data.forEach(card => searchedCards.push(card._source))
-      // console.log('SEARCH_CARDS REDUCER', searchedCards);
       return searchedCards;
 
 

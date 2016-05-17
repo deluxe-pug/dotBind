@@ -1,16 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-<<<<<<< b245698adb9c3377796c0a60b61aaa116f75f954
 import { searchCardsAction } from '../actions/cardActions';
-=======
-// import { filterCardsAction } from '../actions/cardActions';
-<<<<<<< 303622f2751ec07abc06b7c2a0ccd3f72c728b5e
-import { searchCardsAction, searchCardsByTagAction } from '../actions/cardActions';
->>>>>>> Connect searchCardsByTag to tags
-=======
-import { searchCardsByTagAction } from '../actions/cardActions';
->>>>>>> Add reducer and action for deleting search tag
+
 // import { switchDisplayAction } from '../actions/searchActions';
 import { addSearchKeywordAction } from '../actions/searchActions';
 
@@ -23,6 +15,7 @@ class Tag extends React.Component {
     return (
         <a className="collection-item" onClick={() => {
           let searchString = '';
+          console.log('ANYTHING IN SEARCH STATE???', this.props.search);
           if (this.props.search) {
             searchString = searchString.concat(this.props.search.input, ' ', this.props.tagName)
           } else {
@@ -41,11 +34,11 @@ class Tag extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-<<<<<<< 70221e9c359fa1a2103ceb169b5eea09934ad885
+
     cardsState: state.cardsState
-=======
+
     search: state.search
->>>>>>> Fix tag connection to search
+
   };
 }
 
