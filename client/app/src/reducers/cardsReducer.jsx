@@ -9,6 +9,9 @@ const cardsReducer = (state = [], action) => {
     case 'FETCH_CARDS':
       return [...action.payload.data.data];
 
+    case 'FETCH_INBOX':
+      return [...action.payload.data.data];
+
     case 'FILTER_CARDS':
       return filteredCards(state, action.tag);
 

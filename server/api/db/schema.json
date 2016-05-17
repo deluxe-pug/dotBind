@@ -1,6 +1,6 @@
 {
 
-  "migration_id": 2016051002123395,
+  "migration_id": 2016051520281296,
 
   "models": {
 
@@ -55,6 +55,21 @@
 
     },
 
+    "Message": {
+
+      "table": "messages",
+
+      "columns": [
+        {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
+        {"name": "from_user_id", "type": "int", "properties": {}},
+        {"name": "to_user_id", "type": "int", "properties": {}},
+        {"name": "card_id", "type": "int", "properties": {}},
+        {"name": "created_at", "type": "datetime", "properties": {}},
+        {"name": "updated_at", "type": "datetime", "properties": {}}
+      ]
+
+    },
+
     "Snippet": {
 
       "table": "snippets",
@@ -91,6 +106,7 @@
         {"name": "email", "type": "string", "properties": {"unique":true}},
         {"name": "password", "type": "string", "properties": {}},
         {"name": "username", "type": "string", "properties": {}},
+        {"name": "message_count", "type": "int", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]

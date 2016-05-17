@@ -35,6 +35,33 @@ export const fetchCardsAction = () => {
   };
 };
 
+export const setToCardsAction = () => {
+  return {
+    type: 'TO_MYCARDS'
+  }
+};
+
+export const setToFilterAction = () => {
+  return {
+    type: 'TO_FILTER'
+  }
+};
+
+export const fetchInboxAction = () => {
+  const accesstoken = localStorage.getItem('dotBindAccessToken');
+  const request = axios.get(`${endpoints.inbox}?access_token=${accesstoken}`).catch((err) => console.error('Error fetching cards: ', err));
+  return {
+    type: 'FETCH_INBOX',
+    payload: request,
+  };
+};
+
+export const setToInboxAction = () => {
+  return {
+    type: 'TO_INBOX'
+  }
+};
+
 export const filterCardsAction = (tag) => {
   return {
     type: 'FILTER_CARDS',
