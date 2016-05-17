@@ -12,6 +12,11 @@ const cardsReducer = (state = [], action) => {
     case 'FETCH_INBOX':
       return [...action.payload.data.data];
 
+    case 'SAVE_NEW_CARD':
+      console.log('SAVE_NEW_CARD reducer')
+      console.log(action.payload.data.data)
+      return state;
+
     case 'FILTER_CARDS':
       return filteredCards(state, action.tag);
 

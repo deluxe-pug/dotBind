@@ -27,10 +27,10 @@ export const addCardAction = (url) => {
 };
 
 export const saveCardFromInboxAction = (cardObj, username, tagArray) => {
-  console.log('CardObject => ', cardObj);
-  console.log('username => ', username);
-  console.log('tags => ', tagArray);
-  const endpoint = `${endpoints.cards}?access_token=${localStorage.getIten('dotBindAccessToken')}`;
+  // console.log('CardObject => ', cardObj);
+  // console.log('username => ', username);
+  // console.log('tags => ', tagArray);
+  const endpoint = `${endpoints.cards}?access_token=${localStorage.getItem('dotBindAccessToken')}`;
   const request = axios.post(endpoint, {
     card: cardObj,
     username: username,
