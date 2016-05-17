@@ -6,7 +6,6 @@ client/app/dist
 client/app/node_modules
 client/chrome/node_modules
 client/chrome-redux
-client/app/src/actions/endpoints.jsx
 ../../npm-debug.log
 npm-debug.log
 server/api/npm-debug.log
@@ -16,3 +15,4 @@ server/api/logfile
 config.env
 node_modules
 client/app/exampleResponseObjects.js
+client/app/src/actions/endpoints.jsx
