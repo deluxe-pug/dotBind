@@ -23,12 +23,19 @@ const cardsReducer = (state = [], action) => {
       const searchedCards = state.slice().filter((card) => {
         if (returnedIDs.indexOf(card.id) > -1) { return true; }
       });
+      console.log('SEARCH_CARDS REDUCER: ', searchedCards);
       return searchedCards;
-
 
     case 'SHARE_CARD':
       return state;
 
+    case 'REMOVE_CARD_FILTER':
+      const removedCards = [];
+      action.payload.data.data.forEach(function(obj) {
+        removedCards.push(obj._source);
+      })
+      console.log('REMOVE_CARD_FILTER REDUCER: ', removedCards)
+      return [...removedCards];
 
     case 'UPDATE_CARD':
       var data = action.payload.data.data[0];

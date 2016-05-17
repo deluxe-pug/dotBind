@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { searchCardsAction } from '../actions/cardActions';
-import { searchCardsByTagAction } from '../actions/cardActions';
+import { removeCardFilterAction, searchCardsAction } from '../actions/cardActions';
 import { deleteSearchTagAction } from '../actions/searchActions';
 
 class SearchTag extends React.Component {
@@ -27,7 +27,8 @@ class SearchTag extends React.Component {
               searchString = searchString.concat(' ', tag)
             });
           }
-          this.props.searchCardsByTag(searchString);
+          this.props.removeCardFilter(searchString);
+
           this.props.deleteSearchTag(this.props.name);
         }}>
           close
@@ -45,8 +46,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    searchCardsByTag: searchCardsByTagAction,
+    searchCards: searchCardsAction,
     deleteSearchTag: deleteSearchTagAction,
+    removeCardFilter: removeCardFilterAction,
   }, dispatch);
 };
 

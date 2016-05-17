@@ -26,6 +26,7 @@ class SearchContainer extends React.Component {
             this.props.setEmptyInput();
 
           } else {
+            console.log("SearchContainer INput", input.value.trim())
             this.props.searchCards(input.value.trim());
             this.props.switchDisplay(false, input.value.trim());
           }

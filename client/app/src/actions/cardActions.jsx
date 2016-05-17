@@ -1,51 +1,7 @@
 import axios from 'axios';
 import endpoints from './endpoints';
 
-// export const searchCardsByTagAction = (keywords) => {
-//   console.log("searchCardsByTagAction is called! ", keywords);
-//   const query = {
-//     params: {
-//       "query": {
-//         index: "library",
-//         type: "cards",
-//         body: {
-//           "query": {
-//             "bool": {
-//               "should": [{
-//                 "multi_match": {
-//                   "query": keywords,
-//                   "type": "most_fields",
-//                   "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
-//                 },
-//               }],
-//             },
-//           },
-//           "highlight": {
-//             "fields": {
-//               "title": {},
-//               "url": {},
-//               "code": {},
-//               "text": {},
-//               "note": {},
-//               "domain": {},
-//               "cardTags.tag.name": {},
-//             },
-//           },
-//         },
-//       },
-//     },
-//   };
-//   const request = axios.get(endpoints.search, query);
-//   return {
-//     type: 'SEARCH_CARDS_BY_TAG',
-//     payload: request,
-//   }
-// };
-
-
 export const addCardAction = (url) => {
-  // console.log('addCardAction is triggered');
-
   const request = axios.post(endpoints.cards, {
     "card": {
       "url": url,
@@ -61,7 +17,6 @@ export const addCardAction = (url) => {
       "Backbone"
      ]
   });
-  // console.log('checking middle logs')
   return {
     type: 'ADD_CARD',
     payload: request,
@@ -120,8 +75,8 @@ export const setToInboxAction = () => {
   }
 };
 
-
 export const searchCardsAction = (keywords) => {
+  console.log('searchCardsAction is called: ', keywords)
   const query = {
     params: {
       "query": {
@@ -219,18 +174,43 @@ export const addTagToCardAction = (tagName, userId, cardId) => {
   };
 };
 
-// SIMPLE QUERY
-// const query = {
-//   params: {
-//     query: {
-//       index: 'library',
-//       body: {
-//         "query": {
-//           "query_string": {
-//             "query": keywords
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+export const removeCardFilterAction = (keywords) => {
+  // first search
+  const query = {
+    params: {
+      "query": {
+        index: "library",
+        type: "cards",
+        body: {
+          "query": {
+            "bool": {
+              "should": [{
+                "multi_match": {
+                  "query": keywords,
+                  "type": "most_fields",
+                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
+                },
+              }],
+            },
+          },
+          "highlight": {
+            "fields": {
+              "title": {},
+              "url": {},
+              "code": {},
+              "text": {},
+              "note": {},
+              "domain": {},
+              "cardTags.tag.name": {},
+            },
+          },
+        },
+      },
+    },
+  };
+  const request = axios.get(endpoints.search, query);
+  return {
+    type: 'REMOVE_CARD_FILTER',
+    payload: request,
+  }
+};
