@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { searchCardsAction } from '../actions/cardActions';
-// import { switchDisplayAction } from '../actions/searchActions';
 import { addSearchKeywordAction } from '../actions/searchActions';
 
 class Tag extends React.Component {
@@ -32,20 +31,14 @@ class Tag extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-
-    cardsState: state.cardsState
-
     search: state.search
-
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     searchCards: searchCardsAction,
-    // switchDisplay: switchDisplayAction
     addSearchKeyword: addSearchKeywordAction,
-    // searchCardsByTag: searchCardsByTagAction,
   }, dispatch);
 };
 
