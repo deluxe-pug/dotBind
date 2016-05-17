@@ -42,7 +42,7 @@ module.exports = (function() {
           .where({user_id})
           .where(this.params.query)
           .end((err, cards) => {
-            this.respond( err || cards, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', {user: ['id', 'username', 'created_at']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
+            this.respond( err || cards.reverse(), ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', 'created_at', {user: ['id', 'username']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
           });
       })
     }
