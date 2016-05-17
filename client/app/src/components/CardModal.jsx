@@ -11,7 +11,8 @@ import 'brace/theme/tomorrow_night';
 import { bindActionCreators } from 'redux';
 import { addTagToCardAction,
          updateCardAction,
-         deleteCardAction } from '../actions/cardActions';
+         deleteCardAction,
+         saveCardFromInboxAction } from '../actions/cardActions';
 
 let input;
 let editorCode = '';
@@ -42,8 +43,8 @@ class CardModal extends React.Component {
     Materialize.toast('Changes saved!', 2000, 'rounded notication');
   }
 
-  testFunc(){
-    console.log('test func called!!!!!!')
+  saveNewCard(){
+    this.props.saveCard('test');
   }
 
   notifyDelete(){
@@ -91,7 +92,7 @@ class CardModal extends React.Component {
                 </button>
                 <button className="waves-effect waves-light btn save-button"
                   onClick={this.props.cardsState !== 'inbox' ?
-                  this.saveChanges.bind(this) : this.testFunc.bind(this)}>
+                  this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
                   {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
                 </button>
               </div>
@@ -144,6 +145,7 @@ const mapDispatchToProps = (dispatch) => {
     addTag: addTagToCardAction,
     updateCard: updateCardAction,
     deleteCard: deleteCardAction,
+    saveCard: saveCardFromInboxAction,
   }, dispatch);
 };
 CardModal = connect(mapStateToProps, mapDispatchToProps)(CardModal);
