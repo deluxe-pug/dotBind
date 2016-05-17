@@ -32,10 +32,6 @@ module.exports = (function() {
               'text',
               'note',
               {messages: ['id']},
-<<<<<<< HEAD
-=======
-              // {messages: ['id', 'from_user_id', 'to_user_id', 'card_id']},
->>>>>>> 4c0286ad5ebf644c46c188d209aa3eb83ba9b36c
               {cardTags: [
                 'id', 
                 {tag: [
