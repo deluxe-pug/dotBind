@@ -11,11 +11,15 @@ const searchReducer = (state = {
         input: action.input,
       };
 
-    case 'ADD_SEARCH_KEYWORD':
-      return {
-        display: state.display,
-        input: action.input
-      };
+    // case 'ADD_SEARCH_KEYWORD':
+    //   console.log('ADD_SEARCH_KEYWORD reducer is called', {
+    //     display: state.display,
+    //     input: action.input
+    //   });
+    //   return {
+    //     display: state.display,
+    //     input: action.input
+    //   };
 
     default:
       return state;
