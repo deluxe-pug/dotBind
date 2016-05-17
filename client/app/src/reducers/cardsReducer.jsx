@@ -2,7 +2,9 @@ const cardsReducer = (state = [], action) => {
   switch(action.type) {
 
     case 'ADD_CARD':
-      return [...state, action.payload.data.data];
+      console.log('ADD_CARD: ', action.payload.data.data);
+      return [...state];
+      // return [...state, action.payload.data.data];
 
     case 'FETCH_CARDS':
       return [...action.payload.data.data];

@@ -105,7 +105,22 @@ exports.logout = (req, res) => {
   });
 };
 
+exports.fetchsite = (req, res) => {
+  console.log('REQ BODY: ', req.query.url);
+  request({
+    uri: req.query.url,
+    method: 'GET'
+  }, function(error, message, response) {
+    console.log('FETCHSITE RESPONSE: ', response);
+    // parse resonse
+
+    
+    res.end();
+  });
+};
+
 exports.other = (req, res) => {
   if (!path.extname(req.url)) {res.redirect('/404');}
   res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
 };
+

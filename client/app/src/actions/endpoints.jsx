@@ -6,6 +6,7 @@ const endpoints = {
   searchUsers: 'http://localhost:3000/v1/searchusers',
   card_tags: 'http://localhost:3000/v1/card_tags',
   user_tags: 'http://localhost:3000/v1/user_tags',
+  fetchsite: 'http://localhost:8000/fetchsite',
   auth: 'http://localhost:8000/auth'
 };
 
