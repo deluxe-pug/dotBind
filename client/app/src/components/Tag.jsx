@@ -14,12 +14,13 @@ class Tag extends React.Component {
     return (
         <a className="collection-item" onClick={() => {
           let searchString = '';
-          if (this.props.search) {
+          if (this.props.search.input) {
             searchString = searchString.concat(this.props.search.input, ' ', this.props.tagName)
           } else {
             searchString = searchString.concat(this.props.tagName)
           }
-          this.props.searchCards(searchString);
+          console.log('searchString: ', searchString);
+          this.props.searchCards(this.props.tagName);
           this.props.addSearchKeyword(false, this.props.tagName);
         }}>
           {this.props.tagName}

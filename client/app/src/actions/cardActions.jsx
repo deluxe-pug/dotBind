@@ -122,8 +122,6 @@ export const setToInboxAction = () => {
 
 
 export const searchCardsAction = (keywords) => {
-  console.log("searchCardsAction is called: ", keywords);
-
   const query = {
     params: {
       "query": {
