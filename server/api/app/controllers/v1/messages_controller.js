@@ -90,11 +90,23 @@ module.exports = (function() {
     }
 
     destroy() {
+      // sample url string /v1/messages/2?access_token=dotBind
+      this.authorize((err, accessToken, user) => {
+        if (err) { return this.respond(err); }
+        const to_user_id = user.get('id');
 
-      Message.destroy(this.params.route.id, (err, model) => {
+        console.log('--> this is this.params', this.params.route.id)
+        const card_id = this.params.route.id;
 
-        this.respond(err || model);
+        Message.query()
+          .where({card_id, to_user_id})
+          .end((err, models) => {
+            console.log('models[0].get("id"): ', models[0].get('id'))
+            Message.destroy(models[0].get('id'), (err, model) => {
+              this.respond(err || model);
+            });
 
+          });
       });
 
     }
