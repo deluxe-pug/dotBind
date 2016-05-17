@@ -27,10 +27,6 @@ class AllCardsContainer extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <a onClick={this.props.fetchCards.bind(this)} className="waves-effect waves-light btn">My CARDS</a>
-          <a onClick={this.props.fetchInbox.bind(this)} className="waves-effect waves-light btn">My CARDS</a>
-        </div>
         {this.props.cards.map((card) =>
           <Card
             key={card.id}
