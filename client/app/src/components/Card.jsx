@@ -41,6 +41,7 @@ class Card extends React.Component {
 
   openModal() {
     this.setState({modalIsOpen: true});
+    localStorage.setItem('modalIsOpen', 'true');
   }
 
   afterOpenModal() {
@@ -51,6 +52,7 @@ class Card extends React.Component {
 
   closeModal() {
     this.setState({modalIsOpen: false});
+    localStorage.setItem('modalIsOpen', '');
   }
 
   notifyAddTag() {
