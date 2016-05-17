@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { searchCardsAction } from '../actions/cardActions';
+import { deleteSearchTagAction } from '../actions/searchActions';
 
 class SearchTag extends React.Component {
   constructor(props) {
@@ -13,7 +14,22 @@ class SearchTag extends React.Component {
       <div className="chip">
         {this.props.name}
         <i className="material-icons" onClick={() => {
-          this.props.searchCards('something')
+          const remainingSearchInput = [];
+          this.props.search.input.split(' ').forEach(tag => {
+            if (tag !== this.props.name) {
+              remainingSearchInput.push(tag);
+            }
+          });
+          console.log('remainingSearchInput ', remainingSearchInput);
+          if (remainingSearchInput) {
+            let remainingSearchString = '';
+            remainingSearchInput.forEach(tag => {
+              remainingSearchString.concat(tag);
+            })            
+          }
+          console.log('remainingSearchString ', remainingSearchString)
+          this.props.searchCards('remaining keyword');
+          this.props.deleteSearchTag(this);
         }}>
           close
         </i>
@@ -31,6 +47,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     searchCards: searchCardsAction,
+    deleteSearchTag: deleteSearchTagAction,
   }, dispatch);
 };
 
