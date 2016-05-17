@@ -62,10 +62,10 @@ class CardModal extends React.Component {
   }
 
   notifyDelete(){
-    this.props.closeModal.bind(this);
     console.log(this.props.id);
     this.props.deleteCard(this.props.id);
     Materialize.toast('Card deleted!', 2000, 'rounded notication');
+    this.props.closeModal();
   }
 
   render() {
@@ -142,7 +142,10 @@ class CardModal extends React.Component {
             ) : <span></span>} <br/>
           </div>
 
-          <a className="button" href="#popup1">Let me Pop up</a>
+          <a className="waves-effect waves-light btn share-button" href="#popup1">
+            Share This Card
+          </a>
+
           <ShareModal cardId={this.props.id} />
 
         </div>
