@@ -25,7 +25,7 @@ class ShareModal extends React.Component {
                     if ( !input.value.trim() ) {
                       return;
                     }
-                    this.props.shareCard(input.value);
+                    this.props.shareCard(input.value, this.props.cardId);
                     console.log(input.value);
                   }}>
                     <div className="col s8">

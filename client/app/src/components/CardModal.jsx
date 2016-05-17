@@ -143,8 +143,8 @@ class CardModal extends React.Component {
           </div>
 
           <a className="button" href="#popup1">Let me Pop up</a>
-          <ShareModal />
-          
+          <ShareModal cardId={this.props.id} />
+
         </div>
       </div>
     );
