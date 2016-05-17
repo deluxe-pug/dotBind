@@ -15,6 +15,9 @@ module.exports = (function() {
   const findOrCreateUserTag = PromiseMaker(UserTag.findOrCreate, {context: UserTag});
   const findOrCreateCardTag = PromiseMaker(CardTag.findOrCreate, {context: CardTag});
   const createCard = PromiseMaker(Card.create, {context: Card});
+  const deleteCardTag = PromiseMaker(CardTag.destroy, {context: CardTag});
+  const deleteUserTag = PromiseMaker(UserTag.destroy, {context: UserTag});
+  const userTagFindBy = PromiseMaker(UserTag.findBy, {context: UserTag});
 
   const AuthController = Nodal.require('app/controllers/auth_controller.js'); 
 
@@ -48,7 +51,7 @@ module.exports = (function() {
 
       Card.find(this.params.route.id, (err, model) => {
 
-        this.respond(err || model);
+        this.respond(err || Object.assign({}, model._data, {stuff: 'hi!'}));
 
       });
 
@@ -231,11 +234,54 @@ module.exports = (function() {
 
     destroy() {
 
-      Card.destroy(this.params.route.id, (err, model) => {
+      const card_id = this.params.route.id;
+      const cardTagPromises = [];
+      const findUserTagPromises = [];
 
-        this.respond(err || model);
+      this.authorize((err, accessToken, user) => {
+        if (err) {
+          console.error('Error authorizing user while destroying card: ', error);
+          return this.respond(err);
+        }
+        CardTag.query()
+          .where({card_id})
+          .end((error, cardTags) => {
+            if (error) {
+              console.error('Error querying CardTags while destroying card: ', error);
+              return this.respond(error);
+            }
+            cardTags.forEach((cardTag) => {
+              const cardTagId = cardTag.get('id');
+              const tagId = cardTag.get('tag_id');
+              cardTagPromises.push(deleteCardTag(cardTagId));
+              findUserTagPromises.push(userTagFindBy('tag_id', tagId));
+            })
 
-      });
+            Promise.all(cardTagPromises).then((cardTagsDeleted) => {
+              Promise.all(findUserTagPromises).then((userTags) => {
+                userTags.forEach((userTag) => {
+                  const card_count = userTag.get('card_count');
+                  userTag.set('card_count', card_count - 1);
+                  userTag.save();
+                })
+
+                // destroy Card after updating userTags and deleting CardTags
+                Card.destroy(this.params.route.id, (err, model) => {
+                  this.respond(err || model);
+                  console.log('card destroyed!!')
+
+                })
+              })
+            }).catch((error) => {console.error('Error destroying cards: ', error)})
+
+
+          })
+
+
+
+
+        
+      })
 
     }
 
