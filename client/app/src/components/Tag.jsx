@@ -5,8 +5,12 @@ import { bindActionCreators } from 'redux';
 import { searchCardsAction } from '../actions/cardActions';
 =======
 // import { filterCardsAction } from '../actions/cardActions';
+<<<<<<< 303622f2751ec07abc06b7c2a0ccd3f72c728b5e
 import { searchCardsAction, searchCardsByTagAction } from '../actions/cardActions';
 >>>>>>> Connect searchCardsByTag to tags
+=======
+import { searchCardsByTagAction } from '../actions/cardActions';
+>>>>>>> Add reducer and action for deleting search tag
 // import { switchDisplayAction } from '../actions/searchActions';
 import { addSearchKeywordAction } from '../actions/searchActions';
 
@@ -18,7 +22,6 @@ class Tag extends React.Component {
   render() {
     return (
         <a className="collection-item" onClick={() => {
-
           let searchString = '';
           if (this.props.search) {
             searchString = searchString.concat(this.props.search.input, ' ', this.props.tagName)

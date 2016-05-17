@@ -22,8 +22,9 @@ export const setEmptyInputAction = () => {
   };
 };
 
-export const deleteSearchTagAction = (searchTag) => {
+export const deleteSearchTagAction = (searchTagName) => {
   return {
-    type: 'DELETE_SEARCH_TAG'
+    type: 'DELETE_SEARCH_TAG',
+    input: searchTagName,
   };
 };

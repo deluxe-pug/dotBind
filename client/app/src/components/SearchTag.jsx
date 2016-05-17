@@ -28,7 +28,7 @@ class SearchTag extends React.Component {
             });
           }
           this.props.searchCardsByTag(searchString);
-          this.props.deleteSearchTag(this);
+          this.props.deleteSearchTag(this.props.name);
         }}>
           close
         </i>
