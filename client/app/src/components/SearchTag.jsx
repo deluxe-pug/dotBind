@@ -10,25 +10,44 @@ class SearchTag extends React.Component {
     super(props);
   }
 
+  // componentDidMount() {
+  //   document.getElementById('search-tag').addEventListener('click', function() {
+  //     let searchString = this.props.search.input.split(' ').filter(tag =>
+  //       tag !== this.props.name
+  //     ).join(' ');
+  //     this.props.removeCardFilter(searchString);
+  //     this.props.deleteSearchTag(this.props.name);
+  //   })
+  // }
+
   render() {
     return (
       <div className="chip">
         {this.props.name}
-        <i className="material-icons" onClick={() => {
-          console.log('SEARCH STATE? ', this.props.search)
-
-          let searchString = this.props.search.input.split(' ').filter(tag =>
-            tag !== this.props.name
-          ).join(' ');
-          this.props.deleteSearchTag(this.props.name);
-          this.props.removeCardFilter(searchString);
-        }}>
+        <i className="material-icons search-tag" id="search-tag"
+          onMouseOver={() => {
+            console.log('mouse is here');
+            document.getElementById('search').style.pointerEvents = 'none';
+            document.getElementById('search-tag').addEventListener('click', function() {
+              console.log('i clickd');
+            })
+          }}>
           close
         </i>
       </div>
     ); 
   }
 };
+
+
+// onClick={() => {
+//   let searchString = this.props.search.input.split(' ').filter(tag =>
+//     tag !== this.props.name
+//   ).join(' ');
+//   this.props.removeCardFilter(searchString);
+//   this.props.deleteSearchTag(this.props.name);
+// }}
+
 
 const mapStateToProps = (state) => {
   return {

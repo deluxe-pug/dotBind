@@ -11,18 +11,26 @@ class SearchTagContainer extends React.Component {
     super(props);
   }
 
+  // handleClick() {
+  //   const nodes = Array.prototype.slice.call(e.currentTarget.children);
+  //   const index = nodes.indexOf(e.target);
+  //   console.log(index);
+  // }
+
+
   render() {
     console.log('SearchTagContainer state has changed');
     return (
-      <div>
-        {this.props.search.input.split(' ').map(button => (
-          <SearchTag
-           key={tagId++}
-           name={button} />
-        ))}
-        <form className="search"
-          onClick={() => {
-            this.props.switchDisplay(true, this.props.search.input)}}>
+      <div className="search" id="search"
+        onClick={() => {
+          this.props.switchDisplay(true, this.props.search.input)
+        }}>
+        <form className="search-tags">
+          {this.props.search.input.split(' ').map(button => (
+            <SearchTag
+             key={tagId++}
+             name={button} />
+          ))}
         </form>
       </div>
     );

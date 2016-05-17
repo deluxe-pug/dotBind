@@ -25,7 +25,23 @@
 form.search {
   position: absolute;
   bottom: 25px;
-  /*float: left;*/
+  left: 200px;
+  height: 30px;
+  width: 500px;
+}
+
+/*div.search {
+  position: absolute;
+  bottom: 25px;
+  left: 200px;
+  height: 30px;
+  width: 500px;
+}*/
+
+
+.search-tags {
+  position: absolute;
+  bottom: 25px;
   left: 200px;
   height: 30px;
   width: 500px;
@@ -44,7 +60,9 @@ form.search {
   font-family: Arial, 'FontAwesome';
   color: #5f9cd2;
   margin: 0px;
+  z-index: 1 !important;
 }
+
 
 form {
   margin-top: 0px !important;
