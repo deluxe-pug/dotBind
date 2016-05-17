@@ -12,7 +12,7 @@ class AllCardsContainer extends React.Component {
   componentWillMount() {
     setTimeout(() => {
       const intervalId = setInterval(() => {
-        if (!this.props.search.input) {
+        if (!this.props.search.input && !localStorage.getItem('modalIsOpen')) {
           this.props.fetchCards();
         }
       }, 2000);
