@@ -20,7 +20,7 @@ const customStyles = {
     marginLeft: 75,
     marginRight: 75,
     marginTop: 40,
-    marginBotctom: 0,
+    marginBottom: 0,
     padding: '0px',
     border: 'none',
     backgroundColor: '#F0F0F0',
