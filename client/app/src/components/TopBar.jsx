@@ -29,7 +29,9 @@ class TopBar extends React.Component {
 
   handleLogout() {
     const intervalId = localStorage.getItem('intervalId');
+    const tagIntervalId = localStorage.getItem('tagIntervalId');
     window.clearInterval(intervalId);
+    window.clearInterval(tagIntervalId);
     localStorage.clear(); // clear local storage upon logout
   }
 
