@@ -2,6 +2,7 @@ const searchReducer = (state = {
   display: true,
   input: '',
 }, action) => {
+
   switch(action.type) {
     case 'SWITCH_DISPLAY':
       // console.log('searchReducer is called: ', action);
@@ -9,6 +10,13 @@ const searchReducer = (state = {
         display: action.display,
         input: action.input,
       };
+
+    case 'ADD_KEYWORD':
+      return {
+        display: state.display,
+        input: action.input
+      };
+
     default:
       return state;
   };
