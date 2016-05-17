@@ -2,21 +2,24 @@ import axios from 'axios';
 import endpoints from './endpoints';
 
 export const addCardAction = (url) => {
-  const request = axios.post(endpoints.cards, {
-    "card": {
-      "url": url,
-      "title": "title",
-      "code": "var hello = function() {};",
-      "text": "This is my text",
-      "note": "This is a note about my content",
-      "domain": "american.com"
-    },
-    "username": "public",
-     "tags": [
-      "React",
-      "Backbone"
-     ]
-  });
+  const getRequest = axios.get(url);
+
+  // const request = axios.post(endpoints.cards, {
+  //   "card": {
+  //     "url": url,
+  //     "title": "title",
+  //     "code": "var hello = function() {};",
+  //     "text": "This is my text",
+  //     "note": "This is a note about my content",
+  //     "domain": "american.com"
+  //   },
+  //   "username": "public",
+  //    "tags": [
+  //     "React",
+  //     "Backbone"
+  //    ]
+  // });
+
   return {
     type: 'ADD_CARD',
     payload: request,
