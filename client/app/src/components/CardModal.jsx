@@ -9,10 +9,14 @@ import 'brace/mode/javascript';
 import 'brace/theme/tomorrow_night';
 
 import { bindActionCreators } from 'redux';
-import { addTagToCardAction,
-         updateCardAction,
-         deleteCardAction,
-         saveCardFromInboxAction } from '../actions/cardActions';
+import {
+  addTagToCardAction,
+  updateCardAction,
+  deleteCardAction,
+  saveCardFromInboxAction
+} from '../actions/cardActions';
+
+require('../styles/popoutform.css');
 
 let input;
 let editorCode = '';
@@ -138,6 +142,19 @@ class CardModal extends React.Component {
               <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
             ) : <span></span>} <br/>
           </div>
+          <div className="box">
+    <a className="button" href="#popup1">Let me Pop up</a>
+</div>
+
+<div id="popup1" className="overlay">
+    <div className="popup">
+        <h2>Here i am</h2>
+        <a className="close" href="#">&times;</a>
+        <div className="content">
+            Thank to pop me out of that button, but now im done so you can close this
+        </div>
+    </div>
+</div>
         </div>
       </div>
     );
