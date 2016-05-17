@@ -2,8 +2,6 @@ const cardsReducer = (state = [], action) => {
   switch(action.type) {
 
     case 'ADD_CARD':
-      // console.log('addcardreduecer is triggered!');
-      // console.log('ADDCARD NEW STATE: ', action.payload.data.data);
       return [...state, action.payload.data.data];
 
     case 'FETCH_CARDS':
