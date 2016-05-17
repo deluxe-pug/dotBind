@@ -26,13 +26,19 @@ export const addCardAction = (url) => {
   };
 };
 
-export const saveCardFromInboxAction = (arg) => {
-  console.log(arg);
-  // const endpoint = `${endpoints.cards}?access_token=${localStorage.get('dotBindAccessToken')}`;
-  // const request = axios.post(endpoint, )
+export const saveCardFromInboxAction = (cardObj, username, tagArray) => {
+  console.log('CardObject => ', cardObj);
+  console.log('username => ', username);
+  console.log('tags => ', tagArray);
+  const endpoint = `${endpoints.cards}?access_token=${localStorage.getIten('dotBindAccessToken')}`;
+  const request = axios.post(endpoint, {
+    card: cardObj,
+    username: username,
+    tags: tagArray,
+  });
   return {
     type: 'SAVE_NEW_CARD',
-    // payload: request,
+    payload: request,
   }
 };
 

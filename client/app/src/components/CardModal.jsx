@@ -44,7 +44,18 @@ class CardModal extends React.Component {
   }
 
   saveNewCard(){
-    this.props.saveCard('test');
+    let cardObject = {
+      url: this.props.url,
+      title: this.props.title,
+      code: this.props.code,
+      text: this.props.text,
+      note: this.props.note,
+      icon: this.props.icon,
+      domain: this.props.domain,
+    };
+    let tags = [];
+    this.props.cardTags.forEach( cardTag => tags.push(cardTag.tag.name) );
+    this.props.saveCard(cardObject, localStorage.getItem('githubUsername'), tags);
   }
 
   notifyDelete(){
