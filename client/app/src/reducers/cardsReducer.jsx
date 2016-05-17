@@ -11,8 +11,6 @@ const cardsReducer = (state = [], action) => {
       return [...action.payload.data.data];
 
     case 'SAVE_NEW_CARD':
-      console.log('SAVE_NEW_CARD reducer')
-      console.log(action.payload.data.data)
       return state;
 
     case 'SEARCH_CARDS':
@@ -23,7 +21,6 @@ const cardsReducer = (state = [], action) => {
       const searchedCards = state.slice().filter((card) => {
         if (returnedIDs.indexOf(card.id) > -1) { return true; }
       });
-      console.log('SEARCH_CARDS REDUCER: ', searchedCards);
       return searchedCards;
 
     case 'SHARE_CARD':
@@ -34,7 +31,6 @@ const cardsReducer = (state = [], action) => {
       action.payload.data.data.forEach(function(obj) {
         removedCards.push(obj._source);
       })
-      console.log('REMOVE_CARD_FILTER REDUCER: ', removedCards)
       return [...removedCards];
 
     case 'UPDATE_CARD':

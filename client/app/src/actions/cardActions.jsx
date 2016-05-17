@@ -76,7 +76,6 @@ export const setToInboxAction = () => {
 };
 
 export const searchCardsAction = (keywords) => {
-  console.log('searchCardsAction is called: ', keywords)
   const query = {
     params: {
       "query": {
@@ -129,7 +128,6 @@ export const updateCardAction = (reqBody) => {
 };
 
 export const deleteCardAction = (cardId) => {
-  console.log('action called');
   const endpoint = `${endpoints.cards}/${cardId}/?access_token=${localStorage.getItem('dotBindAccessToken')}`;
   const request = axios.delete(endpoint);
   return {
@@ -146,7 +144,6 @@ export const shareCardAction = (username, id) => {
     to: username,
     card_id: id,
   });
-  console.log('action called => ', username);
   return {
     type: 'SHARE_CARD',
   };

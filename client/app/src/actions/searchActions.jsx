@@ -1,6 +1,5 @@
 // For typed input
 export const switchDisplayAction = (bool, input) => {
-  console.log('switchDisplayAction is called')
   return {
     type: 'SWITCH_DISPLAY',
     display: bool,
@@ -24,7 +23,6 @@ export const setEmptyInputAction = () => {
 };
 
 export const deleteSearchTagAction = (searchTagName) => {
-  console.log('deleteSearchTagAction is called', searchTagName);
   return {
     type: 'DELETE_SEARCH_TAG',
     input: searchTagName,

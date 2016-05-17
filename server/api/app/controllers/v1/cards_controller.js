@@ -116,8 +116,6 @@ module.exports = (function() {
 
             let tagModels = values.slice(1);
 
-            // console.log('===========>TAGMODELS!!!!', tagModels);
-
             tagModels.forEach((tagModel) => {
               tag_id = tagModel.get('id');
               userTagPromises.push(findOrCreateUserTag({tag_id, user_id}));
@@ -139,9 +137,6 @@ module.exports = (function() {
               // Resolve CardTag Promises
               Promise.all(cardTagPromises).then((cardTags) => {
                 this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
-                // this.respond([aCard, tags]);
-
-                console.log("ARE WE HERE????????????");
 
                 const cardTagsFormatted = [];
                 tagModels.forEach(tagModel =>
@@ -152,8 +147,6 @@ module.exports = (function() {
                     }
                   })
                 )
-
-                console.log('==========> cardTagFormat', cardTagsFormatted)
 
                 // const cardTagFormat = [
                 //   {
