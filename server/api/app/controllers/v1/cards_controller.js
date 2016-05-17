@@ -187,9 +187,44 @@ module.exports = (function() {
     update() {
 
       Card.update(this.params.route.id, this.params.body, (err, model) => {
+        const cardData = this.params.body;
 
-        this.respond(err || model);
+        const query = {
+          index: "library",
+          type: "cards",
+          body: {
+            "query": {
+              "bool": {
+                "must": [{ match: {id: this.params.route.id} }],
+              },
+            },
+          }
+        };
 
+        client.search(query, (err, response) => {
+          if (err) {
+            console.error('Search error before PUT. Inspect cards controller: ', err);
+          }
+          const esId = response.hits.hits[0]._id;
+          const esPut = {
+            index: 'library',
+            type: 'cards',
+            id: esId,
+            body: {
+              doc: cardData
+            },
+          };
+          client.update(esPut, (error, response) => {
+            if (error) {
+              console.error('PUT error: ', error);
+            }
+            console.log('PUT response: ', response);
+          })
+
+
+          this.respond(err || model);
+
+        })
       });
 
     }
