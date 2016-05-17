@@ -108,7 +108,7 @@ header, main, footer {
 .custom-card {
   background-color: #FFFFFF;
   border-color: #f48f7f;
-  border-radius: 20px;
+  border-radius: 10px;
   height: 250px;
   /*-webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
   /*-moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
@@ -344,8 +344,11 @@ hr {
 }
 
 .add-tag-button {
-  /*text-align: right;*/
-  /*width: 100%;*/
   float: right;
   z-index: 0;
+}
+
+.share-button {
+  z-index: 0;
+  margin-bottom: 15px;
 }

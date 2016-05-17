@@ -34,7 +34,6 @@ const cardsReducer = (state = [], action) => {
       return [...searchedCards];
 
     case 'SHARE_CARD':
-      console.log('SHARE_CARD reducer called.');
       return state;
 
     case 'UPDATE_CARD':
