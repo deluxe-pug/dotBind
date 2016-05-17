@@ -122,7 +122,7 @@ class CardModal extends React.Component {
                 if ( !input.value.trim() ) {
                   return;
                 }
-                this.props.dispatch( addTagToCardAction(input.value, this.props.user_id, this.props.id) );
+                this.props.dispatch( addTagToCardAction(input.value.toLowerCase(), this.props.user_id, this.props.id) );
                 input.value = '';
                 }}>
                 <div className="row">
