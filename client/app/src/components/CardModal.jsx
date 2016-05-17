@@ -3,16 +3,19 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import brace from 'brace';
 import CardTag from './CardTag';
+import ShareModal from './ShareModal';
 
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/tomorrow_night';
 
 import { bindActionCreators } from 'redux';
-import { addTagToCardAction,
-         updateCardAction,
-         deleteCardAction,
-         saveCardFromInboxAction } from '../actions/cardActions';
+import {
+  addTagToCardAction,
+  updateCardAction,
+  deleteCardAction,
+  saveCardFromInboxAction
+} from '../actions/cardActions';
 
 let input;
 let editorCode = '';
@@ -59,10 +62,10 @@ class CardModal extends React.Component {
   }
 
   notifyDelete(){
-    this.props.closeModal.bind(this);
     console.log(this.props.id);
     this.props.deleteCard(this.props.id);
     Materialize.toast('Card deleted!', 2000, 'rounded notication');
+    this.props.closeModal();
   }
 
   render() {
@@ -119,7 +122,7 @@ class CardModal extends React.Component {
                 if ( !input.value.trim() ) {
                   return;
                 }
-                this.props.dispatch( addTagToCardAction(input.value, this.props.user_id, this.props.id) );
+                this.props.dispatch( addTagToCardAction(input.value.toLowerCase(), this.props.user_id, this.props.id) );
                 input.value = '';
                 }}>
                 <div className="row">
@@ -138,6 +141,13 @@ class CardModal extends React.Component {
               <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
             ) : <span></span>} <br/>
           </div>
+
+          <a className="waves-effect waves-light btn share-button" href="#popup1">
+            Share This Card
+          </a>
+
+          <ShareModal cardId={this.props.id} />
+
         </div>
       </div>
     );

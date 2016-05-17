@@ -108,7 +108,7 @@ header, main, footer {
 .custom-card {
   background-color: #FFFFFF;
   border-color: #f48f7f;
-  border-radius: 20px;
+  border-radius: 10px;
   height: 250px;
   /*-webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
   /*-moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
@@ -279,11 +279,13 @@ hr {
   margin-right: 3px;
   float: left;
   background-color: #c62828;
+  z-index: 0;
 }
 
 .save-button {
   float: left;
   width: 50%;
+  z-index: 0;
 }
 
 .modal-link:hover {
@@ -333,8 +335,8 @@ hr {
   box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
 }
 
-.modal-editor {
-  z-index: 2;
+.modal-editor > div {
+  z-index: 0;
 }
 
 .add-tag {
@@ -342,7 +344,11 @@ hr {
 }
 
 .add-tag-button {
-  /*text-align: right;*/
-  /*width: 100%;*/
   float: right;
+  z-index: 0;
+}
+
+.share-button {
+  z-index: 0;
+  margin-bottom: 15px;
 }

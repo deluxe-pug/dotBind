@@ -147,6 +147,20 @@ export const deleteCardAction = (cardId) => {
   };
 };
 
+// {from: 'public', to: '', card_id: '3'}
+export const shareCardAction = (username, id) => {
+  const endpoint = `${endpoints.inbox}/?access_token=${localStorage.getItem('dotBindAccessToken')}`;
+  const request = axios.post(endpoint, {
+    from: localStorage.getItem('githubUsername'),
+    to: username,
+    card_id: id,
+  });
+  console.log('action called => ', username);
+  return {
+    type: 'SHARE_CARD',
+  };
+}
+
 export const removeTagFromCardAction = (tag) => {
   const request = axios.delete(`${endpoints.card_tags}/${tag.cardTagId}/?access_token=${localStorage.getItem('dotBindAccessToken')}`);
   return {

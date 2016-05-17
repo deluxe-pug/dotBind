@@ -33,6 +33,9 @@ const cardsReducer = (state = [], action) => {
       // console.log('searchedCards: ', searchedCards);
       return [...searchedCards];
 
+    case 'SHARE_CARD':
+      return state;
+
     case 'UPDATE_CARD':
       var data = action.payload.data.data[0];
       return updatedCard(state, data);
