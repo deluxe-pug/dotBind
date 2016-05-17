@@ -2,6 +2,7 @@ import axios from 'axios';
 import endpoints from './endpoints';
 
 export const searchCardsByTagAction = (keywords) => {
+  console.log("searchCardsByTagAction is called! ", keywords);
   const query = {
     params: {
       "query": {
@@ -36,7 +37,7 @@ export const searchCardsByTagAction = (keywords) => {
   };
   const request = axios.get(endpoints.search, query);
   return {
-    type: 'SEARCH_CARDS',
+    type: 'SEARCH_CARDS_BY_TAG',
     payload: request,
   }
 };
