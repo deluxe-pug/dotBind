@@ -42,6 +42,10 @@ class CardModal extends React.Component {
     Materialize.toast('Changes saved!', 2000, 'rounded notication');
   }
 
+  testFunc(){
+    console.log('test func called!!!!!!')
+  }
+
   notifyDelete(){
     console.log(this.props.id);
     Materialize.toast('Card deleted!', 2000, 'rounded notication');
@@ -86,8 +90,9 @@ class CardModal extends React.Component {
                   <i className="material-icons">delete</i>
                 </button>
                 <button className="waves-effect waves-light btn save-button"
-                  onClick={this.saveChanges.bind(this)}>
-                  Save Changes
+                  onClick={this.props.cardsState !== 'inbox' ?
+                  this.saveChanges.bind(this) : this.testFunc.bind(this)}>
+                  {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
                 </button>
               </div>
               <a className="modal-link" href={this.props.url}>
@@ -96,7 +101,7 @@ class CardModal extends React.Component {
             </div>
 
             <div className="col s8 offset-s2">
-              {this.props.cardsState !== 'inbox' ?
+              { this.props.cardsState !== 'inbox' ?
                 <form onSubmit={ (e) => {
                 e.preventDefault();
                 if ( !input.value.trim() ) {
