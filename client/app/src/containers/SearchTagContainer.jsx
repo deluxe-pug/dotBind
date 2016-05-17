@@ -12,7 +12,6 @@ class SearchTagContainer extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('IM HERE', this.props.search.input)
     if (!this.props.search.input) {
       this.props.switchDisplay(true, '');
     }
