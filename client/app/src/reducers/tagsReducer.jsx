@@ -10,7 +10,7 @@ const tagsReducer = (state = [], action) => {
 
     case 'FETCH_TAGS':
       const newTags = action.payload.data.data;
-      return sortedTags(state, newTags, (a, b) => a.card_count < b.card_count);
+      return sortedTags(state, newTags, (a, b) => a.card_count > b.card_count);
 
     default:
       return state;
@@ -20,7 +20,7 @@ const tagsReducer = (state = [], action) => {
 const sortedTags = (state, data, callback) => {
   let newState = [...state, ...data];
   newState.sort( (tagA, tagB) => callback(tagA,tagB) );
-  return newState;
+  return newState.reverse();
 };
 
 export default tagsReducer;

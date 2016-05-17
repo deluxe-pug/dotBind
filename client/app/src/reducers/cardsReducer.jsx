@@ -29,8 +29,11 @@ const cardsReducer = (state = [], action) => {
       var data = action.payload.data.data[0];
       return updatedCard(state, data);
 
+    case 'DELETE_CARD':
+      return state;
+
     case 'REMOVE_TAG':
-      return removedCardTag(state, action.payload);
+      return action.payload.data.data;
 
     case 'ADD_CARD_TAG':
       return addedCardTag(state, action.payload);
