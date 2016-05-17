@@ -7,6 +7,9 @@ const cardsStateReducer = (state = 'myCards', action) => {
     case 'TO_MYCARDS':
       return 'myCards';
 
+    case 'TO_FILTER':
+      return 'filter';
+
     default:
       return state;
   };

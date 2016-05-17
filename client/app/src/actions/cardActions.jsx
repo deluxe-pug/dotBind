@@ -48,6 +48,12 @@ export const setToCardsAction = () => {
   }
 };
 
+export const setToFilterAction = () => {
+  return {
+    type: 'TO_FILTER'
+  }
+};
+
 export const fetchInboxAction = () => {
   const accesstoken = localStorage.getItem('dotBindAccessToken');
   const request = axios.get(`${endpoints.inbox}?access_token=${accesstoken}`).catch((err) => console.error('Error fetching cards: ', err));
