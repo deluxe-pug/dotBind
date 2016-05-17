@@ -6,3 +6,10 @@ export const switchDisplayAction = (bool, input) => {
     input: input,
   };
 };
+
+export const addKeyword = (input) => {
+  return {
+    type: 'ADD_KEYWORD',
+    input: input,
+  }
+};
