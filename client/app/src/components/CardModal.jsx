@@ -77,7 +77,6 @@ class CardModal extends React.Component {
 
   selectLanguage(e){
     this.setState({language: e.target.value});
-    console.log('this is the new language', this.state.language);
   }
 
   render() {
