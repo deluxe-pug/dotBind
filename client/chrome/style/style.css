@@ -1,7 +1,47 @@
 body {
+  background-color: #F0F0F0;
   width:400px;
-  Height:800px;
+  /*Height:800px;*/
+}
 
+.icon {
+  float: right;
+  margin: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+.custom-button {
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #26a69a;
+}
+
+.snippet {
+  margin: 5px;
+  font-size: 12pt;
+}
+
+.card, .card-content {
+  margin-top: 20px;
+  border-radius: 10px !important;
+}
+
+.card-footer {
+  text-align: center;
+  color: #5f9cd2;
+}
+
+.note {
+  font-size: 12pt;
+  height: 175px;
+  resize: none;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  -moz-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
 }
 
 .foreground:before {

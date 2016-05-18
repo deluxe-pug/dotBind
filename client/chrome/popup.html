@@ -9,7 +9,7 @@
     <title>dotBind Popup</title>
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
@@ -19,32 +19,36 @@
      -->
   </head>
   <body>
-    <div>
-      <img id="image-result" height="60" width="60">
-      <h5 id="title"></h5>
-      <p class="flow-text" id="url"></p>
-
-      <div>
-        <button class="btn waves-effect indigo btn-small" type="submit" name="action">Code
-          <i class="material-icons right">code</i>
-        </button>
-        <button class="btn waves-effect indigo btn-small" type="submit" name="action">Text
-          <i class="material-icons right">comment</i>
-        </button>
+    <div class="container">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-header">
+            <span class="card-title" id="title"></span>
+            <img class="icon" id="image-result" >
+          </div>
+          <hr/>
+          <code>
+            <p class="snippet" id="content" class="flow-text">// No code snippet captured.</p>
+          </code>
+          <hr/>
+          <div class="card-footer">
+            <p class="flow-text" id="url"></p>
+          </div>
+        </div>
       </div>
 
-      <p id="content" class="flow-text"></p>
+
       <p id="note" class="flow-text"></p>
 
-      <input class="note" placeholder="notes here"></input>
+      <textarea class="note" placeholder="Leave a comment on this snippet!"></textarea>
 
       <ul class="tags"></ul>
       <input class="tag" placeholder="tagname"></input>
-      <button class="tag btn waves-effect indigo btn-small" type="submit" name="action">tag
+      <button class="custom-button tag btn waves-effect btn-small" type="submit" name="action">tag
         <i class="material-icons right">library_add</i>
       </button>
-      
-      <button id="save" class="tag btn waves-effect indigo btn-med" type="submit" name="action">Save
+
+      <button id="save" class="custom-button btn waves-effect btn-med" type="submit" name="action">Save
         <i class="material-icons right">done</i>
       </button>
     </div>
@@ -52,4 +56,3 @@
   <script src="lib/jquery-1.12.3.min.js"></script>
   <script src="js/popup.js"></script>
 </html>
-

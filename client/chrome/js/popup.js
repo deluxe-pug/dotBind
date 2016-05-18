@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     $('body').on('click', '#login', () => {
       chrome.tabs.create({url: `${envParams[enviornment].url}:8000`});
       window.close();
-    }); 
+    });
   }
-  
+
   getCurrentTabProps((url, icon, title) => {
 
     // render icon and url to the popup
@@ -107,16 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
     $('body').on('click', '#save', () => {
       if ( accesstoken ) {
         // save note
-        if ( !!$('input.note').val() ) {
-          data.card.note = $('input.note').val();
+        if ( !!$('textarea.note').val() ) {
+          data.card.note = $('textarea.note').val();
         }
         console.log('data sending to api end point v1/cards', data);
         $.ajax({
           type: 'POST',
           url: `${envParams[enviornment].url}:3000/v1/cards?access_token=${accesstoken}`,
           data,
-          success: result => { 
-            console.log(result); 
+          success: result => {
+            console.log(result);
             window.close();
           },
           dataType: 'json',
@@ -124,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         $('body').append($('<div>You are not logged in yet!</div>'));
       }
-
     });
   });
 });
@@ -168,9 +167,13 @@ function renderIcon(icon) {
 }
 
 function renderContent(content) {
-  document.getElementById('content').textContent = content;
+  document.getElementById('content').textContent = resolveContent(content);
 }
 
 function renderTitle(title) {
   document.getElementById('title').textContent = title;
+}
+
+function resolveContent(content) {
+  return content.length > 120 ? content.substring(0,120) + '...' : content;
 }
