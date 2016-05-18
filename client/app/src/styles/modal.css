@@ -97,9 +97,9 @@ hr {
   margin-top: 20px;
 }
 
-.save-bar {
+/*.save-bar {
   margin-top: 25px;
-}
+}*/
 
 .delete-button {
   margin-right: 3px;
@@ -172,6 +172,18 @@ hr {
 .share-button {
   z-index: 0;
   margin-bottom: 15px;
+}
+
+.card-tag {
+  /*color: #5f9cd2;*/
+  text-align: center;
+  overflow: hidden;
+  font-size: 10pt;
+}
+
+.buttons-bar {
+  width: 100%;
+  clear: both;
 }
 
 .card-tags {

@@ -137,10 +137,3 @@ header, main, footer {
   display: block;
   padding: 5px;
 }
-
-.card-tag {
-  /*color: #5f9cd2;*/
-  text-align: center;
-  overflow: hidden;
-  font-size: 10pt;
-}

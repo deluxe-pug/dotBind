@@ -103,83 +103,84 @@ class CardModal extends React.Component {
             <h5>{this.props.title}</h5>
           </div>
 
-            <div className="input-field">
-              <select className="modal-select col s2" onChange={this.selectLanguage.bind(this)}>
-                <option value="" >Select language: </option>
-                {languages.map( lang => {
-                  return <option value={lang.value}>{lang.name}</option>
-                })}
-              </select>
-            </div>
-
-          <div className="col s2">
-            <a className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>
-              <i className="material-icons">close</i>
-            </a>
+          <div className="input-field">
+            <select className="modal-select col s2" onChange={this.selectLanguage.bind(this)}>
+              <option value="" >Select language: </option>
+              {languages.map( lang => {
+                return <option value={lang.value}>{lang.name}</option>
+              })}
+            </select>
           </div>
 
-        </div>
-
-        <div className="modal-editor">
-          <AceEditor height="240px" width="100%"
-            onFocus={this.props.remindSave.bind(this)}
-            onChange={this.editorHasChanged} mode={this.state.language}
-            theme="tomorrow_night" name="editor"
-            editorProps={{$blockScrolling: true}}
-            value={this.props.code || '// Your code here'} />
-        </div>
-
-        <div className="modal-notes input-field">
-          <textarea className="notes"
-            defaultValue={this.props.note || '// Edit your notes here. \n' + this.props.note }
-            onChange={this.props.remindSave.bind(this), this.noteHasChanged}>
-          </textarea>
-        </div>
-
-        <span className="card-url">
-          <a className="modal-link" href={this.props.url}>
-            {this.props.domain}
+        <div className="col s2">
+          <a className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>
+            <i className="material-icons">close</i>
           </a>
-        </span>
+        </div>
+
+      </div>
+
+      <div className="modal-editor">
+        <AceEditor height="240px" width="100%"
+          onFocus={this.props.remindSave.bind(this)}
+          onChange={this.editorHasChanged} mode={this.state.language}
+          theme="tomorrow_night" name="editor"
+          editorProps={{$blockScrolling: true}}
+          value={this.props.code || '// Your code here'} />
+      </div>
+
+      <div className="modal-notes input-field">
+        <textarea className="notes"
+          defaultValue={this.props.note || '// Edit your notes here. \n' + this.props.note }
+          onChange={this.props.remindSave.bind(this), this.noteHasChanged}>
+        </textarea>
+      </div>
+
+      <span className="card-url">
+        <a className="modal-link" href={this.props.url}>
+          {this.props.domain}
+        </a>
+      </span>
 
         <div className="modal-footer">
 
           <div className="card-tags">
 
-              { this.props.cardsState !== 'inbox' ?
-                <span>
-                  <a onClick={() => this.toggleAddTagForm()}>
-                    <i className="material-icons">mode_edit</i>
-                  </a>
-                  {this.state.displayAddTagForm ? 
-                    <AddTagForm 
-                      id={this.props.id}
-                      user_id={this.props.user_id} /> : null }
-                </span>
-               : null }
-              { this.props.cardTags ? this.props.cardTags.map((cardTag) =>
-                <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
-              ) : <span></span> }
+            { this.props.cardsState !== 'inbox' ?
+              <span>
+                <a onClick={() => this.toggleAddTagForm()}>
+                  <i className="material-icons">mode_edit</i>
+                </a>
+                {this.state.displayAddTagForm ? 
+                  <AddTagForm 
+                    id={this.props.id}
+                    user_id={this.props.user_id} /> : null }
+              </span>
+             : null }
+            { this.props.cardTags ? this.props.cardTags.map((cardTag) =>
+              <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
+            ) : <span></span> }
 
           </div>
 
-          <div className="row save-bar">
-            <div className="col s8 offset-s4">
-              <button className="waves-effect waves-light btn delete-button"
-                onClick={this.notifyDelete.bind(this)}>
-                <i className="material-icons">delete</i>
-              </button>
-              <button className="waves-effect waves-light btn save-button"
-                onClick={this.props.cardsState !== 'inbox' ?
-                this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
-                {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
-              </button>
-            </div>
+          <div className="buttons-bar">
+
+            <button className="waves-effect waves-light btn save-button"
+              onClick={this.props.cardsState !== 'inbox' ?
+              this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
+              {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
+            </button>
+
+            <button className="waves-effect waves-light btn delete-button"
+              onClick={this.notifyDelete.bind(this)}>
+              <i className="material-icons">delete</i>
+            </button>
+
+            <a className="waves-effect waves-light btn share-button" href="#popup1">
+              Share This Card
+            </a>
 
           </div>
-          <a className="waves-effect waves-light btn share-button" href="#popup1">
-            Share This Card
-          </a>
 
           <ShareModal cardId={this.props.id} />
 
