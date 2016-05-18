@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { shareCardAction } from '../actions/cardActions';
+import { searchUsersAction } from '../actions/userActions';
 
 require('../styles/popoutform.css');
 
@@ -10,6 +11,10 @@ class ShareModal extends React.Component {
 
   constructor(props) {
     super(props);
+  }
+
+  testFunc() {
+    this.props.searchUser("michel");
   }
 
   render() {
@@ -30,13 +35,22 @@ class ShareModal extends React.Component {
                   }}>
                     <div className="col s8">
                       <input type="text" ref={node => input = node} placeholder="github handle" />
+                      <a className='dropdown-button btn' data-activates='dropdown1'>Drop Me!</a>
+
                     </div>
 
+                      <ul id='dropdown1' className='dropdown-content anything'>
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#!">three</a></li>
+                      </ul>
                     <div className="col s4">
                       <button type="submit" className="waves-effect waves-light btn">
                         Share!
                       </button>
                     </div>
+
                   </form>
 
                 </div>
@@ -47,11 +61,18 @@ class ShareModal extends React.Component {
   }
 };
 
+const mapStateToProps = (state) => {
+  return {
+    searchUser: state.searchUser,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     shareCard: shareCardAction,
+    searchUser: searchUsersAction,
   }, dispatch);
 };
 
-ShareModal = connect(null, mapDispatchToProps)(ShareModal);
+ShareModal = connect(mapStateToProps, mapDispatchToProps)(ShareModal);
 export default ShareModal;
