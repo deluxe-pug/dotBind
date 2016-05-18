@@ -9,7 +9,6 @@ import AceEditor from 'react-ace';
 
 import 'brace/theme/tomorrow_night';
 import { languages } from './language_object';
-console.log(languages)
 
 import { bindActionCreators } from 'redux';
 import {
@@ -62,6 +61,7 @@ class CardModal extends React.Component {
       note: this.props.note,
       icon: this.props.icon,
       domain: this.props.domain,
+      // language: this.state.language,
     };
     let tags = [];
     this.props.cardTags.forEach( cardTag => tags.push(cardTag.tag.name) );
@@ -75,6 +75,10 @@ class CardModal extends React.Component {
     this.props.closeModal();
   }
 
+  selectLanguage(e){
+    this.setState({language: e.target.value});
+  }
+
   render() {
     return (
       <div>
@@ -83,8 +87,8 @@ class CardModal extends React.Component {
             <img className="activator modal-icon" src={this.props.icon} />
             <h5>{this.props.title}</h5>
             <div className="input-field">
-              <select className="modal-select col s4">
-                <option value=""  >Select a language: </option>
+              <select className="modal-select col s4" onChange={this.selectLanguage.bind(this)}>
+                <option value="" >Select a language: </option>
                 {languages.map( lang => {
                   return <option value={lang.value}>{lang.name}</option>
                 })}
