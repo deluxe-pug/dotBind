@@ -1,7 +1,17 @@
 body {
+  background-color: #F0F0F0;
   width:400px;
   Height:800px;
+}
 
+.content-container {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 10px;
+  -webkit-box-shadow: 3px 3px 40px -9px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 40px -9px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 40px -9px rgba(0,0,0,0.75);
 }
 
 .foreground:before {
