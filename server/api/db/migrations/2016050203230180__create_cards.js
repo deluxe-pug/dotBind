@@ -20,7 +20,6 @@ module.exports = (function() {
           {"name":"title", "type":"string"},
           {"name":"user_id","type":"int"},
           {"name":"code", "type":"string"},
-          {"name":"text", "type":"string"},
           {"name":"note", "type":"string"},
           {"name":"domain", "type":"string"},
           {"name":"language", "type":"string"},
