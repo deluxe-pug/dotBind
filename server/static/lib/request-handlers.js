@@ -108,13 +108,10 @@ exports.logout = (req, res) => {
 };
 
 exports.fetchsite = (req, res) => {
-  // console.log('REQ BODY: ', req.query.url);
   request({
     uri: req.query.url,
     method: 'GET'
   }, function(error, message, response) {
-    // console.log('FETCHSITE RESPONSE: ', response);
-    console.log('TITLE???', getTitleFromHtml(response));
 
     const domain = getDomainFromUrl(req.query.url);
     const title = getTitleFromHtml(response);
@@ -140,11 +137,8 @@ exports.fetchsite = (req, res) => {
       json: true,
       body: resObj
     }, function(error, message, response) {
-      console.log('RESPONSE FROM 3000: ', response);
       res.json(response);
     })
-
-    // res.json(resObj);
 
   });
 };
