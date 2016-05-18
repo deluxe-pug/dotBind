@@ -96,7 +96,9 @@ class CardModal extends React.Component {
             </div>
           </div>
           <div className="col s2">
-            <button className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>X</button>
+            <a className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>
+              <i className="material-icons">close</i>
+            </a>
 
           </div>
         </div>
