@@ -12,9 +12,18 @@ class AddTagForm extends React.Component {
 
   render() {
     return (
-      <div className="col s4">
-        <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
-      </div>
+      <form onSubmit={ (e) => {
+        e.preventDefault();
+        if ( !input.value.trim() ) {
+          return;
+        }
+        this.props.addTagToCard(input.value.toLowerCase(), this.props.user_id, this.props.id);
+        input.value = '';
+      }}>
+        <div className="col s4">
+          <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
+        </div>
+      </form>
     );
   }
 };

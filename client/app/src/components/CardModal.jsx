@@ -19,7 +19,7 @@ import {
   saveCardFromInboxAction
 } from '../actions/cardActions';
 
-let input;
+// let input;
 let editorCode = '';
 let note = '';
 
@@ -147,14 +147,9 @@ class CardModal extends React.Component {
 
             <div className="col s8 offset-s2">
               { this.props.cardsState !== 'inbox' ?
-                <form onSubmit={ (e) => {
-                e.preventDefault();
-                if ( !input.value.trim() ) {
-                  return;
-                }
-                this.props.dispatch( addTagToCardAction(input.value.toLowerCase(), this.props.user_id, this.props.id) );
-                input.value = '';
-                }}>
+
+
+
 
                 <div className="row">
                   <div className="col s6">
@@ -163,11 +158,13 @@ class CardModal extends React.Component {
                     </a>
                   </div>
 
-                  <AddTagForm />
-                  
+                  <AddTagForm 
+                    id={this.props.id}
+                    user_id={this.props.user_id} />
+
                 </div>
 
-              </form> : null }
+               : null }
             </div>
 
           </div>
