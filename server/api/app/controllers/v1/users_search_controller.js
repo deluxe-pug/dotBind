@@ -67,7 +67,7 @@ module.exports = (function() {
         }
         console.log('ES SEARCH RESPONSE: ', users.hits.hits);
         const usernames = users.hits.hits.reduce((previous, current)=> {
-          return previous.concat({id: current._id, username: current._source.username})
+          return previous.concat({id: current._id, username: current._source.username, avatar: current._source.avatar})
         }, [])
         this.respond( error || usernames.slice(0, 3) );
       }.bind(this));

@@ -6,13 +6,14 @@ exports.regularAuth = (req, res) => {
 
   const email = req.body.email;
   const password = req.body.password;
-  const username = email.split('@')[0] // map to Github email if found in database & vice versa
+  const username = email.split('@')[0]; // map to Github email if found in database & vice versa
+  const avatar = 'https://wasin.io/wp-content/uploads/2015/05/showimage.png';
 
   request({
     uri: 'http://localhost:3000/v1/access_tokens',
     method: 'POST',
     json: true,
-    body: {username, password, email}
+    body: {username, password, email, avatar}
   }, (err, message, response) => {
     if (err) {
       console.error('Error POSTing to access_token: ', err);

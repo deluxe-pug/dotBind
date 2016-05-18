@@ -33,13 +33,16 @@ passport.use(new GitHubStrategy({
     // .on('response', function(response) {
     //   console.log('This is the response: ', JSON.stringify(response, null, ' '));
     // })
+    console.log('Github profile -->: ', JSON.stringify(profile, null, ' '));
+    console.log('GitHub avatar -->', profile.photos[0].value);
     request({
       uri: 'http://localhost:3000/v1/access_tokens',
       method: 'POST',
       json: true,
       body: {
         githubId: profile.id,
-        username: profile.username 
+        username: profile.username,
+        avatar: profile.photos[0].value,
       }
     }, function(err, message, response) {
       if (err) {
