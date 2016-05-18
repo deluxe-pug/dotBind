@@ -96,13 +96,12 @@ class CardModal extends React.Component {
   render() {
     return (
       <div>
-        <div className="row modal-nav">
 
+        <div className="row modal-nav">
           <div className="col s8">
             <img className="activator modal-icon" src={this.props.icon} />
             <h5>{this.props.title}</h5>
           </div>
-
           <div className="input-field">
             <select className="modal-select col s2" onChange={this.selectLanguage.bind(this)}>
               <option value="" >Select language: </option>
@@ -111,36 +110,34 @@ class CardModal extends React.Component {
               })}
             </select>
           </div>
-
-        <div className="col s2">
-          <a className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>
-            <i className="material-icons">close</i>
-          </a>
+          <div className="col s2">
+            <a className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>
+              <i className="material-icons">close</i>
+            </a>
+          </div>
         </div>
 
-      </div>
+        <div className="modal-editor">
+          <AceEditor height="240px" width="100%"
+            onFocus={this.props.remindSave.bind(this)}
+            onChange={this.editorHasChanged} mode={this.state.language}
+            theme="tomorrow_night" name="editor"
+            editorProps={{$blockScrolling: true}}
+            value={this.props.code || '// Your code here'} />
+        </div>
 
-      <div className="modal-editor">
-        <AceEditor height="240px" width="100%"
-          onFocus={this.props.remindSave.bind(this)}
-          onChange={this.editorHasChanged} mode={this.state.language}
-          theme="tomorrow_night" name="editor"
-          editorProps={{$blockScrolling: true}}
-          value={this.props.code || '// Your code here'} />
-      </div>
+        <div className="modal-notes input-field">
+          <textarea className="notes"
+            defaultValue={this.props.note || '// Edit your notes here. \n' + this.props.note }
+            onChange={this.props.remindSave.bind(this), this.noteHasChanged}>
+          </textarea>
+          <span className="card-url">
+            <a href={this.props.url}>
+              {this.props.domain}
+            </a>
+          </span>
+        </div>
 
-      <div className="modal-notes input-field">
-        <textarea className="notes"
-          defaultValue={this.props.note || '// Edit your notes here. \n' + this.props.note }
-          onChange={this.props.remindSave.bind(this), this.noteHasChanged}>
-        </textarea>
-      </div>
-
-      <span className="card-url">
-        <a className="modal-link" href={this.props.url}>
-          {this.props.domain}
-        </a>
-      </span>
 
         <div className="modal-footer">
 

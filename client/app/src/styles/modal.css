@@ -19,20 +19,8 @@
   /*margin-bottom: 10px;*/
 }
 
-.card-url {
-  margin-left: 20px;
-}
 
-.notes {
-  height: 175px;
-  resize: none;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
-  -webkit-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
-  -moz-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
-  box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
-}
+
 
 .modal-heading {
   margin-left: 10px;
@@ -59,10 +47,6 @@
   font-size: 20pt;
 }
 
-.modal-nav {
-  margin-bottom: 0px;
-}
-
 .modal-nav-buttons {
   text-align: right;
 }
@@ -83,62 +67,6 @@ hr {
   text-align: center;
 }
 
-.modal-footer > button {
-  margin: 10px;
-  background-color: #c62828;
-}
-
-.modal-link {
-  font-size: 12pt;
-  margin-top: 20px;
-}
-
-/*.save-bar {
-  margin-top: 25px;
-}*/
-
-.modal-link:hover {
-  /*color: #3883c6;
-  font-weight: bold;*/
-}
-
-.modal-tag {
-  background-color: #5F9CD2;
-  color: white;
-  margin-right: 4px;
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-radius: 15px;
-  display: inline-block;
-}
-
-.tag-name::after {
-  content: '';
-  border-left: 1px solid white;
-  margin-left: 3px;
-  padding-left: 2px;
-}
-
-.tag-delete {
-  font-size: 14pt;
-  font-weight: bold;
-  margin-left: 3px;
-}
-
-.tag-delete:hover {
-  color: grey;
-}
-
-.modal-tag:hover {
-  background-color: #3883c6;
-  color: white;
-  -webkit-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
-}
-
 .modal-editor > div {
   z-index: 0;
 }
@@ -147,17 +75,45 @@ hr {
   margin-left: 10px;
 }
 
-.add-tag-button {
+/*.add-tag-button {
   float: right;
   z-index: 0;
+}*/
 
+/******************** MODAL-NAV-BAR STYLES********************/
+
+.modal-nav {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  height: 40px;
 }
 
-.card-tag {
-  /*color: #5f9cd2;*/
-  text-align: center;
-  overflow: hidden;
-  font-size: 10pt;
+
+/******************** MODAL-BODY STYLES********************/
+
+textarea:focus {
+  outline: none;
+}
+
+.notes {
+  height: 175px;
+  resize: none;
+  background-color: white;
+  /*border: none;*/
+  border-style: solid;
+  border-width: 2px;
+  border-color: #5f9cd2;
+  border-radius: 10px;
+  margin-bottom: 0px !important;
+  padding: 5px;
+/*  -webkit-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  -moz-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);*/
+}
+
+.card-url {
+  margin-left: 10px;
+  margin-top: 0px;
 }
 
 /******************** CARDTAG STYLES ********************/
@@ -237,3 +193,67 @@ hr {
   margin-right: 3px;
   z-index: 0;
 }
+
+/******************** ZOMBIE STYLES ********************/
+
+/*.card-tag {
+  color: #5f9cd2;
+  text-align: center;
+  overflow: hidden;
+  font-size: 10pt;
+}*/
+
+/*.modal-footer > button {
+  margin: 10px;
+  background-color: #c62828;
+}
+
+.modal-link {
+  font-size: 12pt;
+  margin-top: 20px;
+}
+
+.save-bar {
+  margin-top: 25px;
+}
+
+.modal-link:hover {
+  color: #3883c6;
+  font-weight: bold;
+}
+
+.modal-tag {
+  background-color: #5F9CD2;
+  color: white;
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 15px;
+  display: inline-block;
+}
+
+tag-name::after {
+  content: '';
+  border-left: 1px solid white;
+  margin-left: 3px;
+  padding-left: 2px;
+}
+
+.tag-delete {
+  font-size: 14pt;
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+.tag-delete:hover {
+  color: grey;
+
+.modal-tag:hover {
+  background-color: #3883c6;
+  color: white;
+  -webkit-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+}*/
