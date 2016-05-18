@@ -66,8 +66,10 @@ module.exports = (function() {
           this.respond( 'error in client.search' );
         }
         console.log('ES SEARCH RESPONSE: ', users.hits.hits);
-        const usernames = users.hits.hits.reduce((previous, current)=> { return previous.concat(current._source.username)}, [])
-        this.respond( error || usernames );
+        const usernames = users.hits.hits.reduce((previous, current)=> {
+          return previous.concat({id: current._id, username: current._source.username})
+        }, [])
+        this.respond( error || usernames.slice(0, 3) );
       }.bind(this));
     }
 
