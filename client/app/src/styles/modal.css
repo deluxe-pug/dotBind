@@ -15,8 +15,12 @@
 .modal-notes {
   /*padding: 10px;*/
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 20px;
   /*margin-bottom: 10px;*/
+}
+
+.card-url {
+  margin-left: 20px;
 }
 
 .notes {
@@ -168,4 +172,9 @@ hr {
 .share-button {
   z-index: 0;
   margin-bottom: 15px;
+}
+
+.card-tags {
+  float: left;
+  margin-left: 20px;
 }
