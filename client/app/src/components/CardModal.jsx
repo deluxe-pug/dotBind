@@ -86,11 +86,14 @@ class CardModal extends React.Component {
     return (
       <div>
         <div className="row modal-nav">
-          <div className="col s10">
+
+          <div className="col s8">
             <img className="activator modal-icon" src={this.props.icon} />
             <h5>{this.props.title}</h5>
+          </div>
+
             <div className="input-field">
-              <select className="modal-select col s4" onChange={this.selectLanguage.bind(this)}>
+              <select className="modal-select col s2" onChange={this.selectLanguage.bind(this)}>
                 {languages.map( lang => {
                   return this.props.language === lang.value ?
                     <option selected value={lang.value}>{lang.name}</option> :
@@ -98,13 +101,13 @@ class CardModal extends React.Component {
                 })}
               </select>
             </div>
-          </div>
+
           <div className="col s2">
             <a className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>
               <i className="material-icons">close</i>
             </a>
-
           </div>
+
         </div>
 
         <div className="modal-editor">
@@ -122,8 +125,11 @@ class CardModal extends React.Component {
             onChange={this.props.remindSave.bind(this), this.noteHasChanged}>
           </textarea>
         </div>
+
         <div className="modal-footer">
+
           <div className="row">
+
             <div className="row save-bar">
               <div className="col s8 offset-s4">
                 <button className="waves-effect waves-light btn delete-button"
@@ -161,7 +167,9 @@ class CardModal extends React.Component {
                 </div>
               </form> : null }
             </div>
+
           </div>
+          
           <div className="tags-div">
             {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
               <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
