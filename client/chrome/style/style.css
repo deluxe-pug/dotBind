@@ -24,8 +24,21 @@ body {
   border-radius: 10px !important;
 }
 
-.card-header {
-  /*border-bottom: 1px black solid;*/
+.card-footer {
+  text-align: center;
+  color: #5f9cd2;
+}
+
+.note {
+  font-size: 12pt;
+  height: 175px;
+  resize: none;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  -moz-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
 }
 
 .content-container {
