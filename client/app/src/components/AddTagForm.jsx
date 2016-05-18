@@ -1,4 +1,6 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 let input;
 
@@ -16,4 +18,10 @@ class AddTagForm extends React.Component {
   }
 };
 
-export default AddTagForm;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(AddTagForm);
