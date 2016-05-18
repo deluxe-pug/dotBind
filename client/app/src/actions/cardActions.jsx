@@ -10,11 +10,6 @@ const headers = {
 };
 
 export const addCardAction = (url) => {
-  // const config = {
-  //   method: 'get',
-  //   url: url,
-  //   headers: headers
-  // }
   const accessToken = localStorage.getItem('dotBindAccessToken');
   const username = localStorage.getItem('githubUsername')
   const request = axios.get(`${endpoints.fetchsite}?url=${url}&username=${username}&accessToken=${accessToken}`);
