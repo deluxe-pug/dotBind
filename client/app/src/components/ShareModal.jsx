@@ -14,10 +14,8 @@ class ShareModal extends React.Component {
   }
 
   handleSearchUsers() {
-    if (input.value.trim().length > 3) {
-      this.props.searchUsers(input.value.trim());
-      console.log('this is the props', this.props.foundUsers);
-    }
+    this.props.searchUsers(input.value.trim());
+    console.log('this is the props', this.props.foundUsers);
   }
 
   handleSend(event){
@@ -51,9 +49,9 @@ class ShareModal extends React.Component {
                     </div>
 
                     <div className="col s12">
-                      {this.props.foundUsers.map( (username) =>
-                        <div onClick={this.handleSend.bind(this)} className="chip hoverable">
-                          {username}
+                      {this.props.foundUsers.map( (user) =>
+                        <div key={user.id} onClick={this.handleSend.bind(this)} className="chip hoverable">
+                          {user.username}
                         </div>
                       )}
                     </div>
