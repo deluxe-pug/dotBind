@@ -24,9 +24,6 @@ export const addCardAction = (url) => {
 };
 
 export const saveCardFromInboxAction = (cardObj, username, tagArray) => {
-  // console.log('CardObject => ', cardObj);
-  // console.log('username => ', username);
-  // console.log('tags => ', tagArray);
   const endpoint = `${endpoints.cards}?access_token=${localStorage.getItem('dotBindAccessToken')}`;
   const request = axios.post(endpoint, {
     card: cardObj,
@@ -136,7 +133,6 @@ export const deleteCardAction = (cardId) => {
   };
 };
 
-// {from: 'public', to: '', card_id: '3'}
 export const shareCardAction = (username, id) => {
   const endpoint = `${endpoints.inbox}/?access_token=${localStorage.getItem('dotBindAccessToken')}`;
   const request = axios.post(endpoint, {

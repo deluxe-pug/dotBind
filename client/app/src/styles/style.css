@@ -184,6 +184,10 @@ header, main, footer {
   margin-right: 10px;
 }
 
+.modal-select {
+  display: inline;
+}
+
 .notication {
   font-weight: bolder;
   color: white;
