@@ -18,7 +18,6 @@ class Tag extends React.Component {
           } else {
             searchString = searchString.concat(this.props.tagName)
           }
-          console.log('searchString: ', searchString);
           this.props.searchCards(this.props.tagName);
           this.props.addSearchKeyword(false, this.props.tagName);
         }}>

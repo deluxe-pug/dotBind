@@ -1,6 +1,8 @@
 const path = require('path');
 const request = require('request');
 const cat = require('octodex'); // generates a random octocat image
+const getTitleFromHtml = require('./utils.js').getTitleFromHtml;
+const getDomainFromUrl = require('./utils.js').getDomainFromUrl;
 
 exports.regularAuth = (req, res) => {
 
@@ -105,7 +107,44 @@ exports.logout = (req, res) => {
   });
 };
 
+exports.fetchsite = (req, res) => {
+  request({
+    uri: req.query.url,
+    method: 'GET'
+  }, function(error, message, response) {
+
+    const domain = getDomainFromUrl(req.query.url);
+    const title = getTitleFromHtml(response);
+    const accessToken = req.query.accessToken;
+
+    const resObj = {
+      card: {
+        url: req.query.url,
+        title: title,
+        code: '',
+        text: '',
+        note: '',
+        domain: domain,
+        icon: `http://www.google.com/s2/favicons?domain=${domain}`,
+      },
+      username: req.query.username,
+      tags: [] 
+    };
+
+    request({
+      uri: `http://localhost:3000/v1/cards?access_token=${accessToken}`,
+      method: 'POST',
+      json: true,
+      body: resObj
+    }, function(error, message, response) {
+      res.json(response);
+    })
+
+  });
+};
+
 exports.other = (req, res) => {
   if (!path.extname(req.url)) {res.redirect('/404');}
   res.sendFile(path.resolve(__dirname + '/../../../client/app/' + req.params[0]));
 };
+
