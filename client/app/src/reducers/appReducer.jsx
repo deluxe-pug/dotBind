@@ -14,7 +14,7 @@ const appReducer = combineReducers({
   tags: tagsReducer,
   user: userReducer,
   search: searchReducer,
-  searchUsers: searchUsersReducer,
+  foundUsers: searchUsersReducer,
 });
 
 export default appReducer;
