@@ -53,16 +53,16 @@
     ],
     "Tag": [
       {
-        "name": "React"
+        "name": "react"
       },
       {
-        "name": "Angular"
+        "name": "angular"
       },
       {
-        "name": "Backbone"
+        "name": "backbone"
       },
       {
-        "name": "Redux"
+        "name": "redux"
       }
     ],
     "UserTag": [
@@ -199,16 +199,16 @@
     ],
     "Tag": [
       {
-        "name": "React"
+        "name": "react"
       },
       {
-        "name": "Angular"
+        "name": "angular"
       },
       {
-        "name": "Backbone"
+        "name": "backbone"
       },
       {
-        "name": "Redux"
+        "name": "redux"
       }
     ],
     "UserTag": [
@@ -291,6 +291,149 @@
     ]
   },
 
-  "production": {}
+  "production": {
+    "User": [
+      {
+        "username": "public",
+        "password": "password",
+        "email": "public@gmail.com"
+      },
+      {
+        "username": "adam",
+        "password": "password",
+        "email": "adam@gmail.com"
+      }
+    ],
+    "Card": [
+      {
+        "url": "http://google.com",
+        "title": "Best Search Engine",
+        "user_id": 1,
+        "icon": "https://www.google.com/images/branding/product/ico/googleg_lodp.ico",
+        "domain": "google.com",
+        "code": "This is google",
+        "note": "a googler left this note"
+      },
+      {
+        "url": "http://facebook.com",
+        "title": "Largest Friends Network",
+        "user_id": 2,
+        "icon": "https://www.facebook.com/rsrc.php/yl/r/H3nktOa7ZMg.ico",
+        "domain": "facebook.com",
+        "code": "var test = function() {};",
+        "note": "a facebooker left this note"
+      },
+      {
+        "url": "http://airbnb.com",
+        "title": "Your Home on Vacation",
+        "user_id": 1,
+        "icon": "https://a1.muscache.com/airbnb/static/logotype_favicon-21cc8e6c6a2cca43f061d2dcabdf6e58.ico",
+        "domain": "airbnb.com",
+        "text": "This is airbnb",
+        "note": "An airbnber left this note"
+      },
+      {
+        "url": "http://amazon.com",
+        "title": "Online Shopping Giant",
+        "user_id": 1,
+        "icon": "http://www.amazon.com/favicon.ico",
+        "domain": "amazon.com",
+        "code": "var test = function() {};",
+        "note": "An amazoner left this note"
+      }
+    ],
+    "Tag": [
+      {
+        "name": "react"
+      },
+      {
+        "name": "angular"
+      },
+      {
+        "name": "backbone"
+      },
+      {
+        "name": "redux"
+      }
+    ],
+    "UserTag": [
+      {
+        "user_id": 1,
+        "tag_id": 1,
+        "card_count": 2
+      },
+      {
+        "user_id": 1,
+        "tag_id": 2,
+        "card_count": 2
+      },
+      {
+        "user_id": 1,
+        "tag_id": 3,
+        "card_count": 1
+      },
+      {
+        "user_id": 1,
+        "tag_id": 4,
+        "card_count": 2
+      },
+      {
+        "user_id": 2,
+        "tag_id": 1,
+        "card_count": 1
+      },
+      {
+        "user_id": 2,
+        "tag_id": 4,
+        "card_count": 1
+      }
+    ],
+    "AccessToken": [
+      {
+        "access_token": "dotBind",
+        "user_id": 1,
+        "expires_at": "2099-06-12 11:24:35.172",
+        "token_type": "bearer"
+      }
+    ],
+    "CardTag": [
+      {
+        "card_id": 1,
+        "tag_id": 1
+      },
+      {
+        "card_id": 1,
+        "tag_id": 4
+      },
+      {
+        "card_id": 1,
+        "tag_id": 2
+      },
+      {
+        "card_id": 2,
+        "tag_id": 1
+      },
+      {
+        "card_id": 2,
+        "tag_id": 4
+      },
+      {
+        "card_id": 3,
+        "tag_id": 3
+      },
+      {
+        "card_id": 3,
+        "tag_id": 4
+      },
+      {
+        "card_id": 4,
+        "tag_id": 1
+      },
+      {
+        "card_id": 4,
+        "tag_id": 2
+      }
+    ]
+  }
 
 }
