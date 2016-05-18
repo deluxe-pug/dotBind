@@ -1,17 +1,18 @@
 body {
   background-color: #F0F0F0;
   width:400px;
-  Height:800px;
-}
-
-.page-title {
-  color: #5f9cd2;
-  font-size: 12pt;
+  /*Height:800px;*/
 }
 
 .icon {
   float: right;
   margin: 10px;
+}
+
+.custom-button {
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #26a69a;
 }
 
 .snippet {
@@ -39,16 +40,6 @@ body {
   -webkit-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
   -moz-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
   box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
-}
-
-.content-container {
-  background-color: #fff;
-  border-radius: 10px;
-  /*padding: 5px;*/
-  margin-top: 10px;
-  -webkit-box-shadow: 3px 3px 40px -9px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 3px 40px -9px rgba(0,0,0,0.75);
-  box-shadow: 3px 3px 40px -9px rgba(0,0,0,0.75);
 }
 
 .foreground:before {

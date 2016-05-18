@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
     $('body').on('click', '#save', () => {
       if ( accesstoken ) {
         // save note
-        if ( !!$('input.note').val() ) {
-          data.card.note = $('input.note').val();
+        if ( !!$('textarea.note').val() ) {
+          data.card.note = $('textarea.note').val();
         }
         console.log('data sending to api end point v1/cards', data);
         $.ajax({
@@ -124,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         $('body').append($('<div>You are not logged in yet!</div>'));
       }
-
     });
   });
 });
