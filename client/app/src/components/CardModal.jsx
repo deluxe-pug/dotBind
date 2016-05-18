@@ -153,19 +153,23 @@ class CardModal extends React.Component {
                 this.props.dispatch( addTagToCardAction(input.value.toLowerCase(), this.props.user_id, this.props.id) );
                 input.value = '';
                 }}>
+
                 <div className="row">
                   <div className="col s6">
-                    <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
+                    <a>
+                      <i className="material-icons">mode_edit</i>
+                    </a>
                   </div>
                   <div className="col s4">
                     <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
                   </div>
                 </div>
+
               </form> : null }
             </div>
 
           </div>
-          
+
           <div className="tags-div">
             {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
               <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
@@ -183,6 +187,8 @@ class CardModal extends React.Component {
     );
   }
 };
+
+// <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
 
 const mapStateToProps = (state) => {
   return {
