@@ -176,5 +176,5 @@ function renderTitle(title) {
 }
 
 function resolveContent(content) {
-  return content.length > 300 ? content.substring(0,300) + '...' : content;
+  return content.length > 120 ? content.substring(0,120) + '...' : content;
 }
