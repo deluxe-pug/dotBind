@@ -18,13 +18,22 @@ class CardTag extends React.Component {
 
   render() {
     return (
-      <div className="modal-tag">
-        <span className="tag-name"> {this.props.name} </span>
-        <span className="tag-delete" onClick={this.handleDelete.bind(this)}>x</span>
+
+      <div className="chip">
+        {this.props.name}
+        <a onClick={this.handleDelete.bind(this)}>
+          <i className="material-icons">close</i>
+        </a>
       </div>
+            
     );
   }
 };
+
+// <div className="modal-tag">
+//   <span className="tag-name"> {this.props.name} </span>
+//   <span className="tag-delete" onClick={this.handleDelete.bind(this)}>x</span>
+// </div>
 
 const mapStateToProps = (state) => {
   return {
