@@ -24,5 +24,6 @@ export const languages = [
   {key:22, value: 'sass', name: 'Sass'},
   {key:23, value: 'scala', name: 'Scala'},
   {key:24, value: 'typescript', name: 'Typescript'},
-  {key:25, value: 'xml', name: 'XML'}
+  {key:25, value: 'xml', name: 'XML'},
+  {key:26, value: 'plain', name: 'plain text'}
 ];

@@ -30,7 +30,7 @@ class CardModal extends React.Component {
 
   componentWillMount(){
     // default language is JavaScript
-    this.setState({language: this.props.language || 'javascript'});
+    this.setState({language: this.props.language});
   }
 
   editorHasChanged(val) {
@@ -77,6 +77,7 @@ class CardModal extends React.Component {
 
   selectLanguage(e){
     this.setState({language: e.target.value});
+    console.log(this.state.language);
   }
 
   render() {
