@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     $('body').on('click', '#login', () => {
       chrome.tabs.create({url: `${envParams[enviornment].url}:8000`});
       window.close();
-    }); 
+    });
   }
-  
+
   getCurrentTabProps((url, icon, title) => {
 
     // render icon and url to the popup
@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
           type: 'POST',
           url: `${envParams[enviornment].url}:3000/v1/cards?access_token=${accesstoken}`,
           data,
-          success: result => { 
-            console.log(result); 
+          success: result => {
+            console.log(result);
             window.close();
           },
           dataType: 'json',
@@ -168,7 +168,7 @@ function renderIcon(icon) {
 }
 
 function renderContent(content) {
-  document.getElementById('content').textContent = content;
+  document.getElementById('content').textContent = content.substring(0,300) + '...';
 }
 
 function renderTitle(title) {
