@@ -103,14 +103,14 @@ hr {
 
 .delete-button {
   margin-right: 3px;
-  float: left;
+  /*float: left;*/
   background-color: #c62828;
   z-index: 0;
 }
 
 .save-button {
-  float: left;
-  width: 50%;
+  /*float: left;*/
+  width: 25%;
   z-index: 0;
 }
 
@@ -171,7 +171,8 @@ hr {
 
 .share-button {
   z-index: 0;
-  margin-bottom: 15px;
+  width: 25%;
+  /*margin-bottom: 15px;*/
 }
 
 .card-tag {

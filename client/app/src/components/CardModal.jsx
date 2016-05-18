@@ -165,20 +165,21 @@ class CardModal extends React.Component {
 
           <div className="buttons-bar">
 
-            <button className="waves-effect waves-light btn save-button"
+            <button className="waves-light btn save-button"
               onClick={this.props.cardsState !== 'inbox' ?
               this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
               {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
             </button>
 
-            <button className="waves-effect waves-light btn delete-button"
+            <button className="waves-light btn share-button" href="#popup1">
+              Share This Card
+            </button>
+
+            <button className="waves-light btn delete-button"
               onClick={this.notifyDelete.bind(this)}>
               <i className="material-icons">delete</i>
             </button>
 
-            <a className="waves-effect waves-light btn share-button" href="#popup1">
-              Share This Card
-            </a>
 
           </div>
 
