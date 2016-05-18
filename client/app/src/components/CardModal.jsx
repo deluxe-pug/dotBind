@@ -13,7 +13,7 @@ import AddTagForm from './AddTagForm';
 
 import { bindActionCreators } from 'redux';
 import {
-  addTagToCardAction,
+  // addTagToCardAction,
   updateCardAction,
   deleteCardAction,
   saveCardFromInboxAction
@@ -201,7 +201,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addTag: addTagToCardAction,
+    // addTag: addTagToCardAction,
     updateCard: updateCardAction,
     deleteCard: deleteCardAction,
     saveCard: saveCardFromInboxAction,
