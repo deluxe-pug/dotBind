@@ -88,7 +88,7 @@ class CardModal extends React.Component {
             <h5>{this.props.title}</h5>
             <div className="input-field">
               <select className="modal-select col s4" onChange={this.selectLanguage.bind(this)}>
-                <option value="" >{this.props.language}</option>
+                <option value="" >{this.props.language || 'set language'}</option>
                 {languages.map( lang => {
                   return <option value={lang.value}>{lang.name}</option>
                 })}
