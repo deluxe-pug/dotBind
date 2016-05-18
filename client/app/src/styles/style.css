@@ -185,7 +185,7 @@ header, main, footer {
 }
 
 .modal-select {
-  display: block;
+  display: inline;
 }
 
 .notication {
