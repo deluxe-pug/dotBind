@@ -134,6 +134,10 @@ class CardModal extends React.Component {
           </textarea>
         </div>
 
+        <span className="card-url"><a className="modal-link" href={this.props.url}>
+          {this.props.domain}
+        </a></span>
+
         <div className="modal-footer">
 
           <div className="row">
@@ -154,6 +158,7 @@ class CardModal extends React.Component {
                 <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
               ) : <span></span> }
             </div>
+
           </div>
 
           <div className="row save-bar">
@@ -168,9 +173,7 @@ class CardModal extends React.Component {
                 {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
               </button>
             </div>
-            <a className="modal-link" href={this.props.url}>
-              {this.props.domain}
-            </a>
+
           </div>
           <a className="waves-effect waves-light btn share-button" href="#popup1">
             Share This Card
