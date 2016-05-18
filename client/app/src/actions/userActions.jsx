@@ -32,3 +32,9 @@ export const searchUsersAction = (keywords) => {
   }
 
 };
+
+export const clearUsersAction = () => {
+  return {
+    type: 'CLEAR_USERS',
+  }
+};
