@@ -3,6 +3,7 @@ const cardsReducer = (state = [], action) => {
 
     case 'ADD_CARD':
       console.log('ADD_CARD: ', action.payload.data.data);
+
       return [...state];
       // return [...state, action.payload.data.data];
 

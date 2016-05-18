@@ -15,8 +15,9 @@ export const addCardAction = (url) => {
   //   url: url,
   //   headers: headers
   // }
-
-  const request = axios.get(`${endpoints.fetchsite}?url=${url}`);
+  const accessToken = localStorage.getItem('dotBindAccessToken');
+  const username = localStorage.getItem('githubUsername')
+  const request = axios.get(`${endpoints.fetchsite}?url=${url}&username=${username}&accessToken=${accessToken}`);
 
   // const request = axios.post(endpoints.cards, {
   //   "card": {

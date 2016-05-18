@@ -1,6 +1,8 @@
 const path = require('path');
 const request = require('request');
 const cat = require('octodex'); // generates a random octocat image
+const getTitleFromHtml = require('./utils.js').getTitleFromHtml;
+const getDomainFromUrl = require('./utils.js').getDomainFromUrl;
 
 exports.regularAuth = (req, res) => {
 
@@ -106,16 +108,44 @@ exports.logout = (req, res) => {
 };
 
 exports.fetchsite = (req, res) => {
-  console.log('REQ BODY: ', req.query.url);
+  // console.log('REQ BODY: ', req.query.url);
   request({
     uri: req.query.url,
     method: 'GET'
   }, function(error, message, response) {
-    console.log('FETCHSITE RESPONSE: ', response);
-    // parse resonse
+    // console.log('FETCHSITE RESPONSE: ', response);
+    console.log('TITLE???', getTitleFromHtml(response));
 
-    
-    res.end();
+    const domain = getDomainFromUrl(req.query.url);
+    const title = getTitleFromHtml(response);
+    const accessToken = req.query.accessToken;
+
+    const resObj = {
+      card: {
+        url: req.query.url,
+        title: title,
+        code: '',
+        text: '',
+        note: '',
+        domain: domain,
+        icon: `http://www.google.com/s2/favicons?domain=${domain}`,
+      },
+      username: req.query.username,
+      tags: [] 
+    };
+
+    request({
+      uri: `http://localhost:3000/v1/cards?access_token=${accessToken}`,
+      method: 'POST',
+      json: true,
+      body: resObj
+    }, function(error, message, response) {
+      console.log('RESPONSE FROM 3000: ', response);
+      res.json(response);
+    })
+
+    // res.json(resObj);
+
   });
 };
 
