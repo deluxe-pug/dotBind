@@ -7,7 +7,7 @@ module.exports = (function() {
   const elasticsearch = require('elasticsearch');
 
   const client = new elasticsearch.Client({
-    host: 'localhost:9200',
+    host: 'localhost:9200/users',
     log: 'trace'
   });
 
@@ -19,18 +19,27 @@ module.exports = (function() {
     'Content-Type': 'application/json'
   };
 
-  class V1CardsSearchController extends Nodal.Controller {
+  class V1UsersSearchController extends Nodal.Controller {
 
     index() {
-      console.log('QUERY============>: ', this.params.query); // query: '{"index":"library","body":{"query":{"query_string":{"query":"hi"}}}}'
-      // client.search(JSON.parse(this.params.query.query), function(error, cards) {
-      //   if (error) {
-      //     console.log('ES SEARCH ERROR: ', error);
+      console.log('============> this.params.query in users_search_controller: ', this.params.query);
+      // this.params.query = {
+      //   query: {
+      //     wildcard: {
+      //       username: {
+      //         value: "*test*"
+      //       }
+      //     }
       //   }
-      //   console.log('ES SEARCH RESPONSE: ', cards.hits.hits);
-      //   this.respond( error || cards.hits.hits );
-      // }.bind(this));
-      this.respond('Ok');
+      // };
+      client.search(JSON.stringify(this.params.query), function(error, users) {
+        if (error) {
+          console.log('ES SEARCH ERROR: ', error);
+        }
+        console.log('ES SEARCH RESPONSE: ', users.hits.hits);
+        const usernames = users.hits.hits.reduce((previous, current)=> { return previous.concat(current._source.username)}, [])
+        this.respond( error || usernames );
+      }.bind(this));
     }
 
     show() {}
@@ -43,6 +52,6 @@ module.exports = (function() {
 
   }
 
-  return V1CardsSearchController;
+  return V1UsersSearchController;
 
 })();
