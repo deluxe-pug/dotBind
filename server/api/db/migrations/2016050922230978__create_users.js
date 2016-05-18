@@ -18,7 +18,8 @@ module.exports = (function() {
           {"name":"email","type":"string","properties":{"unique":true}},
           {"name":"password","type":"string"},
           {"name":"username","type":"string"},
-          {"name":"message_count","type":"int"}
+          {"name":"message_count","type":"int"},
+          {"name":"avatar","type":"string"}
         ])
       ];
 
