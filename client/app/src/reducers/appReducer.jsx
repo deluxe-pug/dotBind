@@ -4,6 +4,7 @@ import cardsStateReducer from './cardsStateReducer';
 import tagsReducer from './tagsReducer';
 import userReducer from './userReducer';
 import searchReducer from './searchReducer';
+import searchUsersReducer from './searchUsersReducer';
 
 // mapping to application state
 // each key has each reducer, each piece of state
@@ -13,6 +14,7 @@ const appReducer = combineReducers({
   tags: tagsReducer,
   user: userReducer,
   search: searchReducer,
+  searchUsers: searchUsersReducer,
 });
 
 export default appReducer;
