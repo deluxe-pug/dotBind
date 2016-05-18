@@ -7,7 +7,7 @@ module.exports = (function() {
   const elasticsearch = require('elasticsearch');
 
   const client = new elasticsearch.Client({
-    host: 'localhost:9200/users',
+    host: 'localhost:9200',
     log: 'trace'
   });
 
@@ -22,29 +22,54 @@ module.exports = (function() {
   class V1UsersSearchController extends Nodal.Controller {
 
     index() {
-      console.log('============> this.params.query in users_search_controller: ', this.params.query);
-      // this.params.query = {
-      //   query: {
-      //     wildcard: {
-      //       username: {
-      //         value: "*test*"
-      //       }
-      //     }
+      // console.log('============> this.params.query in users_search_controller: ', this.params.query);
+      // // this.params.query = {
+      //   // query: {
+      //   //   wildcard: {
+      //   //     username: {
+      //   //       value: "*test*"
+      //   //     }
+      //   //   }
+      //   // }
+      // // };
+      // client.search(JSON.stringify(this.params.query), function(error, users) {
+      //   if (error) {
+      //     console.log('ES SEARCH ERROR: ', error);
+      //     this.respond( 'error in user search Controller' );
       //   }
+      //   console.log('ES SEARCH RESPONSE: ', users.hits.hits);
+      //   const usernames = users.hits.hits.reduce((previous, current)=> { return previous.concat(current._source.username)}, [])
+      //   this.respond( error || usernames );
+      // }.bind(this));
+    }
+
+    show() {}
+
+    create() {
+      // this.params.body = {
+        // query: {
+        //   wildcard: {
+        //     username: {
+        //       value: "*test*"
+        //     }
+        //   }
+        // }
       // };
-      client.search(JSON.stringify(this.params.query), function(error, users) {
+      console.log('this is this.params.body ------------->', this.params.body);
+      const query = {
+        index: 'users',
+        body: this.params.body
+      };
+      client.search(query, function(error, users) {
         if (error) {
           console.log('ES SEARCH ERROR: ', error);
+          this.respond( 'error in client.search' );
         }
         console.log('ES SEARCH RESPONSE: ', users.hits.hits);
         const usernames = users.hits.hits.reduce((previous, current)=> { return previous.concat(current._source.username)}, [])
         this.respond( error || usernames );
       }.bind(this));
     }
-
-    show() {}
-
-    create() {}
 
     update() {}
 
