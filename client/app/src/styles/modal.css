@@ -19,9 +19,6 @@
   /*margin-bottom: 10px;*/
 }
 
-
-
-
 .modal-heading {
   margin-left: 10px;
 }
@@ -31,10 +28,6 @@
   font-style: italic;
 }
 
-.modal-icon {
-  float: left;
-  margin: 10px;
-}
 
 .close-modal {
   margin-top: 5px;
@@ -83,11 +76,21 @@ hr {
 /******************** MODAL-NAV-BAR STYLES********************/
 
 .modal-nav {
-  margin-bottom: 0px;
-  margin-top: 0px;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
   height: 40px;
 }
 
+.modal-icon {
+  float: left;
+  height: 32px;
+  width: 32px;
+  margin: 0px 5px 0px 10px;
+}
+
+.title {
+  float: left;
+}
 
 /******************** MODAL-BODY STYLES********************/
 
