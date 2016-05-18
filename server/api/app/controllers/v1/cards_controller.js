@@ -240,10 +240,10 @@ module.exports = (function() {
             console.log('PUT response: ', response);
           })
 
-
           this.respond(err || model);
 
         })
+
       });
 
     }
@@ -283,21 +283,53 @@ module.exports = (function() {
 
                 // destroy Card after updating userTags and deleting CardTags
                 Card.destroy(this.params.route.id, (err, model) => {
-                  this.respond(err || model);
-                  console.log('card destroyed!!')
+                  console.log('card destroyed!!')                  
+            
+                  // delete from elasticsearch
+                  const query = {
+                    index: "library",
+                    type: "cards",
+                    body: {
+                      "query": {
+                        "bool": {
+                          "must": [{ match: {id: this.params.route.id} }],
+                        },
+                      },
+                    }
+                  };
+
+                  client.search(query, (err, response) => {
+                    if (err) {
+                      console.error('Search error before DELETE. Inspect cards controller: ', err);
+                    } else {
+                      const esId = response.hits.hits[0]._id;
+                      const esDelete = {
+                        index: 'library',
+                        type: 'cards',
+                        id: esId,
+                      };
+
+                      client.delete(esDelete, (error, response) => {
+                        if (error) {
+                          console.log('error deleting card from ElasticSearch');
+                        } else {
+                          console.log('card deleted from ElasticSearch');
+                          this.respond(err || model);
+                        }
+                      });
+                    }
+                  })
 
                 })
+
               })
+
+            
             }).catch((error) => {console.error('Error destroying cards: ', error)})
 
-
           })
-
-
-
-
-        
       })
+
 
     }
 
