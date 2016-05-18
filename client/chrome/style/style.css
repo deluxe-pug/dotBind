@@ -4,6 +4,21 @@ body {
   Height:800px;
 }
 
+.nav-wrapper {
+  background-color: #5f9cd2;
+}
+
+.page-title {
+  color: white;
+  font-size: 12pt;
+}
+
+.icon {
+  background-color: white;
+  float: right;
+  margin: 10px;
+}
+
 .content-container {
   background-color: #fff;
   border-radius: 10px;

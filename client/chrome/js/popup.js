@@ -168,9 +168,13 @@ function renderIcon(icon) {
 }
 
 function renderContent(content) {
-  document.getElementById('content').textContent = content.substring(0,300) + '...';
+  document.getElementById('content').textContent = resolveContent(content);
 }
 
 function renderTitle(title) {
   document.getElementById('title').textContent = title;
+}
+
+function resolveContent(content) {
+  return content.length > 300 ? content.substring(0,300) + '...' : content;
 }
