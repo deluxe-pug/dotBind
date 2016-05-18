@@ -150,6 +150,7 @@ hr {
 .add-tag-button {
   float: right;
   z-index: 0;
+
 }
 
 .card-tag {
@@ -162,8 +163,8 @@ hr {
 /******************** CARDTAG STYLES ********************/
 
 .card-tags {
-  float: left;
-  margin-left: 20px;
+  /*float: left;*/
+  /*margin-left: 20px;*/
   height: 38px;
   margin: 2px;
   margin-top: 5px;
@@ -211,18 +212,28 @@ hr {
 }
 
 .save-button {
-  /*float: left;*/
-  width: 25%;
+  width: auto;
+  border-radius: 10px;
+  background-color: #5f9cd2;
+  margin-left: 3px;
+  margin-right: 3px;
   z-index: 0;
 }
 
 .share-button {
+  width: auto;
+  border-radius: 10px;
+  background-color: #5f9cd2;
+  margin-left: 3px;
+  margin-right: 3px;
   z-index: 0;
-  width: 25%;
 }
 
 .delete-button {
-  margin-right: 3px;
+  width: auto;
+  border-radius: 10px;
   background-color: #c62828;
+  margin-left: 3px;
+  margin-right: 3px;
   z-index: 0;
 }
