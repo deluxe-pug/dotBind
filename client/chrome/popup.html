@@ -19,27 +19,34 @@
      -->
   </head>
   <body>
-    <nav>
-      <div class="nav-wrapper">
-        <span class="page-title" id="title"></span>
-        <img class="icon" id="image-result" >
-      </div>
-    </nav>
     <div class="container">
-      <p class="flow-text" id="url"></p>
-
-      <!-- <div>
-        <button class="btn waves-effect indigo btn-small" type="submit" name="action">Code
-          <i class="material-icons right">code</i>
-        </button>
-        <button class="btn waves-effect indigo btn-small" type="submit" name="action">Text
-          <i class="material-icons right">comment</i>
-        </button>
+      <!-- <h5>New card: </h5>
+      <div class="content-container">
+        <nav>
+          <div class="nav-wrapper">
+            <span class="page-title" id="title"></span>
+            <img class="icon" id="image-result" >
+          </div>
+        </nav>
+        <p class="snippet" id="content" class="flow-text"></p>
       </div> -->
 
-      <div class="content-container">
-        <p id="content" class="flow-text"></p>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-header">
+            <span class="card-title" id="title"></span>
+            <img class="icon" id="image-result" >
+          </div>
+          <hr/>
+          <code>
+          <p class="snippet" id="content" class="flow-text">// No snippet captured.</p>
+        </code>
+          <hr/>
+        </div>
       </div>
+
+
+      <p class="flow-text" id="url"></p>
       <p id="note" class="flow-text"></p>
 
       <input class="note" placeholder="notes here"></input>
