@@ -19,6 +19,8 @@ import {
   saveCardFromInboxAction
 } from '../actions/cardActions';
 
+require('../styles/modal.css');
+
 // let input;
 let editorCode = '';
 let note = '';
