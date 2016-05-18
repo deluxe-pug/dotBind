@@ -9,6 +9,7 @@ import AceEditor from 'react-ace';
 
 import 'brace/theme/tomorrow_night';
 import { languages } from './language_object';
+import AddTagForm from './AddTagForm';
 
 import { bindActionCreators } from 'redux';
 import {
@@ -21,6 +22,7 @@ import {
 let input;
 let editorCode = '';
 let note = '';
+
 class CardModal extends React.Component {
   constructor(props) {
     super(props);
@@ -160,9 +162,9 @@ class CardModal extends React.Component {
                       <i className="material-icons">mode_edit</i>
                     </a>
                   </div>
-                  <div className="col s4">
-                    <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
-                  </div>
+
+                  <AddTagForm />
+                  
                 </div>
 
               </form> : null }
