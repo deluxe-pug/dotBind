@@ -10,7 +10,6 @@ require("./../styles/style.css");
 
 const App = () => (
   <div className="row">
-
     <div>
       <TopBar />
     </div>

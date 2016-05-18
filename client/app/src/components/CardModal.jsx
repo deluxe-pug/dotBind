@@ -4,9 +4,9 @@ import Modal from 'react-modal';
 import brace from 'brace';
 import CardTag from './CardTag';
 import ShareModal from './ShareModal';
-
+import './editor_languages';
 import AceEditor from 'react-ace';
-import 'brace/mode/javascript';
+
 import 'brace/theme/tomorrow_night';
 
 import { bindActionCreators } from 'redux';
@@ -25,6 +25,11 @@ class CardModal extends React.Component {
     super(props);
     editorCode = this.props.code;
     note = this.props.note;
+  }
+
+  componentWillMount(){
+    // default language is JavaScript
+    this.setState({language: 'javascript'});
   }
 
   editorHasChanged(val) {
@@ -82,9 +87,14 @@ class CardModal extends React.Component {
         </div>
 
         <div className="modal-editor">
+          <select>
+            <option>poop</option>
+            <option>poop</option>
+            <option>poop</option>
+          </select>
           <AceEditor height="240px" width="100%"
             onFocus={this.props.remindSave.bind(this)}
-            onChange={this.editorHasChanged} mode="javascript"
+            onChange={this.editorHasChanged} mode={this.state.language}
             theme="tomorrow_night" name="editor"
             editorProps={{$blockScrolling: true}}
             value={this.props.code || '// Your code here'} />
