@@ -28,12 +28,16 @@ class CardModal extends React.Component {
     super(props);
     editorCode = this.props.code;
     note = this.props.note;
+    this.state = {
+      displayAddTagForm: false, 
+      language: 'javascript',
+    };
   }
 
-  componentWillMount(){
-    // default language is JavaScript
-    this.setState({language: 'javascript'});
-  }
+  // componentWillMount(){
+  //   // default language is JavaScript
+  //   this.setState({language: 'javascript'});
+  // }
 
   editorHasChanged(val) {
     editorCode = val;
@@ -79,6 +83,12 @@ class CardModal extends React.Component {
 
   selectLanguage(e){
     this.setState({language: e.target.value});
+  }
+
+  toggleAddTagForm() {
+    this.setState({
+      displayAddTagForm: !this.state.displayAddTagForm
+    });
   }
 
   render() {
@@ -148,19 +158,16 @@ class CardModal extends React.Component {
             <div className="col s8 offset-s2">
               { this.props.cardsState !== 'inbox' ?
 
-
-
-
                 <div className="row">
                   <div className="col s6">
-                    <a>
+                    <a onClick={() => this.toggleAddTagForm()}>
                       <i className="material-icons">mode_edit</i>
                     </a>
                   </div>
-
-                  <AddTagForm 
-                    id={this.props.id}
-                    user_id={this.props.user_id} />
+                  {this.state.displayAddTagForm ? 
+                    <AddTagForm 
+                      id={this.props.id}
+                      user_id={this.props.user_id} /> : null }
 
                 </div>
 
@@ -175,6 +182,7 @@ class CardModal extends React.Component {
             ) : <span></span>} <br/>
           </div>
 
+          
           <a className="waves-effect waves-light btn share-button" href="#popup1">
             Share This Card
           </a>
