@@ -7,6 +7,12 @@ module.exports = (function() {
 
   const crypto = require('crypto');
 
+  const elasticsearch = require('elasticsearch');
+  const client = new elasticsearch.Client({
+    host: 'localhost:9200',
+    log: 'trace'
+  });
+
   class AccessToken extends Nodal.Model {
 
     static generateAccessTokenString() {
@@ -69,6 +75,22 @@ module.exports = (function() {
           // if (err) {
           //   return callback(err);
           // }
+          const esPost = {
+            index: 'users',
+            type: 'user',
+            body: {
+              username: username,
+              email: email
+            },
+          };
+
+          client.create(esPost)
+            .then((response) => 
+              console.log('=====> response: ', response),
+              (error) => 
+              console.log('=====> error: ', error)
+            );
+
           aUser.verifyPassword(password, (error, result) => {
             if (error || !result) {
               console.log('Verify password error: ', error)
