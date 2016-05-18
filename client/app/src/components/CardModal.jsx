@@ -149,7 +149,7 @@ class CardModal extends React.Component {
             { this.props.cardsState !== 'inbox' ?
               <span>
                 <a onClick={() => this.toggleAddTagForm()}>
-                  <i className="material-icons">mode_edit</i>
+                  <i className="material-icons add-tag-icon">mode_edit</i>
                 </a>
                 {this.state.displayAddTagForm ? 
                   <AddTagForm 
