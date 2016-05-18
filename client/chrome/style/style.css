@@ -7,6 +7,8 @@ body {
 .icon {
   float: right;
   margin: 10px;
+  width: 32px;
+  height: 32px;
 }
 
 .custom-button {
