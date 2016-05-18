@@ -138,51 +138,40 @@ class CardModal extends React.Component {
 
           <div className="row">
 
-            <div className="row save-bar">
-              <div className="col s8 offset-s4">
-                <button className="waves-effect waves-light btn delete-button"
-                  onClick={this.notifyDelete.bind(this)}>
-                  <i className="material-icons">delete</i>
-                </button>
-                <button className="waves-effect waves-light btn save-button"
-                  onClick={this.props.cardsState !== 'inbox' ?
-                  this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
-                  {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
-                </button>
-              </div>
-              <a className="modal-link" href={this.props.url}>
-                {this.props.domain}
-              </a>
-            </div>
-
-            <div className="col s8 offset-s2">
+            <div>
               { this.props.cardsState !== 'inbox' ?
-
-                <div className="row">
-                  <div className="col s6">
-                    <a onClick={() => this.toggleAddTagForm()}>
-                      <i className="material-icons">mode_edit</i>
-                    </a>
-                  </div>
+                <span>
+                  <a onClick={() => this.toggleAddTagForm()}>
+                    <i className="material-icons">mode_edit</i>
+                  </a>
                   {this.state.displayAddTagForm ? 
                     <AddTagForm 
                       id={this.props.id}
                       user_id={this.props.user_id} /> : null }
-
-                </div>
-
+                </span>
                : null }
+              { this.props.cardTags ? this.props.cardTags.map((cardTag) =>
+                <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
+              ) : <span></span> }
             </div>
-
           </div>
 
-          <div className="tags-div">
-            {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
-              <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
-            ) : <span></span>} <br/>
+          <div className="row save-bar">
+            <div className="col s8 offset-s4">
+              <button className="waves-effect waves-light btn delete-button"
+                onClick={this.notifyDelete.bind(this)}>
+                <i className="material-icons">delete</i>
+              </button>
+              <button className="waves-effect waves-light btn save-button"
+                onClick={this.props.cardsState !== 'inbox' ?
+                this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
+                {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
+              </button>
+            </div>
+            <a className="modal-link" href={this.props.url}>
+              {this.props.domain}
+            </a>
           </div>
-
-          
           <a className="waves-effect waves-light btn share-button" href="#popup1">
             Share This Card
           </a>
