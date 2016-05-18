@@ -16,19 +16,16 @@ export const fetchUserAction = () => {
 
 export const searchUsersAction = (keywords) => {
   const query = {
-    "params": {
-      "query": {
-        "wildcard": {
-          "username": {
-            "value": `*${keywords}*`
-            // "value": "*michel*"
-          }
+    "query": {
+      "wildcard": {
+        "username": {
+          "value": `*${keywords}*`
         }
       }
     }
   };
 
-  const request = axios.get(endpoints.searchUsers, query);
+  const request = axios.post(endpoints.searchUsers, query);
   return {
     type: 'SEARCH_USERS',
     payload: request,

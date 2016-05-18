@@ -13,15 +13,27 @@ class ShareModal extends React.Component {
     super(props);
   }
 
-  testFunc() {
-    this.props.searchUser("michel");
+  handleSearchUsers() {
+    if (input.value.trim().length > 3) {
+      this.props.searchUsers(input.value.trim());
+      console.log('this is the props', this.props.foundUsers);
+    }
+  }
+
+  handleSend(event){
+    const toUser = $(event.currentTarget).text().replace('email', '');
+    this.props.shareCard(toUser, this.props.cardId);
+    this.notifySent();
+  }
+
+  notifySent(){
+    Materialize.toast('Card Sent!', 2000, 'rounded notication');
   }
 
   render() {
     return (
       <div id="popup1" className="overlay">
           <div className="popup">
-              <h4>Share this card </h4>
               <a className="close" href="#">&times;</a>
               <div className="container">
                 <div className="row">
@@ -33,22 +45,17 @@ class ShareModal extends React.Component {
                     this.props.shareCard(input.value, this.props.cardId);
                     console.log(input.value);
                   }}>
-                    <div className="col s8">
-                      <input type="text" ref={node => input = node} placeholder="github handle" />
-                      <a className='dropdown-button btn' data-activates='dropdown1'>Drop Me!</a>
 
+                    <div className="col s12">
+                      <input onChange={this.handleSearchUsers.bind(this)} type="text" ref={node => input = node} placeholder="github handle" />
                     </div>
 
-                      <ul id='dropdown1' className='dropdown-content anything'>
-                        <li><a href="#!">one</a></li>
-                        <li><a href="#!">two</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#!">three</a></li>
-                      </ul>
-                    <div className="col s4">
-                      <button type="submit" className="waves-effect waves-light btn">
-                        Share!
-                      </button>
+                    <div className="col s12">
+                      {this.props.foundUsers.map( (username) =>
+                        <div onClick={this.handleSend.bind(this)} className="chip hoverable">
+                          {username}
+                        </div>
+                      )}
                     </div>
 
                   </form>
@@ -63,14 +70,14 @@ class ShareModal extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    searchUser: state.searchUser,
+    foundUsers: state.foundUsers,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     shareCard: shareCardAction,
-    searchUser: searchUsersAction,
+    searchUsers: searchUsersAction,
   }, dispatch);
 };
 
