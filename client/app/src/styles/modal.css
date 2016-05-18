@@ -88,10 +88,6 @@ hr {
   background-color: #c62828;
 }
 
-.tag-input {
-  width: 30%;
-}
-
 .modal-link {
   font-size: 12pt;
   margin-top: 20px;
@@ -100,19 +96,6 @@ hr {
 /*.save-bar {
   margin-top: 25px;
 }*/
-
-.delete-button {
-  margin-right: 3px;
-  /*float: left;*/
-  background-color: #c62828;
-  z-index: 0;
-}
-
-.save-button {
-  /*float: left;*/
-  width: 25%;
-  z-index: 0;
-}
 
 .modal-link:hover {
   /*color: #3883c6;
@@ -169,12 +152,6 @@ hr {
   z-index: 0;
 }
 
-.share-button {
-  z-index: 0;
-  width: 25%;
-  /*margin-bottom: 15px;*/
-}
-
 .card-tag {
   /*color: #5f9cd2;*/
   text-align: center;
@@ -182,12 +159,60 @@ hr {
   font-size: 10pt;
 }
 
+/******************** CARDTAG STYLES ********************/
+
+.card-tags {
+  float: left;
+  margin-left: 20px;
+  height: 38px;
+  margin: 2px;
+}
+
+.add-tag-form {
+  display: inline-block;
+  height: 38px;
+  margin-right: 5px;
+}
+
+.add-tag-form input {
+  /*height: 30px;*/
+  padding-left: 5px;
+  font-family: Arial, 'FontAwesome';
+  color: #5f9cd2;
+  margin: 0px;
+  /*z-index: 1 !important;*/
+}
+
+.tag-input {
+  width: 30%;
+  height: 38px !important;
+  /*box-shadow: none !important;*/
+  /*height: 50px;*/
+  /*margin: 0;*/
+  background-color: white !important;
+  border-radius: 20px !important;
+}
+
+/******************** BUTTON STYLES ********************/
+
 .buttons-bar {
   width: 100%;
   clear: both;
 }
 
-.card-tags {
-  float: left;
-  margin-left: 20px;
+.save-button {
+  /*float: left;*/
+  width: 25%;
+  z-index: 0;
+}
+
+.share-button {
+  z-index: 0;
+  width: 25%;
+}
+
+.delete-button {
+  margin-right: 3px;
+  background-color: #c62828;
+  z-index: 0;
 }
