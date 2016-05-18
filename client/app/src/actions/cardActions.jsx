@@ -2,8 +2,6 @@ import axios from 'axios';
 import endpoints from './endpoints';
 
 export const addCardAction = (url) => {
-  // console.log('addCardAction is triggered');
-
   const request = axios.post(endpoints.cards, {
     "card": {
       "url": url,
@@ -19,7 +17,6 @@ export const addCardAction = (url) => {
       "Backbone"
      ]
   });
-  // console.log('checking middle logs')
   return {
     type: 'ADD_CARD',
     payload: request,
@@ -78,15 +75,7 @@ export const setToInboxAction = () => {
   }
 };
 
-export const filterCardsAction = (tag) => {
-  return {
-    type: 'FILTER_CARDS',
-    tag: tag,
-  }
-};
-
 export const searchCardsAction = (keywords) => {
-
   const query = {
     params: {
       "query": {
@@ -98,7 +87,8 @@ export const searchCardsAction = (keywords) => {
               "should": [{
                 "multi_match": {
                   "query": keywords,
-                  "fields": ["title", "url", "code", "text", "note", "cardTags"],
+                  "type": "most_fields",
+                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
                 },
               }],
             },
@@ -111,7 +101,7 @@ export const searchCardsAction = (keywords) => {
               "text": {},
               "note": {},
               "domain": {},
-              "cardTags": {},
+              "cardTags.tag.name": {},
             },
           },
         },
@@ -138,7 +128,6 @@ export const updateCardAction = (reqBody) => {
 };
 
 export const deleteCardAction = (cardId) => {
-  console.log('action called');
   const endpoint = `${endpoints.cards}/${cardId}/?access_token=${localStorage.getItem('dotBindAccessToken')}`;
   const request = axios.delete(endpoint);
   return {
@@ -155,7 +144,6 @@ export const shareCardAction = (username, id) => {
     to: username,
     card_id: id,
   });
-  console.log('action called => ', username);
   return {
     type: 'SHARE_CARD',
   };
@@ -183,18 +171,43 @@ export const addTagToCardAction = (tagName, userId, cardId) => {
   };
 };
 
-// SIMPLE QUERY
-// const query = {
-//   params: {
-//     query: {
-//       index: 'library',
-//       body: {
-//         "query": {
-//           "query_string": {
-//             "query": keywords
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+export const removeCardFilterAction = (keywords) => {
+  // first search
+  const query = {
+    params: {
+      "query": {
+        index: "library",
+        type: "cards",
+        body: {
+          "query": {
+            "bool": {
+              "should": [{
+                "multi_match": {
+                  "query": keywords,
+                  "type": "most_fields",
+                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
+                },
+              }],
+            },
+          },
+          "highlight": {
+            "fields": {
+              "title": {},
+              "url": {},
+              "code": {},
+              "text": {},
+              "note": {},
+              "domain": {},
+              "cardTags.tag.name": {},
+            },
+          },
+        },
+      },
+    },
+  };
+  const request = axios.get(endpoints.search, query);
+  return {
+    type: 'REMOVE_CARD_FILTER',
+    payload: request,
+  }
+};

@@ -2,8 +2,6 @@ const cardsReducer = (state = [], action) => {
   switch(action.type) {
 
     case 'ADD_CARD':
-      // console.log('addcardreduecer is triggered!');
-      // console.log('ADDCARD NEW STATE: ', action.payload.data.data);
       return [...state, action.payload.data.data];
 
     case 'FETCH_CARDS':
@@ -13,28 +11,27 @@ const cardsReducer = (state = [], action) => {
       return [...action.payload.data.data];
 
     case 'SAVE_NEW_CARD':
-      console.log('SAVE_NEW_CARD reducer')
-      console.log(action.payload.data.data)
       return state;
 
-    case 'FILTER_CARDS':
-      return filteredCards(state, action.tag);
-
     case 'SEARCH_CARDS':
-      // console.log('PAYLOAD: ', action.payload.data.data);
       const returnedIDs = [];
       action.payload.data.data.forEach(function(obj) {
         returnedIDs.push(obj._source.id);
       })
-      // console.log('returnedIDs: ', returnedIDs);
       const searchedCards = state.slice().filter((card) => {
         if (returnedIDs.indexOf(card.id) > -1) { return true; }
       });
-      // console.log('searchedCards: ', searchedCards);
-      return [...searchedCards];
+      return searchedCards;
 
     case 'SHARE_CARD':
       return state;
+
+    case 'REMOVE_CARD_FILTER':
+      const removedCards = [];
+      action.payload.data.data.forEach(function(obj) {
+        removedCards.push(obj._source);
+      })
+      return [...removedCards];
 
     case 'UPDATE_CARD':
       var data = action.payload.data.data[0];

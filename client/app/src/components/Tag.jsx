@@ -1,22 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { filterCardsAction, setToFilterAction } from '../actions/cardActions';
-
+import { searchCardsAction } from '../actions/cardActions';
+import { addSearchKeywordAction } from '../actions/searchActions';
 
 class Tag extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  handleFilter(){
-    this.props.filterCards(this.props.tagName);
-    this.props.setToFilter();
-  }
-
   render() {
     return (
-        <a className="collection-item" onClick={this.handleFilter.bind(this)}>
+        <a className="collection-item" onClick={() => {
+          let searchString = '';
+          if (this.props.search.input) {
+            searchString = searchString.concat(this.props.search.input, ' ', this.props.tagName)
+          } else {
+            searchString = searchString.concat(this.props.tagName)
+          }
+          console.log('searchString: ', searchString);
+          this.props.searchCards(this.props.tagName);
+          this.props.addSearchKeyword(false, this.props.tagName);
+        }}>
           {this.props.tagName}
           <span className="badge">{this.props.card_count}</span>
         </a>
@@ -26,16 +31,15 @@ class Tag extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    cardsState: state.cardsState
+    search: state.search
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({filterCards: filterCardsAction, setToFilter: setToFilterAction}, dispatch);
+  return bindActionCreators({
+    searchCards: searchCardsAction,
+    addSearchKeyword: addSearchKeywordAction,
+  }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tag);
-
-// <div className="tag">
-//     <span>#{props.name}</span>
-// </div>

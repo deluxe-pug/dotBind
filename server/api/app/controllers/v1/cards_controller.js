@@ -137,11 +137,25 @@ module.exports = (function() {
               // Resolve CardTag Promises
               Promise.all(cardTagPromises).then((cardTags) => {
                 this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
-                // this.respond([aCard, tags]);
 
-                // console.log('aCard: ', aCard._data);
-                // console.log('tags: ', tags);
-                console.log('ELASTICSEARCH!!!!!');
+                const cardTagsFormatted = [];
+                tagModels.forEach(tagModel =>
+                  cardTagsFormatted.push({
+                    tag: {
+                      id: tagModel._data.id,
+                      name: tagModel._data.name,
+                    }
+                  })
+                )
+
+                // const cardTagFormat = [
+                //   {
+                //     tag: {
+                //       id: tag_id,
+                //       name: tag_name,
+                //     }
+                //   }
+                // ];
 
                 const cardData = aCard._data;
                 const tagData = tags;
@@ -150,21 +164,23 @@ module.exports = (function() {
                   type: 'cards',
                   body: {
                     id: cardData.id,
-                    title: cardData.title,
+                    icon: cardData.icon,
                     url: cardData.url,
-                    domain: cardData.domain,
+                    title: cardData.title,
+                    user_id: cardData.user_id,
                     code: cardData.code,
                     text: cardData.text,
                     note: cardData.note,
-                    cardTags: tags,
+                    domain: cardData.domain,
+                    cardTags: cardTagsFormatted,
                   },
                 };
 
                 client.create(esPost)
                   .then((response) => 
-                    console.log('response: ', response),
+                    console.log('=====> response: ', response),
                     (error) => 
-                    console.log('error: ', error)
+                    console.log('=====> error: ', error)
                   );
               });
             });
