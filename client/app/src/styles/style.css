@@ -51,7 +51,7 @@ header, main, footer {
 
 .sidebar {
   height:100%;
-  border-right: 2px #5f9cd2 solid;
+  /*border-right: 2px #5f9cd2 solid;*/
 }
 
 .collection {
