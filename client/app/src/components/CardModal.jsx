@@ -105,9 +105,7 @@ class CardModal extends React.Component {
             <img className="activator modal-icon" src={this.props.icon} />
             <h5>{this.props.title}</h5>
           </div>
-<<<<<<< f04e21f50228f280a61b309a019671b898a09734
 
-<<<<<<< 8694efac672c1bc82fe0429eedf6cf56ed130ade
             <div className="input-field">
               <select className="modal-select col s2" onChange={this.selectLanguage.bind(this)}>
                 {languages.map( lang => {
@@ -134,31 +132,6 @@ class CardModal extends React.Component {
           editorProps={{$blockScrolling: true}}
           value={this.props.code || '// Your code here'} />
       </div>
-=======
-          <div className="input-field">
-            <select className="modal-select col s2" onChange={this.selectLanguage.bind(this)}>
-              <option value="" >Select language: </option>
-              {languages.map( lang => {
-                return <option value={lang.value}>{lang.name}</option>
-              })}
-            </select>
-          </div>
-          <div className="col s2">
-            <a className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>
-              <i className="material-icons">close</i>
-            </a>
-          </div>
-        </div>
-
-        <div className="modal-editor">
-          <AceEditor height="240px" width="100%"
-            onFocus={this.props.remindSave.bind(this)}
-            onChange={this.editorHasChanged} mode={this.state.language}
-            theme="tomorrow_night" name="editor"
-            editorProps={{$blockScrolling: true}}
-            value={this.props.code || '// Your code here'} />
-        </div>
->>>>>>> Update textarea styles
 
         <div className="modal-notes input-field">
           <textarea className="notes"
