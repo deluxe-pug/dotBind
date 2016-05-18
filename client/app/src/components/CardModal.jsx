@@ -80,18 +80,22 @@ class CardModal extends React.Component {
           <div className="col s10">
             <img className="activator modal-icon" src={this.props.icon} />
             <h5>{this.props.title}</h5>
+            <div class="input-field">
+              <select className="modal-select">
+                <option value="" disabled selected>Select a language: </option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
           </div>
           <div className="col s2">
             <button className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>X</button>
+
           </div>
         </div>
 
         <div className="modal-editor">
-          <select>
-            <option>poop</option>
-            <option>poop</option>
-            <option>poop</option>
-          </select>
           <AceEditor height="240px" width="100%"
             onFocus={this.props.remindSave.bind(this)}
             onChange={this.editorHasChanged} mode={this.state.language}
