@@ -1,0 +1,171 @@
+.open-modal {
+  margin-right: 10px;
+}
+
+.modal-select {
+  display: inline;
+}
+
+.notication {
+  font-weight: bolder;
+  color: white;
+  background-color: rgba(41,182,246,0.8);
+}
+
+.modal-notes {
+  /*padding: 10px;*/
+  margin-left: 10px;
+  margin-right: 10px;
+  /*margin-bottom: 10px;*/
+}
+
+.notes {
+  height: 175px;
+  resize: none;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  -moz-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+  box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
+}
+
+.modal-heading {
+  margin-left: 10px;
+}
+
+.modal-span {
+  margin-left: 15px;
+  font-style: italic;
+}
+
+.modal-icon {
+  float: left;
+  margin: 10px;
+}
+
+.close-modal {
+  margin-top: 5px;
+  float: right;
+  font-weight: bold;
+  font-size: 16pt;
+}
+
+.close-modal:hover {
+  font-size: 20pt;
+}
+
+.modal-nav {
+  margin-bottom: 0px;
+}
+
+.modal-nav-buttons {
+  text-align: right;
+}
+
+.modal-nav-buttons > input {
+  width: 50%;
+  /*background-color: purple;*/
+  margin-right: 5px;
+}
+
+hr {
+  width: 50%;
+}
+
+.modal-footer {
+  /*border-top: 1px solid grey;*/
+  margin-top: 0px;
+  text-align: center;
+}
+
+.modal-footer > button {
+  margin: 10px;
+  background-color: #c62828;
+}
+
+.tag-input {
+  width: 30%;
+}
+
+.modal-link {
+  font-size: 12pt;
+  margin-top: 20px;
+}
+
+.save-bar {
+  margin-top: 25px;
+}
+
+.delete-button {
+  margin-right: 3px;
+  float: left;
+  background-color: #c62828;
+  z-index: 0;
+}
+
+.save-button {
+  float: left;
+  width: 50%;
+  z-index: 0;
+}
+
+.modal-link:hover {
+  /*color: #3883c6;
+  font-weight: bold;*/
+}
+
+.modal-tag {
+  background-color: #5F9CD2;
+  color: white;
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 15px;
+  display: inline-block;
+}
+
+.tag-name::after {
+  content: '';
+  border-left: 1px solid white;
+  margin-left: 3px;
+  padding-left: 2px;
+}
+
+.tag-delete {
+  font-size: 14pt;
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+.tag-delete:hover {
+  color: grey;
+}
+
+.modal-tag:hover {
+  background-color: #3883c6;
+  color: white;
+  -webkit-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 16px -12px rgba(0,0,0,0.75);
+}
+
+.modal-editor > div {
+  z-index: 0;
+}
+
+.add-tag {
+  margin-left: 10px;
+}
+
+.add-tag-button {
+  float: right;
+  z-index: 0;
+}
+
+.share-button {
+  z-index: 0;
+  margin-bottom: 15px;
+}
