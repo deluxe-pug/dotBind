@@ -120,11 +120,6 @@
         "username": "public",
         "password": "password",
         "email": "public@gmail.com"
-      },
-      {
-        "username": "adam",
-        "password": "password",
-        "email": "adam@gmail.com"
       }
     ],
     "Card": [
@@ -136,15 +131,6 @@
         "domain": "google.com",
         "code": "This is google",
         "note": "a googler left this note"
-      },
-      {
-        "url": "http://facebook.com",
-        "title": "Largest Friends Network",
-        "user_id": 2,
-        "icon": "https://www.facebook.com/rsrc.php/yl/r/H3nktOa7ZMg.ico",
-        "domain": "facebook.com",
-        "code": "var test = function() {};",
-        "note": "a facebooker left this note"
       },
       {
         "url": "http://airbnb.com",
@@ -199,16 +185,6 @@
         "user_id": 1,
         "tag_id": 4,
         "card_count": 2
-      },
-      {
-        "user_id": 2,
-        "tag_id": 1,
-        "card_count": 1
-      },
-      {
-        "user_id": 2,
-        "tag_id": 4,
-        "card_count": 1
       }
     ],
     "AccessToken": [
@@ -234,7 +210,7 @@
       },
       {
         "card_id": 2,
-        "tag_id": 1
+        "tag_id": 3
       },
       {
         "card_id": 2,
@@ -242,18 +218,10 @@
       },
       {
         "card_id": 3,
-        "tag_id": 3
-      },
-      {
-        "card_id": 3,
-        "tag_id": 4
-      },
-      {
-        "card_id": 4,
         "tag_id": 1
       },
       {
-        "card_id": 4,
+        "card_id": 3,
         "tag_id": 2
       }
     ]
@@ -265,11 +233,6 @@
         "username": "public",
         "password": "password",
         "email": "public@gmail.com"
-      },
-      {
-        "username": "adam",
-        "password": "password",
-        "email": "adam@gmail.com"
       }
     ],
     "Card": [
@@ -281,15 +244,6 @@
         "domain": "google.com",
         "code": "This is google",
         "note": "a googler left this note"
-      },
-      {
-        "url": "http://facebook.com",
-        "title": "Largest Friends Network",
-        "user_id": 2,
-        "icon": "https://www.facebook.com/rsrc.php/yl/r/H3nktOa7ZMg.ico",
-        "domain": "facebook.com",
-        "code": "var test = function() {};",
-        "note": "a facebooker left this note"
       },
       {
         "url": "http://airbnb.com",
@@ -344,16 +298,6 @@
         "user_id": 1,
         "tag_id": 4,
         "card_count": 2
-      },
-      {
-        "user_id": 2,
-        "tag_id": 1,
-        "card_count": 1
-      },
-      {
-        "user_id": 2,
-        "tag_id": 4,
-        "card_count": 1
       }
     ],
     "AccessToken": [
@@ -379,7 +323,7 @@
       },
       {
         "card_id": 2,
-        "tag_id": 1
+        "tag_id": 3
       },
       {
         "card_id": 2,
@@ -387,18 +331,10 @@
       },
       {
         "card_id": 3,
-        "tag_id": 3
-      },
-      {
-        "card_id": 3,
-        "tag_id": 4
-      },
-      {
-        "card_id": 4,
         "tag_id": 1
       },
       {
-        "card_id": 4,
+        "card_id": 3,
         "tag_id": 2
       }
     ]
