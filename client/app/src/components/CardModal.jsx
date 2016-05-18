@@ -97,24 +97,27 @@ class CardModal extends React.Component {
     return (
       <div>
 
-        <div className="row modal-nav">
-          <div className="col s8">
-            <img className="activator modal-icon" src={this.props.icon} />
+        <div className="modal-nav">
+          <div className="title">
+            <img className="modal-icon" src={this.props.icon} />
             <h5>{this.props.title}</h5>
           </div>
-          <div className="input-field">
-            <select className="modal-select col s2" onChange={this.selectLanguage.bind(this)}>
+
+          <div className="close-modal">
+            <a className="waves-effect waves-light btn-flat" onClick={this.props.closeModal.bind(this)}>
+              <i className="material-icons">close</i>
+            </a>
+          </div>
+          
+          <div className="language-menu">
+            <select className="modal-select" onChange={this.selectLanguage.bind(this)}>
               <option value="" >Select language: </option>
               {languages.map( lang => {
                 return <option value={lang.value}>{lang.name}</option>
               })}
             </select>
           </div>
-          <div className="col s2">
-            <a className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>
-              <i className="material-icons">close</i>
-            </a>
-          </div>
+
         </div>
 
         <div className="modal-editor">
