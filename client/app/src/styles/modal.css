@@ -166,6 +166,9 @@ hr {
   margin-left: 20px;
   height: 38px;
   margin: 2px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 20px;
 }
 
 .add-tag-form {
@@ -181,6 +184,13 @@ hr {
   color: #5f9cd2;
   margin: 0px;
   /*z-index: 1 !important;*/
+}
+
+.add-tag-icon {
+  height: 30px;
+  width: 30px;
+  /*margin-top: 8px;*/
+  vertical-align: bottom
 }
 
 .tag-input {
