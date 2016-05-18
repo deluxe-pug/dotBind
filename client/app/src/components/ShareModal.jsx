@@ -54,9 +54,10 @@ class ShareModal extends React.Component {
 
                     <div className="col s12">
                       {this.props.foundUsers.map( (user) =>
-                        <div key={user.id} onClick={this.handleSend.bind(this)} className="chip hoverable">
+                        <a key={user.id} onClick={this.handleSend.bind(this)} className="waves-effect btn chip">
+                          <img src={user.avatar} />
                           {user.username}
-                        </div>
+                        </a>
                       )}
                     </div>
 
