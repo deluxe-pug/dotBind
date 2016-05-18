@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { shareCardAction } from '../actions/cardActions';
+import { searchUsersAction, clearUsersAction } from '../actions/userActions';
 
 require('../styles/popoutform.css');
 
@@ -12,11 +13,29 @@ class ShareModal extends React.Component {
     super(props);
   }
 
+  handleSearchUsers() {
+    if ( input.value.trim().length < 3 ) { 
+      this.props.clearUsers(); 
+    } else {
+      this.props.searchUsers(input.value.trim());
+      console.log('this is the props', this.props.foundUsers);
+    }
+  }
+
+  handleSend(event){
+    const toUser = $(event.currentTarget).text().replace('email', '');
+    this.props.shareCard(toUser, this.props.cardId);
+    this.notifySent();
+  }
+
+  notifySent(){
+    Materialize.toast('Card Sent!', 2000, 'rounded notication');
+  }
+
   render() {
     return (
       <div id="popup1" className="overlay">
           <div className="popup">
-              <h4>Share this card </h4>
               <a className="close" href="#">&times;</a>
               <div className="container">
                 <div className="row">
@@ -28,15 +47,20 @@ class ShareModal extends React.Component {
                     this.props.shareCard(input.value, this.props.cardId);
                     console.log(input.value);
                   }}>
-                    <div className="col s8">
-                      <input type="text" ref={node => input = node} placeholder="github handle" />
+
+                    <div className="col s12">
+                      <input onChange={this.handleSearchUsers.bind(this)} type="text" ref={node => input = node} placeholder="github handle" />
                     </div>
 
-                    <div className="col s4">
-                      <button type="submit" className="waves-effect waves-light btn">
-                        Share!
-                      </button>
+                    <div className="col s12">
+                      {this.props.foundUsers.map( (user) =>
+                        <a key={user.id} onClick={this.handleSend.bind(this)} className="waves-effect btn chip">
+                          <img src={user.avatar} />
+                          {user.username}
+                        </a>
+                      )}
                     </div>
+
                   </form>
 
                 </div>
@@ -47,11 +71,19 @@ class ShareModal extends React.Component {
   }
 };
 
+const mapStateToProps = (state) => {
+  return {
+    foundUsers: state.foundUsers,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     shareCard: shareCardAction,
+    searchUsers: searchUsersAction,
+    clearUsers: clearUsersAction
   }, dispatch);
 };
 
-ShareModal = connect(null, mapDispatchToProps)(ShareModal);
+ShareModal = connect(mapStateToProps, mapDispatchToProps)(ShareModal);
 export default ShareModal;

@@ -14,3 +14,27 @@ export const fetchUserAction = () => {
   };
 };
 
+export const searchUsersAction = (keywords) => {
+  const query = {
+    "query": {
+      "wildcard": {
+        "username": {
+          "value": `*${keywords}*`
+        }
+      }
+    }
+  };
+
+  const request = axios.post(endpoints.searchUsers, query);
+  return {
+    type: 'SEARCH_USERS',
+    payload: request,
+  }
+
+};
+
+export const clearUsersAction = () => {
+  return {
+    type: 'CLEAR_USERS',
+  }
+};

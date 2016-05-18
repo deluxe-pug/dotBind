@@ -42,9 +42,9 @@ module.exports = (function() {
   const V1UserTagsController = Nodal.require('app/controllers/v1/user_tags_controller.js');
   const V1UsersController = Nodal.require('app/controllers/v1/users_controller.js');
   const V1AccessTokensController = Nodal.require('app/controllers/v1/access_tokens_controller.js');
-  const V1CardsSearchController = Nodal.require('app/controllers/v1/cards_search_controller.js');
-
   const V1MessagesController = Nodal.require('app/controllers/v1/messages_controller.js');
+  const V1CardsSearchController = Nodal.require('app/controllers/v1/cards_search_controller.js');
+  const V1UsersSearchController = Nodal.require('app/controllers/v1/users_search_controller.js');
 
   /* generator: end imports */
 
@@ -60,9 +60,11 @@ module.exports = (function() {
   router.route('/v1/user_tags/{id}').use(V1UserTagsController);
   router.route('/v1/users/{id}').use(V1UsersController);
   router.route('/v1/access_tokens/{id}').use(V1AccessTokensController);
-  router.route('/v1/search').use(V1CardsSearchController);
-
   router.route('/v1/messages/{id}').use(V1MessagesController);
+
+  // Elasticsearch query routes
+  router.route('/v1/search').use(V1CardsSearchController);
+  router.route('/v1/searchusers').use(V1UsersSearchController);
 
   /* generator: end routes */
 

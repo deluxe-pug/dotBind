@@ -7,6 +7,12 @@ module.exports = (function() {
 
   const crypto = require('crypto');
 
+  const elasticsearch = require('elasticsearch');
+  const client = new elasticsearch.Client({
+    host: 'localhost:9200',
+    log: 'trace'
+  });
+
   class AccessToken extends Nodal.Model {
 
     static generateAccessTokenString() {
@@ -57,18 +63,36 @@ module.exports = (function() {
     const password = params.body.githubId || params.body.password;
     const username = params.body.username;
     const email = params.body.email;
+    const avatar = params.body.avatar;
+    console.log('--> this is the params.body in access_token:', JSON.stringify(params.body, null, ' '))
 
     if (username === 'public') {
       return callback(null, {id: 1, user_id: 1, access_token: 'dotBind', token_type: 'bearer'});
     }
-
     // find a user 
     User.findBy('username', username, (err, user) => {
       if (err) {
-        User.create({username, password, email}, (err, aUser) => {
+        User.create({username, password, email, avatar}, (err, aUser) => {
           // if (err) {
           //   return callback(err);
           // }
+          const esPost = {
+            index: 'users',
+            type: 'user',
+            body: {
+              username: username,
+              email: email,
+              avatar: avatar
+            },
+          };
+
+          client.create(esPost)
+            .then((response) => 
+              console.log('=====> response: ', response),
+              (error) => 
+              console.log('=====> error: ', error)
+            );
+
           aUser.verifyPassword(password, (error, result) => {
             if (error || !result) {
               console.log('Verify password error: ', error)
