@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { addTagToCardAction } from '../actions/cardActions';
 
 let input;
 
@@ -20,7 +21,7 @@ class AddTagForm extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-
+    addTagToCard: addTagToCardAction,
   }, dispatch);
 };
 
