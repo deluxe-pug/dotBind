@@ -136,15 +136,16 @@ class CardModal extends React.Component {
           </textarea>
         </div>
 
-        <span className="card-url"><a className="modal-link" href={this.props.url}>
-          {this.props.domain}
-        </a></span>
+        <span className="card-url">
+          <a className="modal-link" href={this.props.url}>
+            {this.props.domain}
+          </a>
+        </span>
 
         <div className="modal-footer">
 
-          <div className="row">
+          <div className="card-tags">
 
-            <div>
               { this.props.cardsState !== 'inbox' ?
                 <span>
                   <a onClick={() => this.toggleAddTagForm()}>
@@ -159,7 +160,6 @@ class CardModal extends React.Component {
               { this.props.cardTags ? this.props.cardTags.map((cardTag) =>
                 <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
               ) : <span></span> }
-            </div>
 
           </div>
 
