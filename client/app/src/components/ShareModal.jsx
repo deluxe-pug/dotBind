@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { shareCardAction } from '../actions/cardActions';
-import { searchUsersAction } from '../actions/userActions';
+import { searchUsersAction, clearUsersAction } from '../actions/userActions';
 
 require('../styles/popoutform.css');
 
@@ -14,8 +14,12 @@ class ShareModal extends React.Component {
   }
 
   handleSearchUsers() {
-    this.props.searchUsers(input.value.trim());
-    console.log('this is the props', this.props.foundUsers);
+    if ( input.value.trim().length < 3 ) { 
+      this.props.clearUsers(); 
+    } else {
+      this.props.searchUsers(input.value.trim());
+      console.log('this is the props', this.props.foundUsers);
+    }
   }
 
   handleSend(event){
@@ -76,6 +80,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     shareCard: shareCardAction,
     searchUsers: searchUsersAction,
+    clearUsers: clearUsersAction
   }, dispatch);
 };
 
