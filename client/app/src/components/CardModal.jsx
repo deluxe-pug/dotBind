@@ -30,7 +30,7 @@ class CardModal extends React.Component {
 
   componentWillMount(){
     // default language is JavaScript
-    this.setState({language: 'javascript'});
+    this.setState({language: this.props.language || 'javascript'});
   }
 
   editorHasChanged(val) {
@@ -47,6 +47,7 @@ class CardModal extends React.Component {
       token: localStorage.getItem('dotBindAccessToken'),
       code: editorCode,
       note: note,
+      language: this.state.language,
     };
     this.props.updateCard(requestBody);
     Materialize.toast('Changes saved!', 2000, 'rounded notication');
@@ -61,7 +62,6 @@ class CardModal extends React.Component {
       note: this.props.note,
       icon: this.props.icon,
       domain: this.props.domain,
-      // language: this.state.language,
     };
     let tags = [];
     this.props.cardTags.forEach( cardTag => tags.push(cardTag.tag.name) );
@@ -77,6 +77,7 @@ class CardModal extends React.Component {
 
   selectLanguage(e){
     this.setState({language: e.target.value});
+    console.log('this is the new language', this.state.language);
   }
 
   render() {
@@ -88,7 +89,7 @@ class CardModal extends React.Component {
             <h5>{this.props.title}</h5>
             <div className="input-field">
               <select className="modal-select col s4" onChange={this.selectLanguage.bind(this)}>
-                <option value="" >Select a language: </option>
+                <option value="" >{this.props.language}</option>
                 {languages.map( lang => {
                   return <option value={lang.value}>{lang.name}</option>
                 })}

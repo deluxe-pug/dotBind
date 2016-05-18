@@ -130,6 +130,7 @@ export const updateCardAction = (reqBody) => {
   const request = axios.put(endpoint, {
     code: reqBody.code,
     note: reqBody.note,
+    language: reqBody.language
   });
   return {
     type: 'UPDATE_CARD',

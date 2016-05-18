@@ -22,7 +22,8 @@ module.exports = (function() {
           {"name":"code", "type":"string"},
           {"name":"text", "type":"string"},
           {"name":"note", "type":"string"},
-          {"name":"domain", "type":"string"}
+          {"name":"domain", "type":"string"},
+          {"name":"language", "type":"string"},
         ])
       ];
 

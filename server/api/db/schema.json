@@ -35,6 +35,7 @@
         {"name": "text", "type": "string", "properties": {}},
         {"name": "note", "type": "string", "properties": {}},
         {"name": "domain", "type": "string", "properties": {}},
+        {"name": "language", "type": "string", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
