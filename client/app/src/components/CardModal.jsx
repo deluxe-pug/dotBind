@@ -121,7 +121,7 @@ class CardModal extends React.Component {
         </div>
 
         <div className="modal-editor">
-          <AceEditor height="240px" width="100%"
+          <AceEditor height="300px" width="100%"
             onFocus={this.props.remindSave.bind(this)}
             onChange={this.editorHasChanged} mode={this.state.language}
             theme="tomorrow_night" name="editor"
