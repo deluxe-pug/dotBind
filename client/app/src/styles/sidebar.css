@@ -11,7 +11,7 @@ header, main, footer {
 
 .sidebar {
   height:100%;
-  /*border-right: 2px #5f9cd2 solid;*/
+  width: 14% !important;
 }
 
 .collection {
@@ -23,6 +23,8 @@ header, main, footer {
   background-color: #5f9cd2 !important;
   color: white !important;
   border-radius: 50px;
+  /*width: 130px !important;*/
+  /*width: 20% !important;*/
 }
 
 .collection-item > span {

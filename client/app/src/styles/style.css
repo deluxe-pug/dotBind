@@ -4,6 +4,9 @@ body {
   background-attachment: fixed;
 }
 
+.content {
+  border-left: 2px #5f9cd2 solid;
+}
 /******************** TAG STYLES ********************/
 .tag-container {
   padding: 10px;
