@@ -104,14 +104,14 @@ class CardModal extends React.Component {
           </div>
 
           <div className="close-modal">
-            <a className="waves-effect waves-light btn-flat" onClick={this.props.closeModal.bind(this)}>
-              <i className="material-icons">close</i>
+            <a onClick={this.props.closeModal.bind(this)}>
+              <i className="material-icons close-icon">close</i>
             </a>
           </div>
-          
+
           <div className="language-menu">
             <select className="modal-select" onChange={this.selectLanguage.bind(this)}>
-              <option value="" >Select language: </option>
+              <option value="" >Select Language: </option>
               {languages.map( lang => {
                 return <option value={lang.value}>{lang.name}</option>
               })}
