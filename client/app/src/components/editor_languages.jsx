@@ -24,3 +24,4 @@ import 'brace/mode/sass';
 import 'brace/mode/scala';
 import 'brace/mode/typescript';
 import 'brace/mode/xml';
+import 'brace/mode/plain_text';

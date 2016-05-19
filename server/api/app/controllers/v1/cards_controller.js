@@ -42,7 +42,7 @@ module.exports = (function() {
           .where({user_id})
           .where(this.params.query)
           .end((err, cards) => {
-            this.respond( err || cards.reverse(), ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note', 'created_at', {user: ['id', 'username']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
+            this.respond( err || cards.reverse(), ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'language', 'note', 'created_at', {user: ['id', 'username']}, {cardTags: ['id', {tag: ['id', 'name']}]}]);
           });
       })
     }
@@ -201,13 +201,13 @@ module.exports = (function() {
     -      "note": "This is a note about liam not me",
     -      "icon": "An icon about liam",
     -      "domain": "liamhatcher.com"
-         }
+    -    }
     -    */
     update() {
-
+      console.log('--> update card, this.params.body', JSON.stringify(this.params.body, null, ' '));
       Card.update(this.params.route.id, this.params.body, (err, model) => {
         const cardData = this.params.body;
-
+        console.log('--> updated model:', model)
         const query = {
           index: "library",
           type: "cards",
