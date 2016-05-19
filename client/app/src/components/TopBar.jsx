@@ -67,6 +67,12 @@ class TopBar extends React.Component {
               </a>
             </li>
 
+            <li className={this.props.cardsState === 'inbox' ? 'darkened' : ''}>
+              <a onClick={this.handleInbox.bind(this)}>
+                <i className="material-icons small-icon">email</i>
+              </a>
+            </li>
+
             <li>
               <a onClick={this.openModal.bind(this)}>
                 <i className="material-icons small-icon">library_add</i>
@@ -78,12 +84,6 @@ class TopBar extends React.Component {
                 style={customStyles} >
                 <AddCardContainer />
               </Modal>
-            </li>
-
-            <li className={this.props.cardsState === 'inbox' ? 'darkened' : ''}>
-              <a onClick={this.handleInbox.bind(this)}>
-                <i className="material-icons small-icon">email</i>
-              </a>
             </li>
 
             <li className="avatar">
