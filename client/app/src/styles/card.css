@@ -1,0 +1,66 @@
+.custom-card {
+  background-color: #FFFFFF;
+  border-color: #f48f7f;
+  border-radius: 10px;
+  height: 250px;
+  /*-webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
+  /*-moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
+  /*box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);*/
+}
+
+.custom-card:hover {
+  /*background-color: #ffa726;*/
+  -webkit-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  -moz-box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+  box-shadow: 8px 14px 18px -4px rgba(0,0,0,1);
+}
+
+
+.card-header {
+  margin: 10px 10px 0px 10px;
+  padding: 5px 5px 0px 5px;
+}
+
+.title {
+  font-size: 14pt !important;
+}
+
+.card-icon {
+  float: right;
+  width: 32px;
+  height: 32px;
+}
+
+.card-preview {
+  margin: 0px 10px 0px 10px;
+  height: 140px;
+}
+
+.card-footer {
+  padding: 5px 5px 5px 5px;
+  text-align: center;
+}
+
+.card-url {
+  color: #5f9cd2;
+}
+
+.card-tag > span {
+  /*background-color: grey;*/
+  color: #4d7421;
+}
+
+.small-icon {
+  font-size: 20px;
+  float: right;
+}
+
+.card-snippet {
+  font-style: italic;
+  /*border-top: 1px black solid;*/
+}
+
+.block-span {
+  display: block;
+  padding: 5px;
+}
