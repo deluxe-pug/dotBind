@@ -59,7 +59,11 @@ class TopBar extends React.Component {
             <li>
               {this.props.search.display ? <SearchContainer /> : <SearchTagContainer />}
             </li>
-
+            <li>
+              <a onClick={this.handleMyCards.bind(this)}>
+                <i className="material-icons small-icon">home</i>
+              </a>
+            </li>
             <li>
               <a onClick={this.openModal.bind(this)}>
                 <i className="material-icons small-icon">library_add</i>
@@ -71,12 +75,6 @@ class TopBar extends React.Component {
                 style={customStyles} >
                 <AddCardContainer />
               </Modal>
-            </li>
-
-            <li>
-              <a onClick={this.handleMyCards.bind(this)}>
-                <i className="material-icons small-icon">dashboard</i>
-              </a>
             </li>
 
             <li>
@@ -92,7 +90,7 @@ class TopBar extends React.Component {
           </ul>
           <ul id='dropdown1' className='dropdown-content'>
             <li><a onClick={this.handleLogout.bind(this)} href="/logout">Log out</a></li>
-          </ul> 
+          </ul>
         </nav>
       </div>
     )
