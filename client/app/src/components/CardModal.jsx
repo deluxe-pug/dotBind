@@ -167,13 +167,6 @@ class CardModal extends React.Component {
 
           </div>
 
-          <div className="buttons-bar">
-            <button className="btn delete-button"
-              onClick={this.notifyDelete.bind(this)}>
-              <i className="material-icons">delete</i>
-            </button>
-          </div>
-
 
           <div className="buttons-bar">
 
@@ -186,6 +179,11 @@ class CardModal extends React.Component {
               Share
             </a>
 
+            <button className="btn delete-button"
+              onClick={this.notifyDelete.bind(this)}>
+              <i className="material-icons">delete</i>
+            </button>
+            
           </div>
 
           <ShareModal cardId={this.props.id} />
