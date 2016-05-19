@@ -70,11 +70,15 @@ module.exports = (function() {
             .where({username: to_user})
             .end((err, models) => {
               const to_user_id = models[0].get('id');
-              
+              const message_count = models[0].get('message_count') === null ? 1 : models[0].get('message_count') + 1;
+
               Message.create({from_user_id, to_user_id, card_id}, (err, model) => {
                 this.respond(err || model);
               });
-
+              // update cache column in user table
+              User.update(to_user_id, {message_count}, (err, user) => {
+                if (err) { console.log('--> err in adding message_count', err); }
+              });
             });
         });
     }
@@ -109,6 +113,16 @@ module.exports = (function() {
             Message.destroy(models[0].get('id'), (err, model) => {
               this.respond(err || model);
             });
+
+            // update cache column in user table
+            User.query()
+              .where({id: to_user_id})
+              .end((err, models) => {
+                const message_count = models[0].get('message_count') - 1;
+                User.update(to_user_id, {message_count}, (err, user) => {
+                  if (err) { console.log('--> err in subtracting message_count', err); }
+                });
+              });
 
           });
       });
