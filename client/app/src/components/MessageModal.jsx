@@ -13,10 +13,8 @@ import AddTagForm from './AddTagForm';
 
 import { bindActionCreators } from 'redux';
 import {
-  // addTagToCardAction,
-  updateCardAction,
-  deleteCardAction,
-  // saveCardFromInboxAction
+  deleteMessageAction,
+  saveMessageAction
 } from '../actions/cardActions';
 
 require('../styles/modal.css');
@@ -25,7 +23,7 @@ require('../styles/modal.css');
 let editorCode = '';
 let note = '';
 
-class CardModal extends React.Component {
+class MessageModal extends React.Component {
   constructor(props) {
     super(props);
     editorCode = this.props.code;
@@ -36,11 +34,6 @@ class CardModal extends React.Component {
     };
   }
 
-  // componentWillMount(){
-  //   // default language is JavaScript
-  //   this.setState({language: 'javascript'});
-  // }
-
   editorHasChanged(val) {
     editorCode = val;
   }
@@ -49,45 +42,28 @@ class CardModal extends React.Component {
     note = event.target.value;
   }
 
-  saveChanges() {
-    console.log('this.state.language: ', this.state.language);
-    let requestBody = {
-      id: this.props.id,
-      token: localStorage.getItem('dotBindAccessToken'),
-      code: editorCode,
-      note: note,
-      language: this.state.language,
+  saveNewCard(){
+    let cardObject = {
+      url: this.props.url,
+      title: this.props.title,
+      code: this.props.code,
+      text: this.props.text,
+      note: this.props.note,
+      icon: this.props.icon,
+      domain: this.props.domain,
+      language: this.props.language,
     };
-    this.props.updateCard(requestBody);
-    Materialize.toast('Changes saved!', 2000, 'rounded notication');
+    let tags = [];
+    this.props.cardTags.forEach( cardTag => tags.push(cardTag.tag.name) );
+    this.props.saveMessage(cardObject, localStorage.getItem('githubUsername'), tags);
+    this.props.deleteMessage(this.props.id);
   }
-
-  // saveNewCard(){
-  //   let cardObject = {
-  //     url: this.props.url,
-  //     title: this.props.title,
-  //     code: this.props.code,
-  //     text: this.props.text,
-  //     note: this.props.note,
-  //     icon: this.props.icon,
-  //     domain: this.props.domain,
-  //   };
-  //   let tags = [];
-  //   this.props.cardTags.forEach( cardTag => tags.push(cardTag.tag.name) );
-  //   this.props.saveCard(cardObject, localStorage.getItem('githubUsername'), tags);
-  // }
 
   notifyDelete(){
-    console.log(this.props.id);
-    this.props.deleteCard(this.props.id);
-    Materialize.toast('Card deleted!', 2000, 'rounded notication');
+    console.log('about to remove this message. card_id: ', this.props.id);
+    this.props.deleteMessage(this.props.id);
+    Materialize.toast('Message Removed!', 2000, 'rounded notication');
     this.props.closeModal();
-  }
-
-  selectLanguage(e){
-    console.log('e.target.value: ', e.target.value);
-    this.setState({language: e.target.value});
-    console.log('this.state.language: ', this.state.language);
   }
 
   toggleAddTagForm() {
@@ -113,7 +89,7 @@ class CardModal extends React.Component {
           </div>
 
           <div className="language-menu">
-            <select className="modal-select" onChange={this.selectLanguage.bind(this)}>
+            <select className="modal-select">
               <option value="" >Select Language: </option>
               {languages.map( lang => {
                 return this.props.language === lang.value ?
@@ -151,18 +127,8 @@ class CardModal extends React.Component {
 
           <div className="card-tags">
 
-            <span>
-              <a onClick={() => this.toggleAddTagForm()}>
-                <i className="material-icons add-tag-icon">mode_edit</i>
-              </a>
-              {this.state.displayAddTagForm ? 
-                <AddTagForm 
-                  id={this.props.id}
-                  user_id={this.props.user_id} /> : null }
-            </span>
-
             { this.props.cardTags ? this.props.cardTags.map((cardTag) =>
-              <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
+              <div className="chip" key={cardTag.tag.id} >{cardTag.tag.name}</div>
             ) : <span></span> }
 
           </div>
@@ -170,13 +136,9 @@ class CardModal extends React.Component {
           <div className="buttons-bar">
 
             <button className="btn save-button"
-              onClick={this.saveChanges.bind(this)}>
-              Save
+              onClick={this.saveNewCard.bind(this)}>
+              Save to myCards
             </button>
-
-            <a className="btn share-button" href="#popup1">
-              Share
-            </a>
 
             <button className="btn delete-button"
               onClick={this.notifyDelete.bind(this)}>
@@ -193,9 +155,6 @@ class CardModal extends React.Component {
   }
 };
 
-// <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
-// {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
-
 const mapStateToProps = (state) => {
   return {
     cards: state.cards,
@@ -205,11 +164,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    // addTag: addTagToCardAction,
-    updateCard: updateCardAction,
-    deleteCard: deleteCardAction,
-    // saveCard: saveCardFromInboxAction,
+    deleteMessage: deleteMessageAction,
+    saveMessage: saveMessageAction,
   }, dispatch);
 };
-CardModal = connect(mapStateToProps, mapDispatchToProps)(CardModal);
-export default CardModal;
+
+MessageModal = connect(mapStateToProps, mapDispatchToProps)(MessageModal);
+export default MessageModal;

@@ -5,6 +5,7 @@ import CardTag from './CardTag';
 import { addTag } from '../actions/tagActions';
 import { bindActionCreators } from 'redux';
 import CardModal from './CardModal';
+import MessageModal from './MessageModal';
 
 require('../styles/card.css');
 
@@ -75,10 +76,17 @@ class Card extends React.Component {
 
           <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal.bind(this)}
             onRequestClose={this.closeModal.bind(this)} style={customStyles} >
-            <CardModal {...this.props}
-              closeModal={this.closeModal.bind(this)}
-              remindSave={this.remindSave}
-              notifyAddTag={this.notifyAddTag}/>
+            { 
+              this.props.cardsState === 'inbox' ?
+              <MessageModal {...this.props}
+                closeModal={this.closeModal.bind(this)}
+                remindSave={this.remindSave}
+                notifyAddTag={this.notifyAddTag}/> :
+               <CardModal {...this.props}
+                 closeModal={this.closeModal.bind(this)}
+                 remindSave={this.remindSave}
+                 notifyAddTag={this.notifyAddTag}/>
+            }
           </Modal>
 
           <div className='card-header'>
@@ -117,9 +125,15 @@ class Card extends React.Component {
   }
 };
 
+const mapStateToProps = (state) => {
+  return {
+    cardsState: state.cardsState,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({addTag: addTag}, dispatch);
 }
-Card = connect(mapDispatchToProps)(Card);
+Card = connect(mapStateToProps, mapDispatchToProps)(Card);
 
 export default Card;
