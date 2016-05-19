@@ -95,7 +95,7 @@ class CardModal extends React.Component {
 
   render() {
     return (
-      <div className="modal-container">
+      <div>
 
         <div className="modal-nav">
           <div className="title">
@@ -121,7 +121,7 @@ class CardModal extends React.Component {
         </div>
 
         <div className="modal-editor">
-          <AceEditor height="300px" width="100%"
+          <AceEditor height="350px" width="100%"
             onFocus={this.props.remindSave.bind(this)}
             onChange={this.editorHasChanged} mode={this.state.language}
             theme="tomorrow_night" name="editor"
@@ -165,17 +165,17 @@ class CardModal extends React.Component {
 
           <div className="buttons-bar">
 
-            <button className="waves-light btn save-button"
+            <button className="btn save-button"
               onClick={this.props.cardsState !== 'inbox' ?
               this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
               Save
             </button>
 
-            <button className="waves-light btn share-button" href="#popup1">
+            <button className="btn share-button" href="#popup1">
               Share
             </button>
 
-            <button className="waves-light btn delete-button"
+            <button className="btn delete-button"
               onClick={this.notifyDelete.bind(this)}>
               <i className="material-icons">delete</i>
             </button>
