@@ -57,23 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
     // add tags
-    function addTags() {
-      if ( !!$('input.tag').val() ) {
-        const tags = $('input.tag').val().toLowerCase().split(' ');
-        console.log(tags);
-        tags.forEach((tag) => {
-          let $tag = $('<div class="chip"></div>').text(tag);
-          $tag.append($('<i class="material-icons">close</i>'));
-          $('ul.tags').append($tag);
-          data.tags.push(tag);
-          $('input.tag').val('');
-        });
+    function addTag() {
+      if ( !!$('input.tag').val() && $('input.tag').val() !== ' ') {
+        const tag = $('input.tag').val().toLowerCase().replace(' ', '');
+        let $tag = $('<div class="chip"></div>').text(tag);
+        $tag.append($('<i class="material-icons">close</i>'));
+        $('ul.tags').append($tag);
+        data.tags.push(tag);
+        $('input.tag').val('');
       }
     };
 
-    $('body').on('click', 'button.tag', addTags);
     $('input.tag').keypress((event) => {
-      if ( event.which === 13 ) { addTags(); }
+      console.log(event.which);
+      if ( event.which === 13 || event.which === 32) { addTag(); }
     });
     // delete tag
     $('ul.tags').on('click','.chip i.material-icons', (event) => {
@@ -83,16 +80,18 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('tags after delete: ',data.tags);
       $tag.remove();
     });
-    // save card
     const accesstoken = localStorage.getItem('dotBindAccessToken');
-    // const accesstoken = 'dotBind';
 
+    // save card
     $('body').on('click', '#save', () => {
       if ( accesstoken ) {
         // save note
         if ( !!$('textarea.note').val() ) {
           data.card.note = $('textarea.note').val();
         }
+        // add tags
+        addTag();
+        // save card
         console.log('data sending to api end point v1/cards', data);
         $.ajax({
           type: 'POST',
