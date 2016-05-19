@@ -11,13 +11,19 @@
     "default_title": "Save Card to dotBind"
   },
 
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+
   "permissions": [
     "activeTab",
     "storage"
   ],
 
   "background": {
-    "scripts": ["lib/jquery-1.12.3.min.js", "js/background.js"],
+    "scripts": ["lib/jquery-1.12.3.min.js", "dist/background.js"],
     "persistent": true
   },
 
@@ -26,7 +32,7 @@
       "matches": ["<all_urls>"],
       "js": [
         "lib/jquery-1.12.3.min.js",
-        "js/myScript.js"
+        "dist/myScript.js"
       ]
     }
   ]

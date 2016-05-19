@@ -1,20 +1,21 @@
+'use strict';
+
 // when popup window is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
   //if the user is not logged in
-  if ( !localStorage.getItem('dotBindAccessToken') ) {
+  if (!localStorage.getItem('dotBindAccessToken')) {
     // append a login button
     $('body').prepend($('<button id="login" class="btn waves-effect indigo btn-small" type="submit" name="action">Login</button>'));
     $('body').prepend($('<h6>You are not logged in yet!</h6>'));
-    $('body').on('click', '#login', () => {
-      chrome.tabs.create({url: `${envParams[enviornment].url}:8000`});
+    $('body').on('click', '#login', function () {
+      chrome.tabs.create({ url: envParams[enviornment].url + ':8000' });
       window.close();
     });
   }
 
-  getCurrentTabProps((url, icon, title) => {
+  getCurrentTabProps(function (url, icon, title) {
 
-
-    let domain = url.replace(/https?:\/\//, '');
+    var domain = url.replace(/https?:\/\//, '');
     domain = domain.replace(/\/(.)+/, '');
 
     // render icon and url to the popup
@@ -23,28 +24,26 @@ document.addEventListener('DOMContentLoaded', () => {
     renderUrl(domain);
     renderTitle(title);
 
-    const data = {
+    var data = {
       card: {
-        icon,
-        url,
-        title,
-        domain,
+        icon: icon,
+        url: url,
+        title: title,
+        domain: domain,
         code: null,
-        note: null,
+        note: null
       },
       // username: 'public',
       username: localStorage.getItem('githubUsername'),
-      tags: [],
+      tags: []
     };
     // send message to current tab
-    chrome.tabs.query({ active: true, currentWindow: true }, activeTabs => {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (activeTabs) {
 
       // inject js/myScript into current tab
-      chrome.tabs.executeScript(
-        activeTabs[0].id, { file: 'js/myScript.js', allFrames: true }
-      );
+      chrome.tabs.executeScript(activeTabs[0].id, { file: 'js/myScript.js', allFrames: true });
 
-      chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         // console.log('here is the request', request);
 
         if (request.method === 'sendSelection') {
@@ -58,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // add tags
     function addTag() {
-      if ( !!$('input.tag').val() && $('input.tag').val() !== ' ') {
-        const tag = $('input.tag').val().toLowerCase().replace(' ', '');
-        let $tag = $('<div class="chip"></div>').text(tag);
+      if (!!$('input.tag').val() && $('input.tag').val() !== ' ') {
+        var tag = $('input.tag').val().toLowerCase().replace(' ', '');
+        var $tag = $('<div class="chip"></div>').text(tag);
         $tag.append($('<i class="material-icons">close</i>'));
         $('ul.tags').append($tag);
         data.tags.push(tag);
@@ -68,24 +67,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    $('input.tag').keypress((event) => {
-      if ( event.which === 13 || event.which === 32) { addTag(); }
+    $('input.tag').keypress(function (event) {
+      if (event.which === 13 || event.which === 32) {
+        addTag();
+      }
     });
     // delete tag
-    $('ul.tags').on('click','.chip i.material-icons', (event) => {
-      let $tag = $(event.target).parent();
-      let index = data.tags.indexOf($tag.text().replace('close', ''));
-      data.tags.splice(index, 1)
+    $('ul.tags').on('click', '.chip i.material-icons', function (event) {
+      var $tag = $(event.target).parent();
+      var index = data.tags.indexOf($tag.text().replace('close', ''));
+      data.tags.splice(index, 1);
       // console.log('tags after delete: ',data.tags);
       $tag.remove();
     });
-    const accesstoken = localStorage.getItem('dotBindAccessToken');
+    var accesstoken = localStorage.getItem('dotBindAccessToken');
 
     // save card
-    $('body').on('click', '#save', () => {
-      if ( accesstoken ) {
+    $('body').on('click', '#save', function () {
+      if (accesstoken) {
         // save note
-        if ( !!$('textarea.note').val() ) {
+        if (!!$('textarea.note').val()) {
           data.card.note = $('textarea.note').val();
         }
         // add tags
@@ -94,13 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // console.log('data sending to api end point v1/cards', data);
         $.ajax({
           type: 'POST',
-          url: `${envParams[enviornment].url}:3000/v1/cards?access_token=${accesstoken}`,
-          data,
-          success: result => {
+          url: envParams[enviornment].url + ':3000/v1/cards?access_token=' + accesstoken,
+          data: data,
+          success: function success(result) {
             // console.log(result);
             window.close();
           },
-          dataType: 'json',
+          dataType: 'json'
         });
       } else {
         $('body').append($('<div>You are not logged in yet!</div>'));
@@ -110,30 +111,30 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ************* setting environment ***********
-const enviornment = 'dev';
+var enviornment = 'dev';
 
-const envParams = {
+var envParams = {
   dev: {
-    url: 'http://localhost',
+    url: 'http://localhost'
   },
   production: {
-    url: 'http://www.dotbind.io',
-  },
+    url: 'http://www.dotbind.io'
+  }
 };
 
 // ************* helper functions *************
 function getCurrentTabProps(callback) {
-  const queryInfo = {
+  var queryInfo = {
     active: true,
-    currentWindow: true,
+    currentWindow: true
   };
 
-  chrome.tabs.query(queryInfo, tabs => {
-    const tab = tabs[0];
+  chrome.tabs.query(queryInfo, function (tabs) {
+    var tab = tabs[0];
 
-    const icon = tab.favIconUrl;
-    const url = tab.url;
-    const title = tab.title;
+    var icon = tab.favIconUrl;
+    var url = tab.url;
+    var title = tab.title;
 
     callback(url, icon, title);
   });
@@ -156,5 +157,5 @@ function renderTitle(title) {
 }
 
 function resolveContent(content) {
-  return content.length > 120 ? content.substring(0,120) + '...' : content;
+  return content.length > 120 ? content.substring(0, 120) + '...' : content;
 }

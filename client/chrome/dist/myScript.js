@@ -1,40 +1,48 @@
-(() => {
+'use strict';
+
+(function () {
   // console.log('myScript loaded!');
   // console.log(document.domain);
   // form message with selection to send to popup.js
-  const selection = {
+  var selection = {
     from: 'myScript',
     method: 'sendSelection',
-    selected: window.getSelection().toString(),
+    selected: window.getSelection().toString()
   };
 
   // form message with user infomation to send to background.js
-  const logInDotBind = {
+  var logInDotBind = {
     from: 'myScript',
     method: 'logInDotBind',
     dotBindAccessToken: localStorage.getItem('dotBindAccessToken'),
     githubUsername: localStorage.getItem('githubUsername'),
-    githubId: localStorage.getItem('githubId'),
+    githubId: localStorage.getItem('githubId')
   };
 
-  const logOutDotBind = {
+  var logOutDotBind = {
     from: 'myScript',
-    method: 'logOutDotBind',
+    method: 'logOutDotBind'
   };
-  
+
   // when user is on dotbind.io
-  if ( document.domain === 'localhost' || document.domain === 'www.dotbind.io') {
+  if (document.domain === 'localhost' || document.domain === 'www.dotbind.io') {
     // send DotBind user infomation to background.js
-    if ( logInDotBind.dotBindAccessToken ) {
-      chrome.runtime.sendMessage(logInDotBind, response => console.log(response.msg));
+    if (logInDotBind.dotBindAccessToken) {
+      chrome.runtime.sendMessage(logInDotBind, function (response) {
+        return console.log(response.msg);
+      });
     } else {
-      chrome.runtime.sendMessage(logOutDotBind, response => console.log(response.msg));
+      chrome.runtime.sendMessage(logOutDotBind, function (response) {
+        return console.log(response.msg);
+      });
     }
   }
 
   // send selected text to popup.js
-  if ( selection.selected ) {
-    chrome.runtime.sendMessage(selection, response => console.log(response.msg));
+  if (selection.selected) {
+    chrome.runtime.sendMessage(selection, function (response) {
+      return console.log(response.msg);
+    });
   }
 
   // Uncomment to highlight text when being clicked on
@@ -42,5 +50,4 @@
   // $('body').on('mouseup', () => {
   //   $(window.getSelection().baseNode.parentNode).css({ 'background-color': 'yellow' });
   // });
-
 })();
