@@ -147,6 +147,15 @@ export const deleteCardAction = (cardId) => {
   };
 };
 
+export const deleteMessageAction = (cardId) => {
+  const endpoint = `${endpoints.inbox}/${cardId}/?access_token=${localStorage.getItem('dotBindAccessToken')}`;
+  const request = axios.delete(endpoint);
+  return {
+    type: 'DELETE_MESSAGE',
+    payload: request,
+  };
+};
+
 export const shareCardAction = (username, id) => {
   const endpoint = `${endpoints.inbox}/?access_token=${localStorage.getItem('dotBindAccessToken')}`;
   const request = axios.post(endpoint, {
