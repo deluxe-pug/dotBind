@@ -48,6 +48,10 @@ exports.login = (req, res) => {
   res.sendFile(path.resolve(__dirname + '/../../../client/app/login.html'));
 };
 
+exports.chrome = (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/../../../client/chrome' + process.env.CHROME));
+};
+
 exports.auth = (req, res) => {
   console.log('--> this is the user object on req: ', req.user);
   console.log('--> This is the session object on req', req.session);

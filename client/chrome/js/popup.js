@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ************* setting environment ***********
-const enviornment = 'dev';
+const enviornment = 'production';
 
 const envParams = {
   dev: {

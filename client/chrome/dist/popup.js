@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ************* setting environment ***********
-var enviornment = 'dev';
+var enviornment = 'production';
 
 var envParams = {
   dev: {
