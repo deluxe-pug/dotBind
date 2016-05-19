@@ -9,7 +9,7 @@ exports.regularAuth = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const username = email.split('@')[0]; // map to Github email if found in database & vice versa
-  const avatar = 'https://wasin.io/wp-content/uploads/2015/05/showimage.png';
+  const avatar = 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png';
 
   request({
     uri: 'http://localhost:3000/v1/access_tokens',

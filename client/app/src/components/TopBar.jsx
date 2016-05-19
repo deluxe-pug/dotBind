@@ -83,6 +83,7 @@ class TopBar extends React.Component {
               <a onClick={this.handleInbox.bind(this)}>
                 <i className="material-icons small-icon">email</i>
               </a>
+                <span className="chip">3</span>
             </li>
 
             <li className="avatar">

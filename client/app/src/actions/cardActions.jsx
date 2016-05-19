@@ -36,7 +36,7 @@ export const addCardAction = (url) => {
   };
 };
 
-export const saveCardFromInboxAction = (cardObj, username, tagArray) => {
+export const saveMessageAction = (cardObj, username, tagArray) => {
   const endpoint = `${endpoints.cards}?access_token=${localStorage.getItem('dotBindAccessToken')}`;
   const request = axios.post(endpoint, {
     card: cardObj,
@@ -143,6 +143,15 @@ export const deleteCardAction = (cardId) => {
   const request = axios.delete(endpoint);
   return {
     type: 'DELETE_CARD',
+    payload: request,
+  };
+};
+
+export const deleteMessageAction = (cardId) => {
+  const endpoint = `${endpoints.inbox}/${cardId}/?access_token=${localStorage.getItem('dotBindAccessToken')}`;
+  const request = axios.delete(endpoint);
+  return {
+    type: 'DELETE_MESSAGE',
     payload: request,
   };
 };
