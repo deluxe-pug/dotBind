@@ -20,9 +20,16 @@ header, main, footer {
 
 .collection-item {
   margin-top: 8px !important;
+  background-color: #5f9cd2 !important;
+  color: white !important;
+  border-radius: 50px;
 }
 
-.collection-item:hover {
+.collection-item > span {
+  float: right;
+}
+
+/*.collection-item:hover {
   background-color: #5f9cd2 !important;
   color: white !important;
 }
@@ -33,4 +40,4 @@ header, main, footer {
   color: white;
   background-color: #5f9cd2;
   border-radius: 50px;
-}
+}*/
