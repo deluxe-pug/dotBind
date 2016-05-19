@@ -75,7 +75,7 @@ hr {
 .title {
   display: inline-block;
   /*float: left;*/
-  width: 60%;
+  width: 75%;
 }
 
 .language-menu {
@@ -141,7 +141,7 @@ textarea:focus {
   margin: 2px;
   margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 20px;
+  /*margin-left: 20px;*/
 }
 
 .add-tag-form {
@@ -180,6 +180,7 @@ textarea:focus {
 
 .buttons-bar {
   width: 100%;
+  float: right;
   clear: both;
 }
 
