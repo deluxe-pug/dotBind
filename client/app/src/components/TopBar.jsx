@@ -60,11 +60,13 @@ class TopBar extends React.Component {
             <li>
               {this.props.search.display ? <SearchContainer /> : <SearchTagContainer />}
             </li>
-            <li>
+
+            <li className={this.props.cardsState === 'myCards' ? 'darkened' : ''}>
               <a onClick={this.handleMyCards.bind(this)}>
                 <i className="material-icons small-icon">home</i>
               </a>
             </li>
+
             <li>
               <a onClick={this.openModal.bind(this)}>
                 <i className="material-icons small-icon">library_add</i>
@@ -78,11 +80,10 @@ class TopBar extends React.Component {
               </Modal>
             </li>
 
-            <li>
+            <li className={this.props.cardsState === 'inbox' ? 'darkened' : ''}>
               <a onClick={this.handleInbox.bind(this)}>
                 <i className="material-icons small-icon">email</i>
               </a>
-                <span className="chip">3</span>
             </li>
 
             <li className="avatar">
