@@ -18,9 +18,9 @@ const customStyles = {
     backgroundColor   : 'rgba(38, 50, 56, 0.90)',
   },
   content : {
-    borderRadius: '15px',
-    marginLeft: 75,
-    marginRight: 75,
+    borderRadius: '10px',
+    marginLeft: 30,
+    marginRight: 30,
     marginTop: 40,
     marginBottom: 0,
     padding: '0px',
@@ -49,7 +49,7 @@ class Card extends React.Component {
   afterOpenModal() {
     // references are now sync'd and can be accessed.
     // this.refs.subtitle.style.color = 'black';
-    Materialize.toast('Click outside to exit', 2000, 'rounded notication');
+    // Materialize.toast('Click outside to exit', 2000, 'rounded notication');
   }
 
   closeModal() {
@@ -58,12 +58,12 @@ class Card extends React.Component {
   }
 
   notifyAddTag() {
-    Materialize.toast('Tag Added!', 2000, 'rounded notication');
+    // Materialize.toast('Tag Added!', 2000, 'rounded notication');
   }
 
   remindSave(){
     if ( !sentSaveReminder ) {
-      Materialize.toast('Remember to save your changes!', 5000, 'rounded notification');
+      // Materialize.toast('Remember to save your changes!', 5000, 'rounded notification');
       sentSaveReminder = true;
     }
   }
