@@ -1,7 +1,7 @@
 body {
   background-color: #F0F0F0;
   width:400px;
-  /*Height:800px;*/
+  height:600px;
 }
 
 .icon {
@@ -32,9 +32,13 @@ body {
   color: #5f9cd2;
 }
 
+span#title.card-title {
+  line-height: 26px;
+}
+
 .note {
   font-size: 12pt;
-  height: 175px;
+  height: 100px;
   resize: none;
   background-color: white;
   border: none;
