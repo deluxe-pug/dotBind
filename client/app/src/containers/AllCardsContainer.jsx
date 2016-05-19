@@ -13,12 +13,12 @@ class AllCardsContainer extends React.Component {
     setTimeout(() => {
       this.props.fetchCards();
       const intervalId = setInterval(() => {
-        if ( this.props.cardsState === 'myCards') {
-          if (!this.props.search.input && !localStorage.getItem('modalIsOpen')) {
-            this.props.fetchCards();
+        if (!this.props.search.input && !localStorage.getItem('modalIsOpen')) {
+          if ( this.props.cardsState === 'myCards') {
+              this.props.fetchCards();
+          } else if ( this.props.cardsState === 'inbox' ) {
+            this.props.fetchInbox();
           }
-        } else if ( this.props.cardsState === 'inbox' ) {
-          this.props.fetchInbox();
         }
       }, 2000);
       localStorage.setItem('intervalId', intervalId);
