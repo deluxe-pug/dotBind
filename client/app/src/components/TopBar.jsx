@@ -54,10 +54,23 @@ class TopBar extends React.Component {
     return (
       <div className='navbar-fixed topbar'>
         <nav className="topbar">
+          <img className="dotbind-icon" src="../../icon.png" />
           <span className="dotbind-logo">dotBind</span>
           <ul className="topnav">
             <li>
               {this.props.search.display ? <SearchContainer /> : <SearchTagContainer />}
+            </li>
+
+            <li className={this.props.cardsState === 'myCards' ? 'darkened' : ''}>
+              <a onClick={this.handleMyCards.bind(this)}>
+                <i className="material-icons small-icon">home</i>
+              </a>
+            </li>
+
+            <li className={this.props.cardsState === 'inbox' ? 'darkened' : ''}>
+              <a onClick={this.handleInbox.bind(this)}>
+                <i className="material-icons small-icon">email</i>
+              </a>
             </li>
 
             <li>
@@ -73,26 +86,13 @@ class TopBar extends React.Component {
               </Modal>
             </li>
 
-            <li>
-              <a onClick={this.handleMyCards.bind(this)}>
-                <i className="material-icons small-icon">dashboard</i>
-              </a>
-            </li>
-
-            <li>
-              <a onClick={this.handleInbox.bind(this)}>
-                <i className="material-icons small-icon">email</i>
-              </a>
-                <span className="chip">3</span>
-            </li>
-
             <li className="avatar">
               <UserProfileContainer />
             </li>
           </ul>
           <ul id='dropdown1' className='dropdown-content'>
             <li><a onClick={this.handleLogout.bind(this)} href="/logout">Log out</a></li>
-          </ul> 
+          </ul>
         </nav>
       </div>
     )

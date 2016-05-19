@@ -39,11 +39,14 @@ class AllCardsContainer extends React.Component {
     (
       <div>
         <div className="no-content-box">
-          <h3>Saved items will appear here</h3>
-          <p>Save content from your favorite websites to start using dotBind</p>
+          {this.props.cardsState === 'myCards' ? (<h3>Saved items will appear here</h3>)
+           : (<h3>Shared items will appear here</h3>)}
+
+           {this.props.cardsState === 'myCards' ? (<p>Save content from your favorite websites to start using dotBind</p>)
+            : (<p>Cards that have been shared with you will appear here. You can also share cards with other users!</p>)}
         </div>
         <div className="no-content-footer">
-          <p><a href="#" className="cta">Don't have a dotBind button?</a></p>
+          <p><a href="#" className="cta">Dont have a dotBind button?</a></p>
         </div>
       </div>
     )
