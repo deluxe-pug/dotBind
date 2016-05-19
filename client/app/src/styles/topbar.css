@@ -10,12 +10,14 @@
   font-size: 28px;
   height: 50px;
   margin-left: 15px;
+  font-family: "Raleway", sans-serif;
 }
 
 .dotbind-login-logo {
   color: white;
   margin-left: 15px;
   font-size: 56px;
+  font-family: "Raleway", sans-serif;
 }
 
 .topnav {
