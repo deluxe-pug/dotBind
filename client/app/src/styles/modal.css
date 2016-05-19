@@ -79,7 +79,7 @@ hr {
 }
 
 .language-menu {
-  margin-top: 2px;
+  margin-top: 4px;
   display: inline-block;
   float: right;
 }
@@ -120,16 +120,12 @@ textarea.vert {
   height: 150px;
   resize: none;
   background-color: white;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #5f9cd2;
+  border-style: solid !important;
+  border-width: 2px !important;
+  border-color: #5f9cd2 !important;
   border-radius: 10px;
   margin-bottom: 0px !important;
   padding: 5px;
-  /*border: none;*/
-/*  -webkit-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
-  -moz-box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);
-  box-shadow: 10px 10px 35px -10px rgba(0,0,0,0.51);*/
 }
 
 .card-url {
@@ -194,8 +190,8 @@ textarea.vert {
 
 .buttons-bar {
   float: right;
-  float: bottom;
-  /*width: 100%;*/
+
+  /*width: 400px;*/
   /*position: absolute;*/
   /*right: 15px;*/
   /*bottom: 15px;*/
@@ -203,29 +199,38 @@ textarea.vert {
 }
 
 .save-button {
-  width: auto;
+  width: 100px !important;
   border-radius: 10px;
   background-color: #5f9cd2;
-  margin-left: 3px;
-  margin-right: 3px;
+/*  margin-left: 3px;
+  margin-right: 3px;*/
+  margin: 0px 3px 0px 3px;
+  padding: 0px;
   z-index: 0;
 }
 
 .share-button {
-  width: auto;
+  display: inline-block;
+  width: 100px !important;
+  padding: 0px;
   border-radius: 10px;
   background-color: #5f9cd2;
   margin-left: 3px;
   margin-right: 3px;
+  margin-bottom: 0px !important;
+
   z-index: 0;
 }
 
 .delete-button {
-  width: auto;
+  float: right;
+  width: 40px;
+  padding: 0px;
   border-radius: 10px;
   background-color: #c62828;
   margin-left: 3px;
-  margin-right: 10px;
+  margin-right: 10px !important;
+
   z-index: 0;
 }
 
