@@ -40,6 +40,9 @@ app.get('/logout', handlers.logout);
 
 app.get('/fetchsite', handlers.fetchsite);
 
+// chrome extension server
+app.get('/google20043ffb1a8c0689.html', handlers.chrome);
+
 // invalid page
 app.get('/404', handlers.invalid);
 

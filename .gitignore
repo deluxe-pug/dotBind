@@ -16,3 +16,4 @@ config.env
 node_modules
 client/app/exampleResponseObjects.js
 client/app/src/actions/endpoints.jsx
+client/chrome/google20043ffb1a8c0689.html
