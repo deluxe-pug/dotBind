@@ -9,29 +9,37 @@ import AceEditor from 'react-ace';
 
 import 'brace/theme/tomorrow_night';
 import { languages } from './language_object';
+import AddTagForm from './AddTagForm';
 
 import { bindActionCreators } from 'redux';
 import {
-  addTagToCardAction,
+  // addTagToCardAction,
   updateCardAction,
   deleteCardAction,
   saveCardFromInboxAction
 } from '../actions/cardActions';
 
-let input;
+require('../styles/modal.css');
+
+// let input;
 let editorCode = '';
 let note = '';
+
 class CardModal extends React.Component {
   constructor(props) {
     super(props);
     editorCode = this.props.code;
     note = this.props.note;
+    this.state = {
+      displayAddTagForm: false, 
+      language: 'javascript',
+    };
   }
 
-  componentWillMount(){
-    // default language is JavaScript
-    this.setState({language: 'javascript'});
-  }
+  // componentWillMount(){
+  //   // default language is JavaScript
+  //   this.setState({language: 'javascript'});
+  // }
 
   editorHasChanged(val) {
     editorCode = val;
@@ -79,30 +87,41 @@ class CardModal extends React.Component {
     this.setState({language: e.target.value});
   }
 
+  toggleAddTagForm() {
+    this.setState({
+      displayAddTagForm: !this.state.displayAddTagForm
+    });
+  }
+
   render() {
     return (
       <div>
-        <div className="row modal-nav">
-          <div className="col s10">
-            <img className="activator modal-icon" src={this.props.icon} />
-            <h5>{this.props.title}</h5>
-            <div className="input-field">
-              <select className="modal-select col s4" onChange={this.selectLanguage.bind(this)}>
-                <option value="" >Select a language: </option>
-                {languages.map( lang => {
-                  return <option value={lang.value}>{lang.name}</option>
-                })}
-              </select>
-            </div>
-          </div>
-          <div className="col s2">
-            <button className="waves-effect waves-light btn-flat close-modal" onClick={this.props.closeModal.bind(this)}>X</button>
 
+        <div className="modal-nav">
+          <div className="title">
+            <img className="modal-icon" src={this.props.icon} />
+            <h5>{this.props.title}</h5>
           </div>
+
+          <div className="close-modal">
+            <a onClick={this.props.closeModal.bind(this)}>
+              <i className="material-icons close-icon">close</i>
+            </a>
+          </div>
+
+          <div className="language-menu">
+            <select className="modal-select" onChange={this.selectLanguage.bind(this)}>
+              <option value="" >Select Language: </option>
+              {languages.map( lang => {
+                return <option value={lang.value}>{lang.name}</option>
+              })}
+            </select>
+          </div>
+
         </div>
 
         <div className="modal-editor">
-          <AceEditor height="240px" width="100%"
+          <AceEditor height="350px" width="100%"
             onFocus={this.props.remindSave.bind(this)}
             onChange={this.editorHasChanged} mode={this.state.language}
             theme="tomorrow_night" name="editor"
@@ -115,56 +134,54 @@ class CardModal extends React.Component {
             defaultValue={this.props.note || '// Edit your notes here. \n' + this.props.note }
             onChange={this.props.remindSave.bind(this), this.noteHasChanged}>
           </textarea>
+          <span className="card-url">
+            <a href={this.props.url}>
+              {this.props.domain}
+            </a>
+          </span>
         </div>
+
+
         <div className="modal-footer">
-          <div className="row">
-            <div className="row save-bar">
-              <div className="col s8 offset-s4">
-                <button className="waves-effect waves-light btn delete-button"
-                  onClick={this.notifyDelete.bind(this)}>
-                  <i className="material-icons">delete</i>
-                </button>
-                <button className="waves-effect waves-light btn save-button"
-                  onClick={this.props.cardsState !== 'inbox' ?
-                  this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
-                  {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
-                </button>
-              </div>
-              <a className="modal-link" href={this.props.url}>
-                {this.props.domain}
-              </a>
-            </div>
 
-            <div className="col s8 offset-s2">
-              { this.props.cardsState !== 'inbox' ?
-                <form onSubmit={ (e) => {
-                e.preventDefault();
-                if ( !input.value.trim() ) {
-                  return;
-                }
-                this.props.dispatch( addTagToCardAction(input.value.toLowerCase(), this.props.user_id, this.props.id) );
-                input.value = '';
-                }}>
-                <div className="row">
-                  <div className="col s6">
-                    <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
-                  </div>
-                  <div className="col s4">
-                    <input className="tag-input" type="text" placeholder="Add tag" ref={ node => {input = node}} />
-                  </div>
-                </div>
-              </form> : null }
-            </div>
-          </div>
-          <div className="tags-div">
-            {this.props.cardTags ? this.props.cardTags.map((cardTag) =>
+          <div className="card-tags">
+
+            { this.props.cardsState !== 'inbox' ?
+              <span>
+                <a onClick={() => this.toggleAddTagForm()}>
+                  <i className="material-icons add-tag-icon">mode_edit</i>
+                </a>
+                {this.state.displayAddTagForm ? 
+                  <AddTagForm 
+                    id={this.props.id}
+                    user_id={this.props.user_id} /> : null }
+              </span>
+             : null }
+            { this.props.cardTags ? this.props.cardTags.map((cardTag) =>
               <CardTag key={cardTag.tag.id} name={cardTag.tag.name} tagId={cardTag.tag.id} cardTagId={cardTag.id} cardId={this.props.id}/>
-            ) : <span></span>} <br/>
+            ) : <span></span> }
+
           </div>
 
-          <a className="waves-effect waves-light btn share-button" href="#popup1">
-            Share This Card
-          </a>
+          <div className="buttons-bar">
+
+            <button className="btn save-button"
+              onClick={this.props.cardsState !== 'inbox' ?
+              this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
+              Save
+            </button>
+
+            <button className="btn share-button" href="#popup1">
+              Share
+            </button>
+
+            <button className="btn delete-button"
+              onClick={this.notifyDelete.bind(this)}>
+              <i className="material-icons">delete</i>
+            </button>
+
+
+          </div>
 
           <ShareModal cardId={this.props.id} />
 
@@ -173,6 +190,9 @@ class CardModal extends React.Component {
     );
   }
 };
+
+// <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
+// {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
 
 const mapStateToProps = (state) => {
   return {
@@ -183,7 +203,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addTag: addTagToCardAction,
+    // addTag: addTagToCardAction,
     updateCard: updateCardAction,
     deleteCard: deleteCardAction,
     saveCard: saveCardFromInboxAction,

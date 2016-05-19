@@ -58,7 +58,7 @@ class TopBar extends React.Component {
           <ul className="topnav">
             <li>
               {this.props.search.display ? <SearchContainer /> : <SearchTagContainer />}
-             </li>
+            </li>
 
             <li>
               <a onClick={this.openModal.bind(this)}>
