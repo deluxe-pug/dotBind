@@ -34,10 +34,18 @@ form.search {
 
 .search-tags {
   position: absolute;
-  bottom: 25px;
+  /*bottom: 25px;*/
+  top: 13px;
   left: 200px;
   height: 30px;
   width: 500px;
+  background-color: white !important;
+  border-radius: 20px !important;
+}
+
+.search-tag {
+  position: absolute;
+
 }
 
 .search-input {
