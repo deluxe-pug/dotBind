@@ -54,6 +54,7 @@ class TopBar extends React.Component {
     return (
       <div className='navbar-fixed topbar'>
         <nav className="topbar">
+          <img className="dotbind-icon" src="../../icon.png" />
           <span className="dotbind-logo">dotBind</span>
           <ul className="topnav">
             <li>

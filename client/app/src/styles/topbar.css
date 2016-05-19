@@ -4,12 +4,17 @@
   background-color: #5f9cd2;
 }
 
+.dotbind-icon {
+  margin-left: 10px;
+  margin-top: 2px;
+}
+
 .dotbind-logo {
   position: absolute;
   bottom: 5px;
   font-size: 28px;
   height: 50px;
-  margin-left: 15px;
+  margin-left: 5px;
   font-family: "Raleway", sans-serif;
 }
 
