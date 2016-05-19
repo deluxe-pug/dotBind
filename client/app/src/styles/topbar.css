@@ -26,17 +26,17 @@
 
 form.search {
   position: absolute;
-  bottom: 25px;
+  bottom: 21px;
   left: 200px;
-  height: 30px;
+  height: 36px;
   width: 500px;
 }
 
 .search-tags {
   position: absolute;
-  top: 12px;
+  top: 7px;
   left: 200px;
-  height: 30px;
+  height: 36px;
   width: 510px;
   /*padding-left: 10px;*/
   background-color: white !important;
@@ -45,8 +45,9 @@ form.search {
 
 .search-tag {
   position: relative;
-  bottom: 17px;
+  bottom: 14px;
   height: 30px !important;
+  margin-left: 3px;
 }
 
 .search-input {
@@ -57,7 +58,7 @@ form.search {
 }
 
 .search input {
-  height: 30px;
+  height: 36px;
   padding-left: 10px;
   font-family: Arial, 'FontAwesome';
   color: #5f9cd2;
