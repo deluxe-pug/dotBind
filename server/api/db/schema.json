@@ -32,7 +32,6 @@
         {"name": "title", "type": "string", "properties": {}},
         {"name": "user_id", "type": "int", "properties": {}},
         {"name": "code", "type": "string", "properties": {}},
-        {"name": "text", "type": "string", "properties": {}},
         {"name": "note", "type": "string", "properties": {}},
         {"name": "domain", "type": "string", "properties": {}},
         {"name": "language", "type": "string", "properties": {}},
