@@ -98,7 +98,7 @@ class CardModal extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="modal-container">
 
         <div className="row modal-nav">
           <div className="col s8">
@@ -126,7 +126,7 @@ class CardModal extends React.Component {
       </div>
 
         <div className="modal-editor">
-          <AceEditor height="250px" width="100%"
+          <AceEditor height="300px" width="100%"
             onFocus={this.props.remindSave.bind(this)}
             onChange={this.editorHasChanged} mode={this.state.language}
             theme="tomorrow_night" name="editor"
