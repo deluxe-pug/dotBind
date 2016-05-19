@@ -42,6 +42,7 @@ class CardModal extends React.Component {
   }
 
   saveChanges() {
+    console.log('this.state.language: ', this.state.language);
     let requestBody = {
       id: this.props.id,
       token: localStorage.getItem('dotBindAccessToken'),
@@ -76,8 +77,9 @@ class CardModal extends React.Component {
   }
 
   selectLanguage(e){
+    console.log('e.target.value: ', e.target.value);
     this.setState({language: e.target.value});
-    console.log(this.state.language);
+    console.log('this.state.language: ', this.state.language);
   }
 
   render() {
@@ -89,9 +91,10 @@ class CardModal extends React.Component {
             <h5>{this.props.title}</h5>
             <div className="input-field">
               <select className="modal-select col s4" onChange={this.selectLanguage.bind(this)}>
-                <option value="" >{this.props.language || 'set language'}</option>
                 {languages.map( lang => {
-                  return <option value={lang.value}>{lang.name}</option>
+                  return this.props.language === lang.value ?
+                    <option selected value={lang.value}>{lang.name}</option> :
+                    <option value={lang.value}>{lang.name}</option>
                 })}
               </select>
             </div>
