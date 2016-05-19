@@ -9,7 +9,7 @@ body {
 }
 /******************** TAG STYLES ********************/
 .tag-container {
-  padding: 10px;
+  /*padding: 10px;*/
   overflow: scroll;
 }
 

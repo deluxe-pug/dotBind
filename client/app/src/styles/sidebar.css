@@ -19,7 +19,8 @@ header, main, footer {
 }
 
 .collection-item {
-  margin-top: 8px !important;
+  margin-top: 5px !important;
+  margin-bottom: 4px !important;
   background-color: #5f9cd2 !important;
   color: white !important;
   border-radius: 50px;
