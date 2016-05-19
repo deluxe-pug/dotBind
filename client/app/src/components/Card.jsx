@@ -6,6 +6,8 @@ import { addTag } from '../actions/tagActions';
 import { bindActionCreators } from 'redux';
 import CardModal from './CardModal';
 
+require('../styles/card.css');
+
 const customStyles = {
   overlay : {
     position          : 'fixed',

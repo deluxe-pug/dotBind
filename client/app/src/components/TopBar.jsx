@@ -58,7 +58,7 @@ class TopBar extends React.Component {
           <ul className="topnav">
             <li>
               {this.props.search.display ? <SearchContainer /> : <SearchTagContainer />}
-             </li>
+            </li>
 
             <li>
               <a onClick={this.openModal.bind(this)}>
@@ -85,12 +85,6 @@ class TopBar extends React.Component {
               </a>
             </li>
 
-            <li>
-              <a className='dropdown-button'
-                 href='#' data-beloworigin="true" data-activates='dropdown1'>
-                <i className="material-icons small-icon">more_vert</i>
-              </a>
-            </li>
             <li className="avatar">
               <UserProfileContainer />
             </li>

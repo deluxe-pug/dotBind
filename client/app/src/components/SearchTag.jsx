@@ -11,9 +11,9 @@ class SearchTag extends React.Component {
 
   render() {
     return (
-      <div className="chip">
+      <div className="chip search-tag">
         {this.props.name}
-        <i className="material-icons search-tag" id="search-tag"
+        <i className="material-icons"
           onClick={(e) => {
             e.stopPropagation();
             if (this.props.search.input.length > 0) {
