@@ -126,7 +126,7 @@ class CardModal extends React.Component {
       </div>
 
         <div className="modal-editor">
-          <AceEditor height="300px" width="100%"
+          <AceEditor height="250px" width="100%"
             onFocus={this.props.remindSave.bind(this)}
             onChange={this.editorHasChanged} mode={this.state.language}
             theme="tomorrow_night" name="editor"
@@ -173,11 +173,11 @@ class CardModal extends React.Component {
             <button className="waves-light btn save-button"
               onClick={this.props.cardsState !== 'inbox' ?
               this.saveChanges.bind(this) : this.saveNewCard.bind(this)}>
-              {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
+              Save
             </button>
 
             <button className="waves-light btn share-button" href="#popup1">
-              Share This Card
+              Share
             </button>
 
             <button className="waves-light btn delete-button"
@@ -197,6 +197,7 @@ class CardModal extends React.Component {
 };
 
 // <button className="waves-effect waves-light btn add-tag-button">Add Tag</button>
+// {this.props.cardsState === 'inbox' ? 'Save to my cards' : 'Save Changes'}
 
 const mapStateToProps = (state) => {
   return {

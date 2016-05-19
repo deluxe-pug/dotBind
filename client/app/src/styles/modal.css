@@ -112,7 +112,7 @@ textarea:focus {
 }
 
 .notes {
-  height: 175px;
+  height: 100px;
   resize: none;
   background-color: white;
   /*border: none;*/
@@ -132,10 +132,19 @@ textarea:focus {
   margin-top: 0px;
 }
 
+.modal-footer {
+  /*position: absolute;*/
+  /*width: 100%; */
+  bottom: 5px;
+}
+
 /******************** CARDTAG STYLES ********************/
 
 .card-tags {
+  position: absolute;
   /*float: left;*/
+  left: 15px;
+  bottom: 5px;
   /*margin-left: 20px;*/
   height: 38px;
   margin: 2px;
@@ -179,9 +188,12 @@ textarea:focus {
 /******************** BUTTON STYLES ********************/
 
 .buttons-bar {
-  width: 100%;
-  float: right;
-  clear: both;
+  /*width: 100%;*/
+  /*float: right;*/
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  /*clear: both;*/
 }
 
 .save-button {
