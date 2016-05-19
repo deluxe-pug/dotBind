@@ -13,10 +13,9 @@ import AddTagForm from './AddTagForm';
 
 import { bindActionCreators } from 'redux';
 import {
-  // addTagToCardAction,
   updateCardAction,
   deleteCardAction,
-  // saveCardFromInboxAction
+  fetchCardsAction,
 } from '../actions/cardActions';
 
 require('../styles/modal.css');
@@ -62,24 +61,10 @@ class CardModal extends React.Component {
     Materialize.toast('Changes saved!', 2000, 'rounded notication');
   }
 
-  // saveNewCard(){
-  //   let cardObject = {
-  //     url: this.props.url,
-  //     title: this.props.title,
-  //     code: this.props.code,
-  //     text: this.props.text,
-  //     note: this.props.note,
-  //     icon: this.props.icon,
-  //     domain: this.props.domain,
-  //   };
-  //   let tags = [];
-  //   this.props.cardTags.forEach( cardTag => tags.push(cardTag.tag.name) );
-  //   this.props.saveCard(cardObject, localStorage.getItem('githubUsername'), tags);
-  // }
-
   notifyDelete(){
     console.log(this.props.id);
     this.props.deleteCard(this.props.id);
+    this.props.fetchCards();
     Materialize.toast('Card deleted!', 2000, 'rounded notication');
     this.props.closeModal();
   }
@@ -208,10 +193,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    // addTag: addTagToCardAction,
     updateCard: updateCardAction,
     deleteCard: deleteCardAction,
-    // saveCard: saveCardFromInboxAction,
+    fetchCards: fetchCardsAction,
   }, dispatch);
 };
 CardModal = connect(mapStateToProps, mapDispatchToProps)(CardModal);
