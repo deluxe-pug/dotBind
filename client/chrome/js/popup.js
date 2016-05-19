@@ -13,14 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   getCurrentTabProps((url, icon, title) => {
 
-    // render icon and url to the popup
-    // save selection from tab
-    renderIcon(icon);
-    renderUrl(url);
-    renderTitle(title);
 
     let domain = url.replace(/https?:\/\//, '');
     domain = domain.replace(/\/(.)+/, '');
+
+    // render icon and url to the popup
+    // save selection from tab
+    renderIcon(icon);
+    renderUrl(domain);
+    renderTitle(title);
 
     const data = {
       card: {
