@@ -26,13 +26,25 @@ class AllCardsContainer extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.cards.length ?
+    (
       <div>
         {this.props.cards.map((card) =>
           <Card
             key={card.id}
             {...card} id={card.id} />
         )}
+      </div>
+    ) :
+    (
+      <div>
+        <div className="no-content-box">
+          <h3>Saved items will appear here</h3>
+          <p>Save content from your favorite websites to start using dotBind</p>
+        </div>
+        <div className="no-content-footer">
+          <p><a href="#" className="cta">Don't have a dotBind button?</a></p>
+        </div>
       </div>
     )
   };
