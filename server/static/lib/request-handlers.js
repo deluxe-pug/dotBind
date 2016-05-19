@@ -49,7 +49,7 @@ exports.login = (req, res) => {
 };
 
 exports.chrome = (req, res) => {
-  res.sendFile(path.resolve(__dirname + '/../../../client/app/google20043ffb1a8c0689.html'));
+  res.sendFile(path.resolve(__dirname + '/../../../client/chrome/google20043ffb1a8c0689.html'));
 };
 
 exports.auth = (req, res) => {
