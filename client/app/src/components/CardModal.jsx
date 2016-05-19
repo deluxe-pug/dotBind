@@ -176,15 +176,14 @@ class CardModal extends React.Component {
               Save
             </button>
 
-            <button className="btn share-button" href="#popup1">
+            <a className="btn share-button" href="#popup1">
               Share
-            </button>
+            </a>
 
             <button className="btn delete-button"
               onClick={this.notifyDelete.bind(this)}>
               <i className="material-icons">delete</i>
             </button>
-
 
           </div>
 
