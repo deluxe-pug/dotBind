@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         title,
         domain,
         code: null,
-        text: null,
         note: null,
       },
       // username: 'public',
@@ -53,23 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('request.selected: ', request.selected);
           data.card.code = request.selected;
           renderContent(request.selected);
-
-          // toggle content type
-          $('body').on('click', '.code', () => {
-            data.card.code = request.selected;
-            data.card.text = null;
-            $(this).prop('checked', true);
-            $('.text input').prop('checked', false);
-            console.log(data.card.code);
-          });
-
-          $('body').on('click', '.text', () => {
-            data.card.text = request.selected;
-            data.card.code = null;
-            $(this).prop('checked', true);
-            $('.code input').prop('checked', false);
-            console.log(data.card.text);
-          });
         }
       });
     });
