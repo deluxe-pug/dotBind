@@ -67,7 +67,7 @@ module.exports = (function() {
         .end((err, models) => {
           if (err) { 
             console.log('--> err in adding message_count user.query from_user', err);
-            this.respond(err);
+            return this.respond(err);
           }
           const from_user_id = models[0].get('id');
           User.query()
@@ -75,13 +75,13 @@ module.exports = (function() {
             .end((err, models) => {
               if (err) { 
                 console.log('--> err in adding message_count user.query to_user', err);
-                this.respond(err);
+                return this.respond(err);
               }
               const to_user_id = models[0].get('id');
               const message_count = models[0].get('message_count') === null ? 1 : models[0].get('message_count') + 1;
 
               Message.create({from_user_id, to_user_id, card_id}, (err, model) => {
-                this.respond(err || model);
+                return this.respond(err || model);
               });
               // update cache column in user table
               User.update(to_user_id, {message_count}, (err, user) => {
@@ -115,31 +115,35 @@ module.exports = (function() {
 
         Message.query()
           .where({card_id, to_user_id})
-          .end((err, models) => {
+          .end((err, messages) => {
             if (err) {
               console.error('Error querying messages: ', err);
               return this.respond(err);
             }
-            console.log('models[0].get("id"): ', models[0].get('id'))
-            Message.destroy(models[0].get('id'), (err, model) => {
-              this.respond(err || model);
-            });
-
             // update cache column in user table
             User.query()
               .where({id: to_user_id})
               .end((err, models) => {
+                if (err) {
+                  console.error('Error querying user: ', err);
+                  return this.respond(err);
+                }
                 console.log('--> message_count: ', models[0].get('message_count'));
                 const message_count = models[0].get('message_count') - 1;
                 User.update(to_user_id, {message_count}, (err, user) => {
                   console.log('--> updated user: ', user);
-                  if (err) { console.log('--> err in subtracting message_count', err); }
+                  if (err) { 
+                    console.log('--> err in subtracting message_count', err); 
+                    return this.respond(err);
+                  }
+                  
+                  Message.destroy(messages[0].get('id'), (err, message) => {
+                    this.respond(err || message);
+                  });
+
                 });
               });
 
-            Message.destroy(models[0].get('id'), (err, model) => {
-              this.respond(err || model);
-            });
 
           });
       });
