@@ -3,11 +3,12 @@
 # dotBind [![Travis-Ci Build Status](https://travis-ci.org/deluxe-pug/dotBind.svg?branch=dev)](https://travis-ci.org/deluxe-pug/dotBind)
 DotBind is a software engineer's notebook. Capture cool code snippets while browsing the web or track solutions to bugs. Never forget code again.
 
-Check out the web app @ [www.dotbind.io](http://www.dotbind.io)
+Check out the web app @ <a href="http://dotbind.io" target="_blank">dotbind.io</a>.
 
-[Download the chrome extension.](https://chrome.google.com/webstore/detail/save-to-dotbind/hgagliimejgbhlgadoibbmlinaidfmgo?hl=en-US&gl=US&authuser=1)
+<a href="https://chrome.google.com/webstore/detail/save-to-dotbind/hgagliimejgbhlgadoibbmlinaidfmgo?hl=en-US&gl=US&authuser=1" target="_blank">Download the chrome extension.</a>
+
 ## Table of Contents 
-- [Team Members](#)
+- [Team Members](#team-members-v-10)
 - [Technology Stack, APIs, and Third-party Tools](#)
 - [Folder & File Structure](#)
 - [Setting up your development environment](#setting-up-your-development-environment)
@@ -15,7 +16,9 @@ Check out the web app @ [www.dotbind.io](http://www.dotbind.io)
 - [System Architecture](#system-srchitecture)
 - [Database Schema](#database-schema)
 - [API Endpoints](#api-endpoints)
+
 ## Team Members (v. 1.0)
+
 [![Michelle He](https://dl.dropbox.com/s/u38k1c4csex03o2/michelle.png?dl=0)](https://github.com/michelleheh)
 
 [![Liam Hatcher](https://dl.dropboxusercontent.com/s/n92n81dm90q4nrp/liam.png?dl=0)](https://github.com/lhatcher)
@@ -112,6 +115,7 @@ $ npm run build
 6. Go to http://localhost:8000
 ## System Architecture
 ![Architecture](https://dl.dropboxusercontent.com/s/pu2ahvx2269eyaf/architecture.png?dl=0)
+
 ## Database Schema
 ![Schema](https://dl.dropboxusercontent.com/s/wjzzu912skwqy1s/schema.png?dl=0)
 
