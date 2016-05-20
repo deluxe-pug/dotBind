@@ -9,7 +9,7 @@ Check out the web app @ <a href="http://dotbind.io" target="_blank">dotbind.io</
 
 ## Table of Contents 
 - [Team Members](#team-members-v-10)
-- [Technology Stack, APIs, and Third-party Tools](#)
+- [Technology Stack, APIs, and Third-party Tools](#technology-stack-apis-and-third-party-tools)
 - [Folder & File Structure](#)
 - [Setting up your development environment](#setting-up-your-development-environment)
 - [Starting up for development](#starting-up-for-development)
@@ -38,6 +38,7 @@ Check out the web app @ <a href="http://dotbind.io" target="_blank">dotbind.io</
 - [Travis CI](https://travis-ci.org/), [Mocha](https://mochajs.org/), and [Chai](http://chaijs.com/) for TDD
 - [Webpack](https://webpack.github.io/) & [Babel](https://babeljs.io/) for using next-generation JavaScript, today 
 - [AirBnb's style guide](https://github.com/airbnb/javascript)
+
 ## Folder & File structure
 ```
                                   +-------+
@@ -113,6 +114,7 @@ $ nodal s // start server
 $ npm run build
 ```
 6. Go to http://localhost:8000
+
 ## System Architecture
 ![Architecture](https://dl.dropboxusercontent.com/s/pu2ahvx2269eyaf/architecture.png?dl=0)
 
