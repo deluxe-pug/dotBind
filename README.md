@@ -10,7 +10,7 @@ Check out the web app @ [dotbind.io](http://dotbind.io).
 ## Table of Contents 
 - [Team Members](#team-members-v-10)
 - [Technology Stack, APIs, and Third-party Tools](#technology-stack-apis-and-third-party-tools)
-- [Folder & File Structure](#folder--file-structure)
+- [Folder and File Structure](#folder-and-file-structure)
 - [Setting up your development environment](#setting-up-your-development-environment)
 - [Starting up for development](#starting-up-for-development)
 - [System Architecture](#system-architecture)
@@ -39,7 +39,7 @@ Check out the web app @ [dotbind.io](http://dotbind.io).
 - [Webpack](https://webpack.github.io/) & [Babel](https://babeljs.io/) for using next-generation JavaScript, today 
 - [AirBnb's style guide](https://github.com/airbnb/javascript)
 
-## Folder & File structure
+## Folder and File Structure
 ```
                                   +-------+
                                   |dotBind|
