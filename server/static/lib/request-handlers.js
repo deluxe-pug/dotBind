@@ -89,8 +89,16 @@ exports.logout = (req, res) => {
   }, function(err, message, response) {
     if (err) {
       console.error('error: ', err);
+      res.redirect('/login');
       return;
     }
+
+    if ( JSON.parse(response).data[0] === undefined ) {
+      console.error('error: ', err);
+      res.redirect('/login');
+      return;
+    }
+
     const user_id = JSON.parse(response).data[0].id;
     const access_token = req.user.access_token;
     const deleteURI = `http://localhost:3000/v1/access_tokens/${user_id}/?access_token=${access_token}`;
