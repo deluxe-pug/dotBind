@@ -1,4 +1,5 @@
 const endpoints = {
+  users: 'http://localhost:3000/v1/users',
   cards: 'http://localhost:3000/v1/cards',
   inbox: 'http://localhost:3000/v1/messages',
   tags: 'http://localhost:3000/v1/tags',

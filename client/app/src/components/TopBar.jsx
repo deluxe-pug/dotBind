@@ -44,6 +44,9 @@ class TopBar extends React.Component {
 
   componentWillMount() {
     this.props.switchDisplay(true);
+  }
+
+  componentDidMount() {
     this.props.fetchCount();
   }
 
@@ -76,7 +79,7 @@ class TopBar extends React.Component {
 
             <li className={this.props.cardsState === 'inbox' ? 'darkened rel-pos' : 'rel-pos'}>
               <a onClick={this.handleInbox.bind(this)}>
-                <div className="inbox-counter">{this.props.count}</div>
+                { this.props.count ? <div className="inbox-counter">{this.props.count}</div> : null }
                 <i className="material-icons small-icon">email</i>
               </a>
             </li>
