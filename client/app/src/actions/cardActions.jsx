@@ -81,12 +81,12 @@ export const fetchInboxAction = () => {
 };
 
 export const fetchInboxCountAction = () => {
-  console.log('action called!');
-  // const endpoint = endpoints.INSERT_HERE?${token.....}
-  // const request = axios.get(endpoint);
+  console.log('fectchInboxAction called!');
+  const username = localStorage.getItem('githubUsername');
+  const request = axios.get(`${endpoints.users}?username=${username}`);
   return {
     type: 'FETCH_COUNT',
-    payload: 17,
+    payload: request,
   };
 };
 

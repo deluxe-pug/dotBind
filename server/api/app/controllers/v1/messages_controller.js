@@ -105,20 +105,22 @@ module.exports = (function() {
         Message.query()
           .where({card_id, to_user_id})
           .end((err, models) => {
+            // update cache column in user table
+            User.query()
+              .where({id: to_user_id})
+              .end((err, models) => {
+                console.log('--> message_count: ', models[0].get('message_count'));
+                const message_count = models[0].get('message_count') - 1;
+                User.update(to_user_id, {message_count}, (err, user) => {
+                  console.log('--> updated user: ', user);
+                  if (err) { console.log('--> err in subtracting message_count', err); }
+                });
+              });
 
             Message.destroy(models[0].get('id'), (err, model) => {
               this.respond(err || model);
             });
 
-            // update cache column in user table
-            User.query()
-              .where({id: to_user_id})
-              .end((err, models) => {
-                const message_count = models[0].get('message_count') - 1;
-                User.update(to_user_id, {message_count}, (err, user) => {
-                  if (err) { console.log('--> err in subtracting message_count', err); }
-                });
-              });
 
           });
       });
