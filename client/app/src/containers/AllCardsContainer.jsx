@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Card from '../components/Card';
-import { fetchCardsAction, fetchInboxAction } from '../actions/cardActions';
+import { fetchCardsAction, fetchInboxAction, fetchInboxCountAction } from '../actions/cardActions';
 
 class AllCardsContainer extends React.Component {
   constructor(props) {
@@ -15,12 +15,14 @@ class AllCardsContainer extends React.Component {
       const intervalId = setInterval(() => {
         if (!this.props.search.input && !localStorage.getItem('modalIsOpen')) {
           if ( this.props.cardsState === 'myCards') {
-              this.props.fetchCards();
+            this.props.fetchCards();
+            this.props.fetchInboxCount();
           } else if ( this.props.cardsState === 'inbox' ) {
             this.props.fetchInbox();
+            this.props.fetchInboxCount();
           }
         }
-      }, 600000);
+      }, 2000);
       localStorage.setItem('intervalId', intervalId);
     }, 100); // TODO: we need to figure out a solution to dispatch actions asyncly.
   }
@@ -63,7 +65,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   // whenever an action is called, result should be passed to all reducers
-  return bindActionCreators({fetchCards: fetchCardsAction, fetchInbox: fetchInboxAction}, dispatch);
+  return bindActionCreators({
+    fetchCards: fetchCardsAction, 
+    fetchInbox: fetchInboxAction, 
+    fetchInboxCount: fetchInboxCountAction,
+  }, dispatch);
   // inside container: can call this.props.fetchCards
 }
 
