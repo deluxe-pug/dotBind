@@ -12,6 +12,8 @@ class SearchContainer extends React.Component {
   componentDidMount() {
     if (this.props.search.input) {
       $('.search-input').val(this.props.search.input);
+    } else {
+      this.props.fetchCards();
     }
   }
 
