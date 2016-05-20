@@ -54,6 +54,8 @@ class MessageModal extends React.Component {
       domain: this.props.domain,
       language: this.props.language,
     };
+    Materialize.toast('Message saved to myCards!', 2000, 'rounded notication');
+    this.props.closeModal();
     let tags = [];
     this.props.cardTags.forEach( cardTag => tags.push(cardTag.tag.name) );
     this.props.saveMessage(cardObject, localStorage.getItem('githubUsername'), tags);
