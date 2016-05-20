@@ -10,7 +10,7 @@ Check out the web app @ <a href="http://dotbind.io" target="_blank">dotbind.io</
 ## Table of Contents 
 - [Team Members](#team-members-v-10)
 - [Technology Stack, APIs, and Third-party Tools](#technology-stack-apis-and-third-party-tools)
-- [Folder & File Structure](#)
+- [Folder & File Structure](#folder--file-structure)
 - [Setting up your development environment](#setting-up-your-development-environment)
 - [Starting up for development](#starting-up-for-development)
 - [System Architecture](#system-srchitecture)
@@ -91,6 +91,7 @@ $ brew install elasticsearch
 // you will need java 1.7+ to run ElasticSearch (brew install Caskroom/cask/java)
 ```
 5. In your Google Chrome browser, go to chrome://extensions, click on 'Developer mode' then 'Load unpacked extension', select the client/chrome folder to run extension in developer mode
+
 ## Starting up for development
 1. Run ElasticSearch
 ```
