@@ -80,6 +80,16 @@ export const fetchInboxAction = () => {
   };
 };
 
+export const fetchInboxCountAction = () => {
+  console.log('action called!');
+  // const endpoint = endpoints.INSERT_HERE?${token.....}
+  // const request = axios.get(endpoint);
+  return {
+    type: 'FETCH_COUNT',
+    payload: 1,
+  }
+};
+
 export const setToInboxAction = () => {
   return {
     type: 'TO_INBOX'
