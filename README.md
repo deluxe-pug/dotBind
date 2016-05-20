@@ -84,13 +84,23 @@ $ npm install
 $ npm install nodal -g
 ```
 3. Install PostgreSQL
-3. Install ElasticSearch
+4. Install ElasticSearch
 ```
 $ brew update
 $ brew install elasticsearch
 // you will need java 1.7+ to run ElasticSearch (brew install Caskroom/cask/java)
 ```
-5. In your Google Chrome browser, go to chrome://extensions, click on 'Developer mode' then 'Load unpacked extension', select the client/chrome folder to run extension in developer mode
+5. Configure ElasticSearch
+```
+// Find elasticsearch.yml file: 
+$ brew info elasticsearch
+// Add headers to elasticsearch.yml:
+http.cors.enabled : true
+http.cors.allow-origin: "*"
+http.cors.allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE
+http.cors.allow-headers: "X-Requested-With,X-Auth-Token,Content-Type, Content-Length, Authorization"
+```
+6. In your Google Chrome browser, go to chrome://extensions, click on 'Developer mode' then 'Load unpacked extension', select the client/chrome folder to run extension in developer mode
 
 ## Starting up for development
 1. Run ElasticSearch
