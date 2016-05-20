@@ -7,7 +7,13 @@ import SearchTagContainer from '../containers/SearchTagContainer';
 import AddCardContainer from '../containers/AddCardContainer';
 import UserProfileContainer from '../containers/UserProfileContainer';
 import { switchDisplayAction } from '../actions/searchActions';
-import { fetchCardsAction, fetchInboxAction, setToInboxAction, setToCardsAction } from '../actions/cardActions';
+import {
+  fetchCardsAction,
+  fetchInboxAction,
+  setToInboxAction,
+  setToCardsAction,
+  fetchInboxCountAction
+} from '../actions/cardActions';
 
 require("../styles/topbar.css");
 
@@ -38,6 +44,7 @@ class TopBar extends React.Component {
 
   componentWillMount() {
     this.props.switchDisplay(true);
+    this.props.fetchCount();
   }
 
   handleMyCards(){
@@ -69,7 +76,7 @@ class TopBar extends React.Component {
 
             <li className={this.props.cardsState === 'inbox' ? 'darkened rel-pos' : 'rel-pos'}>
               <a onClick={this.handleInbox.bind(this)}>
-                <div className="inbox-counter">1</div>
+                <div className="inbox-counter">3</div>
                 <i className="material-icons small-icon">email</i>
               </a>
             </li>
@@ -115,6 +122,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchCards: fetchCardsAction,
     setToInbox: setToInboxAction,
     setToCards: setToCardsAction,
+    fetchCount: fetchInboxCountAction,
   }, dispatch);
 }
 
