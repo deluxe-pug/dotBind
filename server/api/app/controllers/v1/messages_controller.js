@@ -80,15 +80,17 @@ module.exports = (function() {
               const to_user_id = models[0].get('id');
               const message_count = models[0].get('message_count') === null ? 1 : models[0].get('message_count') + 1;
 
-              Message.create({from_user_id, to_user_id, card_id}, (err, model) => {
-                return this.respond(err || model);
-              });
               // update cache column in user table
               User.update(to_user_id, {message_count}, (err, user) => {
                 if (err) { 
                   console.log('--> err in adding message_count user update', err); 
-                  this.respond(err);
+                  return this.respond(err);
                 }
+
+                Message.create({from_user_id, to_user_id, card_id}, (err, model) => {
+                  this.respond(err || model);
+                });
+
               });
             });
         });
