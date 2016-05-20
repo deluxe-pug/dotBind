@@ -101,6 +101,10 @@ module.exports = (function() {
         Message.query()
           .where({card_id, to_user_id})
           .end((err, models) => {
+            if (err) {
+              console.error('Error querying messages: ', err);
+              return this.respond(err);
+            }
             console.log('models[0].get("id"): ', models[0].get('id'))
             Message.destroy(models[0].get('id'), (err, model) => {
               this.respond(err || model);
