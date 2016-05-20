@@ -130,7 +130,6 @@ module.exports = (function() {
               this.respond(err || model);
             });
 
-
           });
       });
 
