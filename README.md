@@ -3,9 +3,9 @@
 # dotBind [![Travis-Ci Build Status](https://travis-ci.org/deluxe-pug/dotBind.svg?branch=dev)](https://travis-ci.org/deluxe-pug/dotBind)
 DotBind is a software engineer's notebook. Capture cool code snippets while browsing the web or track solutions to bugs. Never forget code again.
 
-Check out the web app @ <a href="http://dotbind.io" target="_blank">dotbind.io</a>.
+Check out the web app @ [dotbind.io](http://dotbind.io).
 
-<a href="https://chrome.google.com/webstore/detail/save-to-dotbind/hgagliimejgbhlgadoibbmlinaidfmgo?hl=en-US&gl=US&authuser=1" target="_blank">Download the chrome extension.</a>
+[Download the chrome extension](https://chrome.google.com/webstore/detail/save-to-dotbind/hgagliimejgbhlgadoibbmlinaidfmgo?hl=en-US&gl=US&authuser=1)
 
 ## Table of Contents 
 - [Team Members](#team-members-v-10)
