@@ -61,19 +61,20 @@ class TopBar extends React.Component {
               {this.props.search.display ? <SearchContainer /> : <SearchTagContainer />}
             </li>
 
-            <li className={this.props.cardsState === 'myCards' ? 'darkened' : ''}>
+            <li className={this.props.cardsState === 'myCards' ? 'darkened rel-pos' : 'rel-pos'}>
               <a onClick={this.handleMyCards.bind(this)}>
                 <i className="material-icons small-icon">home</i>
               </a>
             </li>
 
-            <li className={this.props.cardsState === 'inbox' ? 'darkened' : ''}>
+            <li className={this.props.cardsState === 'inbox' ? 'darkened rel-pos' : 'rel-pos'}>
               <a onClick={this.handleInbox.bind(this)}>
+                <div className="inbox-counter">1</div>
                 <i className="material-icons small-icon">email</i>
               </a>
             </li>
 
-            <li>
+            <li className="rel-pos">
               <a onClick={this.openModal.bind(this)}>
                 <i className="material-icons small-icon">library_add</i>
               </a>
@@ -86,7 +87,7 @@ class TopBar extends React.Component {
               </Modal>
             </li>
 
-            <li className="avatar">
+            <li className="avatar rel-pos">
               <UserProfileContainer />
             </li>
           </ul>
