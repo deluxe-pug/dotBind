@@ -109,6 +109,7 @@ exports.logout = (req, res) => {
 };
 
 exports.fetchsite = (req, res) => {
+  console.log('FETCHSITE IS CALLED IN STATIC SERVER')
   request({
     uri: req.query.url,
     method: 'GET'
@@ -123,7 +124,6 @@ exports.fetchsite = (req, res) => {
         url: req.query.url,
         title: title,
         code: '',
-        text: '',
         note: '',
         domain: domain,
         icon: `http://www.google.com/s2/favicons?domain=${domain}`,
@@ -132,12 +132,18 @@ exports.fetchsite = (req, res) => {
       tags: [] 
     };
 
+    console.log('resObj in static server: ', resObj);
+
     request({
       uri: `http://localhost:3000/v1/cards?access_token=${accessToken}`,
       method: 'POST',
       json: true,
       body: resObj
     }, function(error, message, response) {
+      console.log('FETCHSITE RESPONSE: ', response);
+      if (error) {
+        console.log('Error in fetchsite: ', error);
+      }
       res.json(response);
     })
 

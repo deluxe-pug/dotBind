@@ -77,6 +77,7 @@ module.exports = (function() {
         }
       */ 
     create() {
+      console.log('V1 CARDS ENDPOINT IN CARDSCONTROLLER IS REACHED');
       this.authorize((err, accessToken, user) => {
         if (err) {
           return this.respond(err);
@@ -136,7 +137,8 @@ module.exports = (function() {
 
               // Resolve CardTag Promises
               Promise.all(cardTagPromises).then((cardTags) => {
-                this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'text', 'note']);
+                this.respond(aCard, ['id', 'user_id', 'title', 'url', 'icon', 'domain', 'code', 'note']);
+                console.log('CARD POSTED IN POSTGRES DB: ', aCard);
 
                 const cardTagsFormatted = [];
                 tagModels.forEach(tagModel =>
@@ -148,6 +150,7 @@ module.exports = (function() {
                   })
                 )
 
+                console.log('cardTagsFormatted???')
                 // const cardTagFormat = [
                 //   {
                 //     tag: {
@@ -169,19 +172,21 @@ module.exports = (function() {
                     title: cardData.title,
                     user_id: cardData.user_id,
                     code: cardData.code,
-                    text: cardData.text,
                     note: cardData.note,
                     domain: cardData.domain,
                     cardTags: cardTagsFormatted,
                   },
                 };
 
+                console.log('BEFORE CLIENT.CREATE: ', esPost);
+
                 client.create(esPost)
                   .then((response) => 
                     console.log('=====> response: ', response),
                     (error) => 
                     console.log('=====> error: ', error)
-                  );
+                  )
+                  .catch((error) => console.log('ERROR IN ES CREATE: ', error));
               });
             });
           });            
