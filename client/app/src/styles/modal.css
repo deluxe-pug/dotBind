@@ -79,7 +79,7 @@ hr {
 }
 
 .language-menu {
-  margin-top: 4px;
+  margin-top: 2px;
   display: inline-block;
   float: right;
 }
@@ -120,11 +120,11 @@ textarea.vert {
   height: 150px;
   resize: none;
   background-color: white;
-  border-style: solid !important;
-  border-width: 2px !important;
-  border-color: #5f9cd2 !important;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #5f9cd2;
   border-radius: 10px;
-  margin-bottom: 0px !important;
+  margin-bottom: 0px;
   padding: 5px;
 }
 
@@ -199,7 +199,7 @@ textarea.vert {
 }
 
 .save-button {
-  width: 100px !important;
+  width: 100px;
   border-radius: 10px;
   background-color: #5f9cd2;
 /*  margin-left: 3px;
@@ -211,13 +211,13 @@ textarea.vert {
 
 .share-button {
   display: inline-block;
-  width: 100px !important;
+  width: 100px;
   padding: 0px;
   border-radius: 10px;
   background-color: #5f9cd2;
   margin-left: 3px;
   margin-right: 3px;
-  margin-bottom: 0px !important;
+  margin-bottom: 0px;
 
   z-index: 0;
 }
@@ -229,7 +229,7 @@ textarea.vert {
   border-radius: 10px;
   background-color: #c62828;
   margin-left: 3px;
-  margin-right: 10px !important;
+  margin-right: 10px;
 
   z-index: 0;
 }

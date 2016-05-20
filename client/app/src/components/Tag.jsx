@@ -21,8 +21,10 @@ class Tag extends React.Component {
           this.props.searchCards(this.props.tagName);
           this.props.addSearchKeyword(false, this.props.tagName);
         }}>
-          {this.props.tagName}
-          <span className="badge">{this.props.card_count}</span>
+          { this.props.tagName.length <= 11 ? 
+            this.props.tagName : 
+            this.props.tagName.slice(0, 11) + '...'}
+          <span> {this.props.card_count}</span> 
         </a>
     );
   }

@@ -38,7 +38,7 @@ form.search {
   bottom: 21px;
   left: 200px;
   height: 36px;
-  width: 500px;
+  width: 675px;
 }
 
 .search-tags {
@@ -46,7 +46,7 @@ form.search {
   top: 7px;
   left: 200px;
   height: 36px;
-  width: 510px;
+  width: 685px;
   /*padding-left: 10px;*/
   background-color: white !important;
   border-radius: 20px !important;

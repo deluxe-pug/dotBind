@@ -1,0 +1,46 @@
+/******************** SIDEBAR STYLES ********************/
+header, main, footer {
+  padding-left: 240px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+.sidebar {
+  height:100%;
+  width: 14% !important;
+}
+
+.collection {
+  border: none;
+}
+
+.collection-item {
+  margin-top: 5px !important;
+  margin-bottom: 4px !important;
+  background-color: #5f9cd2 !important;
+  color: white !important;
+  border-radius: 50px;
+  /*width: 130px !important;*/
+  /*width: 20% !important;*/
+}
+
+.collection-item > span {
+  float: right;
+}
+
+/*.collection-item:hover {
+  background-color: #5f9cd2 !important;
+  color: white !important;
+}
+
+.collection-item > span {
+  padding: 0px !important;
+  margin-bottom: 15px;
+  color: white;
+  background-color: #5f9cd2;
+  border-radius: 50px;
+}*/

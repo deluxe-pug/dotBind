@@ -13,7 +13,8 @@ export const addCardAction = (url) => {
   const accessToken = localStorage.getItem('dotBindAccessToken');
   const username = localStorage.getItem('githubUsername')
   const request = axios.get(`${endpoints.fetchsite}?url=${url}&username=${username}&accessToken=${accessToken}`);
-
+  console.log('username: ', username)
+  console.log('accessToken: ', accessToken)
   // const request = axios.post(endpoints.cards, {
   //   "card": {
   //     "url": url,

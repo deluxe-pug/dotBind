@@ -20,7 +20,7 @@ class AllCardsContainer extends React.Component {
             this.props.fetchInbox();
           }
         }
-      }, 2000);
+      }, 600000);
       localStorage.setItem('intervalId', intervalId);
     }, 100); // TODO: we need to figure out a solution to dispatch actions asyncly.
   }
