@@ -138,7 +138,7 @@ class MessageModal extends React.Component {
 
           <div className="buttons-bar">
 
-            <button className="btn save-button"
+            <button className="btn save-message-button"
               onClick={this.saveNewCard.bind(this)}>
               Save to myCards
             </button>
