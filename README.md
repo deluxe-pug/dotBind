@@ -13,9 +13,9 @@ Check out the web app @ <a href="http://dotbind.io" target="_blank">dotbind.io</
 - [Folder & File Structure](#folder--file-structure)
 - [Setting up your development environment](#setting-up-your-development-environment)
 - [Starting up for development](#starting-up-for-development)
-- [System Architecture](#system-srchitecture)
+- [System Architecture](#system-architecture)
 - [Database Schema](#database-schema)
-- [API Endpoints](#api-endpoints)
+- [API Endpoints](#api)
 
 ## Team Members (v. 1.0)
 
