@@ -76,7 +76,7 @@ class TopBar extends React.Component {
 
             <li className={this.props.cardsState === 'inbox' ? 'darkened rel-pos' : 'rel-pos'}>
               <a onClick={this.handleInbox.bind(this)}>
-                <div className="inbox-counter">3</div>
+                <div className="inbox-counter">{this.props.count}</div>
                 <i className="material-icons small-icon">email</i>
               </a>
             </li>
