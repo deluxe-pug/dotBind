@@ -111,7 +111,8 @@ const mapStateToProps = (state) => {
   return {
     cards: state.cards,
     search: state.search,
-    cardsState: state.cardsState
+    cardsState: state.cardsState,
+    count: state.inboxCount,
   };
 };
 
