@@ -46,7 +46,7 @@ class AllCardsContainer extends React.Component {
             : (<p>Cards that have been shared with you will appear here. You can also share cards with other users!</p>)}
         </div>
         <div className="no-content-footer">
-          <p><a href="#" className="cta">Dont have a dotBind button?</a></p>
+          <p><a href="https://chrome.google.com/webstore/detail/save-to-dotbind/hgagliimejgbhlgadoibbmlinaidfmgo?hl=en-US&gl=US&authuser=1" target="_blank" className="cta">Dont have a dotBind button?</a></p>
         </div>
       </div>
     )
