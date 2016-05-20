@@ -15,6 +15,10 @@ module.exports = (function() {
     index() {
 
       this.authorize((err, accessToken, user) => {
+        if (err) {
+          console.log('Error message in user_tags controller: ', err);
+          return this.respond(err);
+        }
         const user_id = user.get('id');
         const tagPromises = [];
 
