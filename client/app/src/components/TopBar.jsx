@@ -7,7 +7,13 @@ import SearchTagContainer from '../containers/SearchTagContainer';
 import AddCardContainer from '../containers/AddCardContainer';
 import UserProfileContainer from '../containers/UserProfileContainer';
 import { switchDisplayAction } from '../actions/searchActions';
-import { fetchCardsAction, fetchInboxAction, setToInboxAction, setToCardsAction } from '../actions/cardActions';
+import {
+  fetchCardsAction,
+  fetchInboxAction,
+  setToInboxAction,
+  setToCardsAction,
+  fetchInboxCountAction
+} from '../actions/cardActions';
 
 require("../styles/topbar.css");
 
@@ -38,6 +44,7 @@ class TopBar extends React.Component {
 
   componentWillMount() {
     this.props.switchDisplay(true);
+    this.props.fetchCount();
   }
 
   handleMyCards(){
@@ -61,19 +68,20 @@ class TopBar extends React.Component {
               {this.props.search.display ? <SearchContainer /> : <SearchTagContainer />}
             </li>
 
-            <li className={this.props.cardsState === 'myCards' ? 'darkened' : ''}>
+            <li className={this.props.cardsState === 'myCards' ? 'darkened rel-pos' : 'rel-pos'}>
               <a onClick={this.handleMyCards.bind(this)}>
                 <i className="material-icons small-icon">home</i>
               </a>
             </li>
 
-            <li className={this.props.cardsState === 'inbox' ? 'darkened' : ''}>
+            <li className={this.props.cardsState === 'inbox' ? 'darkened rel-pos' : 'rel-pos'}>
               <a onClick={this.handleInbox.bind(this)}>
+                <div className="inbox-counter">{this.props.count}</div>
                 <i className="material-icons small-icon">email</i>
               </a>
             </li>
 
-            <li>
+            <li className="rel-pos">
               <a onClick={this.openModal.bind(this)}>
                 <i className="material-icons small-icon">library_add</i>
               </a>
@@ -86,7 +94,7 @@ class TopBar extends React.Component {
               </Modal>
             </li>
 
-            <li className="avatar">
+            <li className="avatar rel-pos">
               <UserProfileContainer />
             </li>
           </ul>
@@ -103,7 +111,8 @@ const mapStateToProps = (state) => {
   return {
     cards: state.cards,
     search: state.search,
-    cardsState: state.cardsState
+    cardsState: state.cardsState,
+    count: state.inboxCount,
   };
 };
 
@@ -114,6 +123,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchCards: fetchCardsAction,
     setToInbox: setToInboxAction,
     setToCards: setToCardsAction,
+    fetchCount: fetchInboxCountAction,
   }, dispatch);
 }
 

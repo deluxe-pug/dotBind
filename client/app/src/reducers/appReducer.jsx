@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import cardsReducer from './cardsReducer';
+import countReducer from './inboxCountReducer';
 import cardsStateReducer from './cardsStateReducer';
 import tagsReducer from './tagsReducer';
 import userReducer from './userReducer';
@@ -15,6 +16,7 @@ const appReducer = combineReducers({
   user: userReducer,
   search: searchReducer,
   foundUsers: searchUsersReducer,
+  inboxCount: countReducer,
 });
 
 export default appReducer;
