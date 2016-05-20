@@ -65,10 +65,18 @@ module.exports = (function() {
       User.query()
         .where({username: from_user})
         .end((err, models) => {
+          if (err) { 
+            console.log('--> err in adding message_count user.query from_user', err);
+            this.respond(err);
+          }
           const from_user_id = models[0].get('id');
           User.query()
             .where({username: to_user})
             .end((err, models) => {
+              if (err) { 
+                console.log('--> err in adding message_count user.query to_user', err);
+                this.respond(err);
+              }
               const to_user_id = models[0].get('id');
               const message_count = models[0].get('message_count') === null ? 1 : models[0].get('message_count') + 1;
 
@@ -77,7 +85,10 @@ module.exports = (function() {
               });
               // update cache column in user table
               User.update(to_user_id, {message_count}, (err, user) => {
-                if (err) { console.log('--> err in adding message_count', err); }
+                if (err) { 
+                  console.log('--> err in adding message_count user update', err); 
+                  this.respond(err);
+                }
               });
             });
         });
