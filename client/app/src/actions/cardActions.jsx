@@ -109,7 +109,7 @@ export const searchCardsAction = (keywords) => {
                 "multi_match": {
                   "query": keywords,
                   "type": "most_fields",
-                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
+                  "fields": ["title", "url", "code", "text", "note", "domain", "language", "cardTags.tag.name"],
                 },
               }],
             },
@@ -122,6 +122,7 @@ export const searchCardsAction = (keywords) => {
               "text": {},
               "note": {},
               "domain": {},
+              "language": {},
               "cardTags.tag.name": {},
             },
           },
@@ -215,7 +216,7 @@ export const removeCardFilterAction = (keywords) => {
                 "multi_match": {
                   "query": keywords,
                   "type": "most_fields",
-                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
+                  "fields": ["title", "url", "code", "text", "note", "domain", "language", "cardTags.tag.name"],
                 },
               }],
             },
@@ -228,6 +229,7 @@ export const removeCardFilterAction = (keywords) => {
               "text": {},
               "note": {},
               "domain": {},
+              "language": {},
               "cardTags.tag.name": {},
             },
           },
