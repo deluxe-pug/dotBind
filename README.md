@@ -76,21 +76,26 @@ Each main folder is divided into respective subfolders.
 `api` is the container for the RESTful API server.
 ## Setting up your development environment
 1. Install dependencies in client/app, server/static, and server/api directories
+
 ```
 $ npm install
 ```
 2. Install Nodal
+
 ```
 $ npm install nodal -g
 ```
 3. Install PostgreSQL
+
 4. Install ElasticSearch
+
 ```
 $ brew update
 $ brew install elasticsearch
 // you will need java 1.7+ to run ElasticSearch (brew install Caskroom/cask/java)
 ```
 5. Configure ElasticSearch
+
 ```
 // Find elasticsearch.yml file: 
 $ brew info elasticsearch
@@ -100,19 +105,25 @@ http.cors.allow-origin: "*"
 http.cors.allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE
 http.cors.allow-headers: "X-Requested-With,X-Auth-Token,Content-Type, Content-Length, Authorization"
 ```
+
 6. In your Google Chrome browser, go to chrome://extensions, click on 'Developer mode' then 'Load unpacked extension', select the client/chrome folder to run extension in developer mode
 
 ## Starting up for development
 1. Run ElasticSearch
+
 ```
 $ elasticsearch
 ```
+
 2. Run Postgres App
+
 3. Run static-file server from server/static directory
+
 ```
 $ npm start
 ```
 4. Run API server from server/api diretory
+
 ```
 $ nodal db:create // create database
 $ nodal db:prepare // wipes database
@@ -121,6 +132,7 @@ $ nodal db:seed // seeds database with dummy data
 $ nodal s // start server
 ```
 5. Run Webpack watch and build from client/app directory
+
 ```
 $ npm run build
 ```
