@@ -14,7 +14,7 @@ module.exports = (function() {
         .where(this.params.query)
         .end((err, users) => {
 
-          this.respond(err || users, ['id', 'username', 'email', 'created_at', {userTags: [{tag: ['name']}, 'card_count']}] );
+          this.respond(err || users, ['id', 'username', 'email', 'created_at', 'message_count', {userTags: [{tag: ['name']}, 'card_count']}] );
 
         });
 

@@ -14,7 +14,8 @@ import AddTagForm from './AddTagForm';
 import { bindActionCreators } from 'redux';
 import {
   deleteMessageAction,
-  saveMessageAction
+  saveMessageAction,
+  fetchInboxAction,
 } from '../actions/cardActions';
 
 require('../styles/modal.css');
@@ -53,15 +54,19 @@ class MessageModal extends React.Component {
       domain: this.props.domain,
       language: this.props.language,
     };
+    Materialize.toast('Message saved to myCards!', 2000, 'rounded notication');
+    this.props.closeModal();
     let tags = [];
     this.props.cardTags.forEach( cardTag => tags.push(cardTag.tag.name) );
     this.props.saveMessage(cardObject, localStorage.getItem('githubUsername'), tags);
     this.props.deleteMessage(this.props.id);
+    this.props.fetchInbox();
   }
 
   notifyDelete(){
     console.log('about to remove this message. card_id: ', this.props.id);
     this.props.deleteMessage(this.props.id);
+    this.props.fetchInbox();
     Materialize.toast('Message Removed!', 2000, 'rounded notication');
     this.props.closeModal();
   }
@@ -135,7 +140,7 @@ class MessageModal extends React.Component {
 
           <div className="buttons-bar">
 
-            <button className="btn save-button"
+            <button className="btn save-message-button"
               onClick={this.saveNewCard.bind(this)}>
               Save to myCards
             </button>
@@ -166,6 +171,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     deleteMessage: deleteMessageAction,
     saveMessage: saveMessageAction,
+    fetchInbox: fetchInboxAction,
   }, dispatch);
 };
 

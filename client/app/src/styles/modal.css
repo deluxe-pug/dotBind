@@ -209,6 +209,17 @@ textarea.vert {
   z-index: 0;
 }
 
+.save-message-button {
+  width: 150px;
+  border-radius: 10px;
+  background-color: #5f9cd2;
+/*  margin-left: 3px;
+  margin-right: 3px;*/
+  margin: 0px 3px 0px 3px;
+  padding: 0px;
+  z-index: 0;
+}
+
 .share-button {
   display: inline-block;
   width: 100px;

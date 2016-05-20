@@ -80,6 +80,16 @@ export const fetchInboxAction = () => {
   };
 };
 
+export const fetchInboxCountAction = () => {
+  console.log('fectchInboxAction called!');
+  const username = localStorage.getItem('githubUsername');
+  const request = axios.get(`${endpoints.users}?username=${username}`);
+  return {
+    type: 'FETCH_COUNT',
+    payload: request,
+  };
+};
+
 export const setToInboxAction = () => {
   return {
     type: 'TO_INBOX'
@@ -99,7 +109,7 @@ export const searchCardsAction = (keywords) => {
                 "multi_match": {
                   "query": keywords,
                   "type": "most_fields",
-                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
+                  "fields": ["title", "url", "code", "text", "note", "domain", "language", "cardTags.tag.name"],
                 },
               }],
             },
@@ -112,6 +122,7 @@ export const searchCardsAction = (keywords) => {
               "text": {},
               "note": {},
               "domain": {},
+              "language": {},
               "cardTags.tag.name": {},
             },
           },
@@ -205,7 +216,7 @@ export const removeCardFilterAction = (keywords) => {
                 "multi_match": {
                   "query": keywords,
                   "type": "most_fields",
-                  "fields": ["title", "url", "code", "text", "note", "domain", "cardTags.tag.name"],
+                  "fields": ["title", "url", "code", "text", "note", "domain", "language", "cardTags.tag.name"],
                 },
               }],
             },
@@ -218,6 +229,7 @@ export const removeCardFilterAction = (keywords) => {
               "text": {},
               "note": {},
               "domain": {},
+              "language": {},
               "cardTags.tag.name": {},
             },
           },

@@ -174,6 +174,7 @@ module.exports = (function() {
                     code: cardData.code,
                     note: cardData.note,
                     domain: cardData.domain,
+                    language: cardData.language,
                     cardTags: cardTagsFormatted,
                   },
                 };

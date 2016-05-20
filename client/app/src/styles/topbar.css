@@ -5,7 +5,23 @@
 }
 
 .darkened {
-  background-color: #3276b2; 
+  background-color: #3276b2;
+}
+
+.rel-pos {
+  postion: relative;
+  /*text-align: right;*/
+}
+
+.inbox-counter {
+  z-index: 1;
+  display: inline;
+  padding: 2px;
+  text-align: center;
+  font-size: 8pt;
+  font-weight: bold;
+  background-color: red;
+  border-radius: 10px;
 }
 
 .dotbind-icon {
