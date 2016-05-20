@@ -86,7 +86,7 @@ export const fetchInboxCountAction = () => {
   // const request = axios.get(endpoint);
   return {
     type: 'FETCH_COUNT',
-    // payload: 1,
+    payload: 17,
   };
 };
 
