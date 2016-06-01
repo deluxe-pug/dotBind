@@ -1,4 +1,6 @@
 ![](https://dl.dropboxusercontent.com/s/lwsewhpqj6wv06r/banner-128-raleway.png?dl=0)
+![Demo](https://s3.amazonaws.com/poly-screenshots.angel.co/Project/40/284591/7f449eb349cad6a85bf5bce24d21d2ee-original.gif)
+
 ---
 # dotBind [![Travis-Ci Build Status](https://travis-ci.org/deluxe-pug/dotBind.svg?branch=dev)](https://travis-ci.org/deluxe-pug/dotBind)
 DotBind is a software engineer's notebook. Capture cool code snippets while browsing the web or track solutions to bugs. Never forget code again.
