@@ -36,7 +36,7 @@
   if ( selection.selected ) {
     chrome.runtime.sendMessage(selection, response => console.log(response.msg));
   }
-
+  
   // Uncomment to highlight text when being clicked on
   // Potential feature to add
   // $('body').on('mouseup', () => {
