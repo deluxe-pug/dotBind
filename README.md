@@ -39,6 +39,9 @@ Check out the web app @ [dotbind.io](http://dotbind.io).
 - [Webpack](https://webpack.github.io/) & [Babel](https://babeljs.io/) for using next-generation JavaScript, today 
 - [AirBnb's style guide](https://github.com/airbnb/javascript)
 
+## App Demo
+![Demo](https://s3.amazonaws.com/poly-screenshots.angel.co/Project/40/284591/7f449eb349cad6a85bf5bce24d21d2ee-original.gif)
+
 ## Folder and File Structure
 ```
                                   +-------+
