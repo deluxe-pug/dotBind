@@ -1,4 +1,6 @@
 ![](https://dl.dropboxusercontent.com/s/lwsewhpqj6wv06r/banner-128-raleway.png?dl=0)
+![Demo](https://s3.amazonaws.com/poly-screenshots.angel.co/Project/40/284591/7f449eb349cad6a85bf5bce24d21d2ee-original.gif)
+
 ---
 # dotBind [![Travis-Ci Build Status](https://travis-ci.org/deluxe-pug/dotBind.svg?branch=dev)](https://travis-ci.org/deluxe-pug/dotBind)
 DotBind is a software engineer's notebook. Capture cool code snippets while browsing the web or track solutions to bugs. Never forget code again.
@@ -38,9 +40,6 @@ Check out the web app @ [dotbind.io](http://dotbind.io).
 - [Travis CI](https://travis-ci.org/), [Mocha](https://mochajs.org/), and [Chai](http://chaijs.com/) for TDD
 - [Webpack](https://webpack.github.io/) & [Babel](https://babeljs.io/) for using next-generation JavaScript, today 
 - [AirBnb's style guide](https://github.com/airbnb/javascript)
-
-## App Demo
-![Demo](https://s3.amazonaws.com/poly-screenshots.angel.co/Project/40/284591/7f449eb349cad6a85bf5bce24d21d2ee-original.gif)
 
 ## Folder and File Structure
 ```
