@@ -82,7 +82,7 @@ Each main folder is divided into respective subfolders.
 ```
 $ npm install
 ```
-- Install Nodal
+- Install Nodal. Make sure you use Node v. 5.10.0 using nvm or n. Node versions >= 6.0.0 are incompatible with this project.
 
 ```
 $ npm install nodal -g
