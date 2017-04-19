@@ -9,4 +9,4 @@ exports.ensureAuthenticated = (req, res, next) => {
 
 exports.getTitleFromHtml = (html) => html.match(/\<.*title.*\>(.*)\<\/title\>/i)[1].trim();
 
-exports.getDomainFromUrl = (url) => url.match(/https?\:\/\/www.((.*).com)\/?(.*)/i)[1];
+exports.getDomainFromUrl = (url) => url.replace(/https?:\/\/(www\.)?/,'');
